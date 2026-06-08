@@ -292,7 +292,7 @@ export default function Home() {
                     <h3 className="font-bold text-black dark:text-white">Jayann&apos;s Store POS System</h3>
                     <span className="text-xs text-gray-600 dark:text-gray-400 font-mono mt-1 xl:mt-0">2025</span>
                   </div>
-                  <p className="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1.5">Full Stack Developer</p>
+                  <p className="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1.5">Application Development and Emerging Technologies Final Project</p>
                   <p className="text-sm text-gray-800 dark:text-gray-400">Web-based POS platform functioning as an e-commerce site utilizing PHP and MySQL.</p>
                 </div>
                 
