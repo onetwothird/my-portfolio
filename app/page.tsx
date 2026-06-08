@@ -133,49 +133,75 @@ export default function Home() {
             <section>
               <div className="flex justify-between items-end mb-6 border-b border-gray-100 dark:border-zinc-800 pb-2">
                 <h2 className="text-2xl font-bold">Recent Projects</h2>
-                <Link href="/projects" className="text-sm font-semibold text-black dark:text-gray-400 cursor-pointer hover:text-black dark:hover:text-white flex items-center transition-colors group">
-                  View All <ChevronRight size={16} className="group-hover:translate-x-1 transition-transform" />
+
+                <Link
+                  href="/projects"
+                  className="text-sm font-semibold text-black dark:text-gray-400 cursor-pointer hover:text-black dark:hover:text-white flex items-center transition-colors group"
+                >
+                  View All
+                  <ChevronRight
+                    size={16}
+                    className="group-hover:translate-x-1 transition-transform"
+                  />
                 </Link>
               </div>
-              
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+
                 {/* Project 1 */}
-                <div className="bg-gray-50 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 p-5 rounded-sm group hover:border-[#8B5CF6] dark:hover:border-[#8B5CF6] hover:shadow-sm transition-all cursor-pointer">
-                  <h3 className="font-bold text-black dark:text-white mb-1">Seelai AI Assistant</h3>
-                  <p className="text-sm text-gray-800 dark:text-gray-400 mb-4 h-10 line-clamp-2">Real-time object & caretaker face detection mobile app.</p>
+                <div className="bg-gray-50 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 p-5 rounded-sm group hover:border-gray-300 dark:hover:border-zinc-700 hover:shadow-sm transition-all cursor-pointer">
+                  <h3 className="font-bold text-black dark:text-white mb-1">
+                    Seelai AI Assistant
+                  </h3>
+                  <p className="text-sm text-gray-800 dark:text-gray-400 mb-4 h-10 line-clamp-2">
+                    Real-time object & caretaker face detection mobile app.
+                  </p>
                   <div className="flex gap-2 text-xs font-mono bg-white dark:bg-black w-fit px-2 py-1 border border-gray-200 dark:border-zinc-800 rounded-sm text-black dark:text-gray-300">
                     seelai-app.dev
                   </div>
                 </div>
-                
+
                 {/* Project 2 */}
-                <div className="bg-gray-50 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 p-5 rounded-sm group hover:border-[#8B5CF6] dark:hover:border-[#8B5CF6] hover:shadow-sm transition-all cursor-pointer">
-                  <h3 className="font-bold text-black dark:text-white mb-1">ODCI Document Tracker</h3>
-                  <p className="text-sm text-gray-800 dark:text-gray-400 mb-4 h-10 line-clamp-2">Centralized role-based corporate routing system.</p>
+                <div className="bg-gray-50 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 p-5 rounded-sm group hover:border-gray-300 dark:hover:border-zinc-700 hover:shadow-sm transition-all cursor-pointer">
+                  <h3 className="font-bold text-black dark:text-white mb-1">
+                    ODCI Document Tracker
+                  </h3>
+                  <p className="text-sm text-gray-800 dark:text-gray-400 mb-4 h-10 line-clamp-2">
+                    Centralized role-based corporate routing system.
+                  </p>
                   <div className="flex gap-2 text-xs font-mono bg-white dark:bg-black w-fit px-2 py-1 border border-gray-200 dark:border-zinc-800 rounded-sm text-black dark:text-gray-300">
                     odci.internal
                   </div>
                 </div>
 
                 {/* Project 3 */}
-                <div className="bg-gray-50 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 p-5 rounded-sm group hover:border-[#8B5CF6] dark:hover:border-[#8B5CF6] hover:shadow-sm transition-all cursor-pointer">
-                  <h3 className="font-bold text-black dark:text-white mb-1">AlgoVerse Simulator</h3>
-                  <p className="text-sm text-gray-800 dark:text-gray-400 mb-4 h-10 line-clamp-2">Visual CPU scheduling execution platform.</p>
+                <div className="bg-gray-50 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 p-5 rounded-sm group hover:border-gray-300 dark:hover:border-zinc-700 hover:shadow-sm transition-all cursor-pointer">
+                  <h3 className="font-bold text-black dark:text-white mb-1">
+                    AlgoVerse Simulator
+                  </h3>
+                  <p className="text-sm text-gray-800 dark:text-gray-400 mb-4 h-10 line-clamp-2">
+                    Visual CPU scheduling execution platform.
+                  </p>
                   <div className="flex gap-2 text-xs font-mono bg-white dark:bg-black w-fit px-2 py-1 border border-gray-200 dark:border-zinc-800 rounded-sm text-black dark:text-gray-300">
                     algo-verse.edu
                   </div>
                 </div>
 
                 {/* Project 4 */}
-                <div className="bg-gray-50 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 p-5 rounded-sm group hover:border-[#8B5CF6] dark:hover:border-[#8B5CF6] hover:shadow-sm transition-all cursor-pointer">
-                  <h3 className="font-bold text-black dark:text-white mb-1">Jayann&apos;s Store POS</h3>
-                  <p className="text-sm text-gray-800 dark:text-gray-400 mb-4 h-10 line-clamp-2">Full stack inventory & ecommerce application.</p>
+                <div className="bg-gray-50 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 p-5 rounded-sm group hover:border-gray-300 dark:hover:border-zinc-700 hover:shadow-sm transition-all cursor-pointer">
+                  <h3 className="font-bold text-black dark:text-white mb-1">
+                    Jayann&apos;s Store POS
+                  </h3>
+                  <p className="text-sm text-gray-800 dark:text-gray-400 mb-4 h-10 line-clamp-2">
+                    Full stack inventory & ecommerce application.
+                  </p>
                   <div className="flex gap-2 text-xs font-mono bg-white dark:bg-black w-fit px-2 py-1 border border-gray-200 dark:border-zinc-800 rounded-sm text-black dark:text-gray-300">
                     store-pos.local
                   </div>
                 </div>
+
               </div>
-            </section>
+            </section>        
 
             {/* Certifications Grid */}
             <section>
@@ -297,7 +323,7 @@ export default function Home() {
                     <h3 className="font-bold text-black dark:text-white">Smart Cook</h3>
                     <span className="text-xs text-gray-600 dark:text-gray-400 font-mono mt-1 xl:mt-0">2024</span>
                   </div>
-                  <p className="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1.5">Software Engineering I Final Project | Full Stack Developer </p>
+                  <p className="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1.5">Software Engineering I Final Project | Full Stack Developer</p>
                   <p className="text-sm text-gray-800 dark:text-gray-400">Recipe finder web app built with Vanilla JS and the Edamam API to filter meals based on dietary needs.</p>
                 </div>
 
