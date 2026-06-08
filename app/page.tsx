@@ -1,4 +1,4 @@
-import { MapPin, Mail, ExternalLink, ChevronRight, Trophy } from 'lucide-react';
+import { MapPin, Mail, ExternalLink, ChevronRight, Trophy, FileText } from 'lucide-react';
 import { ThemeToggle } from './src/components/ThemeToggle';
 import Image from "next/image";
 import Link from 'next/link';
@@ -59,13 +59,35 @@ export default function Home() {
             </div>
 
             {/* Action Buttons */}
-            <div className="flex flex-wrap gap-3 mt-6 border-b border-gray-100 dark:border-zinc-800 pb-8">
-              <a href="https://github.com/onetwothird" target="_blank" rel="noreferrer" className="flex items-center gap-2 px-5 py-2.5 bg-black dark:bg-white text-white dark:text-black text-sm font-semibold rounded-sm hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors shadow-sm">
-                <GithubIcon size={16} /> View GitHub <ChevronRight size={16} className="ml-2 opacity-50"/>
+           <div className="flex flex-wrap gap-3 mt-6 border-b border-gray-100 dark:border-zinc-800 pb-8">
+
+              {/* VIEW RESUME (HIGHLIGHTED) */}
+              <a
+                href="/resume/resume%20now.pdf"
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-2 px-5 py-2.5 bg-black dark:bg-white text-white dark:text-black text-sm font-semibold rounded-sm hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors shadow-sm"
+              >
+                <FileText size={16} /> View Resume <ChevronRight size={16} className="ml-2 opacity-50" />
               </a>
-              <a href="mailto:nc.angelitoiii.decatoria@cvsu.edu.ph" className="flex items-center gap-2 px-5 py-2.5 bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 text-black dark:text-gray-200 text-sm font-semibold rounded-sm hover:bg-gray-50 dark:hover:bg-zinc-800 transition-colors shadow-sm">
+
+              {/* GITHUB (SECONDARY) */}
+              <a
+                href="https://github.com/onetwothird"
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-2 px-5 py-2.5 bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 text-black dark:text-gray-200 text-sm font-semibold rounded-sm hover:bg-gray-50 dark:hover:bg-zinc-800 transition-colors shadow-sm"
+              >
+                <GithubIcon size={16} /> View GitHub <ChevronRight size={16} className="ml-2 opacity-50" />
+              </a>
+
+              <a
+                href="mailto:nc.angelitoiii.decatoria@cvsu.edu.ph"
+                className="flex items-center gap-2 px-5 py-2.5 bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 text-black dark:text-gray-200 text-sm font-semibold rounded-sm hover:bg-gray-50 dark:hover:bg-zinc-800 transition-colors shadow-sm"
+              >
                 <Mail size={16} /> Send Email
               </a>
+
             </div>
           </div>
         </header>
