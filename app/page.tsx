@@ -1,4 +1,4 @@
-import { MapPin, Mail, ExternalLink, ChevronRight } from 'lucide-react';
+import { MapPin, Mail, ExternalLink, ChevronRight, Trophy } from 'lucide-react';
 import { ThemeToggle } from './src/components/ThemeToggle';
 import Image from "next/image";
 
@@ -49,8 +49,11 @@ export default function Home() {
               <p className="text-lg font-medium text-black dark:text-gray-200">
                 Full Stack Developer \ CS Student \ AI Enthusiast
               </p>
-              <div className="bg-blue-600 text-white text-xs font-bold px-3 py-1.5 flex items-center gap-2 rounded-sm w-fit shadow-sm">
-                🏆 DEAN&apos;S LISTER 2022-2026 <ChevronRight size={14}/>
+
+              <div className="bg-blue-600 text-white text-xs font-semibold px-4 py-2 flex items-center gap-2 rounded-sm w-fit shadow-sm">
+                <Trophy size={12} fill="currentColor" />
+                <span>DEAN&apos;S LISTER 2022–2026</span>
+                <ChevronRight size={14} />
               </div>
             </div>
 
