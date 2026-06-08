@@ -10,8 +10,9 @@ const GithubIcon = ({ size = 20, className = "" }) => (
 );
 
 const VerifiedBadge = () => (
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-blue-500 inline-block ml-2">
-    <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM10 17L5 12L6.41 10.59L10 14.17L17.59 6.58L19 8L10 17Z" fill="currentColor"/>
+  <svg width="25" height="25" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-blue-600 inline-block ml-2">
+    <path d="M12 1.5L14 3.5L17 2.8L18 5.7L21 6.5L20.3 9.5L22.5 12L20.3 14.5L21 17.5L18 18.3L17 21.2L14 20.5L12 22.5L10 20.5L7 21.2L6 18.3L3 17.5L3.7 14.5L1.5 12L3.7 9.5L3 6.5L6 5.7L7 2.8L10 3.5L12 1.5Z" fill="currentColor" />
+    <path d="M8.5 12L11 14.5L16 9.5" stroke="white" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 );
 
