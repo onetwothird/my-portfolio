@@ -15,12 +15,6 @@ const VerifiedBadge = () => (
   </svg>
 );
 
-const QrCodePlaceholder = () => (
-  <svg width="40" height="40" viewBox="0 0 40 40" fill="currentColor" className="text-white/60 opacity-80">
-    <rect x="0" y="0" width="8" height="8" /><rect x="12" y="0" width="4" height="4" /><rect x="20" y="0" width="8" height="8" /><rect x="32" y="0" width="8" height="8" /><rect x="0" y="12" width="4" height="4" /><rect x="8" y="12" width="8" height="8" /><rect x="24" y="12" width="4" height="4" /><rect x="36" y="12" width="4" height="4" /><rect x="0" y="24" width="8" height="8" /><rect x="12" y="24" width="4" height="4" /><rect x="20" y="24" width="8" height="8" /><rect x="32" y="24" width="8" height="8" /><rect x="0" y="36" width="4" height="4" /><rect x="8" y="36" width="4" height="4" /><rect x="16" y="36" width="8" height="8" /><rect x="28" y="36" width="12" height="4" />
-  </svg>
-);
-
 export default function Home() {
   return (
     <div className="min-h-screen text-gray-900 dark:text-gray-100 font-sans selection:bg-[#8B5CF6] selection:text-white transition-colors duration-300">
