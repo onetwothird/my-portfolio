@@ -133,7 +133,9 @@ export default function Home() {
             <section>
               <div className="flex justify-between items-end mb-6 border-b border-gray-100 dark:border-zinc-800 pb-2">
                 <h2 className="text-2xl font-bold">Recent Projects</h2>
-                <span className="text-sm font-semibold text-black dark:text-gray-400 cursor-pointer hover:text-black dark:hover:text-white flex items-center transition-colors">View All <ChevronRight size={16}/></span>
+                <Link href="/projects" className="text-sm font-semibold text-black dark:text-gray-400 cursor-pointer hover:text-black dark:hover:text-white flex items-center transition-colors group">
+                  View All <ChevronRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                </Link>
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -179,6 +181,9 @@ export default function Home() {
             <section>
               <div className="flex justify-between items-end mb-6 border-b border-gray-100 dark:border-zinc-800 pb-2">
                 <h2 className="text-2xl font-bold">Recent Certifications</h2>
+                <Link href="/certifications" className="text-sm font-semibold text-black dark:text-gray-400 cursor-pointer hover:text-black dark:hover:text-white flex items-center transition-colors group">
+                  View All <ChevronRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                </Link>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="bg-gray-50 dark:bg-zinc-900 p-4 border border-gray-200 dark:border-zinc-800 rounded-sm">
@@ -199,33 +204,6 @@ export default function Home() {
                 </div>
               </div>
             </section>
-
-            {/* Bottom 3-Column Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-8 border-t border-gray-100 dark:border-zinc-800">
-              <div>
-                <h3 className="text-sm font-bold mb-4">Focus Areas</h3>
-                <ul className="space-y-3 text-sm text-gray-900 dark:text-gray-400">
-                  <li className="flex items-center justify-between hover:text-black dark:hover:text-white cursor-pointer transition-colors">Data Structures <ExternalLink size={12}/></li>
-                  <li className="flex items-center justify-between hover:text-black dark:hover:text-white cursor-pointer transition-colors">Machine Learning <ExternalLink size={12}/></li>
-                  <li className="flex items-center justify-between hover:text-black dark:hover:text-white cursor-pointer transition-colors">System Architecture <ExternalLink size={12}/></li>
-                </ul>
-              </div>
-              <div>
-                <h3 className="text-sm font-bold mb-4">Social Links</h3>
-                <ul className="space-y-3 text-sm text-gray-900 dark:text-gray-400">
-                  <li className="flex items-center gap-2 hover:text-black dark:hover:text-white cursor-pointer transition-colors"><GithubIcon size={14}/> GitHub</li>
-                  <li className="flex items-center gap-2 hover:text-black dark:hover:text-white cursor-pointer transition-colors"><Mail size={14}/> Email Me</li>
-                </ul>
-              </div>
-              <div>
-                <h3 className="text-sm font-bold mb-4">Reference</h3>
-                <div className="text-xs text-gray-900 dark:text-gray-400 space-y-1">
-                  <p className="font-bold text-black dark:text-white text-sm">MICHELLE C. TANEGA, DIT</p>
-                  <p>Chairperson, IT Dept</p>
-                  <a href="mailto:mlmtanega@cvsu-naic.edu.ph" className="text-blue-600 hover:underline cursor-pointer block mt-1">mlmtanega@cvsu-naic.edu.ph</a>
-                </div>
-              </div>
-            </div>
 
           </div>
 
@@ -337,8 +315,53 @@ export default function Home() {
           </div>
         </div>
 
+        {/* FULL WIDTH BOTTOM GRID (Now spanning both columns) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 pt-12 mt-16 border-t border-gray-200 dark:border-zinc-800">
+          <div>
+            <h3 className="text-sm font-bold mb-4">Focus Areas</h3>
+
+            <ul className="flex flex-wrap gap-2 text-sm text-gray-900 dark:text-gray-400">
+              <li className="flex items-center gap-1 hover:text-black dark:hover:text-white cursor-pointer transition-colors">
+                Data Structures <ExternalLink size={12} className="opacity-70" />
+              </li>
+
+              <li className="flex items-center gap-1 hover:text-black dark:hover:text-white cursor-pointer transition-colors">
+                Machine Learning <ExternalLink size={12} className="opacity-70" />
+              </li>
+
+              <li className="flex items-center gap-1 hover:text-black dark:hover:text-white cursor-pointer transition-colors">
+                System Architecture <ExternalLink size={12} className="opacity-70" />
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 className="text-sm font-bold mb-4">Social Links</h3>
+            <ul className="space-y-3 text-sm text-gray-900 dark:text-gray-400">
+              <li className="flex items-center gap-2 hover:text-black dark:hover:text-white cursor-pointer transition-colors"><GithubIcon size={14}/> GitHub</li>
+              <li className="flex items-center gap-2 hover:text-black dark:hover:text-white cursor-pointer transition-colors"><Mail size={14}/> Email Me</li>
+            </ul>
+          </div>
+          <div>
+            <h3 className="text-sm font-bold mb-4">Reference</h3>
+            <div className="text-xs text-gray-900 dark:text-gray-400 space-y-1">
+              <p className="font-bold text-black dark:text-white text-sm">MICHELLE C. TANEGA, DIT</p>
+              <p>Chairperson, IT Dept</p>
+              <a href="mailto:mlmtanega@cvsu-naic.edu.ph" className="text-blue-600 hover:underline cursor-pointer block mt-1">mlmtanega@cvsu-naic.edu.ph</a>
+            </div>
+          </div>
+          <div>
+            <h3 className="text-sm font-bold mb-4">Get in touch</h3>
+            <p className="text-sm text-gray-900 dark:text-gray-400 mb-4 pr-4">
+              Available for new opportunities in software development.
+            </p>
+            <a href="mailto:nc.angelitoiii.decatoria@cvsu.edu.ph" className="inline-flex items-center gap-2 text-sm font-bold text-black dark:text-white hover:text-blue-600 dark:hover:text-blue-500 transition-colors group">
+              Let&apos;s talk <ChevronRight size={14} className="group-hover:translate-x-1 transition-transform" />
+            </a>
+          </div>
+        </div>
+
         {/* FOOTER */}
-        <footer className="pt-12 mt-12 border-t border-gray-200 dark:border-zinc-800 flex flex-col md:flex-row items-center justify-between text-sm text-gray-900 dark:text-gray-400 pb-8">
+        <footer className="pt-8 mt-4 border-t border-gray-200 dark:border-zinc-800 flex flex-col md:flex-row items-center justify-between text-sm text-gray-900 dark:text-gray-400 pb-8">
           <p>&copy; 2026 Angelito P. Decatoria III. All rights reserved.</p>
           <a href="mailto:nc.angelitoiii.decatoria@cvsu.edu.ph" className="mt-4 md:mt-0 bg-black dark:bg-white text-white dark:text-black px-6 py-3 font-semibold flex items-center gap-2 rounded-sm hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors shadow-sm">
             <Mail size={16}/> Connect with Thirdy
