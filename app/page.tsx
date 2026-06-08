@@ -253,7 +253,7 @@ export default function Home() {
                     <h3 className="font-bold text-black dark:text-white">ODCI (Document Tracker)</h3>
                     <span className="text-xs text-gray-600 dark:text-gray-400 font-mono mt-1 xl:mt-0">2025</span>
                   </div>
-                  <p className="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1.5">Full Stack Developer (OJT)</p>
+                  <p className="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1.5">Full Stack Developer (OJT) | Full Stack Developer</p>
                   <p className="text-sm text-gray-800 dark:text-gray-400">Centralized role-based document tracking system engineered collaboratively to efficiently route and monitor document lifecycles.</p>
                 </div>
 
@@ -264,7 +264,7 @@ export default function Home() {
                     <h3 className="font-bold text-black dark:text-white">AlgoVerse</h3>
                     <span className="text-xs text-gray-600 dark:text-gray-400 font-mono mt-1 xl:mt-0">2025</span>
                   </div>
-                  <p className="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1.5">Operating Systems Final Project</p>
+                  <p className="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1.5">Operating Systems Final Project | Full Stack Developer</p>
                   <p className="text-sm text-gray-800 dark:text-gray-400">Web-based visual simulator for CPU scheduling algorithms (FCFS, SJF, Round Robin) for educational purposes.</p>
                 </div>
 
@@ -275,7 +275,7 @@ export default function Home() {
                     <h3 className="font-bold text-black dark:text-white">Jayann&apos;s Store POS System</h3>
                     <span className="text-xs text-gray-600 dark:text-gray-400 font-mono mt-1 xl:mt-0">2025</span>
                   </div>
-                  <p className="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1.5">Application Development and Emerging Technologies Final Project</p>
+                  <p className="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1.5">Application Development and Emerging Technologies Final Project | Full Stack Developer</p>
                   <p className="text-sm text-gray-800 dark:text-gray-400">Web-based POS platform functioning as an e-commerce site utilizing PHP and MySQL.</p>
                 </div>
                 
@@ -286,7 +286,7 @@ export default function Home() {
                     <h3 className="font-bold text-black dark:text-white">Sari-tech</h3>
                     <span className="text-xs text-gray-600 dark:text-gray-400 font-mono mt-1 xl:mt-0">2025</span>
                   </div>
-                  <p className="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1.5">Software Engineering II Final Project</p>
+                  <p className="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1.5">Software Engineering II Final Project | Full Stack Developer</p>
                   <p className="text-sm text-gray-800 dark:text-gray-400">Comprehensive software engineering project serving as the capstone for the course.</p>
                 </div>
 
@@ -297,7 +297,7 @@ export default function Home() {
                     <h3 className="font-bold text-black dark:text-white">Smart Cook</h3>
                     <span className="text-xs text-gray-600 dark:text-gray-400 font-mono mt-1 xl:mt-0">2024</span>
                   </div>
-                  <p className="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1.5">Software Engineering I Final Project</p>
+                  <p className="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1.5">Software Engineering I Final Project | Full Stack Developer </p>
                   <p className="text-sm text-gray-800 dark:text-gray-400">Recipe finder web app built with Vanilla JS and the Edamam API to filter meals based on dietary needs.</p>
                 </div>
 
