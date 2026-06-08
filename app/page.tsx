@@ -209,22 +209,24 @@ export default function Home() {
 
           {/* RIGHT COLUMN (Card & Timeline) */}
           <div className="space-y-8">
-
-            {/* Purple Banner */}
-            <div className="w-full bg-[#8B5CF6] text-white p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 rounded-md shadow-sm">
+            <div className="w-full flex flex-col sm:flex-row sm:items-center justify-between gap-4 py-5 border-t border-b border-gray-200 dark:border-zinc-800">
+              
               <div>
-                <div className="font-black tracking-wide text-xl md:text-2xl mb-1">
+                <div className="font-black tracking-wide text-xl md:text-2xl mb-1 text-black dark:text-white">
                   AVAILABLE FOR ROLES
                 </div>
-                <div className="text-sm md:text-base font-medium opacity-90">
+
+                <div className="text-sm md:text-base font-medium text-gray-700 dark:text-gray-400">
                   Open to Full-Stack & Software Engineering positions.
                 </div>
               </div>
+
               <div className="text-left sm:text-right shrink-0">
-                <div className="inline-block text-xs font-mono font-bold border border-white/30 px-3 py-1.5 rounded-sm bg-white/10 shadow-sm backdrop-blur-sm">
+                <div className="inline-block text-xs font-mono font-bold border border-gray-300 dark:border-zinc-700 px-3 py-1.5 rounded-sm text-gray-800 dark:text-gray-200">
                   BSCS 2026
                 </div>
               </div>
+
             </div>
 
             {/* Experience Timeline */}
