@@ -239,7 +239,7 @@ export default function Home() {
                 <div className="relative pl-8 group">
                   <div className="absolute -left-1.75 top-1.5 w-3.5 h-3.5 bg-black dark:bg-white border border-black dark:border-white rounded-sm group-hover:scale-110 transition-transform" />
                   <div className="flex flex-col xl:flex-row xl:justify-between xl:items-start mb-1">
-                    <h3 className="font-bold text-black dark:text-white">Seelai AI Assistant</h3>
+                    <h3 className="font-bold text-black dark:text-white">Seelai</h3>
                     <span className="text-xs text-gray-600 dark:text-gray-400 font-mono mt-1 xl:mt-0">2026</span>
                   </div>
                   <p className="text-xs font-semibold text-gray-800 dark:text-gray-300 mb-1.5">Thesis Project | Full Stack Developer</p>
