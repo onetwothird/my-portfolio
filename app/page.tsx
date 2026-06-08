@@ -17,8 +17,7 @@ const VerifiedBadge = () => (
 
 export default function Home() {
   return (
-    <div className="min-h-screen text-gray-900 dark:text-gray-100 font-sans selection:bg-[#8B5CF6] selection:text-white transition-colors duration-300">
-      {/* Tailwind Fix: max-w-275 */}
+    <div className="min-h-screen text-black dark:text-gray-100 font-sans selection:bg-[#8B5CF6] selection:text-white transition-colors duration-300">
       <div className="max-w-275 mx-auto px-6 py-12 md:py-20 space-y-16">
         
         {/* HEADER PROFILE */}
@@ -41,16 +40,15 @@ export default function Home() {
               <ThemeToggle />
             </div>
             
-            <div className="flex items-center gap-2 text-gray-700 dark:text-gray-400 mt-2 font-medium">
+            <div className="flex items-center gap-2 text-gray-900 dark:text-gray-400 mt-2 font-medium">
               <MapPin size={16} /> Cavite, Philippines (Naic, Cavite)
             </div>
             
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mt-4">
-              <p className="text-lg font-medium text-gray-800 dark:text-gray-200">
+              <p className="text-lg font-medium text-black dark:text-gray-200">
                 Full Stack Developer \ CS Student \ AI Enthusiast
               </p>
               <div className="bg-blue-600 text-white text-xs font-bold px-3 py-1.5 flex items-center gap-2 rounded-sm w-fit shadow-sm">
-                {/* ESLint Fix: &apos; */}
                 🏆 DEAN&apos;S LISTER 2022-2026 <ChevronRight size={14}/>
               </div>
             </div>
@@ -60,7 +58,7 @@ export default function Home() {
               <a href="https://github.com/onetwothird" target="_blank" rel="noreferrer" className="flex items-center gap-2 px-5 py-2.5 bg-black dark:bg-white text-white dark:text-black text-sm font-semibold rounded-sm hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors shadow-sm">
                 <GithubIcon size={16} /> View GitHub <ChevronRight size={16} className="ml-2 opacity-50"/>
               </a>
-              <a href="mailto:nc.angelitoiii.decatoria@cvsu.edu.ph" className="flex items-center gap-2 px-5 py-2.5 bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 text-gray-800 dark:text-gray-200 text-sm font-semibold rounded-sm hover:bg-gray-50 dark:hover:bg-zinc-800 transition-colors shadow-sm">
+              <a href="mailto:nc.angelitoiii.decatoria@cvsu.edu.ph" className="flex items-center gap-2 px-5 py-2.5 bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 text-black dark:text-gray-200 text-sm font-semibold rounded-sm hover:bg-gray-50 dark:hover:bg-zinc-800 transition-colors shadow-sm">
                 <Mail size={16} /> Send Email
               </a>
             </div>
@@ -76,9 +74,8 @@ export default function Home() {
             {/* About */}
             <section>
               <h2 className="text-2xl font-bold mb-6">About</h2>
-              <div className="space-y-4 text-gray-800 dark:text-gray-300 leading-relaxed">
+              <div className="space-y-4 text-black dark:text-gray-300 leading-relaxed">
                 <p>
-                  {/* ESLint Fixes: &apos; */}
                   I&apos;m a full-stack developer and senior Computer Science student specializing in building structural, high-fidelity web ecosystems alongside intelligent mobile applications. I work on projects including modern web platforms, POS systems, and integrating AI into daily utilities.
                 </p>
                 <p>
@@ -94,31 +91,31 @@ export default function Home() {
             <section>
               <div className="flex justify-between items-end mb-6 border-b border-gray-100 dark:border-zinc-800 pb-2">
                 <h2 className="text-2xl font-bold">Tech Stack</h2>
-                <span className="text-sm font-semibold text-gray-600 dark:text-gray-400 cursor-pointer hover:text-black dark:hover:text-white flex items-center transition-colors">View All <ChevronRight size={16}/></span>
+                <span className="text-sm font-semibold text-black dark:text-gray-400 cursor-pointer hover:text-black dark:hover:text-white flex items-center transition-colors">View All <ChevronRight size={16}/></span>
               </div>
               
               <div className="space-y-6">
                 <div>
-                  <h3 className="text-sm font-bold text-gray-900 dark:text-gray-100 mb-3">Frontend & Mobile</h3>
+                  <h3 className="text-sm font-bold text-black dark:text-gray-100 mb-3">Frontend & Mobile</h3>
                   <div className="flex flex-wrap gap-2">
                     {['JavaScript', 'Dart', 'React.js', 'Next.js', 'HTML5', 'CSS3', 'Flutter SDK'].map(tech => (
-                      <span key={tech} className="px-3 py-1.5 bg-gray-50 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 text-gray-700 dark:text-gray-300 text-sm font-medium rounded-sm">{tech}</span>
+                      <span key={tech} className="px-3 py-1.5 bg-gray-50 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 text-black dark:text-gray-300 text-sm font-medium rounded-sm">{tech}</span>
                     ))}
                   </div>
                 </div>
                 <div>
-                  <h3 className="text-sm font-bold text-gray-900 dark:text-gray-100 mb-3">Backend & Database</h3>
+                  <h3 className="text-sm font-bold text-black dark:text-gray-100 mb-3">Backend & Database</h3>
                   <div className="flex flex-wrap gap-2">
                     {['Node.js', 'Python', 'PHP', 'MySQL', 'Firebase', 'REST APIs'].map(tech => (
-                      <span key={tech} className="px-3 py-1.5 bg-gray-50 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 text-gray-700 dark:text-gray-300 text-sm font-medium rounded-sm">{tech}</span>
+                      <span key={tech} className="px-3 py-1.5 bg-gray-50 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 text-black dark:text-gray-300 text-sm font-medium rounded-sm">{tech}</span>
                     ))}
                   </div>
                 </div>
                 <div>
-                  <h3 className="text-sm font-bold text-gray-900 dark:text-gray-100 mb-3">AI & Developer Tools</h3>
+                  <h3 className="text-sm font-bold text-black dark:text-gray-100 mb-3">AI & Developer Tools</h3>
                   <div className="flex flex-wrap gap-2">
                     {['TensorFlow Lite', 'YOLO', 'Roboflow', 'Label Studio', 'Git', 'VS Code'].map(tech => (
-                      <span key={tech} className="px-3 py-1.5 bg-gray-50 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 text-gray-700 dark:text-gray-300 text-sm font-medium rounded-sm">{tech}</span>
+                      <span key={tech} className="px-3 py-1.5 bg-gray-50 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 text-black dark:text-gray-300 text-sm font-medium rounded-sm">{tech}</span>
                     ))}
                   </div>
                 </div>
@@ -129,43 +126,42 @@ export default function Home() {
             <section>
               <div className="flex justify-between items-end mb-6 border-b border-gray-100 dark:border-zinc-800 pb-2">
                 <h2 className="text-2xl font-bold">Recent Projects</h2>
-                <span className="text-sm font-semibold text-gray-600 dark:text-gray-400 cursor-pointer hover:text-black dark:hover:text-white flex items-center transition-colors">View All <ChevronRight size={16}/></span>
+                <span className="text-sm font-semibold text-black dark:text-gray-400 cursor-pointer hover:text-black dark:hover:text-white flex items-center transition-colors">View All <ChevronRight size={16}/></span>
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {/* Project 1 */}
                 <div className="bg-gray-50 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 p-5 rounded-sm group hover:border-[#8B5CF6] dark:hover:border-[#8B5CF6] hover:shadow-sm transition-all cursor-pointer">
-                  <h3 className="font-bold text-gray-900 dark:text-white mb-1">Seelai AI Assistant</h3>
-                  <p className="text-sm text-gray-700 dark:text-gray-400 mb-4 h-10 line-clamp-2">Real-time object & caretaker face detection mobile app.</p>
-                  <div className="flex gap-2 text-xs font-mono bg-white dark:bg-black w-fit px-2 py-1 border border-gray-200 dark:border-zinc-800 rounded-sm text-gray-700 dark:text-gray-300">
+                  <h3 className="font-bold text-black dark:text-white mb-1">Seelai AI Assistant</h3>
+                  <p className="text-sm text-gray-800 dark:text-gray-400 mb-4 h-10 line-clamp-2">Real-time object & caretaker face detection mobile app.</p>
+                  <div className="flex gap-2 text-xs font-mono bg-white dark:bg-black w-fit px-2 py-1 border border-gray-200 dark:border-zinc-800 rounded-sm text-black dark:text-gray-300">
                     seelai-app.dev
                   </div>
                 </div>
                 
                 {/* Project 2 */}
                 <div className="bg-gray-50 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 p-5 rounded-sm group hover:border-[#8B5CF6] dark:hover:border-[#8B5CF6] hover:shadow-sm transition-all cursor-pointer">
-                  <h3 className="font-bold text-gray-900 dark:text-white mb-1">ODCI Document Tracker</h3>
-                  <p className="text-sm text-gray-700 dark:text-gray-400 mb-4 h-10 line-clamp-2">Centralized role-based corporate routing system.</p>
-                  <div className="flex gap-2 text-xs font-mono bg-white dark:bg-black w-fit px-2 py-1 border border-gray-200 dark:border-zinc-800 rounded-sm text-gray-700 dark:text-gray-300">
+                  <h3 className="font-bold text-black dark:text-white mb-1">ODCI Document Tracker</h3>
+                  <p className="text-sm text-gray-800 dark:text-gray-400 mb-4 h-10 line-clamp-2">Centralized role-based corporate routing system.</p>
+                  <div className="flex gap-2 text-xs font-mono bg-white dark:bg-black w-fit px-2 py-1 border border-gray-200 dark:border-zinc-800 rounded-sm text-black dark:text-gray-300">
                     odci.internal
                   </div>
                 </div>
 
                 {/* Project 3 */}
                 <div className="bg-gray-50 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 p-5 rounded-sm group hover:border-[#8B5CF6] dark:hover:border-[#8B5CF6] hover:shadow-sm transition-all cursor-pointer">
-                  <h3 className="font-bold text-gray-900 dark:text-white mb-1">AlgoVerse Simulator</h3>
-                  <p className="text-sm text-gray-700 dark:text-gray-400 mb-4 h-10 line-clamp-2">Visual CPU scheduling execution platform.</p>
-                  <div className="flex gap-2 text-xs font-mono bg-white dark:bg-black w-fit px-2 py-1 border border-gray-200 dark:border-zinc-800 rounded-sm text-gray-700 dark:text-gray-300">
+                  <h3 className="font-bold text-black dark:text-white mb-1">AlgoVerse Simulator</h3>
+                  <p className="text-sm text-gray-800 dark:text-gray-400 mb-4 h-10 line-clamp-2">Visual CPU scheduling execution platform.</p>
+                  <div className="flex gap-2 text-xs font-mono bg-white dark:bg-black w-fit px-2 py-1 border border-gray-200 dark:border-zinc-800 rounded-sm text-black dark:text-gray-300">
                     algo-verse.edu
                   </div>
                 </div>
 
                 {/* Project 4 */}
                 <div className="bg-gray-50 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 p-5 rounded-sm group hover:border-[#8B5CF6] dark:hover:border-[#8B5CF6] hover:shadow-sm transition-all cursor-pointer">
-                  {/* ESLint Fix: &apos; */}
-                  <h3 className="font-bold text-gray-900 dark:text-white mb-1">Jayann&apos;s Store POS</h3>
-                  <p className="text-sm text-gray-700 dark:text-gray-400 mb-4 h-10 line-clamp-2">Full stack inventory & ecommerce application.</p>
-                  <div className="flex gap-2 text-xs font-mono bg-white dark:bg-black w-fit px-2 py-1 border border-gray-200 dark:border-zinc-800 rounded-sm text-gray-700 dark:text-gray-300">
+                  <h3 className="font-bold text-black dark:text-white mb-1">Jayann&apos;s Store POS</h3>
+                  <p className="text-sm text-gray-800 dark:text-gray-400 mb-4 h-10 line-clamp-2">Full stack inventory & ecommerce application.</p>
+                  <div className="flex gap-2 text-xs font-mono bg-white dark:bg-black w-fit px-2 py-1 border border-gray-200 dark:border-zinc-800 rounded-sm text-black dark:text-gray-300">
                     store-pos.local
                   </div>
                 </div>
@@ -179,20 +175,20 @@ export default function Home() {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="bg-gray-50 dark:bg-zinc-900 p-4 border border-gray-200 dark:border-zinc-800 rounded-sm">
-                  <h4 className="font-bold text-sm text-gray-900 dark:text-white">Mastering SQL Query Optimization</h4>
-                  <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">Gordon College - SREGEN</p>
+                  <h4 className="font-bold text-sm text-black dark:text-white">Mastering SQL Query Optimization</h4>
+                  <p className="text-xs text-gray-800 dark:text-gray-400 mt-1">Gordon College - SREGEN</p>
                 </div>
                 <div className="bg-gray-50 dark:bg-zinc-900 p-4 border border-gray-200 dark:border-zinc-800 rounded-sm">
-                  <h4 className="font-bold text-sm text-gray-900 dark:text-white">Artificial Intelligence & Innovation</h4>
-                  <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">KOENIG</p>
+                  <h4 className="font-bold text-sm text-black dark:text-white">Artificial Intelligence & Innovation</h4>
+                  <p className="text-xs text-gray-800 dark:text-gray-400 mt-1">KOENIG</p>
                 </div>
                 <div className="bg-gray-50 dark:bg-zinc-900 p-4 border border-gray-200 dark:border-zinc-800 rounded-sm">
-                  <h4 className="font-bold text-sm text-gray-900 dark:text-white">Generative AI: ChatGPT to AutoGPT</h4>
-                  <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">NIELIT-Delhi</p>
+                  <h4 className="font-bold text-sm text-black dark:text-white">Generative AI: ChatGPT to AutoGPT</h4>
+                  <p className="text-xs text-gray-800 dark:text-gray-400 mt-1">NIELIT-Delhi</p>
                 </div>
                 <div className="bg-gray-50 dark:bg-zinc-900 p-4 border border-gray-200 dark:border-zinc-800 rounded-sm">
-                  <h4 className="font-bold text-sm text-gray-900 dark:text-white">Future of Containerization</h4>
-                  <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">Cognixia</p>
+                  <h4 className="font-bold text-sm text-black dark:text-white">Future of Containerization</h4>
+                  <p className="text-xs text-gray-800 dark:text-gray-400 mt-1">Cognixia</p>
                 </div>
               </div>
             </section>
@@ -201,7 +197,7 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-8 border-t border-gray-100 dark:border-zinc-800">
               <div>
                 <h3 className="text-sm font-bold mb-4">Focus Areas</h3>
-                <ul className="space-y-3 text-sm text-gray-700 dark:text-gray-400">
+                <ul className="space-y-3 text-sm text-gray-900 dark:text-gray-400">
                   <li className="flex items-center justify-between hover:text-black dark:hover:text-white cursor-pointer transition-colors">Data Structures <ExternalLink size={12}/></li>
                   <li className="flex items-center justify-between hover:text-black dark:hover:text-white cursor-pointer transition-colors">Machine Learning <ExternalLink size={12}/></li>
                   <li className="flex items-center justify-between hover:text-black dark:hover:text-white cursor-pointer transition-colors">System Architecture <ExternalLink size={12}/></li>
@@ -209,15 +205,15 @@ export default function Home() {
               </div>
               <div>
                 <h3 className="text-sm font-bold mb-4">Social Links</h3>
-                <ul className="space-y-3 text-sm text-gray-700 dark:text-gray-400">
+                <ul className="space-y-3 text-sm text-gray-900 dark:text-gray-400">
                   <li className="flex items-center gap-2 hover:text-black dark:hover:text-white cursor-pointer transition-colors"><GithubIcon size={14}/> GitHub</li>
                   <li className="flex items-center gap-2 hover:text-black dark:hover:text-white cursor-pointer transition-colors"><Mail size={14}/> Email Me</li>
                 </ul>
               </div>
               <div>
                 <h3 className="text-sm font-bold mb-4">Reference</h3>
-                <div className="text-xs text-gray-700 dark:text-gray-400 space-y-1">
-                  <p className="font-bold text-gray-900 dark:text-white text-sm">MICHELLE C. TANEGA, DIT</p>
+                <div className="text-xs text-gray-900 dark:text-gray-400 space-y-1">
+                  <p className="font-bold text-black dark:text-white text-sm">MICHELLE C. TANEGA, DIT</p>
                   <p>Chairperson, IT Dept</p>
                   <a href="mailto:mlmtanega@cvsu-naic.edu.ph" className="text-blue-600 hover:underline cursor-pointer block mt-1">mlmtanega@cvsu-naic.edu.ph</a>
                 </div>
@@ -231,7 +227,6 @@ export default function Home() {
 
             {/* Purple Banner */}
             <div className="w-full bg-[#8B5CF6] text-white p-4 flex items-center justify-between rounded-md shadow-sm">
-              {/* ESLint Fix: &apos; */}
               <div className="font-black italic tracking-wider text-xl">I&apos;M READY FOR<br/>GRADUATION</div>
               <div className="text-[10px] text-right font-mono opacity-80">
                 CAVITE STATE UNIV.<br/>CLASS OF 2026
@@ -246,35 +241,32 @@ export default function Home() {
                 
                 {/* Current Role (Solid Box) */}
                 <div className="relative pl-8">
-                  {/* Tailwind Fix: -left-1.75 */}
                   <div className="absolute -left-1.75 top-1.5 w-3.5 h-3.5 bg-black dark:bg-white border border-black dark:border-white rounded-sm" />
                   <div className="flex justify-between items-start mb-1">
-                    <h3 className="font-bold text-gray-900 dark:text-white">B.S. Computer Science</h3>
-                    <span className="text-xs text-gray-600 dark:text-gray-400 font-mono mt-1">Present</span>
+                    <h3 className="font-bold text-black dark:text-white">B.S. Computer Science</h3>
+                    <span className="text-xs text-gray-800 dark:text-gray-400 font-mono mt-1">Present</span>
                   </div>
-                  <p className="text-sm text-gray-700 dark:text-gray-400">Cavite State University - Naic</p>
+                  <p className="text-sm text-gray-900 dark:text-gray-400">Cavite State University - Naic</p>
                 </div>
 
                 {/* Past Role 1 (Empty Box) */}
                 <div className="relative pl-8">
-                  {/* Tailwind Fix: -left-1.75 */}
                   <div className="absolute -left-1.75 top-1.5 w-3.5 h-3.5 bg-white dark:bg-[#0a0a0a] border-2 border-gray-300 dark:border-zinc-600 rounded-sm" />
                   <div className="flex justify-between items-start mb-1">
-                    <h3 className="font-bold text-gray-900 dark:text-white">Full Stack Intern</h3>
-                    <span className="text-xs text-gray-600 dark:text-gray-400 font-mono mt-1">2025</span>
+                    <h3 className="font-bold text-black dark:text-white">Full Stack Intern</h3>
+                    <span className="text-xs text-gray-800 dark:text-gray-400 font-mono mt-1">2025</span>
                   </div>
-                  <p className="text-sm text-gray-700 dark:text-gray-400">ODCI (On-the-Job Training)</p>
+                  <p className="text-sm text-gray-900 dark:text-gray-400">ODCI (On-the-Job Training)</p>
                 </div>
 
                 {/* Past Role 2 (Empty Box) */}
                 <div className="relative pl-8">
-                  {/* Tailwind Fix: -left-1.75 */}
                   <div className="absolute -left-1.75 top-1.5 w-3.5 h-3.5 bg-white dark:bg-[#0a0a0a] border-2 border-gray-300 dark:border-zinc-600 rounded-sm" />
                   <div className="flex justify-between items-start mb-1">
-                    <h3 className="font-bold text-gray-900 dark:text-white">AlgoVerse Developer</h3>
-                    <span className="text-xs text-gray-600 dark:text-gray-400 font-mono mt-1">2024</span>
+                    <h3 className="font-bold text-black dark:text-white">AlgoVerse Developer</h3>
+                    <span className="text-xs text-gray-800 dark:text-gray-400 font-mono mt-1">2024</span>
                   </div>
-                  <p className="text-sm text-gray-700 dark:text-gray-400">Independent Academic Project</p>
+                  <p className="text-sm text-gray-900 dark:text-gray-400">Independent Academic Project</p>
                 </div>
 
               </div>
@@ -284,7 +276,7 @@ export default function Home() {
         </div>
 
         {/* FOOTER */}
-        <footer className="pt-12 mt-12 border-t border-gray-200 dark:border-zinc-800 flex flex-col md:flex-row items-center justify-between text-sm text-gray-600 dark:text-gray-400 pb-8">
+        <footer className="pt-12 mt-12 border-t border-gray-200 dark:border-zinc-800 flex flex-col md:flex-row items-center justify-between text-sm text-gray-900 dark:text-gray-400 pb-8">
           <p>&copy; 2026 Angelito P. Decatoria III. All rights reserved.</p>
           <a href="mailto:nc.angelitoiii.decatoria@cvsu.edu.ph" className="mt-4 md:mt-0 bg-black dark:bg-white text-white dark:text-black px-6 py-3 font-semibold flex items-center gap-2 rounded-sm hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors shadow-sm">
             <Mail size={16}/> Connect with Thirdy
