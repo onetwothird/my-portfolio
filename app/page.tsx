@@ -42,7 +42,7 @@ export default function Home() {
             </div>
             
             <div className="flex items-center gap-2 text-gray-700 dark:text-gray-400 mt-2 font-medium">
-              <MapPin size={16} /> Cavites, Philippines (Naic, Cavite)
+              <MapPin size={16} /> Cavite, Philippines (Naic, Cavite)
             </div>
             
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mt-4">

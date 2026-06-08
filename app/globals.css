@@ -5,7 +5,6 @@
   --foreground: #171717;
 }
 
-/* next-themes uses the .dark class */
 .dark {
   --background: #0a0a0a;
   --foreground: #ededed;
