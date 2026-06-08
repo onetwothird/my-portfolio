@@ -49,7 +49,7 @@ export default function TechStack() {
       ]
     },
     {
-      title: "Tools, Platforms & Services",
+      title: "Tools, Platforms, & Services",
       icon: <Wrench size={20} className="text-gray-500" />,
       items: [
         { name: "GIT", bg: "bg-[#F05032]", text: "text-white" },
