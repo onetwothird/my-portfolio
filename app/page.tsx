@@ -1,6 +1,7 @@
 import { MapPin, Mail, ExternalLink, ChevronRight, Trophy } from 'lucide-react';
 import { ThemeToggle } from './src/components/ThemeToggle';
 import Image from "next/image";
+import Link from 'next/link';
 
 const GithubIcon = ({ size = 20, className = "" }) => (
   <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
@@ -95,7 +96,9 @@ export default function Home() {
             <section>
               <div className="flex justify-between items-end mb-6 border-b border-gray-100 dark:border-zinc-800 pb-2">
                 <h2 className="text-2xl font-bold">Tech Stack</h2>
-                <span className="text-sm font-semibold text-black dark:text-gray-400 cursor-pointer hover:text-black dark:hover:text-white flex items-center transition-colors">View All <ChevronRight size={16}/></span>
+                <Link href="/tech-stack" className="text-sm font-semibold text-black dark:text-gray-400 cursor-pointer hover:text-black dark:hover:text-white flex items-center transition-colors group">
+                  View All <ChevronRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                </Link>
               </div>
               
               <div className="space-y-6">
