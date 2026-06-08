@@ -301,7 +301,7 @@ export default function Home() {
                   <div className="absolute -left-1.75 top-1.5 w-3.5 h-3.5 bg-white dark:bg-[#0a0a0a] border-2 border-gray-300 dark:border-zinc-600 rounded-sm group-hover:bg-black group-hover:border-black dark:group-hover:bg-white dark:group-hover:border-white transition-all" />
                   <div className="flex flex-col xl:flex-row xl:justify-between xl:items-start mb-1">
                     <h3 className="font-bold text-black dark:text-white">Sari-tech</h3>
-                    <span className="text-xs text-gray-600 dark:text-gray-400 font-mono mt-1 xl:mt-0">2024</span>
+                    <span className="text-xs text-gray-600 dark:text-gray-400 font-mono mt-1 xl:mt-0">2025</span>
                   </div>
                   <p className="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1.5">Software Engineering II Final Project</p>
                   <p className="text-sm text-gray-800 dark:text-gray-400">Comprehensive software engineering project serving as the capstone for the course.</p>
