@@ -226,47 +226,102 @@ export default function Home() {
           <div className="space-y-8">
 
             {/* Purple Banner */}
-            <div className="w-full bg-[#8B5CF6] text-white p-4 flex items-center justify-between rounded-md shadow-sm">
-              <div className="font-black italic tracking-wider text-xl">I&apos;M READY FOR<br/>GRADUATION</div>
-              <div className="text-[10px] text-right font-mono opacity-80">
-                CAVITE STATE UNIV.<br/>CLASS OF 2026
+            <div className="w-full bg-[#8B5CF6] text-white p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 rounded-md shadow-sm">
+              <div>
+                <div className="font-black tracking-wide text-xl md:text-2xl mb-1">
+                  AVAILABLE FOR ROLES
+                </div>
+                <div className="text-sm md:text-base font-medium opacity-90">
+                  Open to Full-Stack & Software Engineering positions.
+                </div>
+              </div>
+              <div className="text-left sm:text-right shrink-0">
+                <div className="inline-block text-xs font-mono font-bold border border-white/30 px-3 py-1.5 rounded-sm bg-white/10 shadow-sm backdrop-blur-sm">
+                  BSCS 2026
+                </div>
               </div>
             </div>
 
             {/* Experience Timeline */}
             <section className="pt-4">
-              <h2 className="text-2xl font-bold mb-8">Experience</h2>
+              <h2 className="text-2xl font-bold mb-8">Journey & Experience</h2>
               
-              <div className="relative border-l border-gray-200 dark:border-zinc-800 ml-3 space-y-10">
+              <div className="relative border-l border-gray-200 dark:border-zinc-800 ml-3 space-y-8">
                 
-                {/* Current Role (Solid Box) */}
-                <div className="relative pl-8">
-                  <div className="absolute -left-1.75 top-1.5 w-3.5 h-3.5 bg-black dark:bg-white border border-black dark:border-white rounded-sm" />
-                  <div className="flex justify-between items-start mb-1">
-                    <h3 className="font-bold text-black dark:text-white">B.S. Computer Science</h3>
-                    <span className="text-xs text-gray-800 dark:text-gray-400 font-mono mt-1">Present</span>
+                {/* Seelai */}
+                <div className="relative pl-8 group">
+                  <div className="absolute -left-1.75 top-1.5 w-3.5 h-3.5 bg-black dark:bg-white border border-black dark:border-white rounded-sm group-hover:scale-110 transition-transform" />
+                  <div className="flex flex-col xl:flex-row xl:justify-between xl:items-start mb-1">
+                    <h3 className="font-bold text-black dark:text-white">Seelai AI Assistant</h3>
+                    <span className="text-xs text-gray-600 dark:text-gray-400 font-mono mt-1 xl:mt-0">2026</span>
                   </div>
-                  <p className="text-sm text-gray-900 dark:text-gray-400">Cavite State University - Naic</p>
+                  <p className="text-xs font-semibold text-gray-800 dark:text-gray-300 mb-1.5">Thesis Project | Full Stack Developer</p>
+                  <p className="text-sm text-gray-800 dark:text-gray-400">Mobile application for the partially sighted featuring real-time object detection and caretaker face recognition.</p>
                 </div>
 
-                {/* Past Role 1 (Empty Box) */}
-                <div className="relative pl-8">
-                  <div className="absolute -left-1.75 top-1.5 w-3.5 h-3.5 bg-white dark:bg-[#0a0a0a] border-2 border-gray-300 dark:border-zinc-600 rounded-sm" />
-                  <div className="flex justify-between items-start mb-1">
-                    <h3 className="font-bold text-black dark:text-white">Full Stack Intern</h3>
-                    <span className="text-xs text-gray-800 dark:text-gray-400 font-mono mt-1">2025</span>
+                {/* ODCI */}
+                <div className="relative pl-8 group">
+                  <div className="absolute -left-1.75 top-1.5 w-3.5 h-3.5 bg-white dark:bg-[#0a0a0a] border-2 border-gray-300 dark:border-zinc-600 rounded-sm group-hover:bg-black group-hover:border-black dark:group-hover:bg-white dark:group-hover:border-white transition-all" />
+                  <div className="flex flex-col xl:flex-row xl:justify-between xl:items-start mb-1">
+                    <h3 className="font-bold text-black dark:text-white">ODCI (Document Tracker)</h3>
+                    <span className="text-xs text-gray-600 dark:text-gray-400 font-mono mt-1 xl:mt-0">2025</span>
                   </div>
-                  <p className="text-sm text-gray-900 dark:text-gray-400">ODCI (On-the-Job Training)</p>
+                  <p className="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1.5">Full Stack Developer (OJT)</p>
+                  <p className="text-sm text-gray-800 dark:text-gray-400">Centralized role-based document tracking system engineered collaboratively to efficiently route and monitor document lifecycles.</p>
                 </div>
 
-                {/* Past Role 2 (Empty Box) */}
-                <div className="relative pl-8">
-                  <div className="absolute -left-1.75 top-1.5 w-3.5 h-3.5 bg-white dark:bg-[#0a0a0a] border-2 border-gray-300 dark:border-zinc-600 rounded-sm" />
-                  <div className="flex justify-between items-start mb-1">
-                    <h3 className="font-bold text-black dark:text-white">AlgoVerse Developer</h3>
-                    <span className="text-xs text-gray-800 dark:text-gray-400 font-mono mt-1">2024</span>
+                {/* AlgoVerse */}
+                <div className="relative pl-8 group">
+                  <div className="absolute -left-1.75 top-1.5 w-3.5 h-3.5 bg-white dark:bg-[#0a0a0a] border-2 border-gray-300 dark:border-zinc-600 rounded-sm group-hover:bg-black group-hover:border-black dark:group-hover:bg-white dark:group-hover:border-white transition-all" />
+                  <div className="flex flex-col xl:flex-row xl:justify-between xl:items-start mb-1">
+                    <h3 className="font-bold text-black dark:text-white">AlgoVerse</h3>
+                    <span className="text-xs text-gray-600 dark:text-gray-400 font-mono mt-1 xl:mt-0">2025</span>
                   </div>
-                  <p className="text-sm text-gray-900 dark:text-gray-400">Independent Academic Project</p>
+                  <p className="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1.5">Full Stack Developer</p>
+                  <p className="text-sm text-gray-800 dark:text-gray-400">Web-based visual simulator for CPU scheduling algorithms (FCFS, SJF, Round Robin) for educational purposes.</p>
+                </div>
+
+                {/* Jayann's Store POS */}
+                <div className="relative pl-8 group">
+                  <div className="absolute -left-1.75 top-1.5 w-3.5 h-3.5 bg-white dark:bg-[#0a0a0a] border-2 border-gray-300 dark:border-zinc-600 rounded-sm group-hover:bg-black group-hover:border-black dark:group-hover:bg-white dark:group-hover:border-white transition-all" />
+                  <div className="flex flex-col xl:flex-row xl:justify-between xl:items-start mb-1">
+                    <h3 className="font-bold text-black dark:text-white">Jayann&apos;s Store POS System</h3>
+                    <span className="text-xs text-gray-600 dark:text-gray-400 font-mono mt-1 xl:mt-0">2025</span>
+                  </div>
+                  <p className="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1.5">Full Stack Developer</p>
+                  <p className="text-sm text-gray-800 dark:text-gray-400">Web-based POS platform functioning as an e-commerce site utilizing PHP and MySQL.</p>
+                </div>
+                
+                {/* Sari-tech */}
+                <div className="relative pl-8 group">
+                  <div className="absolute -left-1.75 top-1.5 w-3.5 h-3.5 bg-white dark:bg-[#0a0a0a] border-2 border-gray-300 dark:border-zinc-600 rounded-sm group-hover:bg-black group-hover:border-black dark:group-hover:bg-white dark:group-hover:border-white transition-all" />
+                  <div className="flex flex-col xl:flex-row xl:justify-between xl:items-start mb-1">
+                    <h3 className="font-bold text-black dark:text-white">Sari-tech</h3>
+                    <span className="text-xs text-gray-600 dark:text-gray-400 font-mono mt-1 xl:mt-0">2024</span>
+                  </div>
+                  <p className="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1.5">Software Engineering Final Project</p>
+                  <p className="text-sm text-gray-800 dark:text-gray-400">Comprehensive software engineering project serving as the capstone for the course.</p>
+                </div>
+
+                {/* Smart Cook */}
+                <div className="relative pl-8 group">
+                  <div className="absolute -left-1.75 top-1.5 w-3.5 h-3.5 bg-white dark:bg-[#0a0a0a] border-2 border-gray-300 dark:border-zinc-600 rounded-sm group-hover:bg-black group-hover:border-black dark:group-hover:bg-white dark:group-hover:border-white transition-all" />
+                  <div className="flex flex-col xl:flex-row xl:justify-between xl:items-start mb-1">
+                    <h3 className="font-bold text-black dark:text-white">Smart Cook</h3>
+                    <span className="text-xs text-gray-600 dark:text-gray-400 font-mono mt-1 xl:mt-0">2024</span>
+                  </div>
+                  <p className="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1.5">Full Stack Developer</p>
+                  <p className="text-sm text-gray-800 dark:text-gray-400">Recipe finder web app built with Vanilla JS and the Edamam API to filter meals based on dietary needs.</p>
+                </div>
+
+                {/* Hello World */}
+                <div className="relative pl-8 group">
+                  <div className="absolute -left-1.75 top-1.5 w-3.5 h-3.5 bg-gray-100 dark:bg-zinc-900 border-2 border-gray-300 dark:border-zinc-600 rounded-sm group-hover:bg-black group-hover:border-black dark:group-hover:bg-white dark:group-hover:border-white transition-all" />
+                  <div className="flex flex-col xl:flex-row xl:justify-between xl:items-start mb-1">
+                    <h3 className="font-bold text-gray-500 dark:text-gray-400">Hello World! 👋🏻</h3>
+                    <span className="text-xs text-gray-500 dark:text-gray-500 font-mono mt-1 xl:mt-0">2022</span>
+                  </div>
+                  <p className="text-sm text-gray-500 dark:text-gray-500 italic">Wrote my first line of code.</p>
                 </div>
 
               </div>
