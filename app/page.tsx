@@ -48,7 +48,7 @@ export default function Home() {
             
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mt-4">
               <p className="text-lg font-medium text-black dark:text-gray-200">
-                Full Stack Developer \ CS Student \ AI Enthusiast
+                Full Stack Developer \ CS Student 
               </p>
 
               <div className="bg-blue-600 text-white text-xs font-semibold px-4 py-2 flex items-center gap-2 rounded-sm w-fit shadow-sm">
