@@ -256,7 +256,7 @@ export default function Home() {
                     <span className="text-xs text-gray-600 dark:text-gray-400 font-mono mt-1 xl:mt-0">2026</span>
                   </div>
                   <p className="text-xs font-semibold text-gray-800 dark:text-gray-300 mb-1.5">Thesis Project | Full Stack Developer</p>
-                  <p className="text-sm text-gray-800 dark:text-gray-400">Mobile Application for the Partially Sighted Featuring Real-Time Object Detection, Caretaker Face Recognition, Text Document Scanning with Text-to-Speech Functionality, and many more.</p>
+                  <p className="text-sm text-gray-800 dark:text-gray-400">Mobile application for the partially sighted with real-time object detection, caretaker face recognition, document scanning, text-to-speech functionality, and other assistive features.</p>
                 </div>
 
                 {/* ODCI */}
