@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowLeft, Award, ExternalLink } from 'lucide-react';
+import { ArrowLeft, ExternalLink } from 'lucide-react';
 
 export default function Certification() {
   const certifications = [
@@ -74,7 +74,6 @@ export default function Certification() {
             <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" /> Back to Home
           </Link>
           <div className="flex items-center gap-3">
-            <Award size={32} className="text-[#8B5CF6]" />
             <h1 className="text-3xl md:text-4xl font-bold tracking-tight">Certifications</h1>
           </div>
           <p className="mt-4 text-gray-600 dark:text-gray-400 max-w-2xl">
