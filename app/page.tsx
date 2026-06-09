@@ -225,11 +225,12 @@ export default function Home() {
               </div>
             </section>        
 
-            {/* Certifications Grid */}
+          {/* Certifications Grid */}
             <section>
               <div className="flex justify-between items-end mb-6 border-b border-gray-100 dark:border-zinc-800 pb-2">
                 <h2 className="text-2xl font-bold">Recent Certifications</h2>
-                <Link href="/certifications" className="text-sm font-semibold text-black dark:text-gray-400 cursor-pointer hover:text-black dark:hover:text-white flex items-center transition-colors group">
+                {/* FIXED: Changed href from "/certifications" to "/certificate" */}
+                <Link href="/certificate" className="text-sm font-semibold text-black dark:text-gray-400 cursor-pointer hover:text-black dark:hover:text-white flex items-center transition-colors group">
                   View All <ChevronRight size={16} className="group-hover:translate-x-1 transition-transform" />
                 </Link>
               </div>
