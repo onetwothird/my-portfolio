@@ -33,8 +33,8 @@ export default function Certification() {
       pdfUrl: "/cert/e-cert_4.pdf"
     },
     {
-      title: "Software Engineering Principles", // Update this title to match e-cert_5
-      issuer: "Coursera", // Update the issuer
+      title: "Software Engineering Principles",
+      issuer: "Coursera", 
       date: "2024",
       imageUrl: "/cert/e-cert_5.png",
       pdfUrl: "/cert/e-cert_5.pdf"
@@ -74,6 +74,7 @@ export default function Certification() {
             <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" /> Back to Home
           </Link>
           <div className="flex items-center gap-3">
+            <Award size={32} className="text-[#8B5CF6]" />
             <h1 className="text-3xl md:text-4xl font-bold tracking-tight">Certifications</h1>
           </div>
           <p className="mt-4 text-gray-600 dark:text-gray-400 max-w-2xl">
@@ -82,7 +83,7 @@ export default function Certification() {
         </div>
 
         {/* Sliding Animation Section */}
-        <div className="relative overflow-hidden w-full py-8 mt-auto mb-auto before:absolute before:left-0 before:top-0 before:z-10 before:h-full before:w-24 before:bg-gradient-to-r before:from-white before:to-transparent dark:before:from-[#0a0a0a] after:absolute after:right-0 after:top-0 after:z-10 after:h-full after:w-24 after:bg-gradient-to-l after:from-white after:to-transparent dark:after:from-[#0a0a0a]">
+        <div className="relative overflow-hidden w-full py-8 mt-auto mb-auto before:absolute before:left-0 before:top-0 before:z-10 before:h-full before:w-24 before:bg-linear-to-r before:from-white before:to-transparent dark:before:from-[#0a0a0a] after:absolute after:right-0 after:top-0 after:z-10 after:h-full after:w-24 after:bg-linear-to-l after:from-white after:to-transparent dark:after:from-[#0a0a0a]">
           <div className="animate-marquee gap-8 pr-8">
             {slidingCerts.map((cert, index) => (
               <a 
@@ -90,19 +91,20 @@ export default function Certification() {
                 href={cert.pdfUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="flex-shrink-0 w-[340px] md:w-[400px] flex flex-col bg-white dark:bg-zinc-900/40 border border-gray-200 dark:border-zinc-800 rounded-sm overflow-hidden hover:border-[#8B5CF6] dark:hover:border-[#8B5CF6] transition-all hover:shadow-[0_4px_20px_rgba(139,92,246,0.15)] group"
+                className="shrink-0 w-85 md:w-100 flex flex-col bg-white dark:bg-zinc-900/40 border border-gray-200 dark:border-zinc-800 rounded-sm overflow-hidden hover:border-[#8B5CF6] dark:hover:border-[#8B5CF6] transition-all hover:shadow-[0_4px_20px_rgba(139,92,246,0.15)] group"
               >
-                {/* Image Preview Area */}
-                <div className="relative w-full aspect-[4/3] bg-gray-100 dark:bg-black border-b border-gray-200 dark:border-zinc-800 overflow-hidden">
+                {/* Image Preview Area - Fixed Layout */}
+                <div className="relative w-full aspect-[1.414] bg-white dark:bg-white border-b border-gray-200 dark:border-zinc-800 overflow-hidden">
                   <Image 
                     src={cert.imageUrl}
                     alt={`${cert.title} Certificate`}
                     fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    sizes="(max-width: 768px) 340px, 400px"
+                    className="object-cover object-center w-full h-full group-hover:scale-105 transition-transform duration-500"
                   />
                   
                   {/* Hover Overlay */}
-                  <div className="absolute inset-0 bg-black/10 dark:bg-black/40 opacity-0 group-hover:opacity-100 backdrop-blur-[2px] transition-all flex items-center justify-center">
+                  <div className="absolute inset-0 bg-black/10 dark:bg-black/40 opacity-0 group-hover:opacity-100 backdrop-blur-[2px] transition-all flex items-center justify-center z-20">
                     <span className="flex items-center gap-2 bg-white dark:bg-zinc-900 text-black dark:text-white px-4 py-2 rounded-sm text-sm font-bold shadow-sm transform translate-y-4 group-hover:translate-y-0 transition-all">
                       View PDF <ExternalLink size={16} />
                     </span>
@@ -110,7 +112,7 @@ export default function Certification() {
                 </div>
 
                 {/* Details Area */}
-                <div className="p-5 flex flex-col flex-1 justify-between bg-white/50 dark:bg-transparent backdrop-blur-sm">
+                <div className="p-5 flex flex-col flex-1 justify-between bg-white/50 dark:bg-transparent backdrop-blur-sm z-10 relative">
                   <div>
                     <h3 className="font-bold text-lg text-black dark:text-white mb-1 group-hover:text-[#8B5CF6] transition-colors leading-snug truncate">
                       {cert.title}
