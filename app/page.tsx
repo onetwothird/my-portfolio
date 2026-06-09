@@ -10,6 +10,20 @@ const GithubIcon = ({ size = 20, className = "" }) => (
   </svg>
 );
 
+const LinkedinIcon = ({ size = 20, className = "" }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+    <rect width="4" height="12" x="2" y="9" />
+    <circle cx="4" cy="4" r="2" />
+  </svg>
+);
+
+const FacebookIcon = ({ size = 20, className = "" }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+  </svg>
+);
+
 const VerifiedBadge = () => (
   <svg width="25" height="25" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-blue-600 inline-block ml-2">
     <path d="M12 1.5L14 3.5L17 2.8L18 5.7L21 6.5L20.3 9.5L22.5 12L20.3 14.5L21 17.5L18 18.3L17 21.2L14 20.5L12 22.5L10 20.5L7 21.2L6 18.3L3 17.5L3.7 14.5L1.5 12L3.7 9.5L3 6.5L6 5.7L7 2.8L10 3.5L12 1.5Z" fill="currentColor" />
@@ -82,7 +96,7 @@ export default function Home() {
               </a>
 
               <a
-                href="mailto:nc.angelitoiii.decatoria@cvsu.edu.ph"
+                href="mailto:angelitodecatoriaa@gmail.com"
                 className="flex items-center gap-2 px-5 py-2.5 bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 text-black dark:text-gray-200 text-sm font-semibold rounded-sm hover:bg-gray-50 dark:hover:bg-zinc-800 transition-colors shadow-sm"
               >
                 <Mail size={16} /> Send Email
@@ -229,7 +243,6 @@ export default function Home() {
             <section>
               <div className="flex justify-between items-end mb-6 border-b border-gray-100 dark:border-zinc-800 pb-2">
                 <h2 className="text-2xl font-bold">Recent Certifications</h2>
-                {/* FIXED: Changed href from "/certifications" to "/certificate" */}
                 <Link href="/certificate" className="text-sm font-semibold text-black dark:text-gray-400 cursor-pointer hover:text-black dark:hover:text-white flex items-center transition-colors group">
                   View All <ChevronRight size={16} className="group-hover:translate-x-1 transition-transform" />
                 </Link>
@@ -388,16 +401,35 @@ export default function Home() {
           <div>
             <h3 className="text-sm font-bold mb-4">Social Links</h3>
             <ul className="space-y-3 text-sm text-gray-900 dark:text-gray-400">
-              <li className="flex items-center gap-2 hover:text-black dark:hover:text-white cursor-pointer transition-colors"><GithubIcon size={14}/> GitHub</li>
-              <li className="flex items-center gap-2 hover:text-black dark:hover:text-white cursor-pointer transition-colors"><Mail size={14}/> Email Me</li>
+              <li>
+                <a href="https://github.com/onetwothird" target="_blank" rel="noreferrer" className="flex items-center gap-2 hover:text-black dark:hover:text-white transition-colors">
+                  <GithubIcon size={14}/> GitHub
+                </a>
+              </li>
+              <li>
+                <a href="https://www.linkedin.com/in/angelito-decatoria/" target="_blank" rel="noreferrer" className="flex items-center gap-2 hover:text-black dark:hover:text-white transition-colors">
+                  <LinkedinIcon size={14}/> LinkedIn
+                </a>
+              </li>
+              <li>
+                <a href="https://www.facebook.com/angelo.decatoria.5" target="_blank" rel="noreferrer" className="flex items-center gap-2 hover:text-black dark:hover:text-white transition-colors">
+                  <FacebookIcon size={14}/> Facebook
+                </a>
+              </li>
+              <li>
+                <a href="mailto:angelitodecatoriaa@gmail.com" className="flex items-center gap-2 hover:text-black dark:hover:text-white transition-colors">
+                  <Mail size={14}/> Email Me
+                </a>
+              </li>
             </ul>
           </div>
           <div>
-            <h3 className="text-sm font-bold mb-4">Reference</h3>
-            <div className="text-xs text-gray-900 dark:text-gray-400 space-y-1">
-              <p className="font-bold text-black dark:text-white text-sm">MICHELLE C. TANEGA, DIT</p>
-              <p>Chairperson, IT Dept</p>
-              <a href="mailto:mlmtanega@cvsu-naic.edu.ph" className="text-blue-600 hover:underline cursor-pointer block mt-1">mlmtanega@cvsu-naic.edu.ph</a>
+            <h3 className="text-sm font-bold mb-4 -ml-10">Education</h3>
+            <div className="text-xs text-gray-900 dark:text-gray-400 space-y-1 -ml-10">
+              <p className="font-bold text-black dark:text-white text-sm">Cavite State University (CvSU)</p>
+              <p>Naic Campus</p>
+              <div className="mt-2 text-black dark:text-white font-medium">BS Computer Science</div>
+              <p>Class of 2026</p>
             </div>
           </div>
           <div>
@@ -405,7 +437,7 @@ export default function Home() {
             <p className="text-sm text-gray-900 dark:text-gray-400 mb-4 pr-4">
               Available for new opportunities in software development.
             </p>
-            <a href="mailto:nc.angelitoiii.decatoria@cvsu.edu.ph" className="inline-flex items-center gap-2 text-sm font-bold text-black dark:text-white hover:text-blue-600 dark:hover:text-blue-500 transition-colors group">
+            <a href="mailto:angelitodecatoriaa@gmail.com" className="inline-flex items-center gap-2 text-sm font-bold text-black dark:text-white hover:text-blue-600 dark:hover:text-blue-500 transition-colors group">
               Let&apos;s talk <ChevronRight size={14} className="group-hover:translate-x-1 transition-transform" />
             </a>
           </div>
@@ -414,7 +446,7 @@ export default function Home() {
         {/* FOOTER */}
         <footer className="pt-8 mt-4 border-t border-gray-200 dark:border-zinc-800 flex flex-col md:flex-row items-center justify-between text-sm text-gray-900 dark:text-gray-400 pb-8">
           <p>&copy; 2026 Angelito P. Decatoria III. All rights reserved.</p>
-          <a href="mailto:nc.angelitoiii.decatoria@cvsu.edu.ph" className="mt-4 md:mt-0 bg-black dark:bg-white text-white dark:text-black px-6 py-3 font-semibold flex items-center gap-2 rounded-sm hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors shadow-sm">
+          <a href="mailto:angelitodecatoriaa@gmail.com" className="mt-4 md:mt-0 bg-black dark:bg-white text-white dark:text-black px-6 py-3 font-semibold flex items-center gap-2 rounded-sm hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors shadow-sm">
             <Mail size={16}/> Connect with Thirdy
           </a>
         </footer>
