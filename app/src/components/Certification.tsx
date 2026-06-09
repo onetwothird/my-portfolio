@@ -45,7 +45,7 @@ export default function Certification() {
   const slidingCerts = [...certifications, ...certifications, ...certifications];
 
   return (
-    <div className="min-h-screen text-black dark:text-gray-100 font-sans selection:bg-[#8B5CF6] selection:text-white transition-colors duration-300">
+    <div className="min-h-screen text-black dark:text-gray-100 font-sans selection:bg-gray-500 selection:text-white transition-colors duration-300">
       
       {/* Embedded CSS for the infinite marquee animation */}
       <style dangerouslySetInnerHTML={{__html: `
@@ -90,7 +90,8 @@ export default function Certification() {
                 href={cert.pdfUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="shrink-0 w-85 md:w-100 flex flex-col bg-white dark:bg-zinc-900/40 border border-gray-200 dark:border-zinc-800 rounded-sm overflow-hidden hover:border-[#8B5CF6] dark:hover:border-[#8B5CF6] transition-all hover:shadow-[0_4px_20px_rgba(139,92,246,0.15)] group"
+                // Changed border and shadow hover colors to gray here
+                className="shrink-0 w-85 md:w-100 flex flex-col bg-white dark:bg-zinc-900/40 border border-gray-200 dark:border-zinc-800 rounded-sm overflow-hidden hover:border-gray-400 dark:hover:border-gray-500 transition-all hover:shadow-[0_4px_20px_rgba(156,163,175,0.25)] dark:hover:shadow-[0_4px_20px_rgba(156,163,175,0.1)] group"
               >
                 {/* Image Preview Area - Fixed Layout */}
                 <div className="relative w-full aspect-[1.414] bg-white dark:bg-white border-b border-gray-200 dark:border-zinc-800 overflow-hidden">
@@ -113,7 +114,8 @@ export default function Certification() {
                 {/* Details Area */}
                 <div className="p-5 flex flex-col flex-1 justify-between bg-white/50 dark:bg-transparent backdrop-blur-sm z-10 relative">
                   <div>
-                    <h3 className="font-bold text-lg text-black dark:text-white mb-1 group-hover:text-[#8B5CF6] transition-colors leading-snug truncate">
+                    {/* Changed group-hover text color to gray here */}
+                    <h3 className="font-bold text-lg text-black dark:text-white mb-1 group-hover:text-gray-500 dark:group-hover:text-gray-300 transition-colors leading-snug truncate">
                       {cert.title}
                     </h3>
                     <p className="text-sm font-medium text-gray-600 dark:text-gray-400 truncate">
