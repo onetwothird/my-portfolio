@@ -65,10 +65,26 @@ export default function Home() {
                 Full Stack Developer \ CS Student 
               </p>
 
-              <div className="bg-blue-600 text-white text-xs font-semibold px-4 py-2 flex items-center gap-2 rounded-sm w-fit shadow-sm">
-                <Trophy size={12} fill="currentColor" />
-                <span>DEAN&apos;S LISTER 2022–2026</span>
-                <ChevronRight size={14} />
+              <div className="relative group w-fit">
+                {/* Main Badge Trigger */}
+                <div className="bg-blue-600 text-white text-xs font-semibold px-4 py-2 flex items-center gap-2 rounded-sm w-fit shadow-sm cursor-pointer transition-colors hover:bg-blue-700">
+                  <Trophy size={12} fill="currentColor" />
+                  <span>DEAN&apos;S LISTER 2022–2026</span>
+                  <ChevronRight size={14} className="group-hover:rotate-90 transition-transform duration-200" />
+                </div>
+                
+                {/* Hover Dropdown Menu */}
+                <div className="absolute left-0 top-full mt-2 w-full min-w-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible -translate-y-2.5 group-hover:translate-y-0 transition-all duration-200 z-50">
+                  <div className="bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 p-3 rounded-sm shadow-lg">
+                    <div className="flex items-center gap-2 font-bold text-sm text-black dark:text-white">
+                      <Trophy size={14} className="text-yellow-500 fill-yellow-500" />
+                      Magna Cum Laude
+                    </div>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mt-1 font-medium">
+                      Class of 2026
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
 
