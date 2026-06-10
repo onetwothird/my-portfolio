@@ -41,13 +41,11 @@ export default function Certification() {
     }
   ];
 
-  // Tripling the array allows the marquee to slide infinitely without visual gaps
   const slidingCerts = [...certifications, ...certifications, ...certifications];
 
   return (
     <div className="min-h-screen text-black dark:text-gray-100 font-sans selection:bg-gray-500 selection:text-white transition-colors duration-300">
       
-      {/* Embedded CSS for the infinite marquee animation */}
       <style dangerouslySetInnerHTML={{__html: `
         @keyframes marquee {
           0% { transform: translateX(0%); }
@@ -66,7 +64,7 @@ export default function Certification() {
       <div className="max-w-6xl mx-auto px-6 py-12 md:py-20 flex flex-col min-h-[90vh]">
         
         {/* Navigation Header */}
-        <div className="mb-12">
+        <div className="mb-12 animate-slide-up">
           <Link 
             href="/" 
             className="inline-flex items-center gap-2 text-sm font-semibold text-gray-500 hover:text-black dark:text-gray-400 dark:hover:text-white transition-colors mb-6 group"
@@ -82,7 +80,10 @@ export default function Certification() {
         </div>
 
         {/* Sliding Animation Section */}
-        <div className="relative overflow-hidden w-full py-8 mt-auto mb-auto before:absolute before:left-0 before:top-0 before:z-10 before:h-full before:w-24 before:bg-linear-to-r before:from-white before:to-transparent dark:before:from-[#0a0a0a] after:absolute after:right-0 after:top-0 after:z-10 after:h-full after:w-24 after:bg-linear-to-l after:from-white after:to-transparent dark:after:from-[#0a0a0a]">
+        <div 
+          className="relative overflow-hidden w-full py-8 mt-auto mb-auto before:absolute before:left-0 before:top-0 before:z-10 before:h-full before:w-24 before:bg-linear-to-r before:from-white before:to-transparent dark:before:from-[#0a0a0a] after:absolute after:right-0 after:top-0 after:z-10 after:h-full after:w-24 after:bg-linear-to-l after:from-white after:to-transparent dark:after:from-[#0a0a0a] animate-slide-up"
+          style={{ animationDelay: '200ms' }}
+        >
           <div className="animate-marquee gap-8 pr-8">
             {slidingCerts.map((cert, index) => (
               <a 
@@ -90,10 +91,9 @@ export default function Certification() {
                 href={cert.pdfUrl}
                 target="_blank"
                 rel="noreferrer"
-                // Changed border and shadow hover colors to gray here
                 className="shrink-0 w-85 md:w-100 flex flex-col bg-white dark:bg-zinc-900/40 border border-gray-200 dark:border-zinc-800 rounded-sm overflow-hidden hover:border-gray-400 dark:hover:border-gray-500 transition-all hover:shadow-[0_4px_20px_rgba(156,163,175,0.25)] dark:hover:shadow-[0_4px_20px_rgba(156,163,175,0.1)] group"
               >
-                {/* Image Preview Area - Fixed Layout */}
+                {/* Image Preview Area */}
                 <div className="relative w-full aspect-[1.414] bg-white dark:bg-white border-b border-gray-200 dark:border-zinc-800 overflow-hidden">
                   <Image 
                     src={cert.imageUrl}
@@ -114,7 +114,6 @@ export default function Certification() {
                 {/* Details Area */}
                 <div className="p-5 flex flex-col flex-1 justify-between bg-white/50 dark:bg-transparent backdrop-blur-sm z-10 relative">
                   <div>
-                    {/* Changed group-hover text color to gray here */}
                     <h3 className="font-bold text-lg text-black dark:text-white mb-1 group-hover:text-gray-500 dark:group-hover:text-gray-300 transition-colors leading-snug truncate">
                       {cert.title}
                     </h3>

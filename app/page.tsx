@@ -37,7 +37,7 @@ export default function Home() {
       <div className="max-w-275 mx-auto px-6 py-12 md:py-20 space-y-10">
         
         {/* HEADER PROFILE */}
-        <header className="flex flex-col md:flex-row gap-8 items-start">
+        <header className="animate-slide-up flex flex-col md:flex-row gap-8 items-start">
           
           <div className="relative w-48 h-48 md:w-56 md:h-56 shrink-0 rounded-sm overflow-hidden border border-gray-200 dark:border-zinc-800 shadow-sm">
             <Image
@@ -66,14 +66,12 @@ export default function Home() {
               </p>
 
               <div className="relative group w-fit">
-                {/* Main Badge Trigger */}
                 <div className="bg-blue-600 text-white text-xs font-semibold px-4 py-2 flex items-center gap-2 rounded-sm w-fit shadow-sm cursor-pointer transition-colors hover:bg-blue-700">
                   <Trophy size={12} fill="currentColor" />
                   <span>DEAN&apos;S LISTER 2022–2026</span>
                   <ChevronRight size={14} className="group-hover:rotate-90 transition-transform duration-200" />
                 </div>
                 
-                {/* Hover Dropdown Menu */}
                 <div className="absolute left-0 top-full mt-2 w-full min-w-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible -translate-y-2.5 group-hover:translate-y-0 transition-all duration-200 z-50">
                   <div className="bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 p-3 rounded-sm shadow-lg">
                     <div className="flex items-center gap-2 font-bold text-sm text-black dark:text-white">
@@ -88,36 +86,18 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Action Buttons */}
            <div className="flex flex-wrap gap-3 mt-6 border-b border-gray-100 dark:border-zinc-800 pb-8">
-
-              {/* VIEW RESUME (HIGHLIGHTED) */}
-              <a
-                href="/resume/resume%20now.pdf"
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center gap-2 px-5 py-2.5 bg-black dark:bg-white text-white dark:text-black text-sm font-semibold rounded-sm hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors shadow-sm"
-              >
+              <a href="/resume/resume%20now.pdf" target="_blank" rel="noreferrer" className="flex items-center gap-2 px-5 py-2.5 bg-black dark:bg-white text-white dark:text-black text-sm font-semibold rounded-sm hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors shadow-sm">
                 <FileText size={16} /> View Resume <ChevronRight size={16} className="ml-2 opacity-50" />
               </a>
 
-              {/* GITHUB (SECONDARY) */}
-              <a
-                href="https://github.com/onetwothird"
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center gap-2 px-5 py-2.5 bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 text-black dark:text-gray-200 text-sm font-semibold rounded-sm hover:bg-gray-50 dark:hover:bg-zinc-800 transition-colors shadow-sm"
-              >
+              <a href="https://github.com/onetwothird" target="_blank" rel="noreferrer" className="flex items-center gap-2 px-5 py-2.5 bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 text-black dark:text-gray-200 text-sm font-semibold rounded-sm hover:bg-gray-50 dark:hover:bg-zinc-800 transition-colors shadow-sm">
                 <GithubIcon size={16} /> View GitHub <ChevronRight size={16} className="ml-2 opacity-50" />
               </a>
 
-              <a
-                href="mailto:angelitodecatoriaa@gmail.com"
-                className="flex items-center gap-2 px-5 py-2.5 bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 text-black dark:text-gray-200 text-sm font-semibold rounded-sm hover:bg-gray-50 dark:hover:bg-zinc-800 transition-colors shadow-sm"
-              >
+              <a href="mailto:angelitodecatoriaa@gmail.com" className="flex items-center gap-2 px-5 py-2.5 bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 text-black dark:text-gray-200 text-sm font-semibold rounded-sm hover:bg-gray-50 dark:hover:bg-zinc-800 transition-colors shadow-sm">
                 <Mail size={16} /> Send Email
               </a>
-
             </div>
           </div>
         </header>
@@ -125,11 +105,11 @@ export default function Home() {
         {/* MAIN LAYOUT GRID */}
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-12 lg:gap-16 mt-4">
           
-          {/* LEFT COLUMN (Content Stream) */}
+          {/* LEFT COLUMN */}
           <div className="space-y-10">
             
             {/* About */}
-            <section>
+            <section className="animate-slide-up" style={{ animationDelay: '150ms' }}>
               <h2 className="text-2xl font-bold mb-6">About</h2>
               <div className="space-y-4 text-black dark:text-gray-300 leading-relaxed">
                 <p>
@@ -145,7 +125,7 @@ export default function Home() {
             </section>
 
             {/* Tech Stack */}
-            <section>
+            <section className="animate-slide-up" style={{ animationDelay: '300ms' }}>
               <div className="flex justify-between items-end mb-6 border-b border-gray-100 dark:border-zinc-800 pb-2">
                 <h2 className="text-2xl font-bold">Tech Stack</h2>
                 <Link href="/tech-stack" className="text-sm font-semibold text-black dark:text-gray-400 cursor-pointer hover:text-black dark:hover:text-white flex items-center transition-colors group">
@@ -182,7 +162,7 @@ export default function Home() {
             </section>
 
             {/* Recent Projects */}
-            <section>
+            <section className="animate-slide-up" style={{ animationDelay: '450ms' }}>
               <div className="flex justify-between items-end mb-6 border-b border-gray-100 dark:border-zinc-800 pb-2">
                 <h2 className="text-2xl font-bold">Recent Projects</h2>
 
@@ -199,7 +179,6 @@ export default function Home() {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-
                 {/* Project 1 */}
                 <div className="bg-gray-50 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 p-5 rounded-sm group hover:border-gray-300 dark:hover:border-zinc-700 hover:shadow-sm transition-all cursor-pointer">
                   <h3 className="font-bold text-black dark:text-white mb-1">
@@ -251,12 +230,11 @@ export default function Home() {
                     store-pos.local
                   </div>
                 </div>
-
               </div>
             </section>        
 
-          {/* Certifications Grid */}
-            <section>
+            {/* Certifications Grid */}
+            <section className="animate-slide-up" style={{ animationDelay: '600ms' }}>
               <div className="flex justify-between items-end mb-6 border-b border-gray-100 dark:border-zinc-800 pb-2">
                 <h2 className="text-2xl font-bold">Recent Certifications</h2>
                 <Link href="/certificate" className="text-sm font-semibold text-black dark:text-gray-400 cursor-pointer hover:text-black dark:hover:text-white flex items-center transition-colors group">
@@ -285,8 +263,8 @@ export default function Home() {
 
           </div>
 
-          {/* RIGHT COLUMN (Card & Timeline) */}
-          <div className="space-y-8">
+          {/* RIGHT COLUMN */}
+          <div className="space-y-8 animate-slide-up" style={{ animationDelay: '300ms' }}>
             <div className="w-full flex flex-col sm:flex-row sm:items-center justify-between gap-4 py-5 border-t border-b border-gray-200 dark:border-zinc-800">
               
               <div>
@@ -395,8 +373,8 @@ export default function Home() {
           </div>
         </div>
 
-        {/* FULL WIDTH BOTTOM GRID (Now spanning both columns) */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 pt-12 mt-16 border-t border-gray-200 dark:border-zinc-800">
+        {/* FULL WIDTH BOTTOM GRID */}
+        <div className="animate-slide-up grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 pt-12 mt-16 border-t border-gray-200 dark:border-zinc-800" style={{ animationDelay: '750ms' }}>
           <div>
             <h3 className="text-sm font-bold mb-4">Focus Areas</h3>
 
@@ -460,7 +438,7 @@ export default function Home() {
         </div>
 
         {/* FOOTER */}
-        <footer className="pt-8 mt-4 border-t border-gray-200 dark:border-zinc-800 flex flex-col md:flex-row items-center justify-between text-sm text-gray-900 dark:text-gray-400 pb-8">
+        <footer className="animate-slide-up pt-8 mt-4 border-t border-gray-200 dark:border-zinc-800 flex flex-col md:flex-row items-center justify-between text-sm text-gray-900 dark:text-gray-400 pb-8" style={{ animationDelay: '900ms' }}>
           <p>&copy; 2026 Angelito P. Decatoria III. All rights reserved.</p>
           <a href="mailto:angelitodecatoriaa@gmail.com" className="mt-4 md:mt-0 bg-black dark:bg-white text-white dark:text-black px-6 py-3 font-semibold flex items-center gap-2 rounded-sm hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors shadow-sm">
             <Mail size={16}/> Connect with Thirdy

@@ -84,7 +84,7 @@ export default function TechStack() {
       <div className="max-w-4xl mx-auto px-6 py-12 md:py-20">
         
         {/* Navigation Header */}
-        <div className="mb-12">
+        <div className="mb-12 animate-slide-up">
           <Link 
             href="/" 
             className="inline-flex items-center gap-2 text-sm font-semibold text-gray-500 hover:text-black dark:text-gray-400 dark:hover:text-white transition-colors mb-6 group"
@@ -100,7 +100,11 @@ export default function TechStack() {
         {/* Tech Stack Categories */}
         <div className="space-y-12">
           {categories.map((category, index) => (
-            <div key={index} className="space-y-4">
+            <div 
+              key={index} 
+              className="space-y-4 animate-slide-up"
+              style={{ animationDelay: `${(index + 1) * 150}ms` }}
+            >
               
               {/* Category Header */}
               <div className="flex items-center gap-3">
