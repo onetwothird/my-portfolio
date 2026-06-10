@@ -34,7 +34,7 @@ const VerifiedBadge = () => (
 export default function Home() {
   return (
     <div className="min-h-screen text-black dark:text-gray-100 font-sans selection:bg-[#8B5CF6] selection:text-white">
-      <div className="max-w-275 mx-auto px-6 py-12 md:py-20 space-y-16">
+      <div className="max-w-275 mx-auto px-6 py-12 md:py-20 space-y-10">
         
         {/* HEADER PROFILE */}
         <header className="flex flex-col md:flex-row gap-8 items-start">
@@ -123,10 +123,10 @@ export default function Home() {
         </header>
 
         {/* MAIN LAYOUT GRID */}
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-12 lg:gap-16">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-12 lg:gap-16 mt-4">
           
           {/* LEFT COLUMN (Content Stream) */}
-          <div className="space-y-16">
+          <div className="space-y-10">
             
             {/* About */}
             <section>
@@ -311,7 +311,7 @@ export default function Home() {
             <section className="pt-4">
               <h2 className="text-2xl font-bold mb-8">Journey & Experience</h2>
               
-              <div className="relative border-l border-gray-200 dark:border-zinc-800 ml-3 space-y-8">
+              <div className="relative border-l border-gray-200 dark:border-zinc-800 ml-3 space-y-6">
                 
                 {/* Seelai */}
                 <div className="relative pl-8 group">
