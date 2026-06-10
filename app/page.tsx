@@ -33,7 +33,7 @@ const VerifiedBadge = () => (
 
 export default function Home() {
   return (
-    <div className="min-h-screen text-black dark:text-gray-100 font-sans selection:bg-[#8B5CF6] selection:text-white transition-colors duration-300">
+    <div className="min-h-screen text-black dark:text-gray-100 font-sans selection:bg-[#8B5CF6] selection:text-white">
       <div className="max-w-275 mx-auto px-6 py-12 md:py-20 space-y-16">
         
         {/* HEADER PROFILE */}

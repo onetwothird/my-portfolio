@@ -80,7 +80,7 @@ export default function TechStack() {
   ];
 
   return (
-    <div className="min-h-screen text-black dark:text-gray-100 font-sans selection:bg-[#8B5CF6] selection:text-white transition-colors duration-300">
+    <div className="min-h-screen text-black dark:text-gray-100 font-sans selection:bg-[#8B5CF6] selection:text-white">
       <div className="max-w-4xl mx-auto px-6 py-12 md:py-20">
         
         {/* Navigation Header */}
