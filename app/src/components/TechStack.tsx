@@ -1,90 +1,86 @@
 import Link from 'next/link';
+import { ArrowLeft, ScanLine, BrainCircuit, Tag } from 'lucide-react';
 import { 
-  ArrowLeft, 
-  Monitor, 
-  Zap, 
-  Rocket, 
-  Database, 
-  Wrench, 
-  Bot 
-} from 'lucide-react';
+  SiHtml5, SiCss, SiJavascript, SiTypescript, SiPhp, SiDart, SiPython,
+  SiReact, SiVite, SiNodedotjs, SiExpress, SiFlutter, SiBootstrap, 
+  SiTailwindcss, SiChakraui, SiMysql, SiFirebase, SiSupabase,
+  SiGit, SiGithub, SiFigma, SiVercel, SiRender, SiCloudinary, 
+  SiTwilio, SiWordpress, SiTensorflow, SiOpencv, SiGooglecolab, 
+  SiJupyter, SiKaggle 
+} from 'react-icons/si';
 
 export default function TechStack() {
   const categories = [
     {
       title: "Programming Languages",
-      icon: <Zap size={20} className="text-orange-500" />,
       items: [
-        { name: "HTML5", bg: "bg-[#E34F26]", text: "text-white" },
-        { name: "CSS3", bg: "bg-[#1572B6]", text: "text-white" },
-        { name: "JAVASCRIPT", bg: "bg-[#F7DF1E]", text: "text-black" },
-        { name: "TYPESCRIPT", bg: "bg-[#3178C6]", text: "text-white" },
-        { name: "PHP", bg: "bg-[#777BB4]", text: "text-white" },
-        { name: "DART", bg: "bg-[#0175C2]", text: "text-white" },
-        { name: "PYTHON", bg: "bg-[#3776AB]", text: "text-white" },
+        { name: "HTML5", color: "#E34F26", icon: <SiHtml5 size={18} /> },
+        { name: "CSS3", color: "#1572B6", icon: <SiCss size={18} /> },
+        { name: "JAVASCRIPT", color: "#F7DF1E", icon: <SiJavascript size={18} /> },
+        { name: "TYPESCRIPT", color: "#3178C6", icon: <SiTypescript size={18} /> },
+        { name: "PHP", color: "#777BB4", icon: <SiPhp size={18} /> },
+        { name: "DART", color: "#0175C2", icon: <SiDart size={18} /> },
+        { name: "PYTHON", color: "#3776AB", icon: <SiPython size={18} /> },
       ]
     },
     {
       title: "Frameworks & Libraries",
-      icon: <Rocket size={20} className="text-pink-500" />,
       items: [
-        { name: "REACT", bg: "bg-[#20232A]", text: "text-[#61DAFB]" },
-        { name: "VITE", bg: "bg-[#646CFF]", text: "text-white" },
-        { name: "NODE.JS", bg: "bg-[#339933]", text: "text-white" },
-        { name: "EXPRESS.JS", bg: "bg-[#000000]", text: "text-white" },
-        { name: "FLUTTER", bg: "bg-[#02569B]", text: "text-[#38BDF8]" },
-        { name: "REACT NATIVE", bg: "bg-[#20232A]", text: "text-[#61DAFB]" },
-        { name: "BOOTSTRAP", bg: "bg-[#7952B3]", text: "text-white" },
-        { name: "TAILWINDCSS", bg: "bg-[#0F172A]", text: "text-[#38BDF8]" },
-        { name: "CHAKRA UI", bg: "bg-[#319795]", text: "text-white" },
+        { name: "REACT", color: "#61DAFB", icon: <SiReact size={18} /> },
+        { name: "VITE", color: "#646CFF", icon: <SiVite size={18} /> },
+        { name: "NODE.JS", color: "#339933", icon: <SiNodedotjs size={18} /> },
+        { name: "EXPRESS.JS", color: "#000000", icon: <SiExpress size={18} /> },
+        { name: "FLUTTER", color: "#02569B", icon: <SiFlutter size={18} /> },
+        { name: "REACT NATIVE", color: "#61DAFB", icon: <SiReact size={18} /> },
+        { name: "BOOTSTRAP", color: "#7952B3", icon: <SiBootstrap size={18} /> },
+        { name: "TAILWINDCSS", color: "#38BDF8", icon: <SiTailwindcss size={18} /> },
+        { name: "CHAKRA UI", color: "#319795", icon: <SiChakraui size={18} /> },
       ]
     },
     {
       title: "Databases",
-      icon: <Database size={20} className="text-purple-500" />,
       items: [
-        { name: "MYSQL", bg: "bg-[#4479A1]", text: "text-white" },
-        { name: "FIREBASE", bg: "bg-[#039BE5]", text: "text-white" },
-        { name: "SUPABASE", bg: "bg-[#3ECF8E]", text: "text-white" },
+        { name: "MYSQL", color: "#4479A1", icon: <SiMysql size={18} /> },
+        { name: "FIREBASE", color: "#FFCA28", icon: <SiFirebase size={18} /> },
+        { name: "SUPABASE", color: "#3ECF8E", icon: <SiSupabase size={18} /> },
       ]
     },
     {
       title: "Tools, Platforms, & Services",
-      icon: <Wrench size={20} className="text-gray-500" />,
       items: [
-        { name: "GIT", bg: "bg-[#F05032]", text: "text-white" },
-        { name: "GITHUB", bg: "bg-[#181717]", text: "text-white" },
-        { name: "FIGMA", bg: "bg-[#F24E1E]", text: "text-white" },
-        { name: "VERCEL", bg: "bg-[#000000]", text: "text-white" },
-        { name: "RENDER", bg: "bg-[#46E3B7]", text: "text-white" },
-        { name: "CLOUDINARY", bg: "bg-[#3448C5]", text: "text-white" },
-        { name: "TWILIO", bg: "bg-[#F22F46]", text: "text-white" },
-        { name: "WORDPRESS", bg: "bg-[#21759B]", text: "text-white" },
+        { name: "GIT", color: "#F05032", icon: <SiGit size={18} /> },
+        { name: "GITHUB", color: "#181717", icon: <SiGithub size={18} /> },
+        { name: "FIGMA", color: "#F24E1E", icon: <SiFigma size={18} /> },
+        { name: "VERCEL", color: "#000000", icon: <SiVercel size={18} /> },
+        { name: "RENDER", color: "#46E3B7", icon: <SiRender size={18} /> },
+        { name: "CLOUDINARY", color: "#3448C5", icon: <SiCloudinary size={18} /> },
+        { name: "TWILIO", color: "#F22F46", icon: <SiTwilio size={18} /> },
+        { name: "WORDPRESS", color: "#21759B", icon: <SiWordpress size={18} /> },
       ]
     },
     {
       title: "AI / Machine Learning",
-      icon: <Bot size={20} className="text-rose-500" />,
       items: [
-        { name: "TENSORFLOW", bg: "bg-[#FF6F00]", text: "text-white" },
-        { name: "TENSORFLOW LITE", bg: "bg-[#FF6F00]", text: "text-white" },
-        { name: "OPENCV", bg: "bg-[#5C3EE8]", text: "text-white" },
-        { name: "YOLOV8", bg: "bg-[#0000FF]", text: "text-white" },
-        { name: "LABEL STUDIO", bg: "bg-[#FF7043]", text: "text-white" },
-        { name: "ROBOFLOW", bg: "bg-[#424242]", text: "text-white" },
-        { name: "GOOGLE COLAB", bg: "bg-[#F9AB00]", text: "text-white" },
-        { name: "JUPYTER", bg: "bg-[#F37626]", text: "text-white" },
-        { name: "KAGGLE", bg: "bg-[#20BEFF]", text: "text-white" },
+        { name: "TENSORFLOW", color: "#FF6F00", icon: <SiTensorflow size={18} /> },
+        { name: "TENSORFLOW LITE", color: "#FF6F00", icon: <SiTensorflow size={18} /> },
+        { name: "OPENCV", color: "#5C3EE8", icon: <SiOpencv size={18} /> },
+        { name: "YOLOV8", color: "#0000FF", icon: <ScanLine size={18} /> },
+        { name: "LABEL STUDIO", color: "#FF7043", icon: <Tag size={18} /> },
+        { name: "ROBOFLOW", color: "#424242", icon: <BrainCircuit size={18} /> },
+        { name: "GOOGLE COLAB", color: "#F9AB00", icon: <SiGooglecolab size={18} /> },
+        { name: "JUPYTER", color: "#F37626", icon: <SiJupyter size={18} /> },
+        { name: "KAGGLE", color: "#20BEFF", icon: <SiKaggle size={18} /> },
       ]
     }
   ];
 
   return (
-    <div className="min-h-screen text-black dark:text-gray-100 font-sans selection:bg-[#8B5CF6] selection:text-white">
-      <div className="max-w-4xl mx-auto px-6 py-12 md:py-20">
+    <div className="min-h-screen text-black dark:text-gray-100 font-sans selection:bg-[#8B5CF6] selection:text-white transition-colors duration-300">
+      
+      <div className="max-w-6xl mx-auto px-6 py-12 md:py-20">
         
         {/* Navigation Header */}
-        <div className="mb-12 animate-slide-up">
+        <div className="mb-16 animate-slide-up">
           <Link 
             href="/" 
             className="inline-flex items-center gap-2 text-sm font-semibold text-gray-500 hover:text-black dark:text-gray-400 dark:hover:text-white transition-colors mb-6 group"
@@ -92,44 +88,50 @@ export default function TechStack() {
             <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" /> Back to Home
           </Link>
           <div className="flex items-center gap-3">
-            <Monitor size={32} className="text-[#8B5CF6]" />
-            <h1 className="text-3xl md:text-4xl font-bold tracking-tight">Tech Stack</h1>
+            <h1 className="text-3xl md:text-5xl font-bold tracking-tight">Tech Stack</h1>
           </div>
+          <p className="mt-4 text-gray-600 dark:text-gray-400 max-w-2xl">
+            A comprehensive overview of the programming languages, frameworks, databases, and architectural tools I leverage to build robust applications.
+          </p>
         </div>
 
-        {/* Tech Stack Categories */}
-        <div className="space-y-12">
+        {/* Tech Stack Categories Container */}
+        <div className="space-y-16 pb-12">
           {categories.map((category, index) => (
             <div 
               key={index} 
-              className="space-y-4 animate-slide-up"
+              className="space-y-6 animate-slide-up"
               style={{ animationDelay: `${(index + 1) * 150}ms` }}
             >
               
               {/* Category Header */}
-              <div className="flex items-center gap-3">
-                {category.icon}
-                <h2 className="text-xl font-bold">{category.title}</h2>
+              <div className="border-b border-gray-200 dark:border-zinc-800 pb-4">
+                <h2 className="text-2xl font-bold">{category.title}</h2>
               </div>
               
-              {/* Divider */}
-              <hr className="border-gray-200 dark:border-zinc-800" />
-              
-              {/* Badges Container */}
-              <div className="flex flex-wrap gap-2 pt-2">
+              {/* Minimalist Grid */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 pt-2">
                 {category.items.map((tech, techIndex) => (
-                  <span 
+                  <div 
                     key={techIndex} 
-                    className={`
-                      ${tech.bg} ${tech.text} 
-                      px-3 py-1.5 text-xs font-bold tracking-wider rounded-sm 
-                      shadow-sm flex items-center gap-2 hover:opacity-90 transition-opacity cursor-default
-                    `}
+                    className="group flex items-center gap-3 px-4 py-3 rounded-lg border border-gray-200/60 dark:border-zinc-800/60 bg-white/40 dark:bg-zinc-900/40 backdrop-blur-sm hover:bg-white/80 dark:hover:bg-zinc-800/80 hover:border-gray-400 dark:hover:border-zinc-600 transition-colors duration-200 cursor-default"
                   >
-                    {tech.name}
-                  </span>
+                    {/* Brand Icon */}
+                    <div 
+                      className="transition-transform duration-200 group-hover:scale-110"
+                      style={{ color: tech.color }}
+                    >
+                      {tech.icon}
+                    </div>
+                    
+                    {/* Tech Name */}
+                    <span className="font-semibold tracking-wide text-sm text-gray-700 dark:text-gray-300 group-hover:text-black dark:group-hover:text-white transition-colors">
+                      {tech.name}
+                    </span>
+                  </div>
                 ))}
               </div>
+              
             </div>
           ))}
         </div>
