@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { MapPin, Mail, ExternalLink, ChevronRight, Trophy, FileText } from 'lucide-react';
+import { MapPin, Mail, ExternalLink, ChevronRight, Trophy, FileText, X } from 'lucide-react';
 import { ThemeToggle } from './src/components/ThemeToggle';
 import Image from "next/image";
 import Link from 'next/link';
@@ -35,6 +35,9 @@ const VerifiedBadge = () => (
 );
 
 export default function Home() {
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [currentRec, setCurrentRec] = useState(0);
+
   // Recommendations Data
   const recommendations = [
     {
@@ -54,7 +57,13 @@ export default function Home() {
     }
   ];
 
-  const [currentRec, setCurrentRec] = useState(0);
+  // Gallery Images Array
+  const galleryImages = [
+    "/img/image2.jpg",
+    "/img/icon.webp",
+    "/img/image3.jpg",
+    "/img/image4.jpg"
+  ];
 
   // Auto-skip every 10 seconds
   useEffect(() => {
@@ -64,20 +73,31 @@ export default function Home() {
     return () => clearInterval(timer);
   }, [recommendations.length]);
 
-  // A static pseudo-random pattern to draw the mini GitHub contribution graph safely
-  const getContributionColor = (index: number) => {
-    const pattern = [0, 0, 1, 0, 3, 2, 0, 1, 4, 2, 0, 1, 2, 3, 0, 1, 0, 2, 4, 3, 1, 0, 0, 1, 2];
-    const intensity = pattern[index % pattern.length];
-    
-    if (intensity === 4) return "bg-green-500 dark:bg-green-500";
-    if (intensity === 3) return "bg-green-400 dark:bg-green-600";
-    if (intensity === 2) return "bg-green-300 dark:bg-green-700/80";
-    if (intensity === 1) return "bg-green-200 dark:bg-green-900/60";
-    return "bg-gray-100 dark:bg-zinc-800"; // Empty day
+  // Heavily populated green activity in the recent months to match the reference image
+  const contributionGrid = [
+    "0000000", "0000010", "0100010", "0001000", "0100000", // Jun
+    "0020010", "0302000", "0101020", "0110000", "0202100", // Jul
+    "0102000", "0110000", "0110100", "0010000", "0001000", // Aug
+    "0000000", "0001000", "0000000", "0100000", "0304200", // Sep
+    "0204010", "0103020", "0102000", "0110100", "0110000", // Oct
+    "0201010", "0110000", "0201020", "0101000", "0100000", // Nov
+    "0100100", "0010000", "0010010", "0102010", "0201020", // Dec
+    "0102000", "1211010", "1321100", "1232100", "1211010", // Jan
+    "2233210", "2343200", "1344310", "2443210", "2232100", // Feb (High Activity)
+    "2343210", "3444320", "2343210", "1232100", "2342110", // Mar (High Activity)
+    "1232110", "2343210", "1344310"                        // Apr/May (High Activity)
+  ];
+
+  const getContributionColor = (val: string) => {
+    if (val === '4') return "bg-green-500 dark:bg-[#39d353]";
+    if (val === '3') return "bg-green-400 dark:bg-[#26a641]";
+    if (val === '2') return "bg-green-300 dark:bg-[#006d32]";
+    if (val === '1') return "bg-green-200 dark:bg-[#0e4429]";
+    return "bg-gray-100 dark:bg-[#161b22]"; 
   };
 
   return (
-    <div className="min-h-screen text-black dark:text-gray-100 font-sans selection:bg-gray-500 selection:text-white">
+    <div className="min-h-screen text-black dark:text-gray-100 font-sans selection:bg-gray-500 selection:text-white relative">
       <div className="max-w-6xl mx-auto px-6 py-12 md:py-20 space-y-10">
         
         {/* HEADER PROFILE */}
@@ -500,23 +520,20 @@ export default function Home() {
                   </div>
                   <div>
                     <h3 className="font-bold text-sm text-black dark:text-white transition-colors">@onetwothird</h3>
-                    <p className="text-xs text-gray-600 dark:text-gray-400 mt-0.5">1,053 contributions in the last year</p>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mt-0.5">1,058 contributions in the last year</p>
                   </div>
                 </div>
                 
-                {/* Mini Contribution Graph */}
-                <div className="flex gap-0.75 overflow-hidden opacity-80 group-hover:opacity-100 transition-opacity">
-                  {Array.from({ length: 16 }).map((_, colIndex) => (
-                    <div key={colIndex} className="flex flex-col gap-0.75">
-                      {Array.from({ length: 5 }).map((_, rowIndex) => {
-                        const cellIndex = colIndex * 5 + rowIndex;
-                        return (
-                          <div 
-                            key={rowIndex} 
-                            className={`w-3 h-3 rounded-xs ${getContributionColor(cellIndex)}`} 
-                          />
-                        );
-                      })}
+                {/* 53-Week Contribution Graph */}
+                <div className="flex gap-1 overflow-x-auto pb-1 scrollbar-hide opacity-80 group-hover:opacity-100 transition-opacity">
+                  {contributionGrid.map((colStr, colIndex) => (
+                    <div key={colIndex} className="flex flex-col gap-1 shrink-0">
+                      {colStr.split('').map((val, rowIndex) => (
+                        <div 
+                          key={rowIndex} 
+                          className={`w-2.5 h-2.5 rounded-xs ${getContributionColor(val)}`} 
+                        />
+                      ))}
                     </div>
                   ))}
                 </div>
@@ -565,36 +582,34 @@ export default function Home() {
               </div>
             </section>
 
-            {/* Small Gallery Widget */}
+            {/* Gallery Widget (Seamless 2x2 Grid) */}
             <section className="pt-8 mt-8 border-t border-gray-200 dark:border-zinc-800">
               <div className="flex justify-between items-center mb-6">
                 <h2 className="text-xl font-bold text-black dark:text-white">Gallery</h2>
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
-                {/* Image 1 */}
-                <div className="relative aspect-square bg-gray-50 dark:bg-zinc-900/40 border border-gray-200 dark:border-zinc-800 rounded-sm overflow-hidden group cursor-pointer">
-                  <Image 
-                    src="/img/image.png" 
-                    alt="Gallery snapshot 1" 
-                    fill 
-                    sizes="(max-width: 768px) 50vw, 180px"
-                    className="object-cover group-hover:scale-105 transition-transform duration-500" 
-                  />
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 dark:group-hover:bg-white/5 transition-colors z-10" />
-                </div>
-
-                {/* Image 2 */}
-                <div className="relative aspect-square bg-gray-50 dark:bg-zinc-900/40 border border-gray-200 dark:border-zinc-800 rounded-sm overflow-hidden group cursor-pointer">
-                  <Image 
-                    src="/img/icon.webp" 
-                    alt="Gallery snapshot 2" 
-                    fill 
-                    sizes="(max-width: 768px) 50vw, 180px"
-                    className="object-cover group-hover:scale-105 transition-transform duration-500" 
-                  />
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 dark:group-hover:bg-white/5 transition-colors z-10" />
-                </div>
+              {/* Seamless Grid Container */}
+              <div className="grid grid-cols-2 gap-px bg-gray-200 dark:bg-zinc-800 border border-gray-200 dark:border-zinc-800 rounded-sm w-full overflow-hidden shadow-sm">
+                {galleryImages.map((imgSrc, i) => (
+                  <div 
+                    key={i} 
+                    onClick={() => setSelectedImage(imgSrc)}
+                    className="relative aspect-square overflow-hidden group cursor-pointer bg-white dark:bg-[#0a0a0a]"
+                  >
+                    <Image 
+                      src={imgSrc} 
+                      alt={`Gallery snapshot ${i + 1}`} 
+                      fill 
+                      sizes="(max-width: 768px) 50vw, 180px"
+                      className="object-cover group-hover:scale-105 transition-transform duration-500" 
+                    />
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 dark:group-hover:bg-white/5 transition-colors z-10 flex items-center justify-center">
+                      <div className="bg-black/60 text-white rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-2 group-hover:translate-y-0">
+                        <ExternalLink size={16} />
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
             </section>
                     
@@ -674,6 +689,34 @@ export default function Home() {
         </footer>
 
       </div>
+
+      {/* Lightbox Modal */}
+      {selectedImage && (
+        <div 
+          className="fixed inset-0 z-100 flex items-center justify-center bg-black/90 backdrop-blur-sm p-4 md:p-8 animate-in fade-in duration-200"
+          onClick={() => setSelectedImage(null)}
+        >
+          <div className="relative max-w-5xl w-full max-h-[90vh] flex flex-col items-center justify-center">
+            <button 
+              onClick={() => setSelectedImage(null)}
+              className="absolute -top-12 right-0 text-white hover:text-gray-300 transition-colors bg-black/50 p-2 rounded-full border border-white/10"
+              aria-label="Close modal"
+            >
+              <X size={24} />
+            </button>
+            <div className="relative w-full h-[80vh]">
+              <Image 
+                src={selectedImage} 
+                alt="Fullscreen view" 
+                fill 
+                className="object-contain"
+                quality={100}
+                priority
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
