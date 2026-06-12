@@ -1,3 +1,6 @@
+"use client";
+
+import { useState, useEffect } from 'react';
 import { MapPin, Mail, ExternalLink, ChevronRight, Trophy, FileText } from 'lucide-react';
 import { ThemeToggle } from './src/components/ThemeToggle';
 import Image from "next/image";
@@ -32,6 +35,35 @@ const VerifiedBadge = () => (
 );
 
 export default function Home() {
+  // Recommendations Data
+  const recommendations = [
+    {
+      quote: "Thirdy was the most talented software engineer I've mentored in a long time. He's a fast learner, and he always makes sure to deliver quality output given a period of time. He is also very keen on learning new technologies, and I find him to be objectively exceptional.",
+      name: "Cris Lawrence Adrian Militante",
+      title: "ICT Director at GCM"
+    },
+    {
+      quote: "Thirdy is an exceptional developer. During his time building the ODCI Document Tracker, he demonstrated a deep understanding of full-stack architecture. He doesn't just write code; he solves real-world operational problems.",
+      name: "Mark R.",
+      title: "Project Supervisor, ODCI"
+    },
+    {
+      quote: "Watching Angelito develop Seelai was impressive. His ability to integrate complex machine learning models like YOLO into a seamless mobile experience shows a level of technical maturity rare for a graduating student.",
+      name: "Dr. Jane S.",
+      title: "CS Faculty, CvSU"
+    }
+  ];
+
+  const [currentRec, setCurrentRec] = useState(0);
+
+  // Auto-skip every 10 seconds
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentRec((prev) => (prev + 1) % recommendations.length);
+    }, 10000); 
+    return () => clearInterval(timer);
+  }, [recommendations.length]);
+
   // A static pseudo-random pattern to draw the mini GitHub contribution graph safely
   const getContributionColor = (index: number) => {
     const pattern = [0, 0, 1, 0, 3, 2, 0, 1, 4, 2, 0, 1, 2, 3, 0, 1, 0, 2, 4, 3, 1, 0, 0, 1, 2];
@@ -491,43 +523,44 @@ export default function Home() {
               </a>
             </section>
 
-            {/* Recommendations / Testimonials Widget */}
+            {/* Recommendations / Testimonials Widget (Dynamic via State) */}
             <section className="pt-8 mt-8 border-t border-gray-200 dark:border-zinc-800">
-              <div className="flex justify-between items-center mb-4">
-                <h2 className="text-sm font-bold text-black dark:text-white uppercase tracking-widest">Recommendations</h2>
-              </div>
+              <h2 className="text-xl font-bold text-black dark:text-white mb-6">Recommendations</h2>
 
-              <div className="space-y-4">
-                {/* Mockup Testimonial 1 */}
-                <div className="bg-gray-50 dark:bg-zinc-900/50 border border-gray-200 dark:border-zinc-800 rounded-sm p-5 hover:border-gray-300 dark:hover:border-zinc-700 transition-colors">
-                  <p className="text-sm text-gray-700 dark:text-gray-300 italic mb-4 leading-relaxed">
-                    &quot;Thirdy is an exceptional developer. During his time building the ODCI Document Tracker, he demonstrated a deep understanding of full-stack architecture. He doesn&apos;t just write code; he solves real-world operational problems.&quot;
+              <div className="relative flex flex-col">
+                <div
+                  key={currentRec}
+                  className="animate-slide-up flex flex-col"
+                >
+                  <p className="text-sm md:text-base text-gray-800 dark:text-gray-300 font-serif leading-relaxed mb-6">
+                    &ldquo;{recommendations[currentRec].quote}&rdquo;
                   </p>
-                  <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-sm bg-blue-100 dark:bg-blue-900/40 flex items-center justify-center text-blue-600 dark:text-blue-400 font-bold text-xs shrink-0 border border-blue-200 dark:border-blue-800/50">
-                      MR
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-xs text-black dark:text-white">Mark R.</h3>
-                      <p className="text-[10px] text-gray-500 uppercase tracking-wide">Project Supervisor, ODCI</p>
-                    </div>
+
+                  <div>
+                    <hr className="border-gray-200 dark:border-zinc-800 mb-4" />
+                    <h3 className="font-bold text-sm text-black dark:text-white">
+                      {recommendations[currentRec].name}
+                    </h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mt-0.5">
+                      {recommendations[currentRec].title}
+                    </p>
                   </div>
                 </div>
 
-                {/* Mockup Testimonial 2 */}
-                <div className="bg-gray-50 dark:bg-zinc-900/50 border border-gray-200 dark:border-zinc-800 rounded-sm p-5 hover:border-gray-300 dark:hover:border-zinc-700 transition-colors">
-                  <p className="text-sm text-gray-700 dark:text-gray-300 italic mb-4 leading-relaxed">
-                    &quot;Watching Angelito develop Seelai was impressive. His ability to integrate complex machine learning models like YOLO into a seamless mobile experience shows a level of technical maturity rare for a graduating student.&quot;
-                  </p>
-                  <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-sm bg-purple-100 dark:bg-purple-900/40 flex items-center justify-center text-purple-600 dark:text-purple-400 font-bold text-xs shrink-0 border border-purple-200 dark:border-purple-800/50">
-                      JS
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-xs text-black dark:text-white">Dr. Jane S.</h3>
-                      <p className="text-[10px] text-gray-500 uppercase tracking-wide">CS Faculty, CvSU</p>
-                    </div>
-                  </div>
+                {/* Square Pagination Dots */}
+                <div className="flex gap-2 mt-8">
+                  {recommendations.map((_, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => setCurrentRec(idx)}
+                      className={`w-1.5 h-1.5 rounded-none transition-colors duration-300 ${
+                        idx === currentRec
+                          ? "bg-black dark:bg-white"
+                          : "bg-gray-300 dark:bg-zinc-700 hover:bg-gray-400 dark:hover:bg-zinc-500"
+                      }`}
+                      aria-label={`Go to recommendation ${idx + 1}`}
+                    />
+                  ))}
                 </div>
               </div>
             </section>
