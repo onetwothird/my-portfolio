@@ -489,7 +489,7 @@ export default function Home() {
               {/* GitHub Activity Widget */}
               <section className="pt-8 mt-8 border-t border-gray-200 dark:border-zinc-800">
                 <div className="flex justify-between items-center mb-4">
-                  <h2 className="text-sm font-bold text-black dark:text-white uppercase tracking-widest">GitHub Activity</h2>
+                  <h2 className="text-xl font-bold text-black dark:text-white">GitHub Activity</h2>
                   <a href="https://github.com/onetwothird" target="_blank" rel="noreferrer" className="text-gray-400 hover:text-black dark:hover:text-white transition-colors">
                     <ExternalLink size={14} />
                   </a>
