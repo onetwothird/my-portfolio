@@ -503,7 +503,7 @@ export default function Home() {
                     </div>
                     <div>
                       <h3 className="font-bold text-sm text-black dark:text-white transition-colors">@onetwothird</h3>
-                      <p className="text-xs text-gray-600 dark:text-gray-400 mt-0.5">1,058 contributions in the last year</p>
+                      <p className="text-xs text-gray-600 dark:text-gray-400 mt-0.5">1,068 contributions in the last year</p>
                     </div>
                   </div>
                   
