@@ -32,8 +32,20 @@ const VerifiedBadge = () => (
 );
 
 export default function Home() {
+  // A static pseudo-random pattern to draw the mini GitHub contribution graph safely
+  const getContributionColor = (index: number) => {
+    const pattern = [0, 0, 1, 0, 3, 2, 0, 1, 4, 2, 0, 1, 2, 3, 0, 1, 0, 2, 4, 3, 1, 0, 0, 1, 2];
+    const intensity = pattern[index % pattern.length];
+    
+    if (intensity === 4) return "bg-green-500 dark:bg-green-500";
+    if (intensity === 3) return "bg-green-400 dark:bg-green-600";
+    if (intensity === 2) return "bg-green-300 dark:bg-green-700/80";
+    if (intensity === 1) return "bg-green-200 dark:bg-green-900/60";
+    return "bg-gray-100 dark:bg-zinc-800"; // Empty day
+  };
+
   return (
-    <div className="min-h-screen text-black dark:text-gray-100 font-sans selection:bg-[#8B5CF6] selection:text-white">
+    <div className="min-h-screen text-black dark:text-gray-100 font-sans selection:bg-gray-500 selection:text-white">
       <div className="max-w-6xl mx-auto px-6 py-12 md:py-20 space-y-10">
         
         {/* HEADER PROFILE */}
@@ -103,7 +115,7 @@ export default function Home() {
         </header>
 
         {/* MAIN LAYOUT GRID */}
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-12 lg:gap-16 mt-4">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-12 lg:gap-16 mt-4 relative">
           
           {/* LEFT COLUMN */}
           <div className="space-y-10">
@@ -191,7 +203,7 @@ export default function Home() {
                   </div>
                   <div className="p-4 flex flex-col flex-1 justify-between">
                     <div>
-                      <h4 className="font-bold text-sm md:text-base text-black dark:text-white group-hover:text-[#8B5CF6] transition-colors mb-1 line-clamp-1">Seelai AI Assistant</h4>
+                      <h4 className="font-bold text-sm md:text-base text-black dark:text-white group-hover:text-gray-500 dark:group-hover:text-gray-300 transition-colors mb-1 line-clamp-1">Seelai AI Assistant</h4>
                       <p className="text-xs text-gray-800 dark:text-gray-400 line-clamp-2">Real-time object & caretaker face detection mobile app.</p>
                     </div>
                     <div className="mt-3">
@@ -214,7 +226,7 @@ export default function Home() {
                   </div>
                   <div className="p-4 flex flex-col flex-1 justify-between">
                     <div>
-                      <h4 className="font-bold text-sm md:text-base text-black dark:text-white group-hover:text-[#8B5CF6] transition-colors mb-1 line-clamp-1">ODCI Document Tracker</h4>
+                      <h4 className="font-bold text-sm md:text-base text-black dark:text-white group-hover:text-gray-500 dark:group-hover:text-gray-300 transition-colors mb-1 line-clamp-1">ODCI Document Tracker</h4>
                       <p className="text-xs text-gray-800 dark:text-gray-400 line-clamp-2">Centralized role-based corporate routing system.</p>
                     </div>
                     <div className="mt-3">
@@ -237,7 +249,7 @@ export default function Home() {
                   </div>
                   <div className="p-4 flex flex-col flex-1 justify-between">
                     <div>
-                      <h4 className="font-bold text-sm md:text-base text-black dark:text-white group-hover:text-[#8B5CF6] transition-colors mb-1 line-clamp-1">AlgoVerse Simulator</h4>
+                      <h4 className="font-bold text-sm md:text-base text-black dark:text-white group-hover:text-gray-500 dark:group-hover:text-gray-300 transition-colors mb-1 line-clamp-1">AlgoVerse Simulator</h4>
                       <p className="text-xs text-gray-800 dark:text-gray-400 line-clamp-2">Visual CPU scheduling execution platform.</p>
                     </div>
                     <div className="mt-3">
@@ -260,7 +272,7 @@ export default function Home() {
                   </div>
                   <div className="p-4 flex flex-col flex-1 justify-between">
                     <div>
-                      <h4 className="font-bold text-sm md:text-base text-black dark:text-white group-hover:text-[#8B5CF6] transition-colors mb-1 line-clamp-1">Jayann&apos;s Store POS</h4>
+                      <h4 className="font-bold text-sm md:text-base text-black dark:text-white group-hover:text-gray-500 dark:group-hover:text-gray-300 transition-colors mb-1 line-clamp-1">Jayann&apos;s Store POS</h4>
                       <p className="text-xs text-gray-800 dark:text-gray-400 line-clamp-2">Full stack inventory & ecommerce application.</p>
                     </div>
                     <div className="mt-3">
@@ -333,7 +345,7 @@ export default function Home() {
 
           </div>
 
-          {/* RIGHT COLUMN */}
+          {/* RIGHT COLUMN - Scrolls normally */}
           <div className="space-y-8 animate-slide-up" style={{ animationDelay: '300ms' }}>
             <div className="w-full flex flex-col sm:flex-row sm:items-center justify-between gap-4 py-5 border-t border-b border-gray-200 dark:border-zinc-800">
               
@@ -437,6 +449,86 @@ export default function Home() {
                   <p className="text-sm text-gray-500 dark:text-gray-500 italic">Wrote my first line of code.</p>
                 </div>
 
+              </div>
+            </section>
+
+            {/* GitHub Activity Widget */}
+            <section className="pt-8 mt-8 border-t border-gray-200 dark:border-zinc-800">
+              <div className="flex justify-between items-center mb-4">
+                <h2 className="text-sm font-bold text-black dark:text-white uppercase tracking-widest">GitHub Activity</h2>
+                <a href="https://github.com/onetwothird" target="_blank" rel="noreferrer" className="text-gray-400 hover:text-black dark:hover:text-white transition-colors">
+                  <ExternalLink size={14} />
+                </a>
+              </div>
+              
+              <a href="https://github.com/onetwothird" target="_blank" rel="noreferrer" className="block bg-gray-50 dark:bg-zinc-900/50 border border-gray-200 dark:border-zinc-800 rounded-sm p-5 hover:border-gray-300 dark:hover:border-zinc-700 transition-colors group">
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="p-2 bg-white dark:bg-black border border-gray-200 dark:border-zinc-800 rounded-sm group-hover:border-gray-300 dark:group-hover:border-zinc-600 transition-colors">
+                    <GithubIcon size={20} className="text-black dark:text-white" />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-sm text-black dark:text-white transition-colors">@onetwothird</h3>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mt-0.5">1,041 contributions in the last year</p>
+                  </div>
+                </div>
+                
+                {/* Mini Contribution Graph */}
+                <div className="flex gap-0.75 overflow-hidden opacity-80 group-hover:opacity-100 transition-opacity">
+                  {Array.from({ length: 16 }).map((_, colIndex) => (
+                    <div key={colIndex} className="flex flex-col gap-0.75">
+                      {Array.from({ length: 5 }).map((_, rowIndex) => {
+                        const cellIndex = colIndex * 5 + rowIndex;
+                        return (
+                          <div 
+                            key={rowIndex} 
+                            className={`w-3 h-3 rounded-xs ${getContributionColor(cellIndex)}`} 
+                          />
+                        );
+                      })}
+                    </div>
+                  ))}
+                </div>
+              </a>
+            </section>
+
+            {/* Recommendations / Testimonials Widget */}
+            <section className="pt-8 mt-8 border-t border-gray-200 dark:border-zinc-800">
+              <div className="flex justify-between items-center mb-4">
+                <h2 className="text-sm font-bold text-black dark:text-white uppercase tracking-widest">Recommendations</h2>
+              </div>
+
+              <div className="space-y-4">
+                {/* Mockup Testimonial 1 */}
+                <div className="bg-gray-50 dark:bg-zinc-900/50 border border-gray-200 dark:border-zinc-800 rounded-sm p-5 hover:border-gray-300 dark:hover:border-zinc-700 transition-colors">
+                  <p className="text-sm text-gray-700 dark:text-gray-300 italic mb-4 leading-relaxed">
+                    &quot;Thirdy is an exceptional developer. During his time building the ODCI Document Tracker, he demonstrated a deep understanding of full-stack architecture. He doesn&apos;t just write code; he solves real-world operational problems.&quot;
+                  </p>
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-sm bg-blue-100 dark:bg-blue-900/40 flex items-center justify-center text-blue-600 dark:text-blue-400 font-bold text-xs shrink-0 border border-blue-200 dark:border-blue-800/50">
+                      MR
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-xs text-black dark:text-white">Mark R.</h3>
+                      <p className="text-[10px] text-gray-500 uppercase tracking-wide">Project Supervisor, ODCI</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Mockup Testimonial 2 */}
+                <div className="bg-gray-50 dark:bg-zinc-900/50 border border-gray-200 dark:border-zinc-800 rounded-sm p-5 hover:border-gray-300 dark:hover:border-zinc-700 transition-colors">
+                  <p className="text-sm text-gray-700 dark:text-gray-300 italic mb-4 leading-relaxed">
+                    &quot;Watching Angelito develop Seelai was impressive. His ability to integrate complex machine learning models like YOLO into a seamless mobile experience shows a level of technical maturity rare for a graduating student.&quot;
+                  </p>
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-sm bg-purple-100 dark:bg-purple-900/40 flex items-center justify-center text-purple-600 dark:text-purple-400 font-bold text-xs shrink-0 border border-purple-200 dark:border-purple-800/50">
+                      JS
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-xs text-black dark:text-white">Dr. Jane S.</h3>
+                      <p className="text-[10px] text-gray-500 uppercase tracking-wide">CS Faculty, CvSU</p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </section>
 

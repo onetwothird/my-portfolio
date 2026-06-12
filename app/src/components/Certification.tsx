@@ -64,7 +64,7 @@ export default function Certification() {
       <div className="max-w-6xl mx-auto px-6 py-12 md:py-20 flex flex-col min-h-[90vh]">
         
         {/* Navigation Header */}
-        <div className="mb-12 animate-slide-up">
+        <div className="mb-16 animate-slide-up">
           <Link 
             href="/" 
             className="inline-flex items-center gap-2 text-sm font-semibold text-gray-500 hover:text-black dark:text-gray-400 dark:hover:text-white transition-colors mb-6 group"
@@ -72,7 +72,7 @@ export default function Certification() {
             <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" /> Back to Home
           </Link>
           <div className="flex items-center gap-3">
-            <h1 className="text-3xl md:text-4xl font-bold tracking-tight">Certifications</h1>
+            <h1 className="text-3xl md:text-5xl font-bold tracking-tight">Certifications</h1>
           </div>
           <p className="mt-4 text-gray-600 dark:text-gray-400 max-w-2xl">
             A collection of professional certifications and completed coursework validating my technical expertise.
