@@ -38,12 +38,12 @@ export default function Home() {
   // Recommendations Data
   const recommendations = [
     {
-      quote: "Thirdy was the most talented software engineer I've mentored in a long time. He's a fast learner, and he always makes sure to deliver quality output given a period of time. He is also very keen on learning new technologies, and I find him to be objectively exceptional.",
+      quote: "Angelito was the most talented software engineer I've mentored in a long time. He's a fast learner, and he always makes sure to deliver quality output given a period of time. He is also very keen on learning new technologies, and I find him to be objectively exceptional.",
       name: "Cris Lawrence Adrian Militante",
       title: "ICT Director at GCM"
     },
     {
-      quote: "Thirdy is an exceptional developer. During his time building the ODCI Document Tracker, he demonstrated a deep understanding of full-stack architecture. He doesn't just write code; he solves real-world operational problems.",
+      quote: "Angelito is an exceptional developer. During his time building the ODCI Document Tracker, he demonstrated a deep understanding of full-stack architecture. He doesn't just write code; he solves real-world operational problems.",
       name: "Mark R.",
       title: "Project Supervisor, ODCI"
     },
@@ -669,7 +669,7 @@ export default function Home() {
         <footer className="animate-slide-up pt-8 mt-4 border-t border-gray-200 dark:border-zinc-800 flex flex-col md:flex-row items-center justify-between text-sm text-gray-900 dark:text-gray-400 pb-8" style={{ animationDelay: '900ms' }}>
           <p>&copy; 2026 Angelito P. Decatoria III. All rights reserved.</p>
           <a href="mailto:angelitodecatoriaa@gmail.com" className="mt-4 md:mt-0 bg-black dark:bg-white text-white dark:text-black px-6 py-3 font-semibold flex items-center gap-2 rounded-sm hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors shadow-sm">
-            <Mail size={16}/> Connect with Thirdy
+            <Mail size={16}/> Connect with Me
           </a>
         </footer>
 
