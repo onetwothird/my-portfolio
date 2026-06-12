@@ -37,7 +37,7 @@ export default function Projects() {
       category: "E-Commerce",
       year: "2025",
       description: "Full-stack web-based Point of Sale platform that also functions as a customer-facing e-commerce site. Built utilizing PHP and MySQL for robust inventory management and transaction handling.",
-      imageUrl: "/projects/pos.png",
+      imageUrl: "/projects/jayann_store.png",
       projectUrl: "#",
       domain: "store-pos.local"
     }
