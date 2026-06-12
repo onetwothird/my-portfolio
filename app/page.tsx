@@ -295,7 +295,7 @@ export default function Home() {
                 {/* Project 4: POS */}
                 <a href="#" className="group flex flex-col bg-gray-50 dark:bg-zinc-900/40 border border-gray-200 dark:border-zinc-800 rounded-sm hover:border-gray-300 dark:hover:border-zinc-700 hover:shadow-sm transition-all cursor-pointer overflow-hidden">
                   <div className="relative w-full aspect-[1.414] border-b border-gray-200 dark:border-zinc-800 overflow-hidden bg-gray-100 dark:bg-zinc-800">
-                    <Image src="/projects/pos.png" alt="Jayann's Store POS Preview" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover object-top group-hover:scale-105 transition-transform duration-500" />
+                    <Image src="/projects/jayann_store.png" alt="Jayann's Store POS Preview" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover object-top group-hover:scale-105 transition-transform duration-500" />
                     <div className="absolute inset-0 bg-black/10 dark:bg-black/40 opacity-0 group-hover:opacity-100 backdrop-blur-[2px] transition-all flex items-center justify-center z-20">
                       <span className="flex items-center gap-2 bg-white dark:bg-zinc-900 text-black dark:text-white px-4 py-2 rounded-sm text-sm font-bold shadow-sm transform translate-y-4 group-hover:translate-y-0    transition-all">
                         View Project <ExternalLink size={16} />
@@ -565,11 +565,44 @@ export default function Home() {
               </div>
             </section>
 
+            {/* Small Gallery Widget */}
+            <section className="pt-8 mt-8 border-t border-gray-200 dark:border-zinc-800">
+              <div className="flex justify-between items-center mb-6">
+                <h2 className="text-xl font-bold text-black dark:text-white">Gallery</h2>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                {/* Image 1 */}
+                <div className="relative aspect-square bg-gray-50 dark:bg-zinc-900/40 border border-gray-200 dark:border-zinc-800 rounded-sm overflow-hidden group cursor-pointer">
+                  <Image 
+                    src="/img/image.png" 
+                    alt="Gallery snapshot 1" 
+                    fill 
+                    sizes="(max-width: 768px) 50vw, 180px"
+                    className="object-cover group-hover:scale-105 transition-transform duration-500" 
+                  />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 dark:group-hover:bg-white/5 transition-colors z-10" />
+                </div>
+
+                {/* Image 2 */}
+                <div className="relative aspect-square bg-gray-50 dark:bg-zinc-900/40 border border-gray-200 dark:border-zinc-800 rounded-sm overflow-hidden group cursor-pointer">
+                  <Image 
+                    src="/img/icon.webp" 
+                    alt="Gallery snapshot 2" 
+                    fill 
+                    sizes="(max-width: 768px) 50vw, 180px"
+                    className="object-cover group-hover:scale-105 transition-transform duration-500" 
+                  />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 dark:group-hover:bg-white/5 transition-colors z-10" />
+                </div>
+              </div>
+            </section>
+                    
           </div>
         </div>
 
         {/* FULL WIDTH BOTTOM GRID */}
-        <div className="animate-slide-up grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 pt-12 mt-16 border-t border-gray-200 dark:border-zinc-800" style={{ animationDelay: '750ms' }}>
+        <div className="animate-slide-up grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 pt-12 mt-14 border-t border-gray-200 dark:border-zinc-800" style={{ animationDelay: '750ms' }}>
           <div>
             <h3 className="text-sm font-bold mb-4">Focus Areas</h3>
 
