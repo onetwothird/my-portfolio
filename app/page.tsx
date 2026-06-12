@@ -156,12 +156,13 @@ export default function Home() {
                   <p>
                     I&apos;m a full-stack developer and senior Computer Science student specializing in building structural, high-fidelity web ecosystems alongside intelligent mobile applications. I work on projects including modern web platforms, POS systems, and integrating AI into daily utilities.
                   </p>
+
                   <p>
                     I&apos;ve engineered solutions locally, from educational simulators mapping CPU algorithms to corporate document tracking systems deployed during my OJT. My technical landscape balances rigorous software development with practical execution.
                   </p>
                   <p>
-                    Lately, I&apos;ve been diving deeper into the world of artificial intelligence and computer vision, focusing on integrating YOLO and TensorFlow Lite tools natively into mobile ecosystems. My flagship work, Seelai, leverages this to empower individuals with visual impairments.
-                  </p>
+                    Lately, I&apos;ve been diving deeper into the world of artificial intelligence and computer vision, focusing on integrating YOLO and TensorFlow Lite tools natively into mobile ecosystems as I utilized this on my thesis project. My flagship work, Seelai, leverages this technology to empower individuals with visual impairments through real-time object recognition and accessibility assistance.
+                  </p>        
                 </div>
               </section>
 
