@@ -293,7 +293,7 @@ export default function Home() {
                 </a>
 
                 {/* Project 4: POS */}
-                <a href="https://jayann-store.page.gd/" className="group flex flex-col bg-gray-50 dark:bg-zinc-900/40 border border-gray-200 dark:border-zinc-800 rounded-sm hover:border-gray-300 dark:hover:border-zinc-700 hover:shadow-sm transition-all cursor-pointer overflow-hidden">
+                <a href="https://jayann-store.page.gd/" target="_blank" rel="noreferrer" className="group flex flex-col bg-gray-50 dark:bg-zinc-900/40 border border-gray-200 dark:border-zinc-800 rounded-sm hover:border-gray-300 dark:hover:border-zinc-700 hover:shadow-sm transition-all cursor-pointer overflow-hidden">
                   <div className="relative w-full aspect-[1.414] border-b border-gray-200 dark:border-zinc-800 overflow-hidden bg-gray-100 dark:bg-zinc-800">
                     <Image src="/projects/jayann_store.png" alt="Jayann's Store POS Preview" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover object-top group-hover:scale-105 transition-transform duration-500" />
                     <div className="absolute inset-0 bg-black/10 dark:bg-black/40 opacity-0 group-hover:opacity-100 backdrop-blur-[2px] transition-all flex items-center justify-center z-20">
