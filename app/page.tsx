@@ -34,7 +34,7 @@ const VerifiedBadge = () => (
 export default function Home() {
   return (
     <div className="min-h-screen text-black dark:text-gray-100 font-sans selection:bg-[#8B5CF6] selection:text-white">
-      <div className="max-w-275 mx-auto px-6 py-12 md:py-20 space-y-10">
+      <div className="max-w-6xl mx-auto px-6 py-12 md:py-20 space-y-10">
         
         {/* HEADER PROFILE */}
         <header className="animate-slide-up flex flex-col md:flex-row gap-8 items-start">
@@ -165,7 +165,6 @@ export default function Home() {
             <section className="animate-slide-up" style={{ animationDelay: '450ms' }}>
               <div className="flex justify-between items-end mb-6 border-b border-gray-100 dark:border-zinc-800 pb-2">
                 <h2 className="text-2xl font-bold">Recent Projects</h2>
-
                 <Link
                   href="/projects"
                   className="text-sm font-semibold text-black dark:text-gray-400 cursor-pointer hover:text-black dark:hover:text-white flex items-center transition-colors group"
@@ -179,61 +178,103 @@ export default function Home() {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {/* Project 1 */}
-                <div className="bg-gray-50 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 p-5 rounded-sm group hover:border-gray-300 dark:hover:border-zinc-700 hover:shadow-sm transition-all cursor-pointer">
-                  <h3 className="font-bold text-black dark:text-white mb-1">
-                    Seelai AI Assistant
-                  </h3>
-                  <p className="text-sm text-gray-800 dark:text-gray-400 mb-4 h-10 line-clamp-2">
-                    Real-time object & caretaker face detection mobile app.
-                  </p>
-                  <div className="flex gap-2 text-xs font-mono bg-white dark:bg-black w-fit px-2 py-1 border border-gray-200 dark:border-zinc-800 rounded-sm text-black dark:text-gray-300">
-                    seelai-app.dev
+                
+                {/* Project 1: Seelai */}
+                <a href="#" className="group flex flex-col bg-gray-50 dark:bg-zinc-900/40 border border-gray-200 dark:border-zinc-800 rounded-sm hover:border-gray-300 dark:hover:border-zinc-700 hover:shadow-sm transition-all cursor-pointer overflow-hidden">
+                  <div className="relative w-full aspect-[1.414] border-b border-gray-200 dark:border-zinc-800 overflow-hidden bg-gray-100 dark:bg-zinc-800">
+                    <Image src="/projects/seelai.png" alt="Seelai AI Assistant Preview" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover object-top group-hover:scale-105 transition-transform duration-500" />
+                    <div className="absolute inset-0 bg-black/10 dark:bg-black/40 opacity-0 group-hover:opacity-100 backdrop-blur-[2px] transition-all flex items-center justify-center z-20">
+                      <span className="flex items-center gap-2 bg-white dark:bg-zinc-900 text-black dark:text-white px-4 py-2 rounded-sm text-sm font-bold shadow-sm transform translate-y-4 group-hover:translate-y-0 transition-all">
+                        View Project <ExternalLink size={16} />
+                      </span>
+                    </div>
                   </div>
-                </div>
+                  <div className="p-4 flex flex-col flex-1 justify-between">
+                    <div>
+                      <h4 className="font-bold text-sm md:text-base text-black dark:text-white group-hover:text-[#8B5CF6] transition-colors mb-1 line-clamp-1">Seelai AI Assistant</h4>
+                      <p className="text-xs text-gray-800 dark:text-gray-400 line-clamp-2">Real-time object & caretaker face detection mobile app.</p>
+                    </div>
+                    <div className="mt-3">
+                      <span className="inline-flex gap-2 text-[10px] sm:text-xs font-mono bg-white dark:bg-black px-2 py-1 border border-gray-200 dark:border-zinc-800 rounded-sm text-black dark:text-gray-300">
+                        seelai-app.dev
+                      </span>
+                    </div>
+                  </div>
+                </a>
 
-                {/* Project 2 */}
-                <div className="bg-gray-50 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 p-5 rounded-sm group hover:border-gray-300 dark:hover:border-zinc-700 hover:shadow-sm transition-all cursor-pointer">
-                  <h3 className="font-bold text-black dark:text-white mb-1">
-                    ODCI Document Tracker
-                  </h3>
-                  <p className="text-sm text-gray-800 dark:text-gray-400 mb-4 h-10 line-clamp-2">
-                    Centralized role-based corporate routing system.
-                  </p>
-                  <div className="flex gap-2 text-xs font-mono bg-white dark:bg-black w-fit px-2 py-1 border border-gray-200 dark:border-zinc-800 rounded-sm text-black dark:text-gray-300">
-                    odci.internal
+                {/* Project 2: ODCI */}
+                <a href="#" className="group flex flex-col bg-gray-50 dark:bg-zinc-900/40 border border-gray-200 dark:border-zinc-800 rounded-sm hover:border-gray-300 dark:hover:border-zinc-700 hover:shadow-sm transition-all cursor-pointer overflow-hidden">
+                  <div className="relative w-full aspect-[1.414] border-b border-gray-200 dark:border-zinc-800 overflow-hidden bg-gray-100 dark:bg-zinc-800">
+                    <Image src="/projects/odci.png" alt="ODCI Document Tracker Preview" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover object-top group-hover:scale-105 transition-transform duration-500" />
+                    <div className="absolute inset-0 bg-black/10 dark:bg-black/40 opacity-0 group-hover:opacity-100 backdrop-blur-[2px] transition-all flex items-center justify-center z-20">
+                      <span className="flex items-center gap-2 bg-white dark:bg-zinc-900 text-black dark:text-white px-4 py-2 rounded-sm text-sm font-bold shadow-sm transform translate-y-4 group-hover:translate-y-0 transition-all">
+                        View Project <ExternalLink size={16} />
+                      </span>
+                    </div>
                   </div>
-                </div>
+                  <div className="p-4 flex flex-col flex-1 justify-between">
+                    <div>
+                      <h4 className="font-bold text-sm md:text-base text-black dark:text-white group-hover:text-[#8B5CF6] transition-colors mb-1 line-clamp-1">ODCI Document Tracker</h4>
+                      <p className="text-xs text-gray-800 dark:text-gray-400 line-clamp-2">Centralized role-based corporate routing system.</p>
+                    </div>
+                    <div className="mt-3">
+                      <span className="inline-flex gap-2 text-[10px] sm:text-xs font-mono bg-white dark:bg-black px-2 py-1 border border-gray-200 dark:border-zinc-800 rounded-sm text-black dark:text-gray-300">
+                        odci.internal
+                      </span>
+                    </div>
+                  </div>
+                </a>
 
-                {/* Project 3 */}
-                <div className="bg-gray-50 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 p-5 rounded-sm group hover:border-gray-300 dark:hover:border-zinc-700 hover:shadow-sm transition-all cursor-pointer">
-                  <h3 className="font-bold text-black dark:text-white mb-1">
-                    AlgoVerse Simulator
-                  </h3>
-                  <p className="text-sm text-gray-800 dark:text-gray-400 mb-4 h-10 line-clamp-2">
-                    Visual CPU scheduling execution platform.
-                  </p>
-                  <div className="flex gap-2 text-xs font-mono bg-white dark:bg-black w-fit px-2 py-1 border border-gray-200 dark:border-zinc-800 rounded-sm text-black dark:text-gray-300">
-                    algo-verse.edu
+                {/* Project 3: AlgoVerse */}
+                <a href="https://onetwothird.page.gd/" target="_blank" rel="noreferrer" className="group flex flex-col bg-gray-50 dark:bg-zinc-900/40 border border-gray-200 dark:border-zinc-800 rounded-sm hover:border-gray-300 dark:hover:border-zinc-700 hover:shadow-sm transition-all cursor-pointer overflow-hidden">
+                  <div className="relative w-full aspect-[1.414] border-b border-gray-200 dark:border-zinc-800 overflow-hidden bg-gray-100 dark:bg-zinc-800">
+                    <Image src="/projects/AlgoVerse.png" alt="AlgoVerse Simulator Preview" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover object-top group-hover:scale-105 transition-transform duration-500" />
+                    <div className="absolute inset-0 bg-black/10 dark:bg-black/40 opacity-0 group-hover:opacity-100 backdrop-blur-[2px] transition-all flex items-center justify-center z-20">
+                      <span className="flex items-center gap-2 bg-white dark:bg-zinc-900 text-black dark:text-white px-4 py-2 rounded-sm text-sm font-bold shadow-sm transform translate-y-4 group-hover:translate-y-0 transition-all">
+                        View Project <ExternalLink size={16} />
+                      </span>
+                    </div>
                   </div>
-                </div>
+                  <div className="p-4 flex flex-col flex-1 justify-between">
+                    <div>
+                      <h4 className="font-bold text-sm md:text-base text-black dark:text-white group-hover:text-[#8B5CF6] transition-colors mb-1 line-clamp-1">AlgoVerse Simulator</h4>
+                      <p className="text-xs text-gray-800 dark:text-gray-400 line-clamp-2">Visual CPU scheduling execution platform.</p>
+                    </div>
+                    <div className="mt-3">
+                      <span className="inline-flex gap-2 text-[10px] sm:text-xs font-mono bg-white dark:bg-black px-2 py-1 border border-gray-200 dark:border-zinc-800 rounded-sm text-black dark:text-gray-300">
+                        onetwothird.page.gd
+                      </span>
+                    </div>
+                  </div>
+                </a>
 
-                {/* Project 4 */}
-                <div className="bg-gray-50 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 p-5 rounded-sm group hover:border-gray-300 dark:hover:border-zinc-700 hover:shadow-sm transition-all cursor-pointer">
-                  <h3 className="font-bold text-black dark:text-white mb-1">
-                    Jayann&apos;s Store POS
-                  </h3>
-                  <p className="text-sm text-gray-800 dark:text-gray-400 mb-4 h-10 line-clamp-2">
-                    Full stack inventory & ecommerce application.
-                  </p>
-                  <div className="flex gap-2 text-xs font-mono bg-white dark:bg-black w-fit px-2 py-1 border border-gray-200 dark:border-zinc-800 rounded-sm text-black dark:text-gray-300">
-                    store-pos.local
+                {/* Project 4: POS */}
+                <a href="#" className="group flex flex-col bg-gray-50 dark:bg-zinc-900/40 border border-gray-200 dark:border-zinc-800 rounded-sm hover:border-gray-300 dark:hover:border-zinc-700 hover:shadow-sm transition-all cursor-pointer overflow-hidden">
+                  <div className="relative w-full aspect-[1.414] border-b border-gray-200 dark:border-zinc-800 overflow-hidden bg-gray-100 dark:bg-zinc-800">
+                    <Image src="/projects/pos.png" alt="Jayann's Store POS Preview" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover object-top group-hover:scale-105 transition-transform duration-500" />
+                    <div className="absolute inset-0 bg-black/10 dark:bg-black/40 opacity-0 group-hover:opacity-100 backdrop-blur-[2px] transition-all flex items-center justify-center z-20">
+                      <span className="flex items-center gap-2 bg-white dark:bg-zinc-900 text-black dark:text-white px-4 py-2 rounded-sm text-sm font-bold shadow-sm transform translate-y-4 group-hover:translate-y-0    transition-all">
+                        View Project <ExternalLink size={16} />
+                      </span>
+                    </div>
                   </div>
-                </div>
+                  <div className="p-4 flex flex-col flex-1 justify-between">
+                    <div>
+                      <h4 className="font-bold text-sm md:text-base text-black dark:text-white group-hover:text-[#8B5CF6] transition-colors mb-1 line-clamp-1">Jayann&apos;s Store POS</h4>
+                      <p className="text-xs text-gray-800 dark:text-gray-400 line-clamp-2">Full stack inventory & ecommerce application.</p>
+                    </div>
+                    <div className="mt-3">
+                      <span className="inline-flex gap-2 text-[10px] sm:text-xs font-mono bg-white dark:bg-black px-2 py-1 border border-gray-200 dark:border-zinc-800 rounded-sm text-black dark:text-gray-300">
+                        store-pos.local
+                      </span>
+                    </div>
+                  </div>
+                </a>
+
               </div>
-            </section>        
+            </section>  
 
-            {/* Certifications Grid */}
+           {/* Certifications Grid */}
             <section className="animate-slide-up" style={{ animationDelay: '600ms' }}>
               <div className="flex justify-between items-end mb-6 border-b border-gray-100 dark:border-zinc-800 pb-2">
                 <h2 className="text-2xl font-bold">Recent Certifications</h2>
@@ -242,22 +283,51 @@ export default function Home() {
                 </Link>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="bg-gray-50 dark:bg-zinc-900 p-4 border border-gray-200 dark:border-zinc-800 rounded-sm">
-                  <h4 className="font-bold text-sm text-black dark:text-white">Mastering SQL Query Optimization</h4>
-                  <p className="text-xs text-gray-800 dark:text-gray-400 mt-1">Gordon College - SREGEN</p>
-                </div>
-                <div className="bg-gray-50 dark:bg-zinc-900 p-4 border border-gray-200 dark:border-zinc-800 rounded-sm">
-                  <h4 className="font-bold text-sm text-black dark:text-white">Artificial Intelligence & Innovation</h4>
-                  <p className="text-xs text-gray-800 dark:text-gray-400 mt-1">KOENIG</p>
-                </div>
-                <div className="bg-gray-50 dark:bg-zinc-900 p-4 border border-gray-200 dark:border-zinc-800 rounded-sm">
-                  <h4 className="font-bold text-sm text-black dark:text-white">Generative AI: ChatGPT to AutoGPT</h4>
-                  <p className="text-xs text-gray-800 dark:text-gray-400 mt-1">NIELIT-Delhi</p>
-                </div>
-                <div className="bg-gray-50 dark:bg-zinc-900 p-4 border border-gray-200 dark:border-zinc-800 rounded-sm">
-                  <h4 className="font-bold text-sm text-black dark:text-white">Future of Containerization</h4>
-                  <p className="text-xs text-gray-800 dark:text-gray-400 mt-1">Cognixia</p>
-                </div>
+                
+                {/* Cert 1 */}
+                <a href="/cert/e-cert_1.pdf" target="_blank" rel="noreferrer" className="group flex flex-col bg-gray-50 dark:bg-zinc-900/40 border border-gray-200 dark:border-zinc-800 rounded-sm hover:border-gray-300 dark:hover:border-zinc-700 hover:shadow-sm transition-all cursor-pointer overflow-hidden">
+                  <div className="relative w-full aspect-[1.414] border-b border-gray-200 dark:border-zinc-800 overflow-hidden bg-white">
+                    <Image src="/cert/e-cert_1.png" alt="Mastering SQL Query Optimization" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                  </div>
+                  <div className="p-4">
+                    <h4 className="font-bold text-sm text-black dark:text-white transition-colors line-clamp-1">Mastering SQL Query Optimization</h4>
+                    <p className="text-xs text-gray-800 dark:text-gray-400 mt-1">Gordon College - SREGEN</p>
+                  </div>
+                </a>
+
+                {/* Cert 2 */}
+                <a href="/cert/e-cert_2.pdf" target="_blank" rel="noreferrer" className="group flex flex-col bg-gray-50 dark:bg-zinc-900/40 border border-gray-200 dark:border-zinc-800 rounded-sm hover:border-gray-300 dark:hover:border-zinc-700 hover:shadow-sm transition-all cursor-pointer overflow-hidden">
+                  <div className="relative w-full aspect-[1.414] border-b border-gray-200 dark:border-zinc-800 overflow-hidden bg-white">
+                    <Image src="/cert/e-cert_2.png" alt="Artificial Intelligence & Innovation" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                  </div>
+                  <div className="p-4">
+                    <h4 className="font-bold text-sm text-black dark:text-white transition-colors line-clamp-1">Artificial Intelligence & Innovation</h4>
+                    <p className="text-xs text-gray-800 dark:text-gray-400 mt-1">KOENIG</p>
+                  </div>
+                </a>
+
+                {/* Cert 3 */}
+                <a href="/cert/e-cert_3.pdf" target="_blank" rel="noreferrer" className="group flex flex-col bg-gray-50 dark:bg-zinc-900/40 border border-gray-200 dark:border-zinc-800 rounded-sm hover:border-gray-300 dark:hover:border-zinc-700 hover:shadow-sm transition-all cursor-pointer overflow-hidden">
+                  <div className="relative w-full aspect-[1.414] border-b border-gray-200 dark:border-zinc-800 overflow-hidden bg-white">
+                    <Image src="/cert/e-cert_3.png" alt="Generative AI: ChatGPT to AutoGPT" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                  </div>
+                  <div className="p-4">
+                    <h4 className="font-bold text-sm text-black dark:text-white transition-colors line-clamp-1">Generative AI: ChatGPT to AutoGPT</h4>
+                    <p className="text-xs text-gray-800 dark:text-gray-400 mt-1">NIELIT-Delhi</p>
+                  </div>
+                </a>
+
+                {/* Cert 4 */}
+                <a href="/cert/e-cert_4.pdf" target="_blank" rel="noreferrer" className="group flex flex-col bg-gray-50 dark:bg-zinc-900/40 border border-gray-200 dark:border-zinc-800 rounded-sm hover:border-gray-300 dark:hover:border-zinc-700 hover:shadow-sm transition-all cursor-pointer overflow-hidden">
+                  <div className="relative w-full aspect-[1.414] border-b border-gray-200 dark:border-zinc-800 overflow-hidden bg-white">
+                    <Image src="/cert/e-cert_4.png" alt="Future of Containerization" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                  </div>
+                  <div className="p-4">
+                    <h4 className="font-bold text-sm text-black dark:text-white transition-colors line-clamp-1">Future of Containerization</h4>
+                    <p className="text-xs text-gray-800 dark:text-gray-400 mt-1">Cognixia</p>
+                  </div>
+                </a>
+
               </div>
             </section>
 
@@ -418,8 +488,8 @@ export default function Home() {
             </ul>
           </div>
           <div>
-            <h3 className="text-sm font-bold mb-4 -ml-10">Education</h3>
-            <div className="text-xs text-gray-900 dark:text-gray-400 space-y-1 -ml-10">
+            <h3 className="text-sm font-bold mb-4">Education</h3>
+            <div className="text-xs text-gray-900 dark:text-gray-400 space-y-1">
               <p className="font-bold text-black dark:text-white text-sm">Cavite State University (CvSU)</p>
               <p>Naic Campus</p>
               <div className="mt-2 text-black dark:text-white font-medium">BS Computer Science</div>
