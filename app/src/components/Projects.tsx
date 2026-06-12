@@ -3,7 +3,6 @@ import Image from 'next/image';
 import { ArrowLeft, ExternalLink } from 'lucide-react';
 
 export default function Projects() {
-  // Array manually sorted by year (descending: newest to oldest)
   const projects = [
     {
       title: "Seelai AI Assistant",
@@ -38,8 +37,8 @@ export default function Projects() {
       year: "2025",
       description: "Full-stack web-based Point of Sale platform that also functions as a customer-facing e-commerce site. Built utilizing PHP and MySQL for robust inventory management and transaction handling.",
       imageUrl: "/projects/jayann_store.png",
-      projectUrl: "#",
-      domain: "store-pos.local"
+      projectUrl: "https://jayann-store.page.gd/",
+      domain: "jayann-store.page.gd"
     }
   ];
 
