@@ -28,8 +28,8 @@ export default function Projects() {
       year: "2025",
       description: "Centralized role-based document tracking system engineered collaboratively. Designed to efficiently route, timestamp, and monitor corporate document lifecycles across different organizational departments.",
       imageUrl: "/projects/odci.png",
-      projectUrl: "#",
-      domain: "odci.internal"
+      projectUrl: "https://odci.page.gd/",
+      domain: "odci.page.gd"
     },
     {
       title: "Jayann's Store POS",
