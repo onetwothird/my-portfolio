@@ -10,8 +10,8 @@ export default function Projects() {
       year: "2026",
       description: "Mobile application for the partially sighted. Integrates real-time object detection via YOLO and TensorFlow Lite, alongside caretaker face recognition and environmental text-to-speech features.",
       imageUrl: "/projects/seelai-preview.png", 
-      projectUrl: "#",
-      domain: "seelai-app.dev"
+      projectUrl: "https://seelai-docs.vercel.app",
+      domain: "seelai-docs.vercel.app"
     },
     {
       title: "AlgoVerse Simulator",

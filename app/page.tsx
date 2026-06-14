@@ -222,7 +222,7 @@ export default function Home() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   
                   {/* Project 1: Seelai */}
-                 <a href="#" className="group flex flex-col bg-gray-50 dark:bg-zinc-900/40 border border-gray-200 dark:border-zinc-800 rounded-sm hover:border-gray-300 dark:hover:border-zinc-700 hover:shadow-sm transition-all cursor-pointer overflow-hidden">
+                 <a href="https://seelai-docs.vercel.app" target="_blank" rel="noreferrer" className="group flex flex-col bg-gray-50 dark:bg-zinc-900/40 border border-gray-200 dark:border-zinc-800 rounded-sm hover:border-gray-300 dark:hover:border-zinc-700 hover:shadow-sm transition-all cursor-pointer overflow-hidden">
                     <div className="relative w-full aspect-[1.414] border-b border-gray-200 dark:border-zinc-800 overflow-hidden bg-white dark:bg-zinc-800">
                       <Image 
                         src="/projects/seelai-preview.png" 
