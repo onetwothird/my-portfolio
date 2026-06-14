@@ -611,12 +611,16 @@ export default function Home() {
               </li>
             </ul>
           </div>
-          <div>
+         <div className="-ml-10">
             <h3 className="text-sm font-bold mb-4">Education</h3>
             <div className="text-xs text-gray-900 dark:text-gray-400 space-y-1">
-              <p className="font-bold text-black dark:text-white text-sm">Cavite State University (CvSU)</p>
+              <p className="font-bold text-black dark:text-white text-sm">
+                Cavite State University (CvSU)
+              </p>
               <p>Naic Campus</p>
-              <div className="mt-2 text-black dark:text-white font-medium">BS Computer Science</div>
+              <div className="mt-2 text-black dark:text-white font-medium">
+                BS Computer Science
+              </div>
               <p>Class of 2026</p>
             </div>
           </div>
