@@ -6,7 +6,7 @@ import {
   SiTailwindcss, SiChakraui, SiMysql, SiFirebase, SiSupabase,
   SiGit, SiGithub, SiFigma, SiVercel, SiRender, SiCloudinary, 
   SiTwilio, SiWordpress, SiTensorflow, SiOpencv, SiGooglecolab, 
-  SiJupyter, SiKaggle 
+  SiJupyter, SiKaggle, SiHuggingface
 } from 'react-icons/si';
 
 export default function TechStack() {
@@ -70,6 +70,7 @@ export default function TechStack() {
         { name: "GOOGLE COLAB", color: "#F9AB00", icon: <SiGooglecolab size={18} /> },
         { name: "JUPYTER", color: "#F37626", icon: <SiJupyter size={18} /> },
         { name: "KAGGLE", color: "#20BEFF", icon: <SiKaggle size={18} /> },
+        { name: "HUGGING FACE", color: "#FFD21E", icon: <SiHuggingface size={18} /> },
       ]
     }
   ];
@@ -79,7 +80,6 @@ export default function TechStack() {
       
       <div className="max-w-6xl mx-auto px-6 py-12 md:py-20">
         
-        {/* Navigation Header */}
         <div className="mb-16 animate-slide-up">
           <Link 
             href="/" 
@@ -95,7 +95,6 @@ export default function TechStack() {
           </p>
         </div>
 
-        {/* Tech Stack Categories Container */}
         <div className="space-y-16 pb-12">
           {categories.map((category, index) => (
             <div 
@@ -104,19 +103,16 @@ export default function TechStack() {
               style={{ animationDelay: `${(index + 1) * 150}ms` }}
             >
               
-              {/* Category Header */}
               <div className="border-b border-gray-200 dark:border-zinc-800 pb-4">
                 <h2 className="text-2xl font-bold">{category.title}</h2>
               </div>
               
-              {/* Minimalist Grid */}
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 pt-2">
                 {category.items.map((tech, techIndex) => (
                   <div 
                     key={techIndex} 
                     className="group flex items-center gap-3 px-4 py-3 rounded-lg border border-gray-200/60 dark:border-zinc-800/60 bg-white/40 dark:bg-zinc-900/40 backdrop-blur-sm hover:bg-white/80 dark:hover:bg-zinc-800/80 hover:border-gray-400 dark:hover:border-zinc-600 transition-colors duration-200 cursor-default"
                   >
-                    {/* Brand Icon */}
                     <div 
                       className="transition-transform duration-200 group-hover:scale-110"
                       style={{ color: tech.color }}
@@ -124,7 +120,6 @@ export default function TechStack() {
                       {tech.icon}
                     </div>
                     
-                    {/* Tech Name */}
                     <span className="font-semibold tracking-wide text-sm text-gray-700 dark:text-gray-300 group-hover:text-black dark:group-hover:text-white transition-colors">
                       {tech.name}
                     </span>
