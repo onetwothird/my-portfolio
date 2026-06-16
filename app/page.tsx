@@ -45,7 +45,7 @@ export default function Home() {
     "/img/image4.jpg",
     "/img/image5.jpg",
     "/img/image6.jpg",
-    "/img/image7.jpg",
+    "/img/image7.webp",
     "/img/image8.webp"
   ];
 
