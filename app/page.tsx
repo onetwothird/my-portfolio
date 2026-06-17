@@ -37,7 +37,6 @@ const VerifiedBadge = () => (
 export default function Home() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
-  // Gallery Images Array (Expanded to image8.jpg)
   const galleryImages = [
     "/img/image1.jpg",
     "/img/image2.jpg",
@@ -49,7 +48,6 @@ export default function Home() {
     "/img/image8.webp"
   ];
 
-  // Heavily populated green activity in the recent months to match the reference image
   const contributionGrid = [
     "0000000", "0000010", "0100010", "0001000", "0100000", // Jun
     "0020010", "0302000", "0101020", "0110000", "0202100", // Jul
