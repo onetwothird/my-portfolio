@@ -78,7 +78,7 @@ export default function Home() {
           
           <div className="relative w-48 h-48 md:w-56 md:h-56 shrink-0 rounded-sm overflow-hidden border border-gray-200 dark:border-zinc-800 shadow-sm">
             <Image
-              src="/img/image.png"
+              src="/img/image.jpg"
               alt="Angelito Decatoria"
               fill
               className="object-cover"
