@@ -74,7 +74,6 @@ export default function Home() {
     <div className="min-h-screen text-black dark:text-gray-100 font-sans selection:bg-gray-500 selection:text-white relative">
       <div className="max-w-6xl mx-auto px-6 py-12 md:py-20 space-y-10">
         
-        {/* HEADER PROFILE */}
         <header className="animate-slide-up flex flex-col md:flex-row gap-8 items-start">
           
           <div className="relative w-48 h-48 md:w-56 md:h-56 shrink-0 rounded-sm overflow-hidden border border-gray-200 dark:border-zinc-800 shadow-sm">
