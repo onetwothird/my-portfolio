@@ -39,6 +39,15 @@ export default function Projects() {
       imageUrl: "/projects/jayann_store.png",
       projectUrl: "https://jayann-store.page.gd/",
       domain: "jayann-store.page.gd"
+    },
+    {
+      title: "Seelai Admin Dashboard",
+      category: "Web Platform",
+      year: "2026",
+      description: "Super admin web interface for the Seelai ecosystem, designed to facilitate machine learning model training and manage system-wide data efficiently.",
+      imageUrl: "/projects/seelai_dashboard.png",
+      projectUrl: "https://supeadmin-modeltraining-website.vercel.app",
+      domain: "supeadmin-modeltraining-website.vercel.app"
     }
   ];
 
