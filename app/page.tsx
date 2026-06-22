@@ -526,14 +526,12 @@ export default function Home() {
 
             </div>
 
-            {/* Gallery Widget (Pushed to bottom) */}
             <div className="mt-auto pt-8">
               <section className="pt-8 border-t border-gray-200 dark:border-zinc-800">
                 <div className="flex justify-between items-center mb-6">
                   <h2 className="text-xl font-bold text-black dark:text-white">Gallery</h2>
                 </div>
 
-                {/* Seamless Grid Container */}
                 <div className="grid grid-cols-2 gap-px bg-gray-200 dark:bg-zinc-800 border border-gray-200 dark:border-zinc-800 rounded-sm w-full overflow-hidden shadow-sm">
                   {galleryImages.map((imgSrc, i) => (
                     <div 
