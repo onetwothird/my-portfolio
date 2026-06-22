@@ -509,7 +509,6 @@ export default function Home() {
                     </div>
                   </div>
                   
-                  {/* 53-Week Contribution Graph */}
                   <div className="flex gap-1 overflow-x-auto pb-1 scrollbar-hide opacity-80 group-hover:opacity-100 transition-opacity">
                     {contributionGrid.map((colStr, colIndex) => (
                       <div key={colIndex} className="flex flex-col gap-1 shrink-0">
