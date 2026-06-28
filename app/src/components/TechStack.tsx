@@ -78,6 +78,14 @@ export default function TechStack() {
   return (
     <div className="min-h-screen text-black dark:text-gray-100 font-sans selection:bg-[#8B5CF6] selection:text-white transition-colors duration-300">
       
+      {/* Added global style for the smooth idle floating animation */}
+      <style>{`
+        @keyframes idle-float {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-6px); }
+        }
+      `}</style>
+
       <div className="max-w-6xl mx-auto px-6 py-12 md:py-20">
         
         <div className="mb-16 animate-slide-up">
@@ -112,6 +120,11 @@ export default function TechStack() {
                   <div 
                     key={techIndex} 
                     className="group flex items-center gap-3 px-4 py-3 rounded-lg border border-gray-200/60 dark:border-zinc-800/60 bg-white/40 dark:bg-zinc-900/40 backdrop-blur-sm hover:bg-white/80 dark:hover:bg-zinc-800/80 hover:border-gray-400 dark:hover:border-zinc-600 transition-colors duration-200 cursor-default"
+                    // Injected inline styles to apply the floating animation with a staggered start
+                    style={{
+                      animation: 'idle-float 4s ease-in-out infinite',
+                      animationDelay: `${techIndex * 200}ms`
+                    }}
                   >
                     <div 
                       className="transition-transform duration-200 group-hover:scale-110"
