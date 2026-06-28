@@ -604,7 +604,7 @@ export default function Home() {
               </li>
             </ul>
           </div>
-         <div className="-ml-10">
+         <div className="lg:-ml-10">
             <h3 className="text-sm font-bold mb-4">Education</h3>
             <div className="text-xs text-gray-900 dark:text-gray-400 space-y-1">
               <p className="font-bold text-black dark:text-white text-sm">
