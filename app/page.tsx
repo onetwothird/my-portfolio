@@ -45,7 +45,7 @@ export default function Home() {
     "/img/image5.jpg",
     "/img/image6.jpg",
     "/img/image7.jpg",
-    "/img/image8.webp"
+    "/img/image8.jpg"
   ];
 
   const contributionGrid = [
