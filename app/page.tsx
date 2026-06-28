@@ -561,24 +561,23 @@ export default function Home() {
         </div>
 
         {/* FULL WIDTH BOTTOM GRID */}
-        <div className="animate-slide-up grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 pt-12 mt-14 border-t border-gray-200 dark:border-zinc-800" style={{ animationDelay: '750ms' }}>
+        <div className="animate-slide-up grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-12 pt-12 mt-14 border-t border-gray-200 dark:border-zinc-800" style={{ animationDelay: '750ms' }}>
+          
           <div>
             <h3 className="text-sm font-bold mb-4">Focus Areas</h3>
-
-            <ul className="flex flex-wrap gap-2 text-sm text-gray-900 dark:text-gray-400">
+            <ul className="flex flex-wrap gap-4 text-sm text-gray-900 dark:text-gray-400">
               <li className="flex items-center gap-1 hover:text-black dark:hover:text-white cursor-pointer transition-colors">
                 Data Structures <ExternalLink size={12} className="opacity-70" />
               </li>
-
               <li className="flex items-center gap-1 hover:text-black dark:hover:text-white cursor-pointer transition-colors">
                 Machine Learning <ExternalLink size={12} className="opacity-70" />
               </li>
-
               <li className="flex items-center gap-1 hover:text-black dark:hover:text-white cursor-pointer transition-colors">
                 System Architecture <ExternalLink size={12} className="opacity-70" />
               </li>
             </ul>
           </div>
+
           <div>
             <h3 className="text-sm font-bold mb-4">Social Links</h3>
             <ul className="space-y-3 text-sm text-gray-900 dark:text-gray-400">
@@ -604,7 +603,9 @@ export default function Home() {
               </li>
             </ul>
           </div>
-         <div className="lg:-ml-10">
+
+          {/* Notice the negative margin has been completely removed here */}
+          <div>
             <h3 className="text-sm font-bold mb-4">Education</h3>
             <div className="text-xs text-gray-900 dark:text-gray-400 space-y-1">
               <p className="font-bold text-black dark:text-white text-sm">
@@ -617,6 +618,7 @@ export default function Home() {
               <p>Class of 2026</p>
             </div>
           </div>
+
           <div>
             <h3 className="text-sm font-bold mb-4">Get in touch</h3>
             <p className="text-sm text-gray-900 dark:text-gray-400 mb-4 pr-4">
