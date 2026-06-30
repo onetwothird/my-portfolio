@@ -3,7 +3,8 @@
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { Moon, Sun } from "lucide-react";
-import { flushSync } from "react-dom"; // Add this import
+import { flushSync } from "react-dom";
+import { motion } from "framer-motion";
 
 export function ThemeToggle() {
   const { theme, setTheme, resolvedTheme } = useTheme();
@@ -16,7 +17,7 @@ export function ThemeToggle() {
   }, []);
 
   if (!mounted) {
-    return <div className="w-9 h-9" />; // Placeholder to prevent layout shift
+    return <div className="w-8 h-8" />; 
   }
 
   const currentTheme = theme === 'system' ? resolvedTheme : theme;
@@ -24,17 +25,14 @@ export function ThemeToggle() {
   const toggleTheme = async (e: React.MouseEvent<HTMLButtonElement>) => {
     const newTheme = currentTheme === "dark" ? "light" : "dark";
 
-    // Fallback for browsers that don't support View Transitions API
     if (!("startViewTransition" in document)) {
       setTheme(newTheme);
       return;
     }
 
-    // Get click coordinates to use as the circle's starting center
     const x = e.clientX;
     const y = e.clientY;
 
-    // Calculate distance to the furthest corner to know how big the circle needs to get
     const endRadius = Math.hypot(
       Math.max(x, innerWidth - x),
       Math.max(y, innerHeight - y)
@@ -54,11 +52,9 @@ export function ThemeToggle() {
       ];
 
       document.documentElement.animate(
+        { clipPath: clipPath },
         {
-          clipPath: clipPath,
-        },
-        {
-          duration: 500, 
+          duration: 700,
           easing: "ease-in-out",
           pseudoElement: "::view-transition-new(root)",
         }
@@ -69,10 +65,32 @@ export function ThemeToggle() {
   return (
     <button
       onClick={toggleTheme}
-      className="p-2 rounded-md text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-zinc-800 transition-colors"
+      className="relative flex items-center justify-center w-8 h-8 rounded-full opacity-70 hover:opacity-100 transition-opacity"
       aria-label="Toggle theme"
     >
-      {currentTheme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
+      <motion.div
+        initial={false}
+        animate={{ 
+          rotate: currentTheme === "dark" ? 180 : 0, 
+          scale: currentTheme === "dark" ? 0 : 1 
+        }}
+        transition={{ duration: 0.5, ease: [0.76, 0, 0.24, 1] }}
+        className="absolute"
+      >
+        <Sun size={18} />
+      </motion.div>
+      
+      <motion.div
+        initial={false}
+        animate={{ 
+          rotate: currentTheme === "dark" ? 0 : -180, 
+          scale: currentTheme === "dark" ? 1 : 0 
+        }}
+        transition={{ duration: 0.5, ease: [0.76, 0, 0.24, 1] }}
+        className="absolute"
+      >
+        <Moon size={18} />
+      </motion.div>
     </button>
   );
 }
