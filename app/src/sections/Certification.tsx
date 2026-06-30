@@ -29,7 +29,7 @@ export default function Certification() {
   ];
 
   return (
-    <section className="py-24 max-w-350 mx-auto px-6 md:px-12 border-t border-black/10 dark:border-white/10">
+    <section id="certification" className="py-24 max-w-350 mx-auto px-6 md:px-12 border-t border-black/10 dark:border-white/10">
       <div className="text-xs font-medium text-[#999D9E] mb-12 uppercase tracking-widest">Certifications</div>
       
       <motion.div 
