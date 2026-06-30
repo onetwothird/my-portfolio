@@ -36,7 +36,7 @@ const AbstractContributionGraph = () => {
   };
 
   return (
-    <div className="mt-12 flex gap-1.25 items-center justify-start overflow-hidden">
+    <div className="mt-12 flex gap-1.25 items-center justify-start overflow-x-auto pb-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
       {Array.from({ length: cols }).map((_, colIndex) => (
         <div key={colIndex} className="flex flex-col gap-1.25 items-center w-2.5">
           {Array.from({ length: rows }).map((_, rowIndex) => {
