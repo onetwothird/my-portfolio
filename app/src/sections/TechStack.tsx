@@ -25,7 +25,7 @@ export default function TechStack() {
   ];
 
   return (
-    <section className="py-24 max-w-350 mx-auto px-6 md:px-12 border-t border-black/10 dark:border-white/10">
+    <section id="techstack" className="py-24 max-w-350 mx-auto px-6 md:px-12 border-t border-black/10 dark:border-white/10">
       
       {/* Top Grid for Content */}
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-16">
