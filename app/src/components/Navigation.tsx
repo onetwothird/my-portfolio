@@ -30,7 +30,12 @@ export default function Navigation() {
     { title: "Contact", href: "#contact" },
   ];
 
-  const socials = ["GitHub", "LinkedIn", "Instagram", "Twitter"];
+  const socials = [
+    { name: "GitHub", href: "https://github.com/onetwothird" },
+    { name: "LinkedIn", href: "https://linkedin.com/in/angelito-decatoria" },
+    { name: "Instagram", href: "https://instagram.com/cntwxrms" },
+    { name: "Facebook", href: "https://facebook.com/angelo.decatoria.5" },
+  ];
 
   return (
     <>
@@ -152,8 +157,14 @@ export default function Navigation() {
                   </span>
                   <div className="flex gap-4 md:gap-6 flex-wrap">
                     {socials.map((social, idx) => (
-                      <a key={idx} href="#" className="text-sm font-medium hover:text-[#455CE9] transition-colors">
-                        {social}
+                      <a 
+                        key={idx} 
+                        href={social.href} 
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm font-medium hover:text-[#455CE9] transition-colors"
+                      >
+                        {social.name}
                       </a>
                     ))}
                   </div>
