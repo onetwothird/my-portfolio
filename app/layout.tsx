@@ -17,15 +17,8 @@ export const metadata: Metadata = {
   title: "Angelito P. Decatoria - Portfolio",
   description: "Full Stack Developer | CS Student",
   icons: {
-    icon: "/img/icon.webp",
+    icon: "/img/image.jpg",
   },
-};
-
-export const viewport = {
-  width: 'device-width',
-  initialScale: 1,
-  maximumScale: 1,
-  userScalable: false,
 };
 
 export default function RootLayout({
