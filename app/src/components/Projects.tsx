@@ -27,6 +27,13 @@ export default function Projects() {
       projectUrl: "https://seelai-docs.vercel.app",
     },
     {
+      title: "Seelai Admin",
+      category: "Web Platform",
+      year: "2026",
+      description: "Super admin web interface for the Seelai ecosystem, designed to facilitate machine learning model training.",
+      projectUrl: "https://supeadmin-modeltraining-website.vercel.app",
+    },
+    {
       title: "AlgoVerse Simulator",
       category: "OS Project",
       year: "2025",
@@ -46,13 +53,6 @@ export default function Projects() {
       year: "2025",
       description: "Full-stack web-based Point of Sale platform that also functions as a customer-facing e-commerce site.",
       projectUrl: "https://jayann-store.page.gd/",
-    },
-    {
-      title: "Seelai Admin",
-      category: "Web Platform",
-      year: "2026",
-      description: "Super admin web interface for the Seelai ecosystem, designed to facilitate machine learning model training.",
-      projectUrl: "https://supeadmin-modeltraining-website.vercel.app",
     }
   ];
 
