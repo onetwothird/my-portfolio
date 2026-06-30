@@ -11,6 +11,57 @@ const revealUp: Variants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] } }
 };
 
+// --- Added Contribution Graph Component ---
+const AbstractContributionGraph = () => {
+  const cols = 26; // Number of weeks to show
+  const rows = 7;  // Days of the week
+
+  // Deterministic randomizer for a realistic looking graph pattern
+  const getContributionLevel = (col: number, row: number) => {
+    const hash = (col * 17 + row * 31) % 100;
+    if (hash < 45) return 0; // Empty
+    if (hash < 75) return 1; // Light
+    if (hash < 90) return 2; // Medium
+    return 3;                // Heavy
+  };
+
+  const getStyle = (level: number) => {
+    switch (level) {
+      case 0: return "bg-black/5 dark:bg-white/5 w-1.5 h-1.5";
+      case 1: return "bg-black/30 dark:bg-white/30 w-1.5 h-1.5";
+      case 2: return "bg-black/60 dark:bg-white/60 w-2 h-2";
+      case 3: return "bg-black dark:bg-white w-2.5 h-2.5";
+      default: return "bg-black/5 dark:bg-white/5 w-1 h-1";
+    }
+  };
+
+  return (
+    <div className="mt-12 flex gap-1.25 items-center justify-start overflow-hidden">
+      {Array.from({ length: cols }).map((_, colIndex) => (
+        <div key={colIndex} className="flex flex-col gap-1.25 items-center w-2.5">
+          {Array.from({ length: rows }).map((_, rowIndex) => {
+            const level = getContributionLevel(colIndex, rowIndex);
+            return (
+              <motion.div
+                key={rowIndex}
+                initial={{ scale: 0, opacity: 0 }}
+                whileInView={{ scale: 1, opacity: 1 }}
+                viewport={{ once: true, amount: 0.1 }}
+                transition={{ 
+                  delay: (colIndex * 0.015) + (rowIndex * 0.01), 
+                  duration: 0.3,
+                  ease: "backOut"
+                }}
+                className={`rounded-full ${getStyle(level)}`}
+              />
+            );
+          })}
+        </div>
+      ))}
+    </div>
+  );
+};
+
 export default function JourneyGallery() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [showAllGallery, setShowAllGallery] = useState(false);
@@ -51,30 +102,51 @@ export default function JourneyGallery() {
           </div>
         </div>
 
-        {/* GitHub Metrics - Exactly matching your image */}
-        <motion.div 
-          initial="hidden" 
-          whileInView="visible" 
-          viewport={{ once: false, amount: 0.1 }} 
-          variants={revealUp} 
-          className="relative p-8 md:p-16 flex flex-col justify-center items-center text-center bg-[#E6E6E6] dark:bg-[#151515]"
-        >
-           <h3 className="text-3xl md:text-4xl font-medium tracking-tight mb-2">@onetwothird</h3>
-           <p className="text-sm font-medium text-[#999D9E] mb-10">1,164 GitHub contributions</p>
-           
-           <Magnetic>
-             <a href="https://github.com/onetwothird" target="_blank" rel="noreferrer" className="px-8 py-3.5 rounded-full bg-[#1C1D20] text-white dark:bg-white dark:text-[#1C1D20] text-sm font-medium shadow-md hover:scale-105 transition-transform duration-300 inline-block">
-               View Profile
-             </a>
-           </Magnetic>
+        {/* GitHub Metrics - Redesigned with Graph */}
+        <div className="p-8 md:p-16 flex flex-col justify-start overflow-hidden">
+          <div className="text-xs font-medium text-[#999D9E] mb-12 uppercase tracking-widest hidden lg:block">
+            Open Source
+          </div>
 
-           {/* Floating green dot with subtle bounce */}
-           <motion.div 
-             animate={{ y: [0, -8, 0] }} 
-             transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-             className="absolute right-[15%] md:right-[20%] top-[55%] w-4 h-4 rounded-full bg-[#5a9e2f]" 
-           />
-        </motion.div>
+          <motion.div 
+            initial="hidden" 
+            whileInView="visible" 
+            viewport={{ once: false, amount: 0.1 }} 
+            variants={revealUp} 
+            className="group relative flex flex-col p-8 md:p-10 border border-black/10 dark:border-white/10 rounded-2xl hover:bg-black/2 dark:hover:bg-white/2 transition-colors duration-500 overflow-hidden"
+          >
+             {/* Header: Username & Status */}
+             <div className="flex justify-between items-start mb-16">
+               <div>
+                 <h3 className="text-xl md:text-2xl font-medium tracking-tight mb-2">@onetwothird</h3>
+                 <div className="flex items-center gap-3">
+                   {/* Integrated pulsing status dot */}
+                   <span className="relative flex h-2 w-2">
+                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#5a9e2f] opacity-75"></span>
+                     <span className="relative inline-flex rounded-full h-2 w-2 bg-[#5a9e2f]"></span>
+                   </span>
+                   <span className="text-xs font-mono text-[#999D9E] uppercase tracking-wider">Active Contributor</span>
+                 </div>
+               </div>
+
+               {/* Minimalist Link Button */}
+               <Magnetic>
+                 <a href="https://github.com/onetwothird" target="_blank" rel="noreferrer" className="flex items-center justify-center w-12 h-12 rounded-full bg-[#1C1D20] text-white dark:bg-white dark:text-[#1C1D20] hover:scale-110 transition-transform duration-300 shadow-md shrink-0">
+                   <span className="text-xl font-light leading-none -mt-0.5">↗</span>
+                 </a>
+               </Magnetic>
+             </div>
+
+             {/* Big Typography Stats & Graph */}
+             <div className="flex flex-col border-t border-black/10 dark:border-white/10 pt-6">
+                <span className="text-5xl md:text-6xl font-medium tracking-tighter mb-1">1,164</span>
+                <span className="text-sm font-medium text-[#999D9E]">Contributions in the last year</span>
+                
+                {/* Simulated Data Graph */}
+                <AbstractContributionGraph />
+             </div>
+          </motion.div>
+        </div>
       </section>
 
       {/* Gallery */}
