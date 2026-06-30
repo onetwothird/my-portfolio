@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, Variants } from 'framer-motion';
-import { Globe, ArrowUpRight } from 'lucide-react';
+import { Globe, ArrowLeft } from 'lucide-react';
 import Magnetic from '../components/Magnetic';
 
 const revealUp: Variants = {
@@ -41,10 +41,16 @@ export default function Hero() {
         </div>
       </motion.div>
 
-      <motion.div initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.1 }} variants={revealUp} className="w-full max-w-400 mx-auto flex justify-between items-end mt-24 text-lg md:text-2xl font-medium text-[#999D9E]">
+      {/* 
+        UPDATED SECTION: 
+        - Changed 'justify-between' to 'justify-start'
+        - Added 'gap-6' to space the text and arrow
+        - Changed the icon to 'ArrowLeft' to point at the text
+      */}
+      <motion.div initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.1 }} variants={revealUp} className="w-full max-w-400 mx-auto flex justify-start items-end gap-6 md:gap-10 mt-24 text-lg md:text-2xl font-medium text-[#999D9E]">
         <p className="max-w-xs">Full Stack Developer &<br/>Computer Science Student.</p>
         <Magnetic>
-           <ArrowUpRight size={48} className="hidden md:block opacity-50 hover:text-black dark:hover:text-white hover:opacity-100 transition-colors cursor-pointer" />
+           <ArrowLeft size={48} className="hidden md:block opacity-50 hover:text-black dark:hover:text-white hover:opacity-100 transition-colors cursor-pointer" />
         </Magnetic>
       </motion.div>
     </section>
