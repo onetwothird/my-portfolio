@@ -57,7 +57,7 @@ export default function Home() {
         )}
       </AnimatePresence>
 
-      {/* REPLACE OLD HEADER WITH NEW NAVIGATION COMPONENT */}
+      {/* NEW NAVIGATION COMPONENT WITH MAGNETIC HAMBURGER */}
       <Navigation />
 
       <main>
