@@ -87,7 +87,7 @@ export default function Footer() {
           {/* Overlapping Circle Button */}
           <div className="absolute right-4 md:right-12 top-1/2 -translate-y-1/2 z-20">
             <Magnetic>
-              <a href="mailto:angelitodecatoriaa@gmail.com" className="w-32 h-32 md:w-44 md:h-44 bg-[#4F46E5] hover:bg-[#4338ca] text-white rounded-full flex items-center justify-center font-medium shadow-2xl transition-colors duration-300">
+              <a href="mailto:angelitodecatoriaa@gmail.com" className="w-32 h-32 md:w-44 md:h-44 bg-[#8B5CF6] hover:bg-[#7C3AED] text-white rounded-full flex items-center justify-center font-medium shadow-2xl transition-colors duration-300">
                  Get in touch
               </a>
             </Magnetic>
