@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   title: "Angelito P. Decatoria - Portfolio",
   description: "Full Stack Developer | CS Student",
   icons: {
-    icon: "/img/image.jpg",
+    icon: "/img/icon.webp",
   },
 };
 
