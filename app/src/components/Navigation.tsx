@@ -86,7 +86,8 @@ export default function Navigation() {
             <Magnetic>
               <button 
                 onClick={() => setMenuOpen(true)}
-                className="w-16 h-16 md:w-20 md:h-20 bg-[#1C1D20] text-white rounded-full flex flex-col justify-center items-center gap-1.5 hover:bg-[#455CE9] transition-colors duration-300 shadow-xl pointer-events-auto group"
+                // Updated background hover color here
+                className="w-16 h-16 md:w-20 md:h-20 bg-[#1C1D20] text-white rounded-full flex flex-col justify-center items-center gap-1.5 hover:bg-[#8B5CF6] transition-colors duration-300 shadow-xl pointer-events-auto group"
               >
                 <div className="w-6 h-0.5 bg-white group-hover:w-8 transition-all duration-300 ease-in-out" />
                 <div className="w-6 h-0.5 bg-white group-hover:w-8 transition-all duration-300 ease-in-out" />
@@ -121,7 +122,8 @@ export default function Navigation() {
               {/* Close Button */}
               <button 
                 onClick={() => setMenuOpen(false)}
-                className="absolute top-8 right-6 md:right-12 w-14 h-14 bg-[#455CE9] rounded-full flex justify-center items-center hover:scale-105 transition-transform duration-300 z-10"
+                // Updated background color here
+                className="absolute top-8 right-6 md:right-12 w-14 h-14 bg-[#8B5CF6] rounded-full flex justify-center items-center hover:scale-105 transition-transform duration-300 z-10"
               >
                 <X size={24} />
               </button>
@@ -142,7 +144,8 @@ export default function Navigation() {
                       initial={{ opacity: 0, x: 50 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.2 + (i * 0.1), duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
-                      className="text-5xl md:text-6xl font-medium tracking-tight hover:text-[#455CE9] hover:translate-x-4 transition-all duration-500 w-max"
+                      // Updated hover text color here
+                      className="text-5xl md:text-6xl font-medium tracking-tight hover:text-[#8B5CF6] hover:translate-x-4 transition-all duration-500 w-max"
                     >
                       {item.title}
                     </motion.a>
@@ -166,7 +169,8 @@ export default function Navigation() {
                         href={social.href} 
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-sm font-medium hover:text-[#455CE9] transition-colors"
+                        // Updated hover text color here
+                        className="text-sm font-medium hover:text-[#8B5CF6] transition-colors"
                       >
                         {social.name}
                       </a>
