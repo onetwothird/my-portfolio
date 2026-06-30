@@ -25,7 +25,7 @@ export default function About() {
   ];
 
   return (
-    <section id="about" className="py-32 px-6 md:px-12 max-w-[1400px] mx-auto flex flex-col md:flex-row gap-16 md:gap-32">
+    <section id="about" className="py-32 px-6 md:px-12 max-w-350 mx-auto flex flex-col md:flex-row gap-16 md:gap-32">
       <div className="text-sm font-medium uppercase tracking-widest text-[#999D9E] shrink-0">About me</div>
       <div className="flex-1">
         
