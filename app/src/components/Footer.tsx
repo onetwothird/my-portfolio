@@ -50,7 +50,7 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer className="bg-[#1C1D20] text-white pt-32 pb-10 px-6 md:px-12 mt-20 relative rounded-t-[40px] md:rounded-t-[80px] overflow-hidden">
+    <footer id="contact" className="bg-[#1C1D20] text-white pt-32 pb-10 px-6 md:px-12 mt-20 relative rounded-t-[40px] md:rounded-t-[80px] overflow-hidden">
       
       {/* 
         This is the trigger. 
