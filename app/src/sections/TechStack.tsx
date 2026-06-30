@@ -36,7 +36,7 @@ export default function TechStack() {
         
         <div className="flex flex-col gap-12">
           {techStack.map((stack, idx) => (
-            <motion.div key={idx} initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.1 }} variants={revealUp} className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-6 md:gap-12 items-start">
+            <motion.div key={idx} initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.1 }} variants={revealUp} className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-4 md:gap-12 items-start border-b md:border-none border-black/5 dark:border-white/5 pb-8 md:pb-0 last:border-none last:pb-0">
               <h3 className="text-sm font-bold uppercase tracking-widest pt-2 text-[#999D9E]">{stack.title}</h3>
               <div className="flex flex-wrap gap-2">
                 {stack.items.map(t => (
