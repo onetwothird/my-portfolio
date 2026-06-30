@@ -52,10 +52,6 @@ export default function Footer() {
   return (
     <footer id="contact" className="bg-[#1C1D20] text-white pt-32 pb-10 px-6 md:px-12 mt-20 relative rounded-t-[40px] md:rounded-t-[80px] overflow-hidden">
       
-      {/* 
-        This is the trigger. 
-        once: false means the animation resets and plays every time you scroll up/down to it.
-      */}
       <motion.div
         initial="hidden"
         whileInView="visible"
@@ -63,41 +59,57 @@ export default function Footer() {
         variants={footerStagger}
         className="w-full flex flex-col items-center"
       >
+        {/* HEADLINE SECTION */}
         <motion.div variants={slideUpScale} className="w-full max-w-300 flex flex-col md:flex-row items-center md:items-start justify-between relative z-10">
-          <div className="flex items-center gap-6 mb-12 md:mb-0">
-            <div className="w-20 h-20 md:w-24 md:h-24 relative rounded-full overflow-hidden shrink-0">
-               <Image src="/img/image.jpg" alt="Angelito" fill className="object-cover" />
+          <div className="flex flex-col mb-12 md:mb-0">
+            {/* First Line: Avatar + Let's work */}
+            <div className="flex items-center gap-4 md:gap-6">
+              <div className="w-16 h-16 md:w-24 md:h-24 relative rounded-full overflow-hidden shrink-0">
+                 <Image src="/img/image.jpg" alt="Angelito" fill className="object-cover" />
+              </div>
+              <h2 className="text-6xl md:text-[8vw] font-medium tracking-tighter leading-none">
+                Let&apos;s work
+              </h2>
             </div>
-            <h2 className="text-6xl md:text-[8vw] font-medium tracking-tighter leading-none">
-              Let&apos;s work<br/>together
+            {/* Second Line: together */}
+            <h2 className="text-6xl md:text-[8vw] font-medium tracking-tighter leading-none mt-2 md:mt-4">
+              together
             </h2>
           </div>
-          <ArrowUpRight size={48} className="hidden md:block opacity-50 mt-12" />
+          <ArrowUpRight size={48} className="hidden md:block opacity-50 mt-8" />
         </motion.div>
 
-        <motion.div variants={fadeUp} className="w-full max-w-300 border-b border-white/20 pb-20 mt-16 flex flex-col md:flex-row gap-4 relative z-10">
+        {/* DIVIDER & GET IN TOUCH BUTTON SECTION */}
+        <motion.div variants={fadeUp} className="w-full max-w-300 relative mt-20 md:mt-32">
+          {/* The Horizontal Line */}
+          <div className="w-full h-px bg-white/20"></div>
+          
+          {/* Overlapping Circle Button */}
+          <div className="absolute right-4 md:right-12 top-1/2 -translate-y-1/2 z-20">
+            <Magnetic>
+              <a href="mailto:angelitodecatoriaa@gmail.com" className="w-32 h-32 md:w-44 md:h-44 bg-[#4F46E5] hover:bg-[#4338ca] text-white rounded-full flex items-center justify-center font-medium shadow-2xl transition-colors duration-300">
+                 Get in touch
+              </a>
+            </Magnetic>
+          </div>
+        </motion.div>
+
+        {/* CONTACT BUTTONS SECTION */}
+        <motion.div variants={fadeUp} className="w-full max-w-300 flex flex-col md:flex-row gap-4 mt-12 mb-24 relative z-10">
            <Magnetic>
-             <a href="mailto:angelitodecatoriaa@gmail.com" className="px-8 py-4 rounded-full border border-white/30 text-sm font-medium hover:bg-white hover:text-[#1C1D20] transition-colors inline-block">
+             <a href="mailto:angelitodecatoriaa@gmail.com" className="px-8 py-4 rounded-full border border-white/20 text-sm font-medium hover:bg-white hover:text-[#1C1D20] transition-colors inline-block">
                angelitodecatoriaa@gmail.com
              </a>
            </Magnetic>
            <Magnetic>
-             <a href="https://www.linkedin.com/in/angelito-decatoria/" target="_blank" rel="noreferrer" className="px-8 py-4 rounded-full border border-white/30 text-sm font-medium hover:bg-white hover:text-[#1C1D20] transition-colors inline-block">
+             <a href="https://www.linkedin.com/in/angelito-decatoria/" target="_blank" rel="noreferrer" className="px-8 py-4 rounded-full border border-white/20 text-sm font-medium hover:bg-white hover:text-[#1C1D20] transition-colors inline-block">
                Connect on LinkedIn
              </a>
            </Magnetic>
         </motion.div>
 
-        {/* Massive Magnetic Action Button */}
-        <motion.div variants={fadeUp} className="absolute right-12 md:right-32 top-1/2 -translate-y-1/2 z-20 hidden md:block">
-          <Magnetic>
-            <a href="mailto:angelitodecatoriaa@gmail.com" className="w-40 h-40 md:w-48 md:h-48 bg-[#8B5CF6] hover:bg-[#7e53de] text-white rounded-full flex items-center justify-center font-medium shadow-2xl transition-colors duration-300">
-               Get in touch
-            </a>
-          </Magnetic>
-        </motion.div>
-
-        <motion.div variants={fadeUp} className="w-full max-w-300 pt-10 flex flex-col md:flex-row justify-between items-start md:items-center text-xs text-[#999D9E] font-medium uppercase tracking-widest gap-8 md:gap-0">
+        {/* FOOTER DETAILS */}
+        <motion.div variants={fadeUp} className="w-full max-w-300 pt-10 border-t border-white/10 flex flex-col md:flex-row justify-between items-start md:items-center text-xs text-[#999D9E] font-medium uppercase tracking-widest gap-8 md:gap-0">
           <div className="flex gap-16">
             <div className="flex flex-col gap-2">
               <span className="opacity-50">Version</span>
