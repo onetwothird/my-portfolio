@@ -78,7 +78,7 @@ export default function JourneyGallery() {
       </section>
 
       {/* Gallery */}
-      <section className="py-24 px-6 md:px-12 bg-[#F4F4F4] dark:bg-[#111111]">
+      <section id="gallery" className="py-24 px-6 md:px-12 bg-[#F4F4F4] dark:bg-[#111111]">
         <div className="max-w-350 mx-auto">
           <div className="flex justify-between items-center mb-16">
              <h2 className="text-3xl md:text-5xl font-medium tracking-tight">Archive Gallery</h2>
