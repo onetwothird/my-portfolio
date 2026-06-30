@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
 import { ThemeToggle } from './ThemeToggle';
 import { X } from 'lucide-react';
+import Magnetic from './Magnetic'; // Added Magnetic import
+
 
 export default function Navigation() {
   const { scrollY } = useScroll();
@@ -81,13 +83,15 @@ export default function Navigation() {
             transition={{ duration: 0.5, ease: [0.76, 0, 0.24, 1] }}
             className="fixed top-8 right-6 md:right-12 z-100"
           >
-            <button 
-              onClick={() => setMenuOpen(true)}
-              className="w-16 h-16 md:w-20 md:h-20 bg-[#1C1D20] text-white rounded-full flex flex-col justify-center items-center gap-1.5 hover:bg-[#455CE9] transition-colors duration-300 shadow-xl pointer-events-auto group"
-            >
-              <div className="w-6 h-0.5 bg-white group-hover:w-8 transition-all duration-300 ease-in-out" />
-              <div className="w-6 h-0.5 bg-white group-hover:w-8 transition-all duration-300 ease-in-out" />
-            </button>
+            <Magnetic>
+              <button 
+                onClick={() => setMenuOpen(true)}
+                className="w-16 h-16 md:w-20 md:h-20 bg-[#1C1D20] text-white rounded-full flex flex-col justify-center items-center gap-1.5 hover:bg-[#455CE9] transition-colors duration-300 shadow-xl pointer-events-auto group"
+              >
+                <div className="w-6 h-0.5 bg-white group-hover:w-8 transition-all duration-300 ease-in-out" />
+                <div className="w-6 h-0.5 bg-white group-hover:w-8 transition-all duration-300 ease-in-out" />
+              </button>
+            </Magnetic>
           </motion.div>
         )}
       </AnimatePresence>
