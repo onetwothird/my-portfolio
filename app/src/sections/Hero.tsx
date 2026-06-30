@@ -30,7 +30,7 @@ export default function Hero() {
         </motion.div>
 
         <div className="overflow-hidden w-full pb-[4vw] mb-[-4vw]">
-          <motion.h1 variants={revealUp} className="text-[16vw] lg:text-[14vw] leading-[0.9] font-medium tracking-tighter">
+          <motion.h1 variants={revealUp} className="text-[clamp(4rem,14vw,12rem)] leading-[0.9] font-medium tracking-tighter">
             Angelito
           </motion.h1>
         </div>
