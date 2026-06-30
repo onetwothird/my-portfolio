@@ -1,16 +1,15 @@
 "use client";
 
 import Link from 'next/link';
-import Image from 'next/image';
-import { ArrowLeft, ExternalLink } from 'lucide-react';
+import { ArrowLeft, ArrowUpRight } from 'lucide-react';
 import { motion, Variants } from 'framer-motion';
 
-const revealUp: Variants = {
-  hidden: { opacity: 0, y: 50 },
+const slideUpFade: Variants = {
+  hidden: { opacity: 0, y: 80 },
   visible: { 
     opacity: 1, 
     y: 0, 
-    transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] } 
+    transition: { duration: 1.2, ease: [0.76, 0, 0.24, 1] as [number, number, number, number] } 
   }
 };
 
@@ -25,7 +24,6 @@ export default function Projects() {
       category: "Thesis Project",
       year: "2026",
       description: "Mobile application for the partially sighted. Integrates real-time object detection via YOLO and TensorFlow Lite.",
-      imageUrl: "/projects/seelai-preview.png", 
       projectUrl: "https://seelai-docs.vercel.app",
     },
     {
@@ -33,7 +31,6 @@ export default function Projects() {
       category: "OS Project",
       year: "2025",
       description: "Web-based visual simulator for CPU scheduling algorithms (FCFS, SJF, Round Robin) for educational purposes.",
-      imageUrl: "/projects/AlgoVerse.png",
       projectUrl: "https://onetwothird.page.gd/",
     },
     {
@@ -41,7 +38,6 @@ export default function Projects() {
       category: "OJT Project",
       year: "2025",
       description: "Centralized role-based document tracking system engineered collaboratively.",
-      imageUrl: "/projects/odci.png",
       projectUrl: "https://odci.page.gd/",
     },
     {
@@ -49,7 +45,6 @@ export default function Projects() {
       category: "E-Commerce",
       year: "2025",
       description: "Full-stack web-based Point of Sale platform that also functions as a customer-facing e-commerce site.",
-      imageUrl: "/projects/jayann_store.png",
       projectUrl: "https://jayann-store.page.gd/",
     },
     {
@@ -57,82 +52,75 @@ export default function Projects() {
       category: "Web Platform",
       year: "2026",
       description: "Super admin web interface for the Seelai ecosystem, designed to facilitate machine learning model training.",
-      imageUrl: "/projects/seelai_dashboard.png",
       projectUrl: "https://supeadmin-modeltraining-website.vercel.app",
     }
   ];
 
   return (
-    <div className="min-h-screen bg-white dark:bg-[#0a0a0a] text-[#171717] dark:text-[#ededed] font-sans selection:bg-black selection:text-white dark:selection:bg-white dark:selection:text-black">
+    <div className="min-h-screen bg-[#F4F4F4] dark:bg-[#111111] text-[#1C1D20] dark:text-[#ededed] font-sans selection:bg-[#8B5CF6] selection:text-white">
       
       {/* Header Section */}
-      <section className="pt-32 pb-16 px-6 md:px-12 relative">
-        <motion.div initial="hidden" animate="visible" variants={stagger} className="max-w-7xl mx-auto">
+      <section className="pt-32 pb-16 px-6 md:px-12 relative max-w-350 mx-auto">
+        <motion.div initial="hidden" animate="visible" variants={stagger}>
           <Link 
             href="/" 
-            className="inline-flex items-center gap-2 text-xs font-bold font-mono uppercase tracking-widest text-gray-500 hover:text-black dark:text-gray-400 dark:hover:text-white transition-colors mb-12 group"
+            className="inline-flex items-center gap-2 text-xs font-bold font-mono uppercase tracking-widest text-[#999D9E] hover:text-black dark:hover:text-white transition-colors mb-12 group"
           >
             <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" /> Back to Home
           </Link>
           
           <div className="overflow-hidden mb-4">
-            <motion.h1 variants={revealUp} className="text-5xl md:text-[8vw] leading-[0.85] font-black uppercase tracking-tighter">
+            <motion.h1 variants={slideUpFade} className="text-6xl md:text-[8vw] leading-[0.85] font-medium tracking-tighter">
               Featured Works.
             </motion.h1>
           </div>
-          <motion.p variants={revealUp} className="font-mono text-xs text-gray-500 font-bold uppercase tracking-widest mt-4">
+          <motion.p variants={slideUpFade} className="font-mono text-xs text-[#999D9E] font-bold uppercase tracking-widest mt-4">
             注目のプロジェクト
           </motion.p>
         </motion.div>
       </section>
 
-      {/* Grid Showcase - Hover Reveal Effect */}
-      <section className="grid grid-cols-1 md:grid-cols-2 gap-4 px-4 pb-24 max-w-400 mx-auto">
-        {projects.map((project, index) => {
-          const isSeelai = project.title.includes("Seelai");
-          
-          return (
+      {/* List Showcase - Matching TechStack & Works UI */}
+      <section className="max-w-350 mx-auto px-6 md:px-12 py-12 md:py-24">
+        <motion.div 
+          initial="hidden" 
+          whileInView="visible" 
+          viewport={{ once: false, amount: 0.1 }} 
+          variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
+          className="flex flex-col border-t border-black/10 dark:border-white/10"
+        >
+          {projects.map((project, index) => (
             <motion.a 
-              initial="hidden" 
-              whileInView="visible" 
-              viewport={{ once: true, margin: "-50px" }} 
-              variants={revealUp}
-              key={index} 
+              key={index}
               href={project.projectUrl}
               target={project.projectUrl !== "#" ? "_blank" : "_self"}
               rel="noreferrer"
-              className="group block relative w-full aspect-4/3 md:aspect-video overflow-hidden bg-black/5 dark:bg-white/5 cursor-pointer rounded-sm"
+              variants={slideUpFade}
+              className="group flex flex-col xl:flex-row justify-between items-start xl:items-center py-12 md:py-16 border-b border-black/10 dark:border-white/10 hover:px-6 transition-all duration-500"
             >
-              {/* Background Image */}
-              <Image 
-                src={project.imageUrl}
-                alt={`${project.title} Preview`}
-                fill
-                sizes="(max-width: 768px) 100vw, 50vw"
-                className={`w-full h-full grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 ease-out ${isSeelai ? 'object-contain p-12' : 'object-cover object-top'}`}
-              />
-
-              {/* Hover Overlay */}
-              <div className="absolute inset-0 bg-white/90 dark:bg-[#0a0a0a]/90 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-8 md:p-12 z-10">
-                <div className="translate-y-8 group-hover:translate-y-0 transition-transform duration-500 ease-out flex flex-col items-start">
-                  
-                  <span className="text-[10px] font-bold font-mono border border-black/20 dark:border-white/20 px-3 py-1.5 mb-4 inline-block uppercase bg-transparent">
-                    {project.category} / {project.year}
-                  </span>
-                  
-                  <h3 className="text-3xl lg:text-4xl font-black uppercase tracking-tight mb-3 flex items-center gap-3">
-                    {project.title} <ExternalLink size={24} className="opacity-50" />
-                  </h3>
-                  
-                  <p className="text-sm text-gray-700 dark:text-gray-300 font-medium leading-relaxed max-w-lg">
-                    {project.description}
-                  </p>
-                  
-                </div>
+              {/* Left Side: Title & Description */}
+              <div className="flex flex-col gap-3 max-w-2xl mb-8 xl:mb-0 pr-8">
+                <h3 className="text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight group-hover:opacity-50 transition-opacity duration-500 flex items-center">
+                  {project.title}
+                  <ArrowUpRight size={36} className="opacity-0 group-hover:opacity-100 transition-all duration-500 -ml-4 group-hover:ml-4 text-[#8B5CF6] hidden md:block" />
+                </h3>
+                <p className="text-[#999D9E] text-sm md:text-base font-medium leading-relaxed">
+                  {project.description}
+                </p>
+              </div>
+              
+              {/* Right Side: Category & Year */}
+              <div className="flex flex-row items-center gap-4 xl:gap-8 shrink-0">
+                <span className="px-5 py-2.5 border border-black/20 dark:border-white/20 rounded-full text-xs font-bold font-mono uppercase bg-transparent text-[#1C1D20] dark:text-[#ededed] group-hover:bg-[#1C1D20] group-hover:text-white dark:group-hover:bg-white dark:group-hover:text-[#1C1D20] transition-colors duration-300">
+                  {project.category}
+                </span>
+                <span className="text-sm font-medium opacity-60 font-mono w-12 text-right">
+                  {project.year}
+                </span>
               </div>
             </motion.a>
-          );
-        })}
+          ))}
+        </motion.div>
       </section>
     </div>
   );
