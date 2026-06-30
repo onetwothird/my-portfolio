@@ -1,150 +1,95 @@
+"use client";
+
 import Link from 'next/link';
-import { ArrowLeft, ScanLine, BrainCircuit, Tag } from 'lucide-react';
-import { 
-  SiHtml5, SiCss, SiJavascript, SiTypescript, SiPhp, SiDart, SiPython,
-  SiReact, SiVite, SiNodedotjs, SiExpress, SiFlutter, SiBootstrap, 
-  SiTailwindcss, SiChakraui, SiMysql, SiFirebase, SiSupabase,
-  SiGit, SiGithub, SiFigma, SiVercel, SiRender, SiCloudinary, 
-  SiTwilio, SiWordpress, SiTensorflow, SiOpencv, SiGooglecolab, 
-  SiJupyter, SiKaggle, SiHuggingface
-} from 'react-icons/si';
+import { ArrowLeft } from 'lucide-react';
+import { motion, Variants } from 'framer-motion';
+
+const revealUp: Variants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] } 
+  }
+};
+
+const stagger = {
+  visible: { transition: { staggerChildren: 0.1 } }
+};
 
 export default function TechStack() {
   const categories = [
     {
-      title: "Programming Languages",
-      items: [
-        { name: "HTML5", color: "#E34F26", icon: <SiHtml5 size={18} /> },
-        { name: "CSS3", color: "#1572B6", icon: <SiCss size={18} /> },
-        { name: "JAVASCRIPT", color: "#F7DF1E", icon: <SiJavascript size={18} /> },
-        { name: "TYPESCRIPT", color: "#3178C6", icon: <SiTypescript size={18} /> },
-        { name: "PHP", color: "#777BB4", icon: <SiPhp size={18} /> },
-        { name: "DART", color: "#0175C2", icon: <SiDart size={18} /> },
-        { name: "PYTHON", color: "#3776AB", icon: <SiPython size={18} /> },
-      ]
+      title: "1. Frontend & Mobile",
+      items: ["HTML5", "CSS3", "JavaScript", "TypeScript", "React.js", "Next.js", "Flutter SDK", "Dart"]
     },
     {
-      title: "Frameworks & Libraries",
-      items: [
-        { name: "REACT", color: "#61DAFB", icon: <SiReact size={18} /> },
-        { name: "VITE", color: "#646CFF", icon: <SiVite size={18} /> },
-        { name: "NODE.JS", color: "#339933", icon: <SiNodedotjs size={18} /> },
-        { name: "EXPRESS.JS", color: "#000000", icon: <SiExpress size={18} /> },
-        { name: "FLUTTER", color: "#02569B", icon: <SiFlutter size={18} /> },
-        { name: "REACT NATIVE", color: "#61DAFB", icon: <SiReact size={18} /> },
-        { name: "BOOTSTRAP", color: "#7952B3", icon: <SiBootstrap size={18} /> },
-        { name: "TAILWINDCSS", color: "#38BDF8", icon: <SiTailwindcss size={18} /> },
-        { name: "CHAKRA UI", color: "#319795", icon: <SiChakraui size={18} /> },
-      ]
+      title: "2. Backend & DB",
+      items: ["Node.js", "Python", "PHP", "MySQL", "Firebase", "REST APIs"]
     },
     {
-      title: "Databases",
-      items: [
-        { name: "MYSQL", color: "#4479A1", icon: <SiMysql size={18} /> },
-        { name: "FIREBASE", color: "#FFCA28", icon: <SiFirebase size={18} /> },
-        { name: "SUPABASE", color: "#3ECF8E", icon: <SiSupabase size={18} /> },
-      ]
+      title: "3. Tools & Platforms",
+      items: ["Git", "GitHub", "Figma", "Vercel", "Render", "Cloudinary"]
     },
     {
-      title: "Tools, Platforms, & Services",
-      items: [
-        { name: "GIT", color: "#F05032", icon: <SiGit size={18} /> },
-        { name: "GITHUB", color: "#181717", icon: <SiGithub size={18} /> },
-        { name: "FIGMA", color: "#F24E1E", icon: <SiFigma size={18} /> },
-        { name: "VERCEL", color: "#000000", icon: <SiVercel size={18} /> },
-        { name: "RENDER", color: "#46E3B7", icon: <SiRender size={18} /> },
-        { name: "CLOUDINARY", color: "#3448C5", icon: <SiCloudinary size={18} /> },
-        { name: "TWILIO", color: "#F22F46", icon: <SiTwilio size={18} /> },
-        { name: "WORDPRESS", color: "#21759B", icon: <SiWordpress size={18} /> },
-      ]
-    },
-    {
-      title: "AI / Machine Learning",
-      items: [
-        { name: "TENSORFLOW", color: "#FF6F00", icon: <SiTensorflow size={18} /> },
-        { name: "TENSORFLOW LITE", color: "#FF6F00", icon: <SiTensorflow size={18} /> },
-        { name: "OPENCV", color: "#5C3EE8", icon: <SiOpencv size={18} /> },
-        { name: "YOLOV8", color: "#0000FF", icon: <ScanLine size={18} /> },
-        { name: "LABEL STUDIO", color: "#FF7043", icon: <Tag size={18} /> },
-        { name: "ROBOFLOW", color: "#424242", icon: <BrainCircuit size={18} /> },
-        { name: "GOOGLE COLAB", color: "#F9AB00", icon: <SiGooglecolab size={18} /> },
-        { name: "JUPYTER", color: "#F37626", icon: <SiJupyter size={18} /> },
-        { name: "KAGGLE", color: "#20BEFF", icon: <SiKaggle size={18} /> },
-        { name: "HUGGING FACE", color: "#FFD21E", icon: <SiHuggingface size={18} /> },
-      ]
+      title: "4. AI / Machine Learning",
+      items: ["TensorFlow Lite", "YOLOv8", "YOLOv11", "Label Studio", "Roboflow", "Google Colab"]
     }
   ];
 
   return (
-    <div className="min-h-screen text-black dark:text-gray-100 font-sans selection:bg-[#8B5CF6] selection:text-white transition-colors duration-300">
+    <div className="min-h-screen bg-white dark:bg-[#0a0a0a] text-[#171717] dark:text-[#ededed] font-sans selection:bg-black selection:text-white dark:selection:bg-white dark:selection:text-black">
       
-      {/* Added global style for the smooth idle floating animation */}
-      <style>{`
-        @keyframes idle-float {
-          0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-6px); }
-        }
-      `}</style>
-
-      <div className="max-w-6xl mx-auto px-6 py-12 md:py-20">
-        
-        <div className="mb-16 animate-slide-up">
+      {/* Header Section */}
+      <section className="pt-32 pb-16 px-6 md:px-12 relative border-b border-black/10 dark:border-white/10">
+        <motion.div initial="hidden" animate="visible" variants={stagger} className="max-w-7xl mx-auto">
           <Link 
             href="/" 
-            className="inline-flex items-center gap-2 text-sm font-semibold text-gray-500 hover:text-black dark:text-gray-400 dark:hover:text-white transition-colors mb-6 group"
+            className="inline-flex items-center gap-2 text-xs font-bold font-mono uppercase tracking-widest text-gray-500 hover:text-black dark:text-gray-400 dark:hover:text-white transition-colors mb-12 group"
           >
             <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" /> Back to Home
           </Link>
-          <div className="flex items-center gap-3">
-            <h1 className="text-3xl md:text-5xl font-bold tracking-tight">Tech Stack</h1>
+          
+          <div className="overflow-hidden mb-4">
+            <motion.h1 variants={revealUp} className="text-5xl md:text-[8vw] leading-[0.85] font-black uppercase tracking-tighter">
+              Tech Stack.
+            </motion.h1>
           </div>
-          <p className="mt-4 text-gray-600 dark:text-gray-400 max-w-2xl">
-            A comprehensive overview of the programming languages, frameworks, databases, and architectural tools I leverage to build robust applications.
-          </p>
-        </div>
+          <motion.p variants={revealUp} className="font-mono text-xs text-gray-500 font-bold uppercase tracking-widest mt-4">
+            私の技術スタック
+          </motion.p>
+        </motion.div>
+      </section>
 
-        <div className="space-y-16 pb-12">
-          {categories.map((category, index) => (
-            <div 
-              key={index} 
-              className="space-y-6 animate-slide-up"
-              style={{ animationDelay: `${(index + 1) * 150}ms` }}
-            >
-              
-              <div className="border-b border-gray-200 dark:border-zinc-800 pb-4">
-                <h2 className="text-2xl font-bold">{category.title}</h2>
-              </div>
-              
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 pt-2">
-                {category.items.map((tech, techIndex) => (
-                  <div 
-                    key={techIndex} 
-                    className="group flex items-center gap-3 px-4 py-3 rounded-lg border border-gray-200/60 dark:border-zinc-800/60 bg-white/40 dark:bg-zinc-900/40 backdrop-blur-sm hover:bg-white/80 dark:hover:bg-zinc-800/80 hover:border-gray-400 dark:hover:border-zinc-600 transition-colors duration-200 cursor-default"
-                    // Injected inline styles to apply the floating animation with a staggered start
-                    style={{
-                      animation: 'idle-float 4s ease-in-out infinite',
-                      animationDelay: `${techIndex * 200}ms`
-                    }}
-                  >
-                    <div 
-                      className="transition-transform duration-200 group-hover:scale-110"
-                      style={{ color: tech.color }}
-                    >
-                      {tech.icon}
-                    </div>
-                    
-                    <span className="font-semibold tracking-wide text-sm text-gray-700 dark:text-gray-300 group-hover:text-black dark:group-hover:text-white transition-colors">
-                      {tech.name}
-                    </span>
-                  </div>
-                ))}
-              </div>
-              
+      {/* Stack List - Clean Version matching screenshot */}
+      <section className="max-w-7xl mx-auto px-6 md:px-12 py-12 md:py-24 space-y-16 md:space-y-24">
+        {categories.map((category, index) => (
+          <motion.div 
+            key={index}
+            initial="hidden" 
+            whileInView="visible" 
+            viewport={{ once: true, margin: "-50px" }} 
+            variants={revealUp}
+            className="grid grid-cols-1 md:grid-cols-[300px_1fr] gap-8 md:gap-16 items-start"
+          >
+            <h3 className="text-lg font-black uppercase tracking-widest pt-2">
+              {category.title}
+            </h3>
+            
+            <div className="flex flex-wrap gap-2 md:gap-3">
+              {category.items.map((tech, techIndex) => (
+                <span 
+                  key={techIndex} 
+                  className="px-4 py-2 border border-black/10 dark:border-white/10 text-xs font-bold font-mono uppercase bg-black/5 dark:bg-white/5 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors cursor-default"
+                >
+                  {tech}
+                </span>
+              ))}
             </div>
-          ))}
-        </div>
-        
-      </div>
+          </motion.div>
+        ))}
+      </section>
+      
     </div>
   );
 }
