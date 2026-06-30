@@ -2,19 +2,30 @@
 
 import { motion, Variants } from 'framer-motion';
 
-// Snellenberg's signature cubic-bezier easing
-const slideUp: Variants = {
-  hidden: { opacity: 0, y: "100%" },
+const slideUpFade: Variants = {
+  hidden: { opacity: 0, y: 80 },
   visible: { 
     opacity: 1, 
-    y: "0%", 
-    transition: { duration: 1, ease: [0.76, 0, 0.24, 1] as [number, number, number, number] } 
+    y: 0, 
+    transition: { duration: 1.2, ease: [0.76, 0, 0.24, 1] as [number, number, number, number] } 
   }
 };
 
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 50 },
-  visible: { opacity: 1, y: 0, transition: { duration: 1, ease: [0.76, 0, 0.24, 1] as [number, number, number, number] } }
+// Controls the fade-up items at the bottom
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: { 
+    opacity: 1,
+    transition: { staggerChildren: 0.15 } 
+  }
+};
+
+// Controls the masked text without affecting the parent's opacity
+const textStagger = {
+  hidden: {},
+  visible: { 
+    transition: { staggerChildren: 0.1 } 
+  }
 };
 
 export default function About() {
@@ -29,40 +40,46 @@ export default function About() {
       <div className="text-sm font-medium uppercase tracking-widest text-[#999D9E] shrink-0">About me</div>
       <div className="flex-1">
         
-        {/* Masked Text Reveal */}
-        <div className="text-3xl md:text-5xl font-medium leading-tight tracking-tight mb-16">
+        {/* Masked Text Reveal - FIXED: Trigger is now on the parent wrapper */}
+        <motion.div 
+          initial="hidden" 
+          whileInView="visible" 
+          viewport={{ once: false, amount: 0.1 }} 
+          variants={textStagger}
+          className="text-3xl md:text-5xl font-medium leading-tight tracking-tight mb-16"
+        >
           <div className="overflow-hidden mb-2">
-            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-10%" }} variants={slideUp}>
+            <motion.div variants={slideUpFade}>
               Specializing in building structural,
             </motion.div>
           </div>
           <div className="overflow-hidden mb-2">
-            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-10%" }} variants={slideUp}>
+            <motion.div variants={slideUpFade}>
               high-fidelity web ecosystems alongside
             </motion.div>
           </div>
           <div className="overflow-hidden mb-2">
-            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-10%" }} variants={slideUp}>
+            <motion.div variants={slideUpFade}>
               intelligent mobile applications using
             </motion.div>
           </div>
           <div className="overflow-hidden">
-            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-10%" }} variants={slideUp}>
+            <motion.div variants={slideUpFade}>
               Flutter and YOLOv8.
             </motion.div>
           </div>
-        </div>
+        </motion.div>
         
-        {/* Staggered Fade Up */}
+        {/* Staggered Fade Up Grid */}
         <motion.div 
           initial="hidden" 
           whileInView="visible" 
-          viewport={{ once: true, margin: "-10%" }} 
-          variants={{ visible: { transition: { staggerChildren: 0.15 } } }}
+          viewport={{ once: false, amount: 0.1 }} 
+          variants={staggerContainer}
           className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-16 border-t border-black/10 dark:border-white/10"
         >
           {coreValues.map((val, idx) => (
-            <motion.div key={idx} variants={fadeUp} className="group">
+            <motion.div key={idx} variants={slideUpFade} className="group">
               <div className="font-mono text-sm text-[#999D9E] font-bold mb-8 border-b border-black/10 dark:border-white/10 pb-4">{val.num}</div>
               <h3 className="text-xl font-medium tracking-tight mb-4">{val.title}</h3>
               <p className="text-sm text-[#999D9E] leading-relaxed">{val.desc}</p>
