@@ -22,7 +22,7 @@ export default function Hero() {
         <motion.div variants={revealUp} className="flex items-center gap-4 bg-[#1C1D20] text-white dark:bg-white dark:text-[#1C1D20] px-5 py-3 rounded-full mb-12 shadow-lg">
           <div className="flex flex-col text-xs font-medium leading-tight">
             <span>Located</span>
-            <span>in the Philippines</span>
+            <span>in the Naic, Cavite (PH)</span>
           </div>
           <div className="bg-white/20 dark:bg-black/10 p-2 rounded-full">
             <Globe size={18} />
