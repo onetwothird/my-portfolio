@@ -57,13 +57,11 @@ export default function Home() {
               transition={{ duration: 0.9, ease: [0.76, 0, 0.24, 1] }} 
               className="fixed inset-0 z-100000 bg-[#1C1D20] text-white flex flex-col justify-between p-6 md:p-12 overflow-hidden"
             >
-              {/* TOP ANCHOR: Minimalist metadata to frame the screen */}
               <div className="w-full flex justify-between text-[#999D9E] text-[10px] sm:text-xs uppercase tracking-widest font-mono">
                 <span className="animate-pulse">Establishing Connection...</span>
                 <span>[ @Onetwothird ]</span>
               </div>
 
-              {/* CENTER: The Cinematic Foreshadowing Sequence */}
               <div className="flex-1 flex items-center justify-center px-4 text-center">
                 <AnimatePresence mode="wait">
                   {progress < 30 && (
