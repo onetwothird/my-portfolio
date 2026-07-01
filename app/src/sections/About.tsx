@@ -1,6 +1,8 @@
 "use client";
 
 import { motion, Variants } from 'framer-motion';
+// Make sure this import path matches your project structure
+import { ThemeToggle } from '../components/ThemeToggle';
 
 const slideUpFade: Variants = {
   hidden: { opacity: 0, y: 80 },
@@ -34,14 +36,31 @@ export default function About() {
   ];
 
   return (
-    <section id="about" className="py-32 px-6 md:px-12 max-w-7xl mx-auto flex flex-col md:flex-row gap-16 md:gap-32">
-      <div className="text-sm font-medium uppercase tracking-widest text-[#999D9E] shrink-0">About me</div>
-      <div className="flex-1">
+    <section id="about" className="py-32 px-6 md:px-12 max-w-7xl mx-auto flex flex-col md:flex-row gap-16 md:gap-32 relative">
+      
+      {/* 
+        THEME TOGGLE
+        Absolutely positioned to the top-right of the section padding.
+        This horizontally aligns it with the "About me" text.
+      */}
+      <div className="absolute top-32 right-6 md:right-12 z-10">
+        <div className="bg-black/5 dark:bg-white/10 p-2 rounded-full hover:scale-110 transition-transform duration-300">
+          <ThemeToggle />
+        </div>
+      </div>
+
+      {/* Left Column - Added pt-2 so its baseline aligns with the padded button */}
+      <div className="text-sm font-medium uppercase tracking-widest text-[#999D9E] shrink-0 pt-2">
+        About me
+      </div>
+      
+      <div className="flex-1 mt-4 md:mt-0">
         
+        {/* The Specializing text block */}
         <motion.div 
           initial="hidden" 
           whileInView="visible" 
-          viewport={{ once: true, amount: 0.1 }} 
+          viewport={{ once: false, amount: 0.1 }} 
           variants={textStagger}
           className="text-3xl md:text-5xl font-medium leading-tight tracking-tight mb-16"
         >
@@ -67,10 +86,11 @@ export default function About() {
           </div>
         </motion.div>
         
+        {/* Core Values Grid */}
         <motion.div 
           initial="hidden" 
           whileInView="visible" 
-          viewport={{ once: true, amount: 0.1 }} 
+          viewport={{ once: false, amount: 0.1 }} 
           variants={staggerContainer}
           className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-16 border-t border-black/10 dark:border-white/10"
         >
