@@ -36,7 +36,7 @@ const AbstractContributionGraph = () => {
   };
 
   return (
-    <div className="mt-12 flex gap-1.25 items-center justify-start overflow-x-auto pb-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+    <div className="mt-12 flex gap-1.25 items-center justify-start overflow-x-auto pb-4 max-w-full [-ms-overflow-style:none] scrollbar-none [&::-webkit-scrollbar]:hidden">
       {Array.from({ length: cols }).map((_, colIndex) => (
         <div key={colIndex} className="flex flex-col gap-1.25 items-center w-2.5">
           {Array.from({ length: rows }).map((_, rowIndex) => {
@@ -81,14 +81,14 @@ export default function JourneyGallery() {
 
   return (
     <>
-      <section className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] border-y border-black/10 dark:border-white/10 max-w-350 mx-auto">
+      <section className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] border-y border-black/10 dark:border-white/10 max-w-7xl mx-auto">
         
         {/* Timeline */}
         <div className="p-8 md:p-16 border-b lg:border-b-0 lg:border-r border-black/10 dark:border-white/10">
           <h2 className="text-4xl md:text-5xl font-medium tracking-tighter mb-20">Journey.</h2>
           <div className="space-y-0 border-l border-black/10 dark:border-white/10 ml-2">
             {journey.map((item, i) => (
-              <motion.div key={i} initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.1 }} variants={revealUp} className="relative pl-10 pb-16 last:pb-0 group">
+              <motion.div key={i} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={revealUp} className="relative pl-10 pb-16 last:pb-0 group">
                 <div className="absolute -left-1.25 top-2 w-2.5 h-2.5 bg-black dark:bg-white group-hover:scale-150 transition-transform duration-300 rounded-full" />
                 <div className="flex flex-col md:flex-row md:items-end md:justify-between border-b border-black/5 dark:border-white/5 pb-6">
                   <div>
@@ -111,7 +111,7 @@ export default function JourneyGallery() {
           <motion.div 
             initial="hidden" 
             whileInView="visible" 
-            viewport={{ once: false, amount: 0.1 }} 
+            viewport={{ once: true, amount: 0.1 }} 
             variants={revealUp} 
             className="group relative flex flex-col p-8 md:p-10 border border-black/10 dark:border-white/10 rounded-2xl hover:bg-black/2 dark:hover:bg-white/2 transition-colors duration-500 overflow-hidden"
           >
@@ -151,7 +151,7 @@ export default function JourneyGallery() {
 
       {/* Gallery */}
       <section id="gallery" className="py-24 px-6 md:px-12 bg-[#F4F4F4] dark:bg-[#111111]">
-        <div className="max-w-350 mx-auto">
+        <div className="max-w-7xl mx-auto">
           <div className="flex justify-between items-center mb-16">
              <h2 className="text-3xl md:text-5xl font-medium tracking-tight">Archive Gallery</h2>
              {!showAllGallery && (
@@ -165,7 +165,7 @@ export default function JourneyGallery() {
             {displayedGallery.map((src, i) => (
               <motion.div 
                 key={i} 
-                initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.1 }}
+                initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }}
                 variants={{ hidden: { opacity: 0, y: 100 }, visible: { opacity: 1, y: 0, transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } } }}
                 onClick={() => setSelectedImage(src)} 
                 className={`w-full aspect-4/3 relative cursor-pointer overflow-hidden rounded-sm ${i % 2 !== 0 ? 'md:mt-24' : ''}`}
