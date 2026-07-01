@@ -34,7 +34,7 @@ export default function Certification() {
       <motion.div 
         initial="hidden" 
         whileInView="visible" 
-        viewport={{ once: true, amount: 0.1 }} 
+        viewport={{ once: false, amount: 0.1 }} 
         variants={staggerContainer}
         className="flex flex-col border-t border-black/10 dark:border-white/10"
       >
@@ -60,7 +60,7 @@ export default function Certification() {
       </motion.div>
 
       <motion.div 
-        initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={slideUpFade}
+        initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.1 }} variants={slideUpFade}
         className="flex justify-center mt-24"
       >
          <Link href="/certificate" className="px-8 py-4 rounded-full border border-black/20 dark:border-white/20 text-sm font-medium hover:bg-[#1C1D20] hover:text-white dark:hover:bg-white dark:hover:text-[#1C1D20] transition-colors duration-300">
