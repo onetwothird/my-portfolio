@@ -60,7 +60,7 @@ export default function Home() {
               {/* TOP ANCHOR: Minimalist metadata to frame the screen */}
               <div className="w-full flex justify-between text-[#999D9E] text-[10px] sm:text-xs uppercase tracking-widest font-mono">
                 <span className="animate-pulse">Establishing Connection...</span>
-                <span>[ Classified Archive ]</span>
+                <span>[ @Onetwothird ]</span>
               </div>
 
               {/* CENTER: The Cinematic Foreshadowing Sequence */}
