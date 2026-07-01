@@ -50,7 +50,7 @@ export default function Home() {
             // The border radius on exit creates a high-end "curtain pulling up" effect
             exit={{ y: "-100%", borderBottomLeftRadius: "30%", borderBottomRightRadius: "30%" }} 
             transition={{ duration: 0.9, ease: [0.76, 0, 0.24, 1] }} 
-            className="fixed inset-0 z-[100000] bg-[#1C1D20] text-white flex flex-col justify-between p-6 md:p-12 overflow-hidden"
+            className="fixed inset-0 z-100000 bg-[#1C1D20] text-white flex flex-col justify-between p-6 md:p-12 overflow-hidden"
           >
             {/* TOP LOGS: Dynamic Terminal Boot Sequence */}
             <div className="flex justify-between items-start font-mono text-xs md:text-sm text-[#999D9E]">
@@ -94,7 +94,7 @@ export default function Home() {
               </div>
               
               {/* Percentage Tracker */}
-              <div className="font-mono text-4xl md:text-6xl tracking-tighter mb-3 md:mb-5 w-[120px] text-right">
+              <div className="font-mono text-4xl md:text-6xl tracking-tighter mb-3 md:mb-5 w-30 text-right">
                 {progress}%
               </div>
             </div>
