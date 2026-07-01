@@ -60,7 +60,7 @@ export default function Projects() {
     <div className="min-h-screen bg-[#F4F4F4] dark:bg-[#111111] text-[#1C1D20] dark:text-[#ededed] font-sans selection:bg-[#8B5CF6] selection:text-white">
       
       {/* Header Section */}
-      <section className="pt-32 pb-16 px-6 md:px-12 relative max-w-350 mx-auto">
+      <section className="pt-32 pb-16 px-6 md:px-12 relative max-w-7xl mx-auto">
         <motion.div initial="hidden" animate="visible" variants={stagger}>
           <Link 
             href="/" 
@@ -81,11 +81,11 @@ export default function Projects() {
       </section>
 
       {/* List Showcase - Matching TechStack & Works UI */}
-      <section className="max-w-350 mx-auto px-6 md:px-12 py-12 md:py-24">
+      <section className="max-w-7xl mx-auto px-6 md:px-12 py-12 md:py-24">
         <motion.div 
           initial="hidden" 
           whileInView="visible" 
-          viewport={{ once: false, amount: 0.1 }} 
+          viewport={{ once: true, amount: 0.1 }} 
           variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
           className="flex flex-col border-t border-black/10 dark:border-white/10"
         >
