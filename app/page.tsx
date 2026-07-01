@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Lenis from "lenis";
 
-// Components
 import Cursor from "./src/components/Cursor";
 import Navigation from "./src/components/Navigation";
 import Hero from "./src/sections/Hero";
@@ -19,7 +18,6 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [progress, setProgress] = useState(0);
 
-  // Lenis Smooth Scroll
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.5,
@@ -38,7 +36,6 @@ export default function Home() {
     };
   }, []);
 
-  // Preloader Progress
   useEffect(() => {
     if (progress < 100) {
       const timer = setTimeout(() => {
@@ -56,7 +53,7 @@ export default function Home() {
   }, [progress]);
 
   return (
-    <div className="min-h-screen bg-[#F4F4F4] dark:bg-[#111111] text-[#1C1D20] dark:text-[#ededed] font-sans selection:bg-[#8B5CF6] selection:text-white cursor-auto md:cursor-none overflow-x-hidden">
+    <div className="min-h-screen bg-[#F4F4F4] dark:bg-[#111111] text-[#1C1D20] dark:text-[#ededed] font-sans selection:bg-[#8B5CF6] selection:text-white cursor-auto md:cursor-none">
       <style
         dangerouslySetInnerHTML={{
           __html: `
@@ -68,7 +65,6 @@ export default function Home() {
 
       <Cursor />
 
-      {/* PRELOADER */}
       <AnimatePresence>
         {loading && (
           <motion.div
