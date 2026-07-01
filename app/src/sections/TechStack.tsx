@@ -25,18 +25,18 @@ export default function TechStack() {
   ];
 
   return (
-    <section id="techstack" className="py-24 max-w-350 mx-auto px-6 md:px-12 border-t border-black/10 dark:border-white/10">
+    <section id="techstack" className="py-24 max-w-7xl mx-auto px-6 md:px-12 border-t border-black/10 dark:border-white/10">
       
       {/* Top Grid for Content */}
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-16">
-        <motion.div initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.1 }} variants={revealUp}>
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={revealUp}>
           <h2 className="text-4xl md:text-6xl font-medium tracking-tighter">Techstack.</h2>
           <p className="font-mono text-xs text-[#999D9E] mt-4">私の技術スタック</p>
         </motion.div>
         
         <div className="flex flex-col gap-12">
           {techStack.map((stack, idx) => (
-            <motion.div key={idx} initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.1 }} variants={revealUp} className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-4 md:gap-12 items-start border-b md:border-none border-black/5 dark:border-white/5 pb-8 md:pb-0 last:border-none last:pb-0">
+            <motion.div key={idx} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={revealUp} className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-4 md:gap-12 items-start border-b md:border-none border-black/5 dark:border-white/5 pb-8 md:pb-0 last:border-none last:pb-0">
               <h3 className="text-sm font-bold uppercase tracking-widest pt-2 text-[#999D9E]">{stack.title}</h3>
               <div className="flex flex-wrap gap-2">
                 {stack.items.map(t => (
@@ -50,12 +50,10 @@ export default function TechStack() {
         </div>
       </div>
 
-      {/* Matching Button Layout from Works.tsx */}
       <motion.div 
-        initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.1 }} variants={slideUpFade}
+        initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={slideUpFade}
         className="flex justify-center mt-24"
       >
-         {/* Note: Update href="/techstack" if your routing path is different */}
          <Link href="/tech-stack" className="px-8 py-4 rounded-full border border-black/20 dark:border-white/20 text-sm font-medium hover:bg-[#1C1D20] hover:text-white dark:hover:bg-white dark:hover:text-[#1C1D20] transition-colors duration-300">
            More tech stack
          </Link>
