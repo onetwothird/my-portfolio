@@ -46,7 +46,7 @@ const AbstractContributionGraph = () => {
                 key={rowIndex}
                 initial={{ scale: 0, opacity: 0 }}
                 whileInView={{ scale: 1, opacity: 1 }}
-                viewport={{ once: true, amount: 0.1 }}
+                viewport={{ once: false, amount: 0.1 }}
                 transition={{ 
                   delay: (colIndex * 0.015) + (rowIndex * 0.01), 
                   duration: 0.3,
@@ -88,7 +88,7 @@ export default function JourneyGallery() {
           <h2 className="text-4xl md:text-5xl font-medium tracking-tighter mb-20">Journey.</h2>
           <div className="space-y-0 border-l border-black/10 dark:border-white/10 ml-2">
             {journey.map((item, i) => (
-              <motion.div key={i} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={revealUp} className="relative pl-10 pb-16 last:pb-0 group">
+              <motion.div key={i} initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.1 }} variants={revealUp} className="relative pl-10 pb-16 last:pb-0 group">
                 <div className="absolute -left-1.25 top-2 w-2.5 h-2.5 bg-black dark:bg-white group-hover:scale-150 transition-transform duration-300 rounded-full" />
                 <div className="flex flex-col md:flex-row md:items-end md:justify-between border-b border-black/5 dark:border-white/5 pb-6">
                   <div>
@@ -111,7 +111,7 @@ export default function JourneyGallery() {
           <motion.div 
             initial="hidden" 
             whileInView="visible" 
-            viewport={{ once: true, amount: 0.1 }} 
+            viewport={{ once: false, amount: 0.1 }} 
             variants={revealUp} 
             className="group relative flex flex-col p-8 md:p-10 border border-black/10 dark:border-white/10 rounded-2xl hover:bg-black/2 dark:hover:bg-white/2 transition-colors duration-500 overflow-hidden"
           >
@@ -165,7 +165,7 @@ export default function JourneyGallery() {
             {displayedGallery.map((src, i) => (
               <motion.div 
                 key={i} 
-                initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }}
+                initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.1 }}
                 variants={{ hidden: { opacity: 0, y: 100 }, visible: { opacity: 1, y: 0, transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } } }}
                 onClick={() => setSelectedImage(src)} 
                 className={`w-full aspect-4/3 relative cursor-pointer overflow-hidden rounded-sm ${i % 2 !== 0 ? 'md:mt-24' : ''}`}
