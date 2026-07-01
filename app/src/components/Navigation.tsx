@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
-import { ThemeToggle } from './ThemeToggle';
 import { X } from 'lucide-react';
 import Magnetic from './Magnetic'; 
 
@@ -11,12 +10,13 @@ export default function Navigation() {
   const [hidden, setHidden] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
+  // Updated Scroll Logic: 
+  // It only cares about the absolute scroll position, not the direction.
   useMotionValueEvent(scrollY, "change", (latest) => {
-    const previous = scrollY.getPrevious() || 0;
-    if (latest > 150 && latest > previous) {
-      setHidden(true);
-    } else if (latest < previous || latest < 50) {
-      setHidden(false);
+    if (latest > 100) {
+      setHidden(true); // Hide main nav, show hamburger if scrolled down past 100px
+    } else {
+      setHidden(false); // Show main nav only when at the very top
     }
   });
 
@@ -41,8 +41,6 @@ export default function Navigation() {
     <>
       {/* 
         MAIN DESKTOP HEADER 
-        - Removed `mix-blend-difference` so the text stays exactly the color we set.
-        - Forced `text-white` to ensure it is always white.
       */}
       <motion.header 
         variants={{ visible: { y: 0 }, hidden: { y: "-100%" } }}
@@ -64,8 +62,6 @@ export default function Navigation() {
 
         {/* 
           RIGHT SIDE NAVIGATION 
-          - Simplified to match Dennis's clean text links.
-          - Wrapped in Magnetic for hover effect.
         */}
         <div className="pointer-events-auto flex items-center gap-8 text-xl font-medium">
           <Magnetic>
@@ -83,7 +79,6 @@ export default function Navigation() {
               Certifications
             </a>
           </Magnetic>
-          <ThemeToggle />
         </div>
       </motion.header>
 
