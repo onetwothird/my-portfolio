@@ -11,7 +11,6 @@ const slideUpFade: Variants = {
   }
 };
 
-// Controls the fade-up items at the bottom
 const staggerContainer = {
   hidden: { opacity: 0 },
   visible: { 
@@ -20,7 +19,6 @@ const staggerContainer = {
   }
 };
 
-// Controls the masked text without affecting the parent's opacity
 const textStagger = {
   hidden: {},
   visible: { 
@@ -36,15 +34,14 @@ export default function About() {
   ];
 
   return (
-    <section id="about" className="py-32 px-6 md:px-12 max-w-350 mx-auto flex flex-col md:flex-row gap-16 md:gap-32">
+    <section id="about" className="py-32 px-6 md:px-12 max-w-7xl mx-auto flex flex-col md:flex-row gap-16 md:gap-32">
       <div className="text-sm font-medium uppercase tracking-widest text-[#999D9E] shrink-0">About me</div>
       <div className="flex-1">
         
-        {/* Masked Text Reveal - FIXED: Trigger is now on the parent wrapper */}
         <motion.div 
           initial="hidden" 
           whileInView="visible" 
-          viewport={{ once: false, amount: 0.1 }} 
+          viewport={{ once: true, amount: 0.1 }} 
           variants={textStagger}
           className="text-3xl md:text-5xl font-medium leading-tight tracking-tight mb-16"
         >
@@ -70,11 +67,10 @@ export default function About() {
           </div>
         </motion.div>
         
-        {/* Staggered Fade Up Grid */}
         <motion.div 
           initial="hidden" 
           whileInView="visible" 
-          viewport={{ once: false, amount: 0.1 }} 
+          viewport={{ once: true, amount: 0.1 }} 
           variants={staggerContainer}
           className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-16 border-t border-black/10 dark:border-white/10"
         >
