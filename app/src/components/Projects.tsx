@@ -96,7 +96,8 @@ export default function Projects() {
               target={project.projectUrl !== "#" ? "_blank" : "_self"}
               rel="noreferrer"
               variants={slideUpFade}
-              className="group flex flex-col xl:flex-row justify-between items-start xl:items-center py-12 md:py-16 border-b border-black/10 dark:border-white/10 hover:px-6 transition-all duration-500"
+              // Removed xl:items-center and kept items-start so it anchors to the top
+              className="group flex flex-col xl:flex-row justify-between items-start py-12 md:py-16 border-b border-black/10 dark:border-white/10 hover:px-6 transition-all duration-500"
             >
               {/* Left Side: Title & Description */}
               <div className="flex flex-col gap-3 max-w-2xl mb-8 xl:mb-0 pr-8">
@@ -110,7 +111,8 @@ export default function Projects() {
               </div>
               
               {/* Right Side: Category & Year */}
-              <div className="flex flex-row items-center gap-4 xl:gap-8 shrink-0">
+              {/* Added xl:mt-4 to visually align the center of the pill with the middle of the large title text */}
+              <div className="flex flex-row items-center gap-4 xl:gap-8 shrink-0 xl:mt-4">
                 <span className="px-5 py-2.5 border border-black/20 dark:border-white/20 rounded-full text-xs font-bold font-mono uppercase bg-transparent text-[#1C1D20] dark:text-[#ededed] group-hover:bg-[#1C1D20] group-hover:text-white dark:group-hover:bg-white dark:group-hover:text-[#1C1D20] transition-colors duration-300">
                   {project.category}
                 </span>
