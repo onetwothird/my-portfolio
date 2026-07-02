@@ -93,7 +93,7 @@ export default function Chatbot() {
                 <div className="flex-1 overflow-y-auto p-4 space-y-4 text-sm font-medium">
                   {messages.length === 0 && (
                     <div className="text-center text-[#999D9E] mt-10">
-                      <p>Hi! I&apos;m Thirdy&apos;s AI assistant.</p>
+                      <p>Hi! I&apos;m Angelito&apos;s AI assistant.</p>
                       <p className="mt-2 text-xs">Ask me about his tech stack, Seelai, or other projects.</p>
                     </div>
                   )}
