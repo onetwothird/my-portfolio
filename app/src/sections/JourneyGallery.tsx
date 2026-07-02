@@ -139,7 +139,7 @@ export default function JourneyGallery() {
 
              {/* Big Typography Stats & Graph */}
              <div className="flex flex-col border-t border-black/10 dark:border-white/10 pt-6">
-                <span className="text-5xl md:text-6xl font-medium tracking-tighter mb-1">1,164</span>
+                <span className="text-5xl md:text-6xl font-medium tracking-tighter mb-1">1,268+</span>
                 <span className="text-sm font-medium text-[#999D9E]">Contributions in the last year</span>
                 
                 {/* Simulated Data Graph */}
