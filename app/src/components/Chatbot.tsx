@@ -5,36 +5,32 @@ import { useChat } from "@ai-sdk/react";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 import { MessageSquare, X, Send } from "lucide-react";
 import Image from "next/image"; 
+import Magnetic from "./Magnetic";
 
 export default function Chatbot() {
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState("");
-  const [showChatbot, setShowChatbot] = useState(false); // <-- State to control visibility
+  const [showChatbot, setShowChatbot] = useState(false);
 
   const { messages, sendMessage, status } = useChat();
   const isLoading = status === "submitted" || status === "streaming";
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  // --- 1. SCROLL DETECTION LOGIC ---
   const { scrollY } = useScroll();
 
   useMotionValueEvent(scrollY, "change", (latest) => {
-    // Check if window is defined (to prevent SSR errors)
     if (typeof window !== "undefined") {
-      // Get the viewport height (approximate height of the Hero section)
       const viewportHeight = window.innerHeight;
       
-      // If the user scrolls past 70% of the Hero section, show the chatbot
       if (latest > viewportHeight * 0.7) {
         setShowChatbot(true);
       } else {
         setShowChatbot(false);
-        setIsOpen(false); // Automatically close the chat window if they scroll back to Hero
+        setIsOpen(false); 
       }
     }
   });
-  // ---------------------------------
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -57,7 +53,6 @@ export default function Chatbot() {
   };
 
   return (
-    // --- 2. WRAP THE ENTIRE COMPONENT IN ANIMATEPRESENCE ---
     <AnimatePresence>
       {showChatbot && (
         <motion.div 
@@ -95,7 +90,6 @@ export default function Chatbot() {
                   </button>
                 </div>
 
-                {/* Chat Area */}
                 <div className="flex-1 overflow-y-auto p-4 space-y-4 text-sm font-medium">
                   {messages.length === 0 && (
                     <div className="text-center text-[#999D9E] mt-10">
@@ -139,7 +133,6 @@ export default function Chatbot() {
                   <div ref={messagesEndRef} />
                 </div>
 
-                {/* Input Form */}
                 <form onSubmit={handleSubmit} className="p-4 border-t border-black/10 dark:border-white/10 bg-[#F4F4F4] dark:bg-[#1C1D20]">
                   <div className="relative flex items-center">
                     <input
@@ -161,15 +154,16 @@ export default function Chatbot() {
             )}
           </AnimatePresence>
 
-          {/* Floating Toggle Button */}
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => setIsOpen(!isOpen)}
-            className="w-14 h-14 bg-[#1C1D20] dark:bg-white text-white dark:text-[#1C1D20] rounded-full flex items-center justify-center shadow-xl hover:shadow-[#8B5CF6]/20 transition-all border border-transparent hover:border-[#8B5CF6]"
-          >
-            {isOpen ? <X size={24} /> : <MessageSquare size={24} />}
-          </motion.button>
+          <Magnetic>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => setIsOpen(!isOpen)}
+              className="w-14 h-14 bg-[#1C1D20] dark:bg-white text-white dark:text-[#1C1D20] rounded-full flex items-center justify-center shadow-xl transition-all"
+            >
+              {isOpen ? <X size={24} /> : <MessageSquare size={24} />}
+            </motion.button>
+          </Magnetic>
         </motion.div>
       )}
     </AnimatePresence>
