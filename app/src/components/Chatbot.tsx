@@ -53,7 +53,7 @@ export default function Chatbot() {
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#8B5CF6] opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#8B5CF6]"></span>
                 </span>
-                <h3 className="text-sm font-bold font-mono tracking-widest uppercase text-[#1C1D20] dark:text-[#ededed] mt-[2px]">
+                <h3 className="text-sm font-bold font-mono tracking-widest uppercase text-[#1C1D20] dark:text-[#ededed] mt-0.5">
                   Ask about Angelito!
                 </h3>
               </div>
