@@ -31,6 +31,13 @@ const fadeUp: Variants = {
   }
 };
 
+const socials = [
+  { name: "GitHub", href: "https://github.com/onetwothird" },
+  { name: "LinkedIn", href: "https://linkedin.com/in/angelito-decatoria" },
+  { name: "Instagram", href: "https://instagram.com/cntwxrms" },
+  { name: "Facebook", href: "https://facebook.com/angelo.decatoria.5" },
+];
+
 export default function Footer() {
   const [time, setTime] = useState("");
 
@@ -123,10 +130,18 @@ export default function Footer() {
 
           <div className="flex flex-col md:items-end gap-2">
              <span className="opacity-50">Socials</span>
-             <div className="flex gap-6 text-white">
-               <a href="https://github.com/onetwothird" className="hover:text-[#8B5CF6] transition-colors">GitHub</a>
-               <a href="https://www.linkedin.com/in/angelito-decatoria/" className="hover:text-[#8B5CF6] transition-colors">LinkedIn</a>
-               <a href="https://seelai-docs.vercel.app" className="hover:text-[#8B5CF6] transition-colors">Seelai</a>
+             <div className="flex gap-4 md:gap-6 flex-wrap text-white">
+                {socials.map((social, idx) => (
+                  <a 
+                    key={idx} 
+                    href={social.href} 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-[#8B5CF6] transition-colors"
+                  >
+                    {social.name}
+                  </a>
+                ))}
              </div>
           </div>
         </motion.div>
