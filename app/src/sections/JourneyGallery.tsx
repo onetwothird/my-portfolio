@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence, Variants } from 'framer-motion';
 import Image from "next/image";
+import Link from "next/link";
 import { X } from 'lucide-react';
 import Magnetic from '../components/Magnetic';
 
@@ -64,7 +65,6 @@ const AbstractContributionGraph = () => {
 
 export default function JourneyGallery() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
-  const [showAllGallery, setShowAllGallery] = useState(false);
 
   const journey = [
     { year: "2026", title: "Seelai", desc: "Thesis Project | Full Stack" },
@@ -77,7 +77,6 @@ export default function JourneyGallery() {
     "/img/image1.jpg", "/img/image2.jpg", "/img/image3.jpg", "/img/image4.jpg",
     "/img/image5.jpg", "/img/image6.jpg", "/img/image7.jpg", "/img/image8.jpg"
   ];
-  const displayedGallery = showAllGallery ? galleryImages : galleryImages.slice(0, 4);
 
   return (
     <>
@@ -154,15 +153,16 @@ export default function JourneyGallery() {
         <div className="max-w-7xl mx-auto">
           <div className="flex justify-between items-center mb-16">
              <h2 className="text-3xl md:text-5xl font-medium tracking-tight">Archive Gallery</h2>
-             {!showAllGallery && (
-               <button onClick={() => setShowAllGallery(true)} className="px-6 py-3 rounded-full border border-black/20 dark:border-white/20 text-sm font-medium hover:bg-[#1C1D20] hover:text-white dark:hover:bg-white dark:hover:text-[#1C1D20] transition-all duration-300">
-                 More images <span className="opacity-50 text-xs ml-1">{galleryImages.length}</span>
-               </button>
-             )}
+             <Link 
+               href="/gallery" 
+               className="px-6 py-3 rounded-full border border-black/20 dark:border-white/20 text-sm font-medium hover:bg-[#1C1D20] hover:text-white dark:hover:bg-white dark:hover:text-[#1C1D20] transition-all duration-300"
+             >
+               More images <span className="opacity-50 text-xs ml-1">{galleryImages.length}</span>
+             </Link>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start">
-            {displayedGallery.map((src, i) => (
+            {galleryImages.slice(0, 4).map((src, i) => (
               <motion.div 
                 key={i} 
                 initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.1 }}
@@ -170,18 +170,19 @@ export default function JourneyGallery() {
                 onClick={() => setSelectedImage(src)} 
                 className={`w-full aspect-4/3 relative cursor-pointer overflow-hidden rounded-sm ${i % 2 !== 0 ? 'md:mt-24' : ''}`}
               >
-                <Image src={src} alt="Gallery" fill className="object-cover hover:scale-105 transition-transform duration-1000 ease-out" />
+                <Image src={src} alt={`Gallery Image ${i + 1}`} fill className="object-cover hover:scale-105 transition-transform duration-1000 ease-out" />
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
+      {/* Lightbox Modal */}
       <AnimatePresence>
         {selectedImage && (
           <motion.div 
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-200000 flex items-center justify-center bg-black/95 backdrop-blur-sm p-6"
+            className="fixed inset-0 z-[200000] flex items-center justify-center bg-black/95 backdrop-blur-sm p-6"
             onClick={() => setSelectedImage(null)}
           >
             <button className="absolute top-8 right-8 text-white hover:text-gray-400 transition-colors"><X size={36} /></button>
