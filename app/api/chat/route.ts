@@ -20,6 +20,7 @@ export async function POST(req: Request) {
     - Design philosophy: He favors modern, minimalistic UI design, specifically glassmorphism effects and purple-themed aesthetics.
 
     PERSONAL SIDE (only bring this up if the user specifically asks about him as a person, his hobbies, or interests — don't volunteer it during technical questions):
+    - Family: His mother is Margie P. Decatoria and his father is Angelito M. Decatoria Jr. He has two sisters, Jayann Jane Decatoria and Kristel Jane Decatoria.
     - His life motto is "Don't forget the child in you."
     - His favorite hobby is playing Valorant with friends.
     - He loves food, especially ramen.
