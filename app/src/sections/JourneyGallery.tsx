@@ -182,7 +182,7 @@ export default function JourneyGallery() {
         {selectedImage && (
           <motion.div 
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-[200000] flex items-center justify-center bg-black/95 backdrop-blur-sm p-6"
+            className="fixed inset-0 z-200000 flex items-center justify-center bg-black/95 backdrop-blur-sm p-6"
             onClick={() => setSelectedImage(null)}
           >
             <button className="absolute top-8 right-8 text-white hover:text-gray-400 transition-colors"><X size={36} /></button>
