@@ -48,8 +48,8 @@ export default function Cursor() {
         height: cursorSize,
       }}
       animate={{
-        backgroundColor: isHovering ? "transparent" : "#ffffff", // White with difference = Black on light / White on dark
-        border: isHovering ? "1px solid #ffffff" : "0px solid transparent",
+        backgroundColor: isHovering ? "rgba(255, 255, 255, 0)" : "#ffffff", 
+        border: isHovering ? "1px solid #ffffff" : "0px solid rgba(255, 255, 255, 0)",
       }}
       transition={{ type: "tween", ease: "backOut", duration: 0.2 }}
     />
