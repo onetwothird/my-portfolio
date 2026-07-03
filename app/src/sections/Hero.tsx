@@ -33,7 +33,6 @@ export default function Hero() {
       </motion.div>
 
       {/* INFINITE MARQUEE BACKGROUND TEXT */}
-      {/* FIX: Made the 'top' percentage responsive so it shifts higher on mobile (65%) to avoid the bottom text, and goes back to 85% on large screens */}
       <div className="absolute top-[65%] lg:top-[85%] -translate-y-1/2 left-0 w-full overflow-hidden flex whitespace-nowrap z-10 pointer-events-none">
         <motion.div 
           className="flex whitespace-nowrap"
@@ -57,21 +56,19 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* DESKTOP: MIDDLE-LEFT BADGE */}
+      {/* RESPONSIVE: MIDDLE-LEFT BADGE */}
       <motion.div 
         initial="hidden" 
         whileInView="visible" 
         viewport={{ once: false, amount: 0.1 }} 
         variants={revealUp} 
-        className="absolute left-6 xl:left-12 top-1/2 -translate-y-1/2 z-30 hidden lg:block"
+        className="absolute left-6 xl:left-12 top-[15%] md:top-[25%] lg:top-1/2 -translate-y-1/2 z-30 w-[80%] max-w-[260px] md:max-w-[320px]"
       >
-        <div className="flex items-center gap-4 bg-[#1C1D20] text-white px-5 py-3 rounded-full shadow-lg">
-          <div className="flex flex-col text-sm font-medium leading-tight">
-            <span>Located</span>
-            <span>in Naic, Cavite (PH)</span>
-          </div>
-          <div className="bg-white/20 p-2 rounded-full">
-            <Globe size={18} />
+        <div className="flex flex-col items-start gap-4">
+          <div className="bg-white p-4 md:p-5 w-full shadow-lg">
+            <h2 className="text-black font-extrabold text-[0.95rem] md:text-[1.2rem] uppercase leading-[1.15] md:leading-[1.1] tracking-tighter">
+              DESIGNING STRUCTURED INTERFACES BUILT FOR SCALE AND REAL-WORLD IMPACT.
+            </h2>
           </div>
         </div>
       </motion.div>
@@ -82,14 +79,18 @@ export default function Hero() {
         whileInView="visible" 
         viewport={{ once: false, amount: 0.1 }} 
         variants={revealUp} 
-        className="absolute right-6 xl:right-40 top-[45%] -translate-y-1/2 hidden lg:flex items-center gap-4 text-2xl md:text-3xl font-medium text-white z-30"
+        className="absolute right-6 xl:right-40 top-[45%] -translate-y-1/2 hidden lg:flex items-center gap-4 text-white z-30"
       >
-        <p className="leading-[1.2] drop-shadow-sm font-light tracking-wide whitespace-nowrap">
-          Full Stack Developer
-        </p>
-        <div className="w-fit">
+        <div className="leading-[1.2] drop-shadow-sm font-light tracking-wide text-right flex flex-col items-end">
+          <div className="flex items-center gap-3">
+            <span className="text-2xl md:text-3xl font-medium">Full Stack Developer</span>
+          </div>
+          <span className="text-lg md:text-xl opacity-80">& CS Student</span>
+        </div>
+        <div className="w-fit mb-6">
           <Magnetic>
-             <ArrowDownLeft size={32} strokeWidth={1.5} className="opacity-70 hover:opacity-100 transition-colors cursor-pointer drop-shadow-sm rotate-45" />
+             {/* Using ArrowDownLeft and rotating it slightly to match the reference arrow pointing left */}
+             <ArrowDownLeft size={28} strokeWidth={1.5} className="opacity-70 hover:opacity-100 transition-colors cursor-pointer drop-shadow-sm rotate-45" />
           </Magnetic>
         </div>
       </motion.div>
@@ -98,10 +99,9 @@ export default function Hero() {
       <div className="lg:hidden absolute bottom-8 left-6 right-6 flex justify-between items-end z-30 text-white drop-shadow-md">
         <div className="flex flex-col gap-6">
           <ArrowDownRight size={24} strokeWidth={1.5} className="opacity-90" />
-          {/* FIX: Tightened the line height to match Dennis's typography stack */}
           <div className="text-xl font-medium leading-[1.1] tracking-tight">
-            <p>Freelance</p>
             <p>Full Stack Developer</p>
+            <p>& CS Student</p>
           </div>
         </div>
         <div className="pb-1">
