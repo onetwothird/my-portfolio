@@ -15,11 +15,15 @@ export default function Hero() {
     <section className="min-h-dvh w-full flex flex-col justify-center px-6 md:px-12 relative overflow-hidden bg-[#ababab]">
       
       {/* PORTRAIT MULTIMEDIA CONTAINER */}
+      {/* Width is kept generously oversized (200vw) at EVERY breakpoint so it is
+          never the limiting factor for object-contain. Height (95vh) is the only
+          thing driving the image's size now, so it stops shrinking as the
+          viewport gets narrower. Overflow is clipped by the section's overflow-hidden. */}
       <motion.div 
         initial={{ opacity: 0, y: 100 }} 
         animate={{ opacity: 1, y: 0 }} 
         transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[200vw] md:w-full h-[95vh] pointer-events-none z-0"
+        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[200vw] h-[95vh] pointer-events-none z-0"
       >
         <Image 
           src="/img/cover1.png" 
@@ -57,16 +61,21 @@ export default function Hero() {
       </div>
 
       {/* RESPONSIVE: MIDDLE-LEFT BADGE */}
+      {/* Pinned near the top (clear of the portrait's head) with a top offset that
+          scales gently, then switches to a true vertical center only at lg+ where
+          there's enough horizontal room beside the portrait for it to match the
+          reference desktop layout. Width and font use clamp() so they scale
+          fluidly instead of jumping between hard breakpoints. */}
       <motion.div 
         initial="hidden" 
         whileInView="visible" 
         viewport={{ once: false, amount: 0.1 }} 
         variants={revealUp} 
-        className="absolute left-6 xl:left-12 top-[15%] md:top-[25%] lg:top-1/2 -translate-y-1/2 z-30 w-[80%] max-w-[260px] md:max-w-[320px]"
+        className="absolute left-4 sm:left-6 xl:left-12 top-20 sm:top-24 md:top-28 lg:top-1/2 lg:-translate-y-1/2 z-30 w-[clamp(160px,45vw,320px)]"
       >
         <div className="flex flex-col items-start gap-4">
-          <div className="bg-white p-4 md:p-5 w-full shadow-lg">
-            <h2 className="text-black font-extrabold text-[0.95rem] md:text-[1.2rem] uppercase leading-[1.15] md:leading-[1.1] tracking-tighter">
+          <div className="bg-white p-3 sm:p-4 md:p-5 w-full shadow-lg">
+            <h2 className="text-black font-extrabold text-[clamp(0.7rem,2.5vw,1.2rem)] uppercase leading-[1.2] tracking-tighter">
               DESIGNING STRUCTURED INTERFACES BUILT FOR SCALE AND REAL-WORLD IMPACT.
             </h2>
           </div>
