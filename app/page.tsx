@@ -184,7 +184,7 @@ export default function Home() {
                     WebkitTextStroke: "1px rgba(255,255,255,0.15)",
                   }}
                 >
-                  Decatoria
+                  DIRECTING TO
                 </span>
 
                 <motion.span
@@ -192,7 +192,7 @@ export default function Home() {
                   animate={{ width: `${progress}%` }}
                   transition={{ ease: "linear", duration: 0.1 }}
                 >
-                  Decatoria
+                  DIRECTING TO
                 </motion.span>
               </div>
 
