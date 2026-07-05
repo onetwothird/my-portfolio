@@ -51,7 +51,7 @@ export default function Chatbot() {
     sendMessage({ text: input });
     setInput("");
   };
-
+  
   return (
     <AnimatePresence>
       {showChatbot && (
