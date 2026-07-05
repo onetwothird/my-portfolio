@@ -1,10 +1,9 @@
 "use client";
 
-import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowLeft, ArrowUpRight } from 'lucide-react';
-import { motion, Variants, useSpring, useMotionValue } from 'framer-motion';
+import { ArrowLeft } from 'lucide-react';
+import { motion, Variants } from 'framer-motion';
 
 const slideUpFade: Variants = {
   hidden: { opacity: 0, y: 80 },
@@ -20,29 +19,6 @@ const stagger = {
 };
 
 export default function Projects() {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-
-  // Smooth mouse tracking values
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-
-  const springConfig = { damping: 25, stiffness: 200, mass: 0.5 };
-  const cursorX = useSpring(mouseX, springConfig);
-  const cursorY = useSpring(mouseY, springConfig);
-
-  // Track cursor position globally
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      mouseX.set(e.clientX);
-      mouseY.set(e.clientY);
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-    };
-  }, [mouseX, mouseY]);
-
   const projects = [
     {
       title: "Seelai AI Assistant",
@@ -87,41 +63,10 @@ export default function Projects() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#F4F4F4] dark:bg-[#111111] text-[#1C1D20] dark:text-[#ededed] font-sans selection:bg-[#8B5CF6] selection:text-white relative">
+    <div className="min-h-screen bg-[#F4F4F4] dark:bg-[#111111] text-[#1C1D20] dark:text-[#ededed] font-sans selection:bg-[#8B5CF6] selection:text-white pb-24">
       
-      {/* Floating Image Cursor (Hidden on mobile) */}
-      <motion.div
-        className="pointer-events-none fixed top-0 left-0 z-50 hidden md:block w-100 h-65 overflow-hidden rounded-xl shadow-2xl bg-black/5 dark:bg-white/5 backdrop-blur-sm"
-        style={{
-          x: cursorX,
-          y: cursorY,
-          translateX: "-50%",
-          translateY: "-50%",
-        }}
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{
-          opacity: hoveredIndex !== null ? 1 : 0,
-          scale: hoveredIndex !== null ? 1 : 0.8,
-        }}
-        transition={{ type: "tween", ease: "backOut", duration: 0.3 }}
-      >
-        {projects.map((project, index) => (
-          <Image
-            key={index}
-            src={project.imageUrl}
-            alt={`${project.title} Preview`}
-            fill
-            sizes="400px"
-            className="object-cover transition-opacity duration-300"
-            style={{ 
-              opacity: hoveredIndex === index ? 1 : 0,
-            }}
-          />
-        ))}
-      </motion.div>
-
       {/* Header Section */}
-      <section className="pt-32 pb-16 px-6 md:px-12 relative max-w-7xl mx-auto z-10">
+      <section className="pt-32 pb-8 px-6 md:px-12 relative max-w-7xl mx-auto">
         <motion.div initial="hidden" animate="visible" variants={stagger}>
           <Link 
             href="/" 
@@ -135,55 +80,71 @@ export default function Projects() {
               Featured Works.
             </motion.h1>
           </div>
-          <motion.p variants={slideUpFade} className="font-mono text-xs text-[#999D9E] font-bold uppercase tracking-widest mt-4">
-            注目のプロジェクト
-          </motion.p>
+          <motion.div variants={slideUpFade} className="flex items-center gap-4 mt-4">
+            <span className="font-mono text-xs text-[#999D9E] font-bold uppercase tracking-widest">
+              注目のプロジェクト
+            </span>
+            <span className="h-px flex-1 bg-black/10 dark:bg-white/10" />
+            <span className="font-mono text-xs text-[#999D9E] font-bold uppercase tracking-widest">
+              {String(projects.length).padStart(2, '0')} Projects
+            </span>
+          </motion.div>
         </motion.div>
       </section>
 
-      {/* List Showcase */}
-      <section className="max-w-7xl mx-auto px-6 md:px-12 py-12 md:py-24">
-        <motion.div 
-          initial="hidden" 
-          whileInView="visible" 
-          viewport={{ once: true, amount: 0.1 }} 
-          variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
-          className="flex flex-col border-t border-black/10 dark:border-white/10"
-        >
-          {projects.map((project, index) => (
+      {/* Grid Showcase */}
+      <section className="px-6 md:px-12 max-w-7xl mx-auto mt-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start">
+          {projects.map((project, i) => (
             <motion.a 
-              key={index}
+              key={i} 
               href={project.projectUrl}
               target={project.projectUrl !== "#" ? "_blank" : "_self"}
               rel="noreferrer"
-              variants={slideUpFade}
-              onMouseEnter={() => setHoveredIndex(index)}
-              onMouseLeave={() => setHoveredIndex(null)}
-              className="group relative flex flex-col xl:flex-row justify-between items-start py-12 md:py-16 border-b border-black/10 dark:border-white/10 hover:px-6 transition-all duration-500 z-10"
+              initial="hidden" 
+              whileInView="visible" 
+              viewport={{ once: true, amount: 0.1 }}
+              variants={{ hidden: { opacity: 0, y: 100 }, visible: { opacity: 1, y: 0, transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } } }}
+              className={`group w-full aspect-4/3 relative cursor-pointer overflow-hidden rounded-sm block ${i % 2 !== 0 ? 'md:mt-24' : ''}`}
             >
-              {/* Left Side: Title & Description */}
-              <div className="flex flex-col gap-3 max-w-2xl mb-8 xl:mb-0 pr-8 pointer-events-none">
-                <h3 className="text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight group-hover:opacity-40 transition-opacity duration-500 flex items-center">
-                  {project.title}
-                  <ArrowUpRight size={36} className="opacity-0 group-hover:opacity-100 transition-all duration-500 -ml-4 group-hover:ml-4 text-[#8B5CF6] hidden md:block" />
-                </h3>
-                <p className="text-[#999D9E] text-sm md:text-base font-medium leading-relaxed">
-                  {project.description}
-                </p>
-              </div>
+              <Image 
+                src={project.imageUrl} 
+                alt={`${project.title} Preview`} 
+                fill 
+                className="object-cover group-hover:scale-105 transition-transform duration-1000 ease-out" 
+              />
+
+              {/* Hover caption overlay */}
+              <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               
-              {/* Right Side: Category & Year */}
-              <div className="flex flex-row items-center gap-4 xl:gap-8 shrink-0 xl:mt-4 pointer-events-none">
-                <span className="px-5 py-2.5 border border-black/20 dark:border-white/20 rounded-full text-xs font-bold font-mono uppercase bg-transparent text-[#1C1D20] dark:text-[#ededed] group-hover:bg-[#1C1D20] group-hover:text-white dark:group-hover:bg-white dark:group-hover:text-[#1C1D20] transition-colors duration-300">
-                  {project.category}
-                </span>
-                <span className="text-sm font-medium opacity-60 font-mono w-12 text-right">
-                  {project.year}
-                </span>
+              <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-8 opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500">
+                <div className="flex justify-between items-end">
+                  <div className="flex flex-col gap-2">
+                    <h3 className="text-white text-2xl md:text-3xl font-medium tracking-tight">
+                      {project.title}
+                    </h3>
+                    <p className="text-white/70 text-sm max-w-sm line-clamp-2">
+                      {project.description}
+                    </p>
+                  </div>
+                  <div className="text-right">
+                    <span className="text-white text-xs font-mono font-bold tracking-widest block mb-1">
+                      {project.year}
+                    </span>
+                    <span className="text-white/70 text-xs font-mono uppercase tracking-widest">
+                      {project.category}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Top Right Arrow */}
+              <div className="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center opacity-0 group-hover:opacity-100 scale-75 group-hover:scale-100 transition-all duration-500">
+                <span className="text-white text-lg leading-none -mt-0.5">↗</span>
               </div>
             </motion.a>
           ))}
-        </motion.div>
+        </div>
       </section>
     </div>
   );
