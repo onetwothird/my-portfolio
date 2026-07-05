@@ -55,13 +55,13 @@ export default function Chatbot() {
   return (
     <AnimatePresence>
       {showChatbot && (
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.8, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.8, y: 20 }}
-          transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-          className="fixed bottom-6 right-6 md:bottom-12 md:right-12 z-50000"
-        >
+    <motion.div 
+      initial={{ opacity: 0, scale: 0.8, y: 20 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.8, y: 20 }}
+      transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+      className="fixed bottom-6 right-6 md:bottom-12 md:right-12 z-100" 
+      >
           <AnimatePresence>
             {isOpen && (
               <motion.div
