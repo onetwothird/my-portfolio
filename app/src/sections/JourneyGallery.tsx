@@ -1,10 +1,10 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence, Variants } from 'framer-motion';
 import Image from "next/image";
 import Link from "next/link";
-import { X } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import Magnetic from '../components/Magnetic';
 
 const revealUp: Variants = {
@@ -64,7 +64,7 @@ const AbstractContributionGraph = () => {
 };
 
 export default function JourneyGallery() {
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [hoveredJourney, setHoveredJourney] = useState<number | null>(null);
 
   const journey = [
@@ -98,6 +98,23 @@ export default function JourneyGallery() {
     "/img/image1.jpg", "/img/image2.jpg", "/img/image3.jpg", "/img/image4.jpg",
     "/img/image5.jpg", "/img/image6.jpg", "/img/image7.jpg", "/img/image8.jpg"
   ];
+  const previewImages = galleryImages.slice(0, 4);
+
+  // Wrapped in useCallback to satisfy ESLint
+  const closeLightbox = useCallback(() => setSelectedIndex(null), []);
+  const showNext = useCallback(() => setSelectedIndex((prev) => (prev === null ? null : (prev + 1) % previewImages.length)), [previewImages.length]);
+  const showPrev = useCallback(() => setSelectedIndex((prev) => (prev === null ? null : (prev - 1 + previewImages.length) % previewImages.length)), [previewImages.length]);
+
+  useEffect(() => {
+    if (selectedIndex === null) return;
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") closeLightbox();
+      if (e.key === "ArrowRight") showNext();
+      if (e.key === "ArrowLeft") showPrev();
+    };
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, [selectedIndex, closeLightbox, showNext, showPrev]); // Added missing dependencies
 
   return (
     <>
@@ -105,7 +122,10 @@ export default function JourneyGallery() {
 
         {/* Timeline */}
         <div className="p-8 md:p-16 border-b lg:border-b-0 lg:border-r border-black/10 dark:border-white/10">
-          <h2 className="text-4xl md:text-5xl font-medium tracking-tighter mb-20">Journey.</h2>
+          <div className="mb-20">
+            <h2 className="text-4xl md:text-5xl font-medium tracking-tighter">Journey.</h2>
+            <p className="font-mono text-xs text-[#999D9E] mt-4">私の歩み</p>
+          </div>
           <div className="space-y-0 border-l border-black/10 dark:border-white/10 ml-2">
             {journey.map((item, i) => (
               <motion.div
@@ -197,7 +217,10 @@ export default function JourneyGallery() {
       <section id="gallery" className="py-24 px-6 md:px-12 bg-[#F4F4F4] dark:bg-[#111111]">
         <div className="max-w-7xl mx-auto">
           <div className="flex justify-between items-center mb-16">
-             <h2 className="text-3xl md:text-5xl font-medium tracking-tight">Archive Gallery</h2>
+             <div>
+               <h2 className="text-3xl md:text-5xl font-medium tracking-tight">Archive Gallery</h2>
+               <p className="font-mono text-xs text-[#999D9E] mt-4">アーカイブギャラリー</p>
+             </div>
              <Link 
                href="/gallery" 
                className="px-6 py-3 rounded-full border border-black/20 dark:border-white/20 text-sm font-medium hover:bg-[#1C1D20] hover:text-white dark:hover:bg-white dark:hover:text-[#1C1D20] transition-all duration-300"
@@ -207,15 +230,20 @@ export default function JourneyGallery() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start">
-            {galleryImages.slice(0, 4).map((src, i) => (
+            {previewImages.map((src, i) => (
               <motion.div 
                 key={i} 
                 initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.1 }}
                 variants={{ hidden: { opacity: 0, y: 100 }, visible: { opacity: 1, y: 0, transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } } }}
-                onClick={() => setSelectedImage(src)} 
-                className={`w-full aspect-4/3 relative cursor-pointer overflow-hidden rounded-sm ${i % 2 !== 0 ? 'md:mt-24' : ''}`}
+                onClick={() => setSelectedIndex(i)} 
+                className={`group w-full aspect-4/3 relative cursor-pointer overflow-hidden rounded-sm ${i % 2 !== 0 ? 'md:mt-24' : ''}`}
               >
-                <Image src={src} alt={`Gallery Image ${i + 1}`} fill className="object-cover hover:scale-105 transition-transform duration-1000 ease-out" />
+                <Image src={src} alt={`Gallery Image ${i + 1}`} fill className="object-cover group-hover:scale-105 transition-transform duration-1000 ease-out" />
+                {/* Fixed Tailwind linear gradient warning below */}
+                <div className="absolute inset-0 bg-linear-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <span className="absolute bottom-4 left-4 text-white text-xs font-mono font-bold tracking-widest opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-500">
+                  {String(i + 1).padStart(2, '0')} / {String(previewImages.length).padStart(2, '0')}
+                </span>
               </motion.div>
             ))}
           </div>
@@ -224,16 +252,41 @@ export default function JourneyGallery() {
 
       {/* Lightbox Modal */}
       <AnimatePresence>
-        {selectedImage && (
+        {selectedIndex !== null && (
           <motion.div 
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }}
             className="fixed inset-0 z-200000 flex items-center justify-center bg-black/95 backdrop-blur-sm p-6"
-            onClick={() => setSelectedImage(null)}
+            onClick={closeLightbox}
           >
-            <button className="absolute top-8 right-8 text-white hover:text-gray-400 transition-colors"><X size={36} /></button>
-            <motion.div initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.95, opacity: 0 }} transition={{ duration: 0.4, ease: "easeOut" }} className="relative w-full max-w-6xl h-[85vh]">
-              <Image src={selectedImage} alt="Fullscreen" fill className="object-contain" quality={100} priority />
+            <button className="absolute top-8 right-8 text-white hover:text-gray-400 transition-colors z-10"><X size={36} /></button>
+
+            <button
+              onClick={(e) => { e.stopPropagation(); showPrev(); }}
+              className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 text-white/70 hover:text-white transition-colors z-10 p-2"
+              aria-label="Previous image"
+            >
+              <ChevronLeft size={32} />
+            </button>
+            <button
+              onClick={(e) => { e.stopPropagation(); showNext(); }}
+              className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 text-white/70 hover:text-white transition-colors z-10 p-2"
+              aria-label="Next image"
+            >
+              <ChevronRight size={32} />
+            </button>
+
+            <motion.div
+              key={selectedIndex}
+              initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.95, opacity: 0 }} transition={{ duration: 0.4, ease: "easeOut" }}
+              className="relative w-full max-w-6xl h-[85vh]"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <Image src={previewImages[selectedIndex]} alt="Fullscreen" fill className="object-contain" quality={100} priority />
             </motion.div>
+
+            <span className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/70 text-xs font-mono font-bold tracking-widest">
+              {String(selectedIndex + 1).padStart(2, '0')} / {String(previewImages.length).padStart(2, '0')}
+            </span>
           </motion.div>
         )}
       </AnimatePresence>
