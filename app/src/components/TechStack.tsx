@@ -38,10 +38,10 @@ export default function TechStack() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#F4F4F4] dark:bg-[#111111] text-[#1C1D20] dark:text-[#ededed] font-sans selection:bg-[#8B5CF6] selection:text-white">
+    <div className="min-h-screen bg-[#F4F4F4] dark:bg-[#111111] text-[#1C1D20] dark:text-[#ededed] font-sans selection:bg-[#8B5CF6] selection:text-white pb-24">
       
       {/* Header Section */}
-      <section className="pt-32 pb-16 px-6 md:px-12 relative max-w-350 mx-auto">
+      <section className="pt-32 pb-8 px-6 md:px-12 relative max-w-7xl mx-auto">
         <motion.div initial="hidden" animate="visible" variants={stagger}>
           <Link 
             href="/" 
@@ -55,14 +55,22 @@ export default function TechStack() {
               Tech Stack.
             </motion.h1>
           </div>
-          <motion.p variants={slideUpFade} className="font-mono text-xs text-[#999D9E] font-bold uppercase tracking-widest mt-4">
-            私の技術スタック
-          </motion.p>
+          
+          {/* Updated Gallery-Style Header Footer */}
+          <motion.div variants={slideUpFade} className="flex items-center gap-4 mt-4">
+            <span className="font-mono text-xs text-[#999D9E] font-bold uppercase tracking-widest shrink-0">
+              私の技術スタック
+            </span>
+            <span className="h-px flex-1 bg-black/10 dark:bg-white/10" />
+            <span className="font-mono text-xs text-[#999D9E] font-bold uppercase tracking-widest shrink-0">
+              {String(categories.length).padStart(2, '0')} Categories
+            </span>
+          </motion.div>
         </motion.div>
       </section>
 
-      {/* Stack List - Borrowed from Works.tsx UI */}
-      <section className="max-w-350 mx-auto px-6 md:px-12 py-12 md:py-24">
+      {/* Stack List - Original UI Maintained */}
+      <section className="max-w-7xl mx-auto px-6 md:px-12 py-12 md:py-24">
         <motion.div 
           initial="hidden" 
           whileInView="visible" 
