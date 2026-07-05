@@ -65,12 +65,33 @@ const AbstractContributionGraph = () => {
 
 export default function JourneyGallery() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [hoveredJourney, setHoveredJourney] = useState<number | null>(null);
 
   const journey = [
-    { year: "2026", title: "Seelai", desc: "Thesis Project | Full Stack" },
-    { year: "2025", title: "ODCI Document Tracker", desc: "Full Stack Developer (OJT)" },
-    { year: "2025", title: "AlgoVerse", desc: "OS Final Project | Full Stack" },
-    { year: "2022", title: "Hello World! 👋🏻", desc: "Wrote my first line of code." }
+    {
+      year: "2026",
+      title: "Seelai",
+      desc: "Thesis Project | Full Stack",
+      detail: "My undergraduate thesis — an AI-powered mobile assistant built with Flutter, TensorFlow Lite, and YOLO that helps visually impaired individuals interpret their surroundings in real time."
+    },
+    {
+      year: "2025",
+      title: "ODCI Document Tracker",
+      desc: "Full Stack Developer (OJT)",
+      detail: "The biggest project from my OJT — a centralized document tracking system built with a 3-person team, with role-based dashboards for Superadmins, Admins, and Users."
+    },
+    {
+      year: "2025",
+      title: "AlgoVerse",
+      desc: "OS Final Project | Full Stack",
+      detail: "My final project for Operating Systems — a web-based simulator that visualizes CPU scheduling algorithms like FCFS, SJF, Priority, SRTF, and Round Robin."
+    },
+    {
+      year: "2022",
+      title: "Hello World! 👋🏻",
+      desc: "Wrote my first line of code.",
+      detail: "The day I wrote my very first line of code — the small start of everything that followed."
+    }
   ];
 
   const galleryImages = [
@@ -81,20 +102,44 @@ export default function JourneyGallery() {
   return (
     <>
       <section className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] border-y border-black/10 dark:border-white/10 max-w-7xl mx-auto">
-        
+
         {/* Timeline */}
         <div className="p-8 md:p-16 border-b lg:border-b-0 lg:border-r border-black/10 dark:border-white/10">
           <h2 className="text-4xl md:text-5xl font-medium tracking-tighter mb-20">Journey.</h2>
           <div className="space-y-0 border-l border-black/10 dark:border-white/10 ml-2">
             {journey.map((item, i) => (
-              <motion.div key={i} initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.1 }} variants={revealUp} className="relative pl-10 pb-16 last:pb-0 group">
+              <motion.div
+                key={i}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: false, amount: 0.1 }}
+                variants={revealUp}
+                onMouseEnter={() => setHoveredJourney(i)}
+                onMouseLeave={() => setHoveredJourney(null)}
+                onClick={() => setHoveredJourney(hoveredJourney === i ? null : i)}
+                className="relative pl-10 pb-16 last:pb-0 group cursor-default"
+              >
                 <div className="absolute -left-1.25 top-2 w-2.5 h-2.5 bg-black dark:bg-white group-hover:scale-150 transition-transform duration-300 rounded-full" />
-                <div className="flex flex-col md:flex-row md:items-end md:justify-between border-b border-black/5 dark:border-white/5 pb-6">
-                  <div>
-                    <span className="text-xs font-bold font-mono text-[#999D9E] block mb-3">{item.year}</span>
-                    <h3 className="text-xl md:text-2xl font-medium tracking-tight">{item.title}</h3>
+                <div className="border-b border-black/5 dark:border-white/5 pb-6 group-hover:px-4 md:group-hover:px-6 transition-all duration-500">
+                  <div className="flex flex-col md:flex-row md:items-end md:justify-between">
+                    <div>
+                      <span className="text-xs font-bold font-mono text-[#999D9E] block mb-3">{item.year}</span>
+                      <h3 className="text-xl md:text-2xl font-medium tracking-tight">{item.title}</h3>
+                    </div>
+                    <p className="text-xs font-medium text-[#999D9E] mt-4 md:mt-0">{item.desc}</p>
                   </div>
-                  <p className="text-xs font-medium text-[#999D9E] mt-4 md:mt-0">{item.desc}</p>
+
+                  {/* Explanation reveal — expands open on hover/tap instead of a floating card */}
+                  <div
+                    className="grid transition-[grid-template-rows] duration-500 ease-out"
+                    style={{ gridTemplateRows: hoveredJourney === i ? "1fr" : "0fr" }}
+                  >
+                    <div className="overflow-hidden">
+                      <p className="text-sm text-[#999D9E] leading-relaxed pt-6 max-w-lg">
+                        {item.detail}
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </motion.div>
             ))}
