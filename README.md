@@ -1,67 +1,72 @@
 # Code by Thirdy — Developer Portfolio
 
-Personal portfolio for **Angelito Decatoria III** — full-stack developer and CS student. Built with the Next.js App Router, TypeScript, Tailwind CSS, and Framer Motion.
+This repository contains the personal portfolio website for Angelito P. Decatoria III, also known as Thirdy. The site is built as a modern, animated Next.js application that showcases his background, projects, certifications, tech stack, and gallery.
 
-## What's inside
+## What this project includes
 
-- **Hero** — animated intro with an oversized portrait, an infinite name marquee, and a role badge.
-- **About** — specialization summary across three focus areas: Structural Ecosystems, Practical Execution, and Intelligent Integration.
-- **Recent Work** — case studies for Seelai, AlgoVerse, ODCI Tracker, and Jayann's Store.
-- **Certifications** — coursework in SQL optimization, AI & innovation, and generative AI from Gordon College, KOENIG, and NIELIT-Delhi.
-- **Journey** — a timeline from "Hello World!" (2022) through the current thesis project, plus live GitHub contribution stats.
-- **Archive Gallery** — a photo gallery with an expandable "more images" view.
-- **Contact** — a get-in-touch CTA with email and social links.
+The portfolio is structured as a single-page experience with multiple sections and dedicated pages:
 
-## Tech stack
+- Hero section with animated intro, preloader experience, and polished navigation
+- About section highlighting his focus areas and developer identity
+- Works section featuring selected projects such as Seelai, AlgoVerse, ODCI Tracker, and Jayann's Store
+- Certifications section for training and professional development highlights
+- Tech stack section summarizing his tools and technologies
+- Journey/Gallery section that presents milestones and visual content
+- Additional pages for projects, certificate details, gallery, and tech stack information
+- A built-in AI chatbot powered by the Google AI SDK that answers questions about his profile and work
 
-- [Next.js](https://nextjs.org) (App Router)
+## Main technologies
+
+- Next.js 16 (App Router)
+- React 19
 - TypeScript
 - Tailwind CSS
-- [Framer Motion](https://www.framer.com/motion/) for page-load and scroll animations
-- [lucide-react](https://lucide.dev) for icons
-- [Geist](https://vercel.com/font), loaded via `next/font`
+- Framer Motion for animations and transitions
+- Lenis for smooth scrolling
+- next-themes for dark/light mode support
+- lucide-react for icons
+- AI SDK and Google AI integration for the chatbot
 
-## Design principles
+## Project structure
 
-- One accent color, reserved for the single primary call-to-action.
-- Gray, uppercase, tracked-out eyebrow labels for section kickers (e.g. "About Me", "Recent Work").
-- Hairline dividers instead of boxed cards between list items.
-- Numbered markers (01 / 02 / 03) only where the content is an actual sequence.
+- app/page.tsx — main landing page and portfolio experience
+- app/layout.tsx — global layout, metadata, and theme provider setup
+- app/components/ — reusable UI pieces such as navigation, footer, chatbot, theme toggle, cursor, and magnetic effects
+- app/sections/ — major section components for the homepage
+- app/api/chat/route.ts — API endpoint for the portfolio chatbot
+- app/projects, app/gallery, app/certificate, app/tech-stack — route-based informational pages
 
-## Getting Started
+## Features
 
-First, run the development server:
+- Animated loading experience for first-time visitors
+- Responsive navigation with a mobile menu
+- Custom cursor and motion-rich interface
+- Dark/light theme toggle with view-transition styling
+- SEO-friendly metadata and custom favicon
+- AI assistant integrated into the portfolio for visitor questions
+
+## Getting started
+
+1. Install dependencies:
+
+```bash
+npm install
+```
+
+2. Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3. Open http://localhost:3000 in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Environment setup
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) — learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) — an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) — feedback and contributions are welcome.
-
-## Deploy on Vercel
-
-The easiest way to deploy this app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out the [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The chatbot feature uses the Google AI SDK. If you want the chat endpoint to work locally, make sure the required Google AI environment variable is configured in your environment.
 
 ## Contact
 
-- Email: [angelitodecatoriaa@gmail.com](mailto:angelitodecatoriaa@gmail.com)
-- GitHub, LinkedIn, Instagram, and Facebook links are available in the site footer.
+- Email: angelitodecatoriaa@gmail.com
+- GitHub: github.com/onetwothird
+- LinkedIn: linkedin.com/in/angelito-decatoria
