@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import Projects from "../src/components/Projects";
+import Projects from "../components/Projects";
 
 export const metadata: Metadata = {
   title: "Projects | Angelito P. Decatoria III",
