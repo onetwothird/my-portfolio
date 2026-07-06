@@ -59,7 +59,6 @@ export async function POST(req: Request) {
     messages: await convertToModelMessages(messages),
   });
 
-  // useChat's default transport expects the UI Message Stream format,
-  // not a plain text stream — this is what actually matches it.
+ 
   return result.toUIMessageStreamResponse();
 }
