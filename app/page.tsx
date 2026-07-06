@@ -5,22 +5,21 @@ import { motion, AnimatePresence } from "framer-motion";
 import Lenis from "lenis";
 
 // Components
-import Cursor from "./src/components/Cursor";
-import Navigation from "./src/components/Navigation";
-import Hero from "./src/sections/Hero";
-import About from "./src/sections/About";
-import Works from "./src/sections/Works";
-import TechStack from "./src/sections/TechStack";
-import JourneyGallery from "./src/sections/JourneyGallery";
-import Footer from "./src/components/Footer";
-import Certification from "./src/sections/Certification";
+import Cursor from "./components/Cursor";
+import Navigation from "./components/Navigation";
+import Hero from "./sections/Hero";
+import About from "./sections/About";
+import Works from "./sections/Works";
+import TechStack from "./sections/TechStack";
+import JourneyGallery from "./sections/JourneyGallery";
+import Footer from "./components/Footer";
+import Certification from "./sections/Certification";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
   const [progress, setProgress] = useState(0);
   const [visitType, setVisitType] = useState<"initial" | "return" | null>(null);
 
-  // 1. Determine visit type on mount (Asynchronously to bypass ESLint warning)
   useEffect(() => {
     const checkVisitTimer = setTimeout(() => {
       const hasVisited = sessionStorage.getItem("portfolioVisited");
@@ -34,7 +33,6 @@ export default function Home() {
     return () => clearTimeout(checkVisitTimer);
   }, []);
 
-  // Lenis Smooth Scroll
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.5,
@@ -53,10 +51,8 @@ export default function Home() {
     };
   }, []);
 
-  // 2. Preloader Logic based on Visit Type
   useEffect(() => {
     if (visitType === "initial") {
-      // Long preloader for the very first time
       if (progress < 100) {
         const timer = setTimeout(() => {
           setProgress((prev) => prev + 1);
@@ -70,10 +66,9 @@ export default function Home() {
         return () => clearTimeout(exitTimer);
       }
     } else if (visitType === "return") {
-      // Short, fast preloader for returning from other pages
       const exitTimer = setTimeout(() => {
         setLoading(false);
-      }, 1500); // 1.5 seconds delay before revealing home
+      }, 1500); 
       return () => clearTimeout(exitTimer);
     }
   }, [progress, visitType]);
@@ -91,9 +86,7 @@ export default function Home() {
 
       <Cursor />
 
-      {/* PRELOADERS */}
       <AnimatePresence>
-        {/* --- INITIAL PRELOADER (First Visit) --- */}
         {loading && visitType === "initial" && (
           <motion.div
             key="initial-preloader"
@@ -203,7 +196,6 @@ export default function Home() {
           </motion.div>
         )}
 
-        {/* --- RETURN PRELOADER (Navigating Back) --- */}
         {loading && visitType === "return" && (
           <motion.div
             key="return-preloader"
