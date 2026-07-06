@@ -25,7 +25,6 @@ const staggerContainer = {
 export default function Works() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
-  // Smooth mouse tracking values
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
@@ -33,7 +32,6 @@ export default function Works() {
   const cursorX = useSpring(mouseX, springConfig);
   const cursorY = useSpring(mouseY, springConfig);
 
-  // Track cursor position globally
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       mouseX.set(e.clientX);
@@ -77,7 +75,6 @@ export default function Works() {
     <section id="work" className="py-24 max-w-7xl mx-auto px-6 md:px-12 border-t border-black/10 dark:border-white/10 relative">
       <div className="text-xs font-medium text-[#999D9E] mb-12 uppercase tracking-widest">Recent Work</div>
       
-      {/* Floating Project Image Hover Container */}
       <motion.div
         className="pointer-events-none fixed top-0 left-0 z-50 hidden md:block w-100 h-65 overflow-hidden rounded-xl shadow-2xl bg-black/5 dark:bg-white/5 backdrop-blur-sm"
         style={{

@@ -14,11 +14,6 @@ export default function Hero() {
   return (
     <section className="min-h-dvh w-full flex flex-col justify-center px-6 md:px-12 relative overflow-hidden bg-[#ababab]">
       
-      {/* PORTRAIT MULTIMEDIA CONTAINER */}
-      {/* Width is kept generously oversized (200vw) at EVERY breakpoint so it is
-          never the limiting factor for object-contain. Height (95vh) is the only
-          thing driving the image's size now, so it stops shrinking as the
-          viewport gets narrower. Overflow is clipped by the section's overflow-hidden. */}
       <motion.div 
         initial={{ opacity: 0, y: 100 }} 
         animate={{ opacity: 1, y: 0 }} 
@@ -36,7 +31,6 @@ export default function Hero() {
         />
       </motion.div>
 
-      {/* INFINITE MARQUEE BACKGROUND TEXT */}
       <div className="absolute top-[65%] lg:top-[85%] -translate-y-1/2 left-0 w-full overflow-hidden flex whitespace-nowrap z-10 pointer-events-none">
         <motion.div 
           className="flex whitespace-nowrap"
@@ -60,12 +54,6 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* RESPONSIVE: MIDDLE-LEFT BADGE */}
-      {/* Pinned near the top (clear of the portrait's head) with a top offset that
-          scales gently, then switches to a true vertical center only at lg+ where
-          there's enough horizontal room beside the portrait for it to match the
-          reference desktop layout. Width and font use clamp() so they scale
-          fluidly instead of jumping between hard breakpoints. */}
       <motion.div 
         initial="hidden" 
         whileInView="visible" 
@@ -82,7 +70,6 @@ export default function Hero() {
         </div>
       </motion.div>
 
-      {/* DESKTOP: MIDDLE-RIGHT DESCRIPTION BLOCK */}
       <motion.div 
         initial="hidden" 
         whileInView="visible" 
@@ -98,13 +85,11 @@ export default function Hero() {
         </div>
         <div className="w-fit mb-6">
           <Magnetic>
-             {/* Using ArrowDownLeft and rotating it slightly to match the reference arrow pointing left */}
              <ArrowDownLeft size={28} strokeWidth={1.5} className="opacity-70 hover:opacity-100 transition-colors cursor-pointer drop-shadow-sm rotate-45" />
           </Magnetic>
         </div>
       </motion.div>
 
-      {/* MOBILE & TABLET OVERLAY */}
       <div className="lg:hidden absolute bottom-8 left-6 right-6 flex justify-between items-end z-30 text-white drop-shadow-md">
         <div className="flex flex-col gap-6">
           <ArrowDownRight size={24} strokeWidth={1.5} className="opacity-90" />

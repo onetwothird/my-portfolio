@@ -12,18 +12,16 @@ const revealUp: Variants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] } }
 };
 
-// --- Added Contribution Graph Component ---
 const AbstractContributionGraph = () => {
-  const cols = 26; // Number of weeks to show
-  const rows = 7;  // Days of the week
+  const cols = 26; 
+  const rows = 7;  
 
-  // Deterministic randomizer for a realistic looking graph pattern
   const getContributionLevel = (col: number, row: number) => {
     const hash = (col * 17 + row * 31) % 100;
-    if (hash < 45) return 0; // Empty
-    if (hash < 75) return 1; // Light
-    if (hash < 90) return 2; // Medium
-    return 3;                // Heavy
+    if (hash < 45) return 0; 
+    if (hash < 75) return 1; 
+    if (hash < 90) return 2; 
+    return 3;               
   };
 
   const getStyle = (level: number) => {
@@ -100,7 +98,6 @@ export default function JourneyGallery() {
   ];
   const previewImages = galleryImages.slice(0, 4);
 
-  // Wrapped in useCallback to satisfy ESLint
   const closeLightbox = useCallback(() => setSelectedIndex(null), []);
   const showNext = useCallback(() => setSelectedIndex((prev) => (prev === null ? null : (prev + 1) % previewImages.length)), [previewImages.length]);
   const showPrev = useCallback(() => setSelectedIndex((prev) => (prev === null ? null : (prev - 1 + previewImages.length) % previewImages.length)), [previewImages.length]);
@@ -114,13 +111,12 @@ export default function JourneyGallery() {
     };
     window.addEventListener("keydown", handleKey);
     return () => window.removeEventListener("keydown", handleKey);
-  }, [selectedIndex, closeLightbox, showNext, showPrev]); // Added missing dependencies
+  }, [selectedIndex, closeLightbox, showNext, showPrev]); 
 
   return (
     <>
       <section className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] border-y border-black/10 dark:border-white/10 max-w-7xl mx-auto">
 
-        {/* Timeline */}
         <div className="p-8 md:p-16 border-b lg:border-b-0 lg:border-r border-black/10 dark:border-white/10">
           <div className="mb-20">
             <h2 className="text-4xl md:text-5xl font-medium tracking-tighter">Journey.</h2>
@@ -149,7 +145,6 @@ export default function JourneyGallery() {
                     <p className="text-xs font-medium text-[#999D9E] mt-4 md:mt-0">{item.desc}</p>
                   </div>
 
-                  {/* Explanation reveal — expands open on hover/tap instead of a floating card */}
                   <div
                     className="grid transition-[grid-template-rows] duration-500 ease-out"
                     style={{ gridTemplateRows: hoveredJourney === i ? "1fr" : "0fr" }}
@@ -166,7 +161,6 @@ export default function JourneyGallery() {
           </div>
         </div>
 
-        {/* GitHub Metrics - Redesigned with Graph */}
         <div className="p-8 md:p-16 flex flex-col justify-start overflow-hidden">
           <div className="text-xs font-medium text-[#999D9E] mb-12 uppercase tracking-widest hidden lg:block">
             Open Source
@@ -179,12 +173,10 @@ export default function JourneyGallery() {
             variants={revealUp} 
             className="group relative flex flex-col p-8 md:p-10 border border-black/10 dark:border-white/10 rounded-2xl hover:bg-black/2 dark:hover:bg-white/2 transition-colors duration-500 overflow-hidden"
           >
-             {/* Header: Username & Status */}
              <div className="flex justify-between items-start mb-16">
                <div>
                  <h3 className="text-xl md:text-2xl font-medium tracking-tight mb-2">@onetwothird</h3>
                  <div className="flex items-center gap-3">
-                   {/* Integrated pulsing status dot */}
                    <span className="relative flex h-2 w-2">
                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#5a9e2f] opacity-75"></span>
                      <span className="relative inline-flex rounded-full h-2 w-2 bg-[#5a9e2f]"></span>
@@ -193,7 +185,6 @@ export default function JourneyGallery() {
                  </div>
                </div>
 
-               {/* Minimalist Link Button */}
                <Magnetic>
                  <a href="https://github.com/onetwothird" target="_blank" rel="noreferrer" className="flex items-center justify-center w-12 h-12 rounded-full bg-[#1C1D20] text-white dark:bg-white dark:text-[#1C1D20] hover:scale-110 transition-transform duration-300 shadow-md shrink-0">
                    <span className="text-xl font-light leading-none -mt-0.5">↗</span>
@@ -201,19 +192,16 @@ export default function JourneyGallery() {
                </Magnetic>
              </div>
 
-             {/* Big Typography Stats & Graph */}
              <div className="flex flex-col border-t border-black/10 dark:border-white/10 pt-6">
                 <span className="text-5xl md:text-6xl font-medium tracking-tighter mb-1">1,268+</span>
                 <span className="text-sm font-medium text-[#999D9E]">Contributions in the last year</span>
                 
-                {/* Simulated Data Graph */}
                 <AbstractContributionGraph />
              </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Gallery */}
       <section id="gallery" className="py-24 px-6 md:px-12 bg-[#F4F4F4] dark:bg-[#111111]">
         <div className="max-w-7xl mx-auto">
           <div className="flex justify-between items-center mb-16">
@@ -239,7 +227,6 @@ export default function JourneyGallery() {
                 className={`group w-full aspect-4/3 relative cursor-pointer overflow-hidden rounded-sm ${i % 2 !== 0 ? 'md:mt-24' : ''}`}
               >
                 <Image src={src} alt={`Gallery Image ${i + 1}`} fill className="object-cover group-hover:scale-105 transition-transform duration-1000 ease-out" />
-                {/* Fixed Tailwind linear gradient warning below */}
                 <div className="absolute inset-0 bg-linear-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <span className="absolute bottom-4 left-4 text-white text-xs font-mono font-bold tracking-widest opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-500">
                   {String(i + 1).padStart(2, '0')} / {String(previewImages.length).padStart(2, '0')}
@@ -250,7 +237,6 @@ export default function JourneyGallery() {
         </div>
       </section>
 
-      {/* Lightbox Modal */}
       <AnimatePresence>
         {selectedIndex !== null && (
           <motion.div 

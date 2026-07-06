@@ -6,7 +6,6 @@ import Image from "next/image";
 import { motion, Variants } from 'framer-motion';
 import Magnetic from './Magnetic';
 
-// Premium Footer Animations
 const footerStagger = {
   hidden: {},
   visible: { transition: { staggerChildren: 0.15, delayChildren: 0.1 } }
@@ -78,7 +77,6 @@ export default function Footer() {
                 Let&apos;s work
               </h2>
             </div>
-            {/* Second Line: together */}
             <h2 className="text-6xl md:text-[8vw] font-medium tracking-tighter leading-none mt-2 md:mt-4">
               together
             </h2>
@@ -86,12 +84,9 @@ export default function Footer() {
           <ArrowUpRight size={48} className="hidden md:block opacity-50 mt-8" />
         </motion.div>
 
-        {/* DIVIDER & GET IN TOUCH BUTTON SECTION */}
         <motion.div variants={fadeUp} className="w-full max-w-300 relative mt-20 md:mt-32">
-          {/* The Horizontal Line */}
           <div className="w-full h-px bg-white/20"></div>
           
-          {/* Overlapping Circle Button */}
           <div className="absolute right-4 md:right-12 top-1/2 -translate-y-1/2 z-20">
             <Magnetic>
               <a href="mailto:angelitodecatoriaa@gmail.com" className="w-32 h-32 md:w-44 md:h-44 bg-[#8B5CF6] hover:bg-[#7C3AED] text-white rounded-full flex items-center justify-center font-medium shadow-2xl transition-colors duration-300">
@@ -101,7 +96,6 @@ export default function Footer() {
           </div>
         </motion.div>
 
-        {/* CONTACT BUTTONS SECTION */}
         <motion.div variants={fadeUp} className="w-full max-w-300 flex flex-col md:flex-row gap-4 mt-12 mb-24 relative z-10">
            <Magnetic>
              <a href="mailto:angelitodecatoriaa@gmail.com" className="px-8 py-4 rounded-full border border-white/20 text-sm font-medium hover:bg-white hover:text-[#1C1D20] transition-colors inline-block">
@@ -115,7 +109,6 @@ export default function Footer() {
            </Magnetic>
         </motion.div>
 
-        {/* FOOTER DETAILS */}
         <motion.div variants={fadeUp} className="w-full max-w-300 pt-10 border-t border-white/10 flex flex-col md:flex-row justify-between items-start md:items-center text-xs text-[#999D9E] font-medium uppercase tracking-widest gap-8 md:gap-0">
           <div className="flex gap-16">
             <div className="flex flex-col gap-2">

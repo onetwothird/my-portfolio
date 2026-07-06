@@ -19,7 +19,6 @@ const stagger = {
   visible: { transition: { staggerChildren: 0.1 } }
 };
 
-// Moved outside the component to prevent recreating the array on every render
 const galleryImages = [
   "/img/image1.jpg", "/img/image2.jpg", "/img/image3.jpg", "/img/image4.jpg",
   "/img/image5.jpg", "/img/image6.jpg", "/img/image7.jpg", "/img/image8.jpg"
@@ -28,7 +27,6 @@ const galleryImages = [
 export default function MoreGallery() {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
-  // Wrapped in useCallback to maintain stable references
   const closeLightbox = useCallback(() => setSelectedIndex(null), []);
   
   const showNext = useCallback(() => 
@@ -54,7 +52,6 @@ export default function MoreGallery() {
   return (
     <div className="min-h-screen bg-[#F4F4F4] dark:bg-[#111111] text-[#1C1D20] dark:text-[#ededed] font-sans selection:bg-[#8B5CF6] selection:text-white pb-24">
       
-      {/* Header Section */}
       <section className="pt-32 pb-8 px-6 md:px-12 relative max-w-7xl mx-auto">
         <motion.div initial="hidden" animate="visible" variants={stagger}>
           <Link 
@@ -81,7 +78,6 @@ export default function MoreGallery() {
         </motion.div>
       </section>
 
-      {/* Full Gallery Grid */}
       <section className="px-6 md:px-12 max-w-7xl mx-auto mt-12">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start">
           {galleryImages.map((src, i) => (
@@ -96,7 +92,6 @@ export default function MoreGallery() {
             >
               <Image src={src} alt={`Gallery Image ${i + 1}`} fill className="object-cover group-hover:scale-105 transition-transform duration-1000 ease-out" />
 
-              {/* Hover caption overlay */}
               <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               <div className="absolute inset-0 flex flex-col justify-end p-5 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-500">
                 <span className="text-white text-xs font-mono font-bold tracking-widest">
@@ -111,7 +106,6 @@ export default function MoreGallery() {
         </div>
       </section>
 
-      {/* Lightbox Modal */}
       <AnimatePresence>
         {selectedIndex !== null && (
           <motion.div 

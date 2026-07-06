@@ -1,4 +1,4 @@
-import TechStack from "../src/components/TechStack";
+import TechStack from "../components/TechStack";
 
 export default function TechStackPage() {
   return <TechStack />;

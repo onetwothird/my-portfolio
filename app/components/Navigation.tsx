@@ -10,13 +10,12 @@ export default function Navigation() {
   const [hidden, setHidden] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // Updated Scroll Logic: 
-  // It only cares about the absolute scroll position, not the direction.
+  
   useMotionValueEvent(scrollY, "change", (latest) => {
     if (latest > 100) {
-      setHidden(true); // Hide main nav, show hamburger if scrolled down past 100px
+      setHidden(true); 
     } else {
-      setHidden(false); // Show main nav only when at the very top
+      setHidden(false); 
     }
   });
 
@@ -39,9 +38,6 @@ export default function Navigation() {
 
   return (
     <>
-      {/* 
-        MAIN DESKTOP HEADER 
-      */}
       <motion.header 
         variants={{ visible: { y: 0 }, hidden: { y: "-100%" } }}
         animate={hidden ? "hidden" : "visible"}
@@ -60,9 +56,6 @@ export default function Navigation() {
           </div>
         </div>
 
-        {/* 
-          RIGHT SIDE NAVIGATION 
-        */}
         <div className="pointer-events-auto flex items-center gap-8 text-xl font-medium">
           <Magnetic>
             <a href="#work" className="hidden md:block hover:opacity-70 transition-opacity">
@@ -82,7 +75,6 @@ export default function Navigation() {
         </div>
       </motion.header>
 
-      {/* FLOATING HAMBURGER BUTTON */}
       <AnimatePresence>
         {hidden && !menuOpen && (
           <motion.div 
@@ -105,7 +97,6 @@ export default function Navigation() {
         )}
       </AnimatePresence>
 
-      {/* SIDEBAR OVERLAY MENU */}
       <AnimatePresence>
         {menuOpen && (
           <>

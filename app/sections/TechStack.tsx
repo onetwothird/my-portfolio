@@ -27,7 +27,6 @@ export default function TechStack() {
   return (
     <section id="techstack" className="py-24 max-w-7xl mx-auto px-6 md:px-12 border-t border-black/10 dark:border-white/10">
       
-      {/* Top Grid for Content */}
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-16">
         <motion.div initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.1 }} variants={revealUp}>
           <h2 className="text-4xl md:text-6xl font-medium tracking-tighter">Techstack.</h2>

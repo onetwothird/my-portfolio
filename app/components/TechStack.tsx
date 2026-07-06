@@ -56,7 +56,6 @@ export default function TechStack() {
             </motion.h1>
           </div>
           
-          {/* Updated Gallery-Style Header Footer */}
           <motion.div variants={slideUpFade} className="flex items-center gap-4 mt-4">
             <span className="font-mono text-xs text-[#999D9E] font-bold uppercase tracking-widest shrink-0">
               私の技術スタック
@@ -69,7 +68,6 @@ export default function TechStack() {
         </motion.div>
       </section>
 
-      {/* Stack List - Original UI Maintained */}
       <section className="max-w-7xl mx-auto px-6 md:px-12 py-12 md:py-24">
         <motion.div 
           initial="hidden" 
@@ -84,12 +82,10 @@ export default function TechStack() {
               variants={slideUpFade}
               className="group flex flex-col xl:flex-row justify-between items-start xl:items-center py-12 md:py-16 border-b border-black/10 dark:border-white/10 hover:px-6 transition-all duration-500"
             >
-              {/* Category Large Title */}
               <h3 className="text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight group-hover:opacity-50 transition-opacity duration-500 mb-8 xl:mb-0">
                 {category.title}
               </h3>
               
-              {/* Wrapped Badges for that specific stack */}
               <div className="flex flex-wrap gap-2 md:gap-3 xl:max-w-xl xl:justify-end">
                 {category.items.map((tech, techIndex) => (
                   <span 
