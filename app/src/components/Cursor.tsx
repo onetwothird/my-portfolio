@@ -28,7 +28,7 @@ export default function Cursor() {
         setIsHovering(false);
       }
     };
-
+    
     window.addEventListener('mousemove', moveCursor);
     window.addEventListener('mouseover', handleMouseOver);
 
