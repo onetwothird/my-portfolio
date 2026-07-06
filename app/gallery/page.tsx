@@ -1,4 +1,4 @@
-import MoreGallery from "../src/components/moreGallery";
+import MoreGallery from "../components/MoreGallery";
 
 export default function GalleryPage() {
   return <MoreGallery />;
