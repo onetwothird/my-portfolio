@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Angelito P. Decatoria | Full Stack Developer",
-  description: "Full Stack Developer | CS Student",
+  title: "Angelito P. Decatoria III | Full Stack Developer",
+  description: "Computer Science student specializing in building responsive web applications and software solutions.",
   icons: {
     icon: "/img/icon.png",
   },
