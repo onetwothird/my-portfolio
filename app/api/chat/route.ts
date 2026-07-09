@@ -58,7 +58,6 @@ export async function POST(req: Request) {
     system: systemPrompt,
     messages: await convertToModelMessages(messages),
   });
-
- 
+  
   return result.toUIMessageStreamResponse();
 }
