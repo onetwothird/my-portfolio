@@ -35,8 +35,8 @@ export default function Certification() {
       imageUrl: "/cert/e-cert_1.png"
     },
     { 
-      title: "Artificial Intelligence & Innovation", 
-      issuer: "KOENIG", 
+      title: "Bicol Startup 101", 
+      issuer: "DICT Region 4", 
       date: "2025", 
       pdfUrl: "/cert/e-cert_2.pdf",
       imageUrl: "/cert/e-cert_2.png"
