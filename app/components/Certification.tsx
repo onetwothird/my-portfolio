@@ -28,37 +28,37 @@ export default function Certification() {
       imageUrl: "/cert/e-cert_6.png"
     },
     { 
-      title: "Mastering SQL Query Optimization", 
-      issuer: "Gordon College - SREGEN", 
-      date: "2025", 
+      title: "Mastering SQL Query Optimization: Boost Performance, Reduce Server Load", 
+      issuer: "SREGEN", 
+      date: "2024", 
+      pdfUrl: "/cert/e-cert_3.pdf",
+      imageUrl: "/cert/e-cert_3.png"
+    },
+    { 
+      title: "FWDP Monthly Community Day", 
+      issuer: "FWDP Peers", 
+      date: "2023", 
       pdfUrl: "/cert/e-cert_1.pdf",
       imageUrl: "/cert/e-cert_1.png"
     },
     { 
       title: "Bicol Startup 101", 
       issuer: "DICT Region 4", 
-      date: "2025", 
+      date: "2023", 
       pdfUrl: "/cert/e-cert_2.pdf",
       imageUrl: "/cert/e-cert_2.png"
     },
     { 
-      title: "Generative AI: ChatGPT to AutoGPT", 
-      issuer: "NIELIT-Delhi", 
-      date: "2024", 
-      pdfUrl: "/cert/e-cert_3.pdf",
-      imageUrl: "/cert/e-cert_3.png"
-    },
-    { 
-      title: "Future of Containerization", 
+      title: "Breaking Barriers in Web Development: Empowering Skills from Ground Zero", 
       issuer: "Cognixia", 
-      date: "2024", 
+      date: "2023", 
       pdfUrl: "/cert/e-cert_4.pdf",
       imageUrl: "/cert/e-cert_4.png"
     },
     { 
-      title: "Software Engineering Principles", 
-      issuer: "Coursera", 
-      date: "2024", 
+      title: "Future of Containerization: How Kubernetes and Docker are Revolutionizing the IT Industry", 
+      issuer: "Collabera", 
+      date: "2023", 
       pdfUrl: "/cert/e-cert_5.pdf",
       imageUrl: "/cert/e-cert_5.png"
     }
