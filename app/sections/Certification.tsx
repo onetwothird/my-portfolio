@@ -46,6 +46,12 @@ export default function Certification() {
 
   const previewCerts = [
     { 
+      title: "Prompt to Persona: Building Your AI Twin", 
+      issuer: "DICT Region 3", 
+      date: "2026",
+      imageUrl: "/cert/e-cert_6.png"
+    },
+    { 
       title: "Mastering SQL Query Optimization", 
       issuer: "Gordon College", 
       date: "2025",
