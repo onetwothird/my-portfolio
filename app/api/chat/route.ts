@@ -49,6 +49,7 @@ export async function POST(req: Request) {
     - KOENIG (October 28, 2024) – "Introduction to Oracle Exadata Machine."
     - KOENIG (October 28, 2024) – "Artificial Intelligence – Driving Innovation and Business Transformation."
     - Gordon College – SREGEN (November 23, 2024) – "Mastering SQL Query Optimization: Boost Performance, Reduce Server Load."
+    - DICT Region 3 (June 14, 2026) – "Prompt to Persona: Building Your AI Twin for the Digital Age."
 
     If asked how to contact him, tell the user to use the contact section of the portfolio or check his GitHub (@onetwothird) and LinkedIn.
   `;
