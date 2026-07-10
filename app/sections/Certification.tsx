@@ -46,28 +46,28 @@ export default function Certification() {
 
   const previewCerts = [
     { 
-      title: "Prompt to Persona: Building Your AI Twin", 
+      title: "Prompt to Persona: Building Your AI Twin for the Digital Age", 
       issuer: "DICT Region 3", 
       date: "2026",
       imageUrl: "/cert/e-cert_6.png"
     },
     { 
-      title: "Mastering SQL Query Optimization", 
-      issuer: "Gordon College", 
-      date: "2025",
+      title: "Mastering SQL Query Optimization: Boost Performance, Reduce Server Load", 
+      issuer: "SREGEN", 
+      date: "2024",
+      imageUrl: "/cert/e-cert_3.png"
+    },
+    { 
+      title: "FWDP Monthly Community Day", 
+      issuer: "FWDP Peers", 
+      date: "2023",
       imageUrl: "/cert/e-cert_1.png"
     },
     { 
       title: "Bicol Startup 101", 
       issuer: "DICT Region 4", 
-      date: "2025",
+      date: "2023",
       imageUrl: "/cert/e-cert_2.png"
-    },
-    { 
-      title: "Generative AI: ChatGPT to AutoGPT", 
-      issuer: "NIELIT-Delhi", 
-      date: "2024",
-      imageUrl: "/cert/e-cert_3.png"
     }
   ];
 
