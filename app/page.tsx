@@ -145,7 +145,7 @@ export default function Home() {
                     className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight leading-tight"
                   >
                     Curious about his <br className="hidden sm:block" />
-                    <span className="text-[#8B5CF6]">1,268+</span> contributions?
+                    <span className="text-[#8B5CF6]">1,350+</span> contributions?
                   </motion.h2>
                 )}
 
