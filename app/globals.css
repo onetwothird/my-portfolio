@@ -30,6 +30,15 @@ body {
   mix-blend-mode: normal;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
+html, body {
+  -ms-overflow-style: none; 
+  scrollbar-width: none;  
+}
+
 @keyframes slideUpFade {
   0% {
     opacity: 0;
