@@ -99,13 +99,8 @@ export default function Home() {
               duration: 0.9,
               ease: [0.76, 0, 0.24, 1],
             }}
-            className="fixed inset-0 z-100000 bg-[#1C1D20] text-white flex flex-col justify-between p-6 md:p-12 overflow-hidden"
+            className="fixed inset-0 z-100000 bg-[#1C1D20] text-white flex flex-col justify-center p-6 md:p-12 overflow-hidden"
           >
-            <div className="w-full flex justify-between text-[#999D9E] text-[10px] sm:text-xs uppercase tracking-widest font-mono">
-              <span className="animate-pulse">Establishing Connection...</span>
-              <span>[ @Onetwothird ]</span>
-            </div>
-
             <div className="flex-1 flex items-center justify-center px-4 text-center">
               <AnimatePresence mode="wait">
                 {progress < 30 && (
@@ -167,31 +162,6 @@ export default function Home() {
                   </motion.h2>
                 )}
               </AnimatePresence>
-            </div>
-
-            <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-2 md:gap-4 w-full">
-              <div className="relative text-[15vw] sm:text-[14vw] md:text-[13vw] lg:text-[11vw] leading-[0.85] font-medium tracking-tighter uppercase select-none pb-2 md:pb-0">
-                <span
-                  className="text-transparent"
-                  style={{
-                    WebkitTextStroke: "1px rgba(255,255,255,0.15)",
-                  }}
-                >
-                  DIRECTING TO
-                </span>
-
-                <motion.span
-                  className="absolute left-0 top-0 overflow-hidden text-white whitespace-nowrap"
-                  animate={{ width: `${progress}%` }}
-                  transition={{ ease: "linear", duration: 0.1 }}
-                >
-                  DIRECTING TO
-                </motion.span>
-              </div>
-
-              <div className="font-mono text-5xl sm:text-6xl md:text-6xl tracking-tighter self-end md:self-auto mb-2 md:mb-4 text-right w-24 md:w-32">
-                {progress}%
-              </div>
             </div>
           </motion.div>
         )}
