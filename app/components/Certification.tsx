@@ -21,6 +21,13 @@ const stagger = {
 export default function Certification() {
   const certifications = [
     { 
+      title: "Prompt to Persona: Building Your AI Twin for the Digital Age", 
+      issuer: "DICT Region 3", 
+      date: "2026", 
+      pdfUrl: "/cert/e-cert_6.pdf",
+      imageUrl: "/cert/e-cert_6.png"
+    },
+    { 
       title: "Mastering SQL Query Optimization", 
       issuer: "Gordon College - SREGEN", 
       date: "2025", 
