@@ -29,7 +29,7 @@ const textStagger = {
 
 export default function About() {
   const coreValues = [
-    { num: "01.", title: "Structural Ecosystems", desc: "Specializing in building structural, high-fidelity web ecosystems." },
+    { num: "01.", title: "Full-Stack Ecosystems", desc: "Specializing in architecting high-fidelity web and mobile applications using React, Node.js, and Flutter." },
     { num: "02.", title: "Practical Execution", desc: "Engineered solutions locally, from OS simulators to corporate document tracking systems." },
     { num: "03.", title: "Intelligent Integration", desc: "Integrating YOLO and TensorFlow Lite tools natively into mobile ecosystems." }
   ];
