@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, Variants } from 'framer-motion';
-import { Globe, ArrowDownLeft, ArrowDownRight } from 'lucide-react';
+import { Globe, ArrowDownLeft, ArrowDownRight, Download } from 'lucide-react';
 import Image from 'next/image';
 import Magnetic from '../components/Magnetic';
 
@@ -54,6 +54,7 @@ export default function Hero() {
         </motion.div>
       </div>
 
+      {/* Left Side: Statement Box */}
       <motion.div 
         initial="hidden" 
         whileInView="visible" 
@@ -70,33 +71,61 @@ export default function Hero() {
         </div>
       </motion.div>
 
+      {/* Right Side: Desktop Role & Resume Button */}
       <motion.div 
         initial="hidden" 
         whileInView="visible" 
         viewport={{ once: false, amount: 0.1 }} 
         variants={revealUp} 
-        className="absolute right-6 xl:right-40 top-[45%] -translate-y-1/2 hidden lg:flex items-center gap-4 text-white z-30"
+        className="absolute right-6 xl:right-40 top-[45%] -translate-y-1/2 hidden lg:flex flex-col items-end gap-6 z-30"
       >
-        <div className="leading-[1.2] drop-shadow-sm font-light tracking-wide text-right flex flex-col items-end">
-          <div className="flex items-center gap-3">
-            <span className="text-2xl md:text-3xl font-medium">Full Stack Developer</span>
+        <div className="flex items-center gap-4 text-white">
+          <div className="leading-[1.2] drop-shadow-sm font-light tracking-wide text-right flex flex-col items-end">
+            <div className="flex items-center gap-3">
+              <span className="text-2xl md:text-3xl font-medium">Full Stack Developer</span>
+            </div>
+            <span className="text-lg md:text-xl opacity-80">& CS Student</span>
           </div>
-          <span className="text-lg md:text-xl opacity-80">& CS Student</span>
+          <div className="w-fit mb-6">
+            <Magnetic>
+               <ArrowDownLeft size={28} strokeWidth={1.5} className="opacity-70 hover:opacity-100 transition-colors cursor-pointer drop-shadow-sm rotate-45 pointer-events-auto" />
+            </Magnetic>
+          </div>
         </div>
-        <div className="w-fit mb-6">
-          <Magnetic>
-             <ArrowDownLeft size={28} strokeWidth={1.5} className="opacity-70 hover:opacity-100 transition-colors cursor-pointer drop-shadow-sm rotate-45" />
-          </Magnetic>
-        </div>
+
+        {/* Desktop Download CV Button */}
+        <Magnetic>
+          <a 
+            href="/resume/Decatoria_Angelito_CV.pdf" 
+            download="Decatoria_Angelito_CV.pdf"
+            className="group flex items-center gap-3 px-6 py-3 rounded-full border border-white/30 bg-white/5 backdrop-blur-sm text-white transition-all duration-500 hover:bg-white hover:text-black pointer-events-auto hover:shadow-[0_0_20px_rgba(255,255,255,0.3)]"
+          >
+            <span className="text-sm font-medium tracking-widest uppercase">Resume</span>
+            <Download size={16} strokeWidth={2} className="transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+          </a>
+        </Magnetic>
       </motion.div>
 
-      <div className="lg:hidden absolute bottom-8 left-6 right-6 flex justify-between items-end z-30 text-white drop-shadow-md">
-        <div className="flex flex-col gap-6">
+      {/* Bottom: Mobile Role & Resume Button */}
+      <div className="lg:hidden absolute bottom-8 left-6 right-6 flex justify-between items-end z-30 text-white drop-shadow-md pointer-events-none">
+        <div className="flex flex-col gap-5">
           <ArrowDownRight size={24} strokeWidth={1.5} className="opacity-90" />
           <div className="text-xl font-medium leading-[1.1] tracking-tight">
             <p>Full Stack Developer</p>
             <p>& CS Student</p>
           </div>
+          
+          {/* Mobile Download CV Button */}
+          <Magnetic>
+            <a 
+              href="/resume/Decatoria_Angelito_CV.pdf" 
+              download="Decatoria_Angelito_CV.pdf"
+              className="group flex w-fit items-center gap-2 px-5 py-2.5 mt-1 rounded-full border border-white/30 bg-white/10 backdrop-blur-md text-white transition-all duration-300 pointer-events-auto active:bg-white active:text-black"
+            >
+              <span className="text-xs font-medium tracking-widest uppercase">Resume</span>
+              <Download size={14} strokeWidth={2} />
+            </a>
+          </Magnetic>
         </div>
         <div className="pb-1">
           <Globe size={32} strokeWidth={1.5} className="opacity-90" />
