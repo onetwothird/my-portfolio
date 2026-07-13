@@ -54,7 +54,6 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* Left Side: Statement Box */}
       <motion.div 
         initial="hidden" 
         whileInView="visible" 
