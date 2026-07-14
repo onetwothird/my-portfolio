@@ -147,6 +147,7 @@ export default function Chatbot() {
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState("");
   const [showChatbot, setShowChatbot] = useState(false);
+  const [isOverFooter, setIsOverFooter] = useState(false);
 
   const { messages, sendMessage, status } = useChat();
   const isLoading = status === "submitted" || status === "streaming";
@@ -176,6 +177,21 @@ export default function Chatbot() {
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isLoading]);
+
+  useEffect(() => {
+    const footer = document.getElementById("contact");
+    if (!footer) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsOverFooter(entry.isIntersecting);
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(footer);
+    return () => observer.disconnect();
+  }, []);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setInput(e.target.value);
@@ -346,7 +362,11 @@ export default function Chatbot() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => setIsOpen(!isOpen)}
-              className="w-14 h-14 bg-[#1C1D20] dark:bg-white text-white dark:text-[#1C1D20] rounded-full flex items-center justify-center shadow-2xl transition-all"
+              className={`w-14 h-14 rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 ${
+                isOverFooter
+                  ? "bg-white text-[#1C1D20]" 
+                  : "bg-[#1C1D20] dark:bg-white text-white dark:text-[#1C1D20]" 
+              }`}
               aria-label="Toggle chat"
             >
               {isOpen ? <X size={24} /> : <MessageSquare size={24} />}
