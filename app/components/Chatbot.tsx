@@ -356,7 +356,6 @@ export default function Chatbot() {
             )}
           </AnimatePresence>
 
-          {/* Floating Action Button */}
           <Magnetic>
             <motion.button
               whileHover={{ scale: 1.05 }}
