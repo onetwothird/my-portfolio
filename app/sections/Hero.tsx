@@ -68,8 +68,8 @@ export default function Hero() {
             <LiveVisitorCount />
           </div>
 
-          <div className="bg-white/10 backdrop-blur-md border border-white/20 p-4 sm:p-5 w-full rounded-xl shadow-[0_4px_30px_rgba(0,0,0,0.05)]">
-            <h2 className="text-white font-medium text-[clamp(0.8rem,2vw,1.1rem)] leading-[1.4] tracking-wide">
+          <div className="border-l-[3px] border-white/40 pl-4 sm:pl-5 w-full">
+            <h2 className="text-white/90 font-medium text-[clamp(0.8rem,2vw,1.1rem)] leading-[1.4] tracking-wide">
               DESIGNING STRUCTURED INTERFACES BUILT FOR SCALE AND REAL-WORLD IMPACT.
             </h2>
           </div>
