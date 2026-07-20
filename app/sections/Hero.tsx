@@ -63,6 +63,11 @@ export default function Hero() {
         className="absolute left-4 sm:left-6 xl:left-12 top-20 sm:top-24 md:top-28 lg:top-1/2 lg:-translate-y-1/2 z-30 w-[clamp(160px,45vw,320px)]"
       >
         <div className="flex flex-col items-start gap-4">
+          
+          <div className="pointer-events-auto">
+            <LiveVisitorCount />
+          </div>
+
           <div className="bg-white p-3 sm:p-4 md:p-5 w-full shadow-lg">
             <h2 className="text-black font-extrabold text-[clamp(0.7rem,2.5vw,1.2rem)] uppercase leading-[1.2] tracking-tighter">
               DESIGNING STRUCTURED INTERFACES BUILT FOR SCALE AND REAL-WORLD IMPACT.
@@ -90,10 +95,6 @@ export default function Hero() {
                <ArrowDownLeft size={28} strokeWidth={1.5} className="opacity-70 hover:opacity-100 transition-colors cursor-pointer drop-shadow-sm rotate-45 pointer-events-auto" />
             </Magnetic>
           </div>
-        </div>
-
-        <div className="pointer-events-auto">
-          <LiveVisitorCount />
         </div>
 
         <Magnetic>
