@@ -4,6 +4,8 @@ import { ThemeProvider } from "./components/ThemeProvider";
 import Chatbot from "./components/Chatbot"; 
 import "./globals.css";
 import { Analytics } from '@vercel/analytics/react';
+import { Suspense } from "react";
+import VisitorTracker from "./components/VisitorTracker";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,6 +37,11 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-white dark:bg-[#0a0a0a]">
+        
+        <Suspense fallback={null}>
+          <VisitorTracker />
+        </Suspense>
+
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           {children}
           <Chatbot /> 
