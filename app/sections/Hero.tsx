@@ -4,6 +4,7 @@ import { motion, Variants } from 'framer-motion';
 import { Globe, ArrowDownLeft, ArrowDownRight, Download } from 'lucide-react';
 import Image from 'next/image';
 import Magnetic from '../components/Magnetic';
+import LiveVisitorCount from '../components/LiveVisitorCount';
 
 const revealUp: Variants = {
   hidden: { opacity: 0, y: 50 },
@@ -90,6 +91,11 @@ export default function Hero() {
                <ArrowDownLeft size={28} strokeWidth={1.5} className="opacity-70 hover:opacity-100 transition-colors cursor-pointer drop-shadow-sm rotate-45 pointer-events-auto" />
             </Magnetic>
           </div>
+        </div>
+
+        {/* 2. DROP THE COMPONENT HERE */}
+        <div className="pointer-events-auto mb-4">
+          <LiveVisitorCount />
         </div>
 
         {/* Desktop Download CV Button */}
