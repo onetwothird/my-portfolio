@@ -2,18 +2,28 @@ import { NextResponse } from 'next/server';
 import dbConnect from '../../../lib/dbConnect';
 import Visitor from '../../../models/Visitor';
 
-export const revalidate = 60; // Cache the response for 60 seconds to prevent database spam
+// Revalidate every 5 seconds for near real-time data
+export const revalidate = 5; 
 
 export async function GET() {
   try {
     await dbConnect();
     
-    // Get the total number of unique visitors based on IP
-    const uniqueCount = await Visitor.distinct('ipAddress').then((res: string[]) => res.length);
+    const fiveMinutesAgo = new Date(Date.now() - 5 * 60 * 1000);
+
+    const [totalUnique, activeNow] = await Promise.all([
+      Visitor.distinct('ipAddress').then((res: string[]) => res.length),
+      Visitor.distinct('ipAddress', { timestamp: { $gte: fiveMinutesAgo } }).then((res: string[]) => res.length)
+    ]);
     
-    return NextResponse.json({ count: uniqueCount }, { status: 200 });
+    const displayActive = Math.max(activeNow, 1);
+
+    return NextResponse.json({ 
+      totalUnique,
+      activeNow: displayActive
+    }, { status: 200 });
   } catch (error) {
     console.error('Failed to fetch public stats:', error);
-    return NextResponse.json({ count: 0 }, { status: 500 });
+    return NextResponse.json({ totalUnique: 0, activeNow: 1 }, { status: 500 });
   }
 }
