@@ -71,7 +71,6 @@ export default function Hero() {
         </div>
       </motion.div>
 
-      {/* Right Side: Desktop Role & Resume Button */}
       <motion.div 
         initial="hidden" 
         whileInView="visible" 
@@ -93,12 +92,10 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* 2. DROP THE COMPONENT HERE */}
-        <div className="pointer-events-auto mb-4">
+        <div className="pointer-events-auto">
           <LiveVisitorCount />
         </div>
 
-        {/* Desktop Download CV Button */}
         <Magnetic>
           <a 
             href="/resume/Decatoria_Angelito_CV.pdf" 
@@ -111,7 +108,6 @@ export default function Hero() {
         </Magnetic>
       </motion.div>
 
-      {/* Bottom: Mobile Role & Resume Button */}
       <div className="lg:hidden absolute bottom-8 left-6 right-6 flex justify-between items-end z-30 text-white drop-shadow-md pointer-events-none">
         <div className="flex flex-col gap-5">
           <ArrowDownRight size={24} strokeWidth={1.5} className="opacity-90" />
@@ -120,7 +116,6 @@ export default function Hero() {
             <p>& CS Student</p>
           </div>
           
-          {/* Mobile Download CV Button */}
           <Magnetic>
             <a 
               href="/resume/Decatoria_Angelito_CV.pdf" 
