@@ -8,6 +8,7 @@ import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-
 import { MessageSquare, X, Send, ArrowRight, Loader2 } from "lucide-react";
 import Image from "next/image";
 import Magnetic from "./Magnetic";
+import ReactMarkdown from "react-markdown";
 
 // Extracts the plain-text content of a message from its parts.
 function getMessageText(m: UIMessage) {
@@ -66,7 +67,12 @@ function ChatBubble({
   const fullText = getMessageText(message);
   const typedText = useTypewriter(fullText, !isUser);
   const displayText = isUser ? fullText : typedText;
+  
+  // Show cursor if it's the AI, and it's either actively streaming or still typing out
   const showCursor = !isUser && (isStreaming || typedText.length < fullText.length);
+  
+  // Append a block character for the cursor so it stays perfectly inline with the Markdown
+  const textWithCursor = displayText + (showCursor ? " ▍" : "");
 
   return (
     <motion.div
@@ -91,16 +97,26 @@ function ChatBubble({
           />
         )}
 
-        <p className="leading-relaxed whitespace-pre-wrap flex-1">
-          {displayText}
-          {showCursor && (
-            <motion.span
-              animate={{ opacity: [1, 0] }}
-              transition={{ repeat: Infinity, duration: 0.8, ease: "linear" }}
-              className="inline-block w-1.5 h-3.5 ml-1 align-middle bg-[#1C1D20] dark:bg-[#ededed]"
-            />
+        <div className="flex-1 overflow-hidden">
+          {isUser ? (
+            <p className="leading-relaxed whitespace-pre-wrap">{displayText}</p>
+          ) : (
+            <div className="text-sm space-y-2 wrap-break-word">
+              <ReactMarkdown
+                components={{
+                  // Custom styling for the Markdown elements
+                  ul: ({ children }) => <ul className="list-disc ml-5 space-y-1 my-2">{children}</ul>,
+                  ol: ({ children }) => <ol className="list-decimal ml-5 space-y-1 my-2">{children}</ol>,
+                  li: ({ children }) => <li className="leading-relaxed">{children}</li>,
+                  strong: ({ children }) => <strong className="font-bold text-black dark:text-white">{children}</strong>,
+                  p: ({ children }) => <p className="leading-relaxed whitespace-pre-wrap mb-2 last:mb-0">{children}</p>,
+                }}
+              >
+                {textWithCursor}
+              </ReactMarkdown>
+            </div>
           )}
-        </p>
+        </div>
       </div>
     </motion.div>
   );
