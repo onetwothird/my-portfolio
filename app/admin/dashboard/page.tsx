@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { 
   Users, Eye, Calendar, Globe, Monitor, 
-  Smartphone, ShieldAlert, RefreshCw 
+  Smartphone, ShieldAlert, RefreshCw, MapPin // Added MapPin here
 } from 'lucide-react';
 
 interface MetricStats {
@@ -119,14 +119,13 @@ export default function AdminDashboard() {
   // Group logs to show 1 person/device per row and count their visits
   const groupedLogs = Object.values(
     data.recentLogs.reduce((acc, log) => {
-      // Create a unique key based on location and device specs
-      const deviceKey = `${log.city}-${log.country}-${log.os}-${log.browser}`;
+      // Decode the city name here so the grouping works correctly even if encoded differently
+      const cleanCity = log.city ? decodeURIComponent(log.city) : 'Unknown';
+      const deviceKey = `${cleanCity}-${log.country}-${log.os}-${log.browser}`;
       
       if (!acc[deviceKey]) {
-        // First time seeing this user/device in the logs
-        acc[deviceKey] = { ...log, visits: 1 };
+        acc[deviceKey] = { ...log, city: cleanCity, visits: 1 };
       } else {
-        // Returning user/device: increment visits and update to the latest timestamp
         acc[deviceKey].visits += 1;
         if (new Date(log.timestamp) > new Date(acc[deviceKey].timestamp)) {
           acc[deviceKey].timestamp = log.timestamp;
@@ -218,7 +217,8 @@ export default function AdminDashboard() {
             <div className="space-y-3">
               {data.topCountries.map((c) => (
                 <div key={c._id} className="flex justify-between items-center text-sm">
-                  <span className="font-medium text-zinc-700 dark:text-zinc-300">{c._id}</span>
+                  {/* Also decoding demographics city names just in case */}
+                  <span className="font-medium text-zinc-700 dark:text-zinc-300">{decodeURIComponent(c._id)}</span>
                   <span className="font-mono bg-zinc-100 dark:bg-zinc-800 px-2 py-0.5 rounded text-xs font-bold">{c.count}</span>
                 </div>
               ))}
@@ -284,7 +284,19 @@ export default function AdminDashboard() {
                         second: '2-digit'
                       })}
                     </td>
-                    <td className="p-4 font-medium">{log.city}, {log.country}</td>
+                    <td className="p-4 font-medium">
+                      {/* Google Maps search link */}
+                      <a 
+                        href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(log.city + ', ' + log.country)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-1 text-purple-600 dark:text-purple-400 hover:underline hover:text-purple-800 dark:hover:text-purple-300 transition-colors"
+                        title={`View ${log.city} on Google Maps`}
+                      >
+                        <MapPin size={12} />
+                        {log.city}, {log.country}
+                      </a>
+                    </td>
                     <td className="p-4 max-w-50 truncate text-purple-600 dark:text-purple-400">
                       {log.url.replace(window.location.origin, '') || '/'}
                     </td>
