@@ -116,6 +116,27 @@ export default function AdminDashboard() {
 
   if (!data) return null;
 
+  // Group logs to show 1 person/device per row and count their visits
+  const groupedLogs = Object.values(
+    data.recentLogs.reduce((acc, log) => {
+      // Create a unique key based on location and device specs
+      const deviceKey = `${log.city}-${log.country}-${log.os}-${log.browser}`;
+      
+      if (!acc[deviceKey]) {
+        // First time seeing this user/device in the logs
+        acc[deviceKey] = { ...log, visits: 1 };
+      } else {
+        // Returning user/device: increment visits and update to the latest timestamp
+        acc[deviceKey].visits += 1;
+        if (new Date(log.timestamp) > new Date(acc[deviceKey].timestamp)) {
+          acc[deviceKey].timestamp = log.timestamp;
+          acc[deviceKey].url = log.url; 
+        }
+      }
+      return acc;
+    }, {} as Record<string, LogEntry & { visits: number }>)
+  ).sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
+
   return (
     <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 p-4 md:p-8 font-sans">
       <div className="max-w-7xl mx-auto">
@@ -243,20 +264,34 @@ export default function AdminDashboard() {
             <table className="w-full text-left border-collapse text-xs">
               <thead>
                 <tr className="bg-zinc-50 dark:bg-zinc-800/50 border-b border-zinc-200 dark:border-zinc-800 font-mono text-zinc-400">
-                  <th className="p-4">Timestamp</th>
+                  <th className="p-4">Last Visit</th>
                   <th className="p-4">Location</th>
                   <th className="p-4">Target Node Path</th>
                   <th className="p-4">OS / Browser</th>
+                  <th className="p-4">Visits</th>
                   <th className="p-4">Referrer Source</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800">
-                {data.recentLogs.map((log) => (
-                  <tr key={log._id} className="hover:bg-zinc-50/50 dark:hover:bg-zinc-800/30 transition-colors">
-                    <td className="p-4 whitespace-nowrap text-zinc-500">{new Date(log.timestamp).toLocaleTimeString()}</td>
+                {groupedLogs.map((log) => (
+                  <tr key={`${log.city}-${log.os}-${log.browser}`} className="hover:bg-zinc-50/50 dark:hover:bg-zinc-800/30 transition-colors">
+                    <td className="p-4 whitespace-nowrap text-zinc-500">
+                      {new Date(log.timestamp).toLocaleString('en-US', {
+                        month: 'short',
+                        day: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        second: '2-digit'
+                      })}
+                    </td>
                     <td className="p-4 font-medium">{log.city}, {log.country}</td>
-                    <td className="p-4 max-w-50 truncate text-purple-600 dark:text-purple-400">{log.url.replace(window.location.origin, '') || '/'}</td>
+                    <td className="p-4 max-w-50 truncate text-purple-600 dark:text-purple-400">
+                      {log.url.replace(window.location.origin, '') || '/'}
+                    </td>
                     <td className="p-4 text-zinc-600 dark:text-zinc-400">{log.os} / {log.browser}</td>
+                    <td className="p-4 font-mono font-bold text-zinc-700 dark:text-zinc-300">
+                      {log.visits}
+                    </td>
                     <td className="p-4 max-w-37.5 truncate text-zinc-500">{log.referrer}</td>
                   </tr>
                 ))}
