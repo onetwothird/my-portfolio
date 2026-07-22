@@ -13,8 +13,8 @@ const revealUp: Variants = {
 
 export default function Hero() {
   return (
-    <section className="min-h-dvh w-full flex flex-col justify-center px-6 md:px-12 relative overflow-hidden bg-[#ababab]">
-      
+    <section className="min-h-dvh w-full flex flex-col lg:block relative overflow-hidden bg-[#ababab]">
+
       <motion.div 
         initial={{ opacity: 0, y: 100 }} 
         animate={{ opacity: 1, y: 0 }} 
@@ -32,38 +32,16 @@ export default function Hero() {
         />
       </motion.div>
 
-      <div className="absolute top-[65%] lg:top-[85%] -translate-y-1/2 left-0 w-full overflow-hidden flex whitespace-nowrap z-10 pointer-events-none">
-        <motion.div 
-          className="flex whitespace-nowrap"
-          animate={{ x: [0, "-50%"] }}
-          transition={{
-            repeat: Infinity,
-            ease: "linear",
-            duration: 20
-          }}
-        >
-          <div className="flex gap-16 px-8 items-center">
-            <h1 className="text-[clamp(6rem,18vw,16rem)] leading-none font-medium tracking-tighter text-white opacity-90 pb-8">
-              Angelito Decatoria III —
-            </h1>
-          </div>
-          <div className="flex gap-16 px-8 items-center">
-            <h1 className="text-[clamp(6rem,18vw,16rem)] leading-none font-medium tracking-tighter text-white opacity-90 pb-8">
-              Angelito Decatoria III —
-            </h1>
-          </div>
-        </motion.div>
-      </div>
-
       <motion.div 
         initial="hidden" 
         whileInView="visible" 
         viewport={{ once: false, amount: 0.1 }} 
         variants={revealUp} 
-        className="absolute left-4 sm:left-6 xl:left-12 top-20 sm:top-24 md:top-28 lg:top-1/2 lg:-translate-y-1/2 z-30 w-[clamp(160px,45vw,320px)]"
+        className="order-1 self-start relative lg:absolute z-30 w-[clamp(160px,45vw,320px)]
+                   ml-4 sm:ml-6 mt-20 sm:mt-24 md:mt-28
+                   lg:ml-0 lg:mt-0 lg:left-6 xl:left-12 lg:top-1/2 lg:-translate-y-1/2"
       >
         <div className="flex flex-col items-start gap-4">
-          
           <div className="pointer-events-auto">
             <LiveVisitorCount />
           </div>
@@ -75,6 +53,32 @@ export default function Hero() {
           </div>
         </div>
       </motion.div>
+
+      <div 
+        className="order-2 flex-1 min-h-0 relative left-0 w-full flex items-center overflow-hidden pointer-events-none z-10
+                   lg:flex-none lg:block lg:absolute lg:top-[85%] lg:-translate-y-1/2"
+      >
+        <motion.div 
+          className="flex whitespace-nowrap"
+          animate={{ x: [0, "-50%"] }}
+          transition={{
+            repeat: Infinity,
+            ease: "linear",
+            duration: 20
+          }}
+        >
+          <div className="flex gap-16 px-8 items-center">
+            <h1 className="text-[clamp(4rem,18vw,16rem)] leading-none font-medium tracking-tighter text-white opacity-90 pb-8">
+              Angelito Decatoria III —
+            </h1>
+          </div>
+          <div className="flex gap-16 px-8 items-center">
+            <h1 className="text-[clamp(4rem,18vw,16rem)] leading-none font-medium tracking-tighter text-white opacity-90 pb-8">
+              Angelito Decatoria III —
+            </h1>
+          </div>
+        </motion.div>
+      </div>
 
       <motion.div 
         initial="hidden" 
@@ -109,10 +113,10 @@ export default function Hero() {
         </Magnetic>
       </motion.div>
 
-      <div className="lg:hidden absolute bottom-8 left-6 right-6 flex justify-between items-end z-30 text-white drop-shadow-md pointer-events-none">
-        <div className="flex flex-col gap-5">
-          <ArrowDownRight size={24} strokeWidth={1.5} className="opacity-90" />
-          <div className="text-xl font-medium leading-[1.1] tracking-tight">
+      <div className="order-3 lg:hidden relative px-6 pb-8 pt-6 flex justify-between items-end gap-4 z-30 text-white drop-shadow-md pointer-events-none">
+        <div className="flex flex-col gap-5 min-w-0">
+          <ArrowDownRight size={24} strokeWidth={1.5} className="opacity-90 shrink-0" />
+          <div className="text-lg sm:text-xl font-medium leading-[1.1] tracking-tight">
             <p>Full Stack Developer</p>
             <p>& CS Student</p>
           </div>
@@ -128,7 +132,7 @@ export default function Hero() {
             </a>
           </Magnetic>
         </div>
-        <div className="pb-1">
+        <div className="pb-1 shrink-0">
           <Globe size={32} strokeWidth={1.5} className="opacity-90" />
         </div>
       </div>
