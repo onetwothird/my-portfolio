@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence, Variants } from 'framer-motion';
 import Image from "next/image";
 import Link from "next/link";
@@ -12,52 +12,104 @@ const revealUp: Variants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] } }
 };
 
-const AbstractContributionGraph = () => {
-  const cols = 26; 
-  const rows = 7;  
+type ContributionDay = { date: string; count: number; level: number };
+type ContributionData = {
+  total: number;
+  weeks: (ContributionDay | null)[][];
+  source: "live" | "fallback";
+};
 
-  const getContributionLevel = (col: number, row: number) => {
-    const hash = (col * 17 + row * 31) % 100;
-    if (hash < 45) return 0; 
-    if (hash < 75) return 1; 
-    if (hash < 90) return 2; 
-    return 3;               
-  };
+const EMPTY_WEEKS: null[][] = Array.from({ length: 53 }, () => Array(7).fill(null));
+
+const formatDay = (iso: string) => {
+  const d = new Date(iso + "T00:00:00Z");
+  return d.toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" });
+};
+
+// Real, live GitHub contribution calendar for github.com/onetwothird.
+// Fetches /api/github-contributions (a server route that reads the actual
+// public contribution graph) instead of faking a pattern, and renders it as
+// a horizontally-scrollable dot grid that matches the site's visual style.
+const GithubContributions = () => {
+  const [data, setData] = useState<ContributionData | null>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch('/api/github-contributions')
+      .then((res) => res.json())
+      .then((json: ContributionData) => {
+        if (!cancelled) setData(json);
+      })
+      .catch(() => {
+        // stay in loading/skeleton state rather than showing anything inaccurate
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  useEffect(() => {
+    // Anchor the scroll to the most recent week (today) by default — this is
+    // the part that matters most, especially on phones where the full year
+    // never fits on screen at once.
+    if (data && scrollRef.current) {
+      scrollRef.current.scrollLeft = scrollRef.current.scrollWidth;
+    }
+  }, [data]);
 
   const getStyle = (level: number) => {
     switch (level) {
       case 0: return "bg-black/5 dark:bg-white/5 w-1.5 h-1.5";
       case 1: return "bg-black/30 dark:bg-white/30 w-1.5 h-1.5";
-      case 2: return "bg-black/60 dark:bg-white/60 w-2 h-2";
-      case 3: return "bg-black dark:bg-white w-2.5 h-2.5";
-      default: return "bg-black/5 dark:bg-white/5 w-1 h-1";
+      case 2: return "bg-black/55 dark:bg-white/55 w-2 h-2";
+      case 3: return "bg-black/80 dark:bg-white/80 w-2.25 h-2.25";
+      default: return "bg-black dark:bg-white w-2.5 h-2.5";
     }
   };
 
+  const weeks = data?.weeks ?? EMPTY_WEEKS;
+
   return (
-    <div className="mt-12 flex gap-1.25 items-center justify-start overflow-x-auto pb-4 max-w-full [-ms-overflow-style:none] scrollbar-none [&::-webkit-scrollbar]:hidden">
-      {Array.from({ length: cols }).map((_, colIndex) => (
-        <div key={colIndex} className="flex flex-col gap-1.25 items-center w-2.5">
-          {Array.from({ length: rows }).map((_, rowIndex) => {
-            const level = getContributionLevel(colIndex, rowIndex);
-            return (
+    <>
+      <span className="text-5xl md:text-6xl font-medium tracking-tighter mb-1 tabular-nums">
+        {data ? `${data.total.toLocaleString()}+` : "—"}
+      </span>
+      <span className="text-sm font-medium text-[#999D9E]">Contributions in the last year</span>
+
+      {/* shrink-0 on each week column is the key fix: without it, flexbox was
+          silently squishing all 53 weeks to fit the card width instead of
+          letting the row overflow and scroll, which is what made the grid
+          look cramped/overlapping on mobile. */}
+      <div
+        ref={scrollRef}
+        className="mt-12 flex gap-1.25 items-center justify-start overflow-x-auto pb-4 max-w-full scroll-smooth
+                   [-ms-overflow-style:none] scrollbar-none [&::-webkit-scrollbar]:hidden
+                   mask-[linear-gradient(to_right,transparent,black_12px,black_calc(100%-12px),transparent)]"
+      >
+        {weeks.map((week, colIndex) => (
+          <div key={colIndex} className="flex flex-col gap-1.25 items-center w-2.5 shrink-0">
+            {week.map((day, rowIndex) => (
               <motion.div
                 key={rowIndex}
                 initial={{ scale: 0, opacity: 0 }}
                 whileInView={{ scale: 1, opacity: 1 }}
                 viewport={{ once: false, amount: 0.1 }}
-                transition={{ 
-                  delay: (colIndex * 0.015) + (rowIndex * 0.01), 
+                transition={{
+                  delay: (colIndex * 0.008) + (rowIndex * 0.01),
                   duration: 0.3,
                   ease: "backOut"
                 }}
-                className={`rounded-full ${getStyle(level)}`}
+                title={day ? `${day.count} contribution${day.count === 1 ? "" : "s"} on ${formatDay(day.date)}` : undefined}
+                className={`rounded-full shrink-0 ${
+                  day ? getStyle(day.level) : "bg-transparent w-1.5 h-1.5"
+                } ${!data ? "animate-pulse bg-black/5! dark:bg-white/5!" : ""}`}
               />
-            );
-          })}
-        </div>
-      ))}
-    </div>
+            ))}
+          </div>
+        ))}
+      </div>
+    </>
   );
 };
 
@@ -193,10 +245,7 @@ export default function JourneyGallery() {
              </div>
 
              <div className="flex flex-col border-t border-black/10 dark:border-white/10 pt-6">
-                <span className="text-5xl md:text-6xl font-medium tracking-tighter mb-1">1,350+</span>
-                <span className="text-sm font-medium text-[#999D9E]">Contributions in the last year</span>
-                
-                <AbstractContributionGraph />
+                <GithubContributions />
              </div>
           </motion.div>
         </div>
