@@ -27,9 +27,9 @@ export default function VisitorTracker() {
         console.error('Telemetry failed:', error);
       }
     };
-
+    
     trackVisit();
   }, [pathname, searchParams]);
-
+  
   return null;
 }
