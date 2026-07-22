@@ -148,7 +148,7 @@ export default function Home() {
                     <span className="text-[#8B5CF6]">1,360+</span> contributions?
                   </motion.h2>
                 )}
-
+                
                 {progress >= 90 && (
                   <motion.h2
                     key="q4"
