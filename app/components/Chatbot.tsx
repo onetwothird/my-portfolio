@@ -10,7 +10,6 @@ import Image from "next/image";
 import Magnetic from "./Magnetic";
 import ReactMarkdown from "react-markdown";
 
-// Extracts the plain-text content of a message from its parts.
 function getMessageText(m: UIMessage) {
   return m.parts
     .filter(isTextUIPart)
@@ -18,15 +17,10 @@ function getMessageText(m: UIMessage) {
     .join("");
 }
 
-// Reveals `fullText` a few characters at a time to create a typewriter effect.
-// Speeds up automatically when the backlog grows (e.g. a big chunk arrives at
-// once) so long replies never look like they're lagging behind the stream.
 function useTypewriter(fullText: string, active: boolean, speed = 18) {
   const [revealedLength, setRevealedLength] = useState(0);
   const fullTextRef = useRef(fullText);
 
-  // Keep the ref in sync with the latest text. This only ever happens in an
-  // effect, never during render.
   useEffect(() => {
     fullTextRef.current = fullText;
   }, [fullText]);
@@ -49,8 +43,6 @@ function useTypewriter(fullText: string, active: boolean, speed = 18) {
     return () => clearInterval(id);
   }, [active, speed]);
 
-  // Messages that don't animate (e.g. from the user) just show their full
-  // text immediately — no state needed for that case.
   if (!active) return fullText;
 
   return fullText.slice(0, revealedLength);
@@ -68,10 +60,8 @@ function ChatBubble({
   const typedText = useTypewriter(fullText, !isUser);
   const displayText = isUser ? fullText : typedText;
   
-  // Show cursor if it's the AI, and it's either actively streaming or still typing out
   const showCursor = !isUser && (isStreaming || typedText.length < fullText.length);
   
-  // Append a block character for the cursor so it stays perfectly inline with the Markdown
   const textWithCursor = displayText + (showCursor ? " ▍" : "");
 
   return (
@@ -224,8 +214,6 @@ export default function Chatbot() {
     sendMessage({ text });
   };
 
-  // Show the "Thinking..." indicator only while waiting for the first chunk
-  // of the response, i.e. the last message is still the user's.
   const isThinking =
     isLoading && messages.length > 0 && messages[messages.length - 1].role === "user";
 
@@ -268,12 +256,10 @@ export default function Chatbot() {
                   </button>
                 </div>
 
-                {/* Chat Area */}
                 <div
                   data-lenis-prevent="true"
                   className="flex-1 overflow-y-auto p-4 space-y-4 text-sm font-medium scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-800"
                 >
-                  {/* Welcome Screen (Empty State) */}
                   <AnimatePresence>
                     {messages.length === 0 && (
                       <motion.div
@@ -308,7 +294,6 @@ export default function Chatbot() {
                           </div>
                         </div>
 
-                        {/* Suggested Prompts */}
                         <div className="flex flex-col gap-2.5 w-full px-1">
                           {suggestedPrompts.map((prompt, index) => (
                             <motion.button
@@ -331,7 +316,6 @@ export default function Chatbot() {
                     )}
                   </AnimatePresence>
 
-                  {/* Message Bubbles */}
                   {messages.map((m, index) => {
                     const isLastMessage = index === messages.length - 1;
                     const isStreaming = isLoading && m.role === "assistant" && isLastMessage;
@@ -345,7 +329,6 @@ export default function Chatbot() {
                   <div ref={messagesEndRef} className="h-1" />
                 </div>
 
-                {/* Input Area */}
                 <form onSubmit={handleSubmit} className="p-4 border-t border-black/10 dark:border-white/10 bg-[#F4F4F4] dark:bg-[#1C1D20] shrink-0">
                   <div className="relative flex items-center shadow-sm rounded-full bg-white dark:bg-[#111111]">
                     <input
