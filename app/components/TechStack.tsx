@@ -100,7 +100,6 @@ export default function TechStack() {
           ))}
         </motion.div>
       </section>
-      
     </div>
   );
 }
