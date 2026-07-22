@@ -256,7 +256,7 @@ export default function Chatbot() {
                       <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#1C1D20] dark:bg-white"></span>
                     </span>
                     <h3 className="text-sm font-bold font-mono tracking-widest uppercase text-[#1C1D20] dark:text-[#ededed] mt-0.5">
-                      Ask Me!
+                      Thirdy&apos;s Assistant!
                     </h3>
                   </div>
                   <button
