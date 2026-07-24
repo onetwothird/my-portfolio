@@ -112,7 +112,7 @@ export default function Home() {
                     transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
                     className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight leading-tight"
                   >
-                    So, you want to know <br className="hidden sm:block" />
+                    So, you&apos;re curious about<br className="hidden sm:block" />
                     <span className="text-[#8B5CF6]">
                       Angelito P. Decatoria III?
                     </span>
@@ -144,8 +144,7 @@ export default function Home() {
                     transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
                     className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight leading-tight"
                   >
-                    Curious about his <br className="hidden sm:block" />
-                    <span className="text-[#8B5CF6]">1,360+</span> contributions?
+                    Curious about his <br className="hidden sm:block" /> <span className="text-[#8B5CF6]">contributions?</span>{" "}
                   </motion.h2>
                 )}
                 
