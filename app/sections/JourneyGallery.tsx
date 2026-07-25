@@ -26,10 +26,6 @@ const formatDay = (iso: string) => {
   return d.toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" });
 };
 
-// Real, live GitHub contribution calendar for github.com/onetwothird.
-// Fetches /api/github-contributions (a server route that reads the actual
-// public contribution graph) instead of faking a pattern, and renders it as
-// a horizontally-scrollable dot grid that matches the site's visual style.
 const GithubContributions = () => {
   const [data, setData] = useState<ContributionData | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -42,7 +38,6 @@ const GithubContributions = () => {
         if (!cancelled) setData(json);
       })
       .catch(() => {
-        // stay in loading/skeleton state rather than showing anything inaccurate
       });
     return () => {
       cancelled = true;
@@ -50,9 +45,6 @@ const GithubContributions = () => {
   }, []);
 
   useEffect(() => {
-    // Anchor the scroll to the most recent week (today) by default — this is
-    // the part that matters most, especially on phones where the full year
-    // never fits on screen at once.
     if (data && scrollRef.current) {
       scrollRef.current.scrollLeft = scrollRef.current.scrollWidth;
     }
@@ -77,10 +69,6 @@ const GithubContributions = () => {
       </span>
       <span className="text-sm font-medium text-[#999D9E]">Contributions in the last year</span>
 
-      {/* shrink-0 on each week column is the key fix: without it, flexbox was
-          silently squishing all 53 weeks to fit the card width instead of
-          letting the row overflow and scroll, which is what made the grid
-          look cramped/overlapping on mobile. */}
       <div
         ref={scrollRef}
         className="mt-12 flex gap-1.25 items-center justify-start overflow-x-auto pb-4 max-w-full scroll-smooth
@@ -120,6 +108,12 @@ export default function JourneyGallery() {
   const journey = [
     {
       year: "2026",
+      title: "QueueTopia",
+      desc: "Side Project | Full Stack",
+      detail: "My side project for Operating Systems — a web-based simulator that visualizes CPU scheduling algorithms like FCFS, SJF, Priority, SRTF, and Round Robin."
+    },
+    {
+      year: "2026",
       title: "Seelai",
       desc: "Thesis Project | Full Stack",
       detail: "My undergraduate thesis — an AI-powered mobile assistant built with Flutter, TensorFlow Lite, and YOLO that helps visually impaired individuals interpret their surroundings in real time."
@@ -129,12 +123,6 @@ export default function JourneyGallery() {
       title: "ODCI Document Tracker",
       desc: "Full Stack Developer (OJT)",
       detail: "The biggest project from my OJT — a centralized document tracking system built with a 3-person team, with role-based dashboards for Superadmins, Admins, and Users."
-    },
-    {
-      year: "2025",
-      title: "AlgoVerse",
-      desc: "OS Final Project | Full Stack",
-      detail: "My final project for Operating Systems — a web-based simulator that visualizes CPU scheduling algorithms like FCFS, SJF, Priority, SRTF, and Round Robin."
     },
     {
       year: "2022",
