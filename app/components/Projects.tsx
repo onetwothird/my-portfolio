@@ -38,8 +38,8 @@ export default function Projects() {
     },
     {
       title: "QueueTopia Simulator",
-      category: "OS Project",
-      year: "2025",
+      category: "OS Side Project",
+      year: "2026",
       description: "Web-based visual simulator for CPU scheduling algorithms (FCFS, SJF, Round Robin) for educational purposes.",
       projectUrl: "https://onetwothird.page.gd/",
       imageUrl: "/projects/Queuetopia.png"
