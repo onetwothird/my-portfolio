@@ -37,12 +37,12 @@ export default function Projects() {
       imageUrl: "/projects/seelai_dashboard.png"
     },
     {
-      title: "AlgoVerse Simulator",
+      title: "QueueTopia Simulator",
       category: "OS Project",
       year: "2025",
       description: "Web-based visual simulator for CPU scheduling algorithms (FCFS, SJF, Round Robin) for educational purposes.",
       projectUrl: "https://onetwothird.page.gd/",
-      imageUrl: "/projects/AlgoVerse.png"
+      imageUrl: "/projects/Queuetopia.png"
     },
     {
       title: "ODCI Doc Tracker",
