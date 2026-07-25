@@ -52,10 +52,10 @@ export default function Works() {
       imageUrl: "/projects/seelai-preview.png"
     },
     { 
-      title: "AlgoVerse", 
+      title: "QueueTopia", 
       tag: "Interactive OS Simulator", 
-      link: "https://onetwothird.page.gd/",
-      imageUrl: "/projects/AlgoVerse.png"
+      link: "https://queuetopia.vercel.app/",
+      imageUrl: "/projects/Queuetopia.png"
     },
     { 
       title: "ODCI Tracker", 
