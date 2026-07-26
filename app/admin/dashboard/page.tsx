@@ -116,10 +116,8 @@ export default function AdminDashboard() {
 
   if (!data) return null;
 
-  // Group logs to show 1 person/device per row and count their visits
   const groupedLogs = Object.values(
     data.recentLogs.reduce((acc, log) => {
-      // Decode the city name here so the grouping works correctly even if encoded differently
       const cleanCity = log.city ? decodeURIComponent(log.city) : 'Unknown';
       const deviceKey = `${cleanCity}-${log.country}-${log.os}-${log.browser}`;
       
@@ -217,7 +215,6 @@ export default function AdminDashboard() {
             <div className="space-y-3">
               {data.topCountries.map((c) => (
                 <div key={c._id} className="flex justify-between items-center text-sm">
-                  {/* Also decoding demographics city names just in case */}
                   <span className="font-medium text-zinc-700 dark:text-zinc-300">{decodeURIComponent(c._id)}</span>
                   <span className="font-mono bg-zinc-100 dark:bg-zinc-800 px-2 py-0.5 rounded text-xs font-bold">{c.count}</span>
                 </div>
@@ -285,7 +282,6 @@ export default function AdminDashboard() {
                       })}
                     </td>
                     <td className="p-4 font-medium">
-                      {/* Google Maps search link */}
                       <a 
                         href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(log.city + ', ' + log.country)}`}
                         target="_blank"
