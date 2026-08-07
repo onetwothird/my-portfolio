@@ -104,7 +104,7 @@ export default function Hero() {
         <Magnetic>
           <a 
             href="/resume/Decatoria_Angelito_CV.pdf" 
-            download="Decatoria_Angelito_CV.pdf"
+            download="Decatoria-Angelito_Resume.pdf"
             className="group flex items-center gap-3 px-6 py-3 rounded-full border border-white/30 bg-white/5 backdrop-blur-sm text-white transition-all duration-500 hover:bg-white hover:text-black pointer-events-auto hover:shadow-[0_0_20px_rgba(255,255,255,0.3)]"
           >
             <span className="text-sm font-medium tracking-widest uppercase">Resume</span>
