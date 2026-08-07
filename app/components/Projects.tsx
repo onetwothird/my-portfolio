@@ -59,6 +59,14 @@ export default function Projects() {
       description: "Full-stack web-based Point of Sale platform that also functions as a customer-facing e-commerce site.",
       projectUrl: "https://jayann-store.page.gd/",
       imageUrl: "/projects/jayann_store.png"
+    },
+    {
+      title: "Resumi",
+      category: "E-Commerce",
+      year: "2025",
+      description: "Build a professional, ATS-friendly resume in minutes with our easy-to-use resume builder",
+      projectUrl: "https://resumi-mu.vercel.app/",
+      imageUrl: "/projects/resumi.png"
     }
   ];
 

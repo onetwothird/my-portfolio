@@ -8,7 +8,7 @@ The portfolio is structured as a single-page experience with multiple sections a
 
 - Hero section with animated intro, preloader experience, and polished navigation
 - About section highlighting his focus areas and developer identity
-- Works section featuring selected projects such as Seelai, AlgoVerse, ODCI Tracker, and Jayann's Store
+- Works section featuring selected projects such as Seelai, AlgoVerse, ODCI Tracker, Jayann's Store, and Resumi
 - Certifications section for training and professional development highlights
 - Tech stack section summarizing his tools and technologies
 - Journey/Gallery section that presents milestones and visual content
