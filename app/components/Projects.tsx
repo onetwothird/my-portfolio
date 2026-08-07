@@ -45,6 +45,14 @@ export default function Projects() {
       imageUrl: "/projects/Queuetopia.png"
     },
     {
+      title: "Resumi",
+      category: "E-Commerce",
+      year: "2026",
+      description: "Build a professional, ATS-friendly resume in minutes with our easy-to-use resume builder",
+      projectUrl: "https://resumi-mu.vercel.app/",
+      imageUrl: "/projects/Resumi.png"
+    },
+    {
       title: "ODCI Doc Tracker",
       category: "OJT Project",
       year: "2025",
@@ -59,14 +67,6 @@ export default function Projects() {
       description: "Full-stack web-based Point of Sale platform that also functions as a customer-facing e-commerce site.",
       projectUrl: "https://jayann-store.page.gd/",
       imageUrl: "/projects/jayann_store.png"
-    },
-    {
-      title: "Resumi",
-      category: "E-Commerce",
-      year: "2025",
-      description: "Build a professional, ATS-friendly resume in minutes with our easy-to-use resume builder",
-      projectUrl: "https://resumi-mu.vercel.app/",
-      imageUrl: "/projects/Resumi.png"
     }
   ];
 
