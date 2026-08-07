@@ -73,7 +73,7 @@ export default function Works() {
       title: "Resumi", 
       tag: "Resume Builder & Portfolio", 
       link: "https://resumi-mu.vercel.app/",
-      imageUrl: "/projects/resumi.png"
+      imageUrl: "/projects/Resumi.png"
     }
   ];
 

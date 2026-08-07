@@ -66,7 +66,7 @@ export default function Projects() {
       year: "2025",
       description: "Build a professional, ATS-friendly resume in minutes with our easy-to-use resume builder",
       projectUrl: "https://resumi-mu.vercel.app/",
-      imageUrl: "/projects/resumi.png"
+      imageUrl: "/projects/Resumi.png"
     }
   ];
 
