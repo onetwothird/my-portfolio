@@ -64,17 +64,17 @@ export default function Works() {
       imageUrl: "/projects/odci.png"
     },
     { 
+      title: "Resumi", 
+      tag: "Resume Builder & Portfolio", 
+      link: "https://resumi-mu.vercel.app/",
+      imageUrl: "/projects/Resumi.png"
+    },
+    { 
       title: "Jayann's Store", 
       tag: "E-Commerce & POS", 
       link: "https://jayann-store.page.gd/",
       imageUrl: "/projects/jayann_store.png"
     },
-    { 
-      title: "Resumi", 
-      tag: "Resume Builder & Portfolio", 
-      link: "https://resumi-mu.vercel.app/",
-      imageUrl: "/projects/Resumi.png"
-    }
   ];
 
   return (
