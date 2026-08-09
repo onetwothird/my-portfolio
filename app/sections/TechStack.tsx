@@ -2,6 +2,7 @@
 
 import { motion, Variants } from 'framer-motion';
 import Link from 'next/link';
+import { useSound } from '../components/SoundProvider';
 
 const revealUp: Variants = {
   hidden: { opacity: 0, y: 50 },
@@ -18,6 +19,7 @@ const slideUpFade: Variants = {
 };
 
 export default function TechStack() {
+  const { playHover, playClick } = useSound();
   const techStack = [
     { title: "1. Frontend & Mobile", items: ['JavaScript', 'Dart', 'React.js', 'Next.js', 'HTML5', 'CSS3', 'Flutter SDK'] },
     { title: "2. Backend & DB", items: ['Node.js', 'Python', 'PHP', 'MySQL', 'Firebase', 'REST APIs'] },
@@ -39,7 +41,7 @@ export default function TechStack() {
               <h3 className="text-sm font-bold uppercase tracking-widest pt-2 text-[#999D9E]">{stack.title}</h3>
               <div className="flex flex-wrap gap-2">
                 {stack.items.map(t => (
-                  <span key={t} className="px-4 py-2 border border-black/10 dark:border-white/10 text-xs font-bold font-mono uppercase rounded-full hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors cursor-default">
+                  <span key={t} onMouseEnter={playHover} className="px-4 py-2 border border-black/10 dark:border-white/10 text-xs font-bold font-mono uppercase rounded-full hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors cursor-default">
                     {t}
                   </span>
                 ))}
@@ -53,7 +55,7 @@ export default function TechStack() {
         initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.1 }} variants={slideUpFade}
         className="flex justify-center mt-24"
       >
-         <Link href="/tech-stack" className="px-8 py-4 rounded-full border border-black/20 dark:border-white/20 text-sm font-medium hover:bg-[#1C1D20] hover:text-white dark:hover:bg-white dark:hover:text-[#1C1D20] transition-colors duration-300">
+         <Link href="/tech-stack" onMouseEnter={playHover} onClick={playClick} className="px-8 py-4 rounded-full border border-black/20 dark:border-white/20 text-sm font-medium hover:bg-[#1C1D20] hover:text-white dark:hover:bg-white dark:hover:text-[#1C1D20] transition-colors duration-300">
            More tech stack
          </Link>
       </motion.div>
