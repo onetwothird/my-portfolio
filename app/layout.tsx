@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { ThemeProvider } from "./components/ThemeProvider";
+import { SoundProvider } from "./components/SoundProvider";
 import Chatbot from "./components/Chatbot"; 
 import "./globals.css";
 import { Analytics } from '@vercel/analytics/react';
@@ -43,8 +44,10 @@ export default function RootLayout({
         </Suspense>
 
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          {children}
-          <Chatbot /> 
+          <SoundProvider>
+            {children}
+            <Chatbot /> 
+          </SoundProvider>
         </ThemeProvider>
         <Analytics />
       </body>
