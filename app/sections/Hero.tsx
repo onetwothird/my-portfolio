@@ -5,6 +5,7 @@ import { Globe, ArrowDownLeft, ArrowDownRight, Download } from 'lucide-react';
 import Image from 'next/image';
 import Magnetic from '../components/Magnetic';
 import LiveVisitorCount from '../components/LiveVisitorCount';
+import { useSound } from '../components/SoundProvider';
 
 const revealUp: Variants = {
   hidden: { opacity: 0, y: 50 },
@@ -12,6 +13,8 @@ const revealUp: Variants = {
 };
 
 export default function Hero() {
+  const { playHover, playClick } = useSound();
+
   return (
     <section className="min-h-dvh w-full flex flex-col lg:block relative overflow-hidden bg-[#ababab]">
 
@@ -94,7 +97,7 @@ export default function Hero() {
             </div>
             <span className="text-lg md:text-xl opacity-80">& CS Student</span>
           </div>
-          <div className="w-fit mb-6">
+          <div className="w-fit mb-6" onMouseEnter={playHover}>
             <Magnetic>
                <ArrowDownLeft size={28} strokeWidth={1.5} className="opacity-70 hover:opacity-100 transition-colors cursor-pointer drop-shadow-sm rotate-45 pointer-events-auto" />
             </Magnetic>
@@ -105,6 +108,8 @@ export default function Hero() {
           <a 
             href="/resume/Decatoria_Angelito_CV.pdf" 
             download="Decatoria-Angelito_Resume.pdf"
+            onMouseEnter={playHover}
+            onClick={playClick}
             className="group flex items-center gap-3 px-6 py-3 rounded-full border border-white/30 bg-white/5 backdrop-blur-sm text-white transition-all duration-500 hover:bg-white hover:text-black pointer-events-auto hover:shadow-[0_0_20px_rgba(255,255,255,0.3)]"
           >
             <span className="text-sm font-medium tracking-widest uppercase">Resume</span>
@@ -125,6 +130,7 @@ export default function Hero() {
             <a 
               href="/resume/Decatoria_Angelito_CV.pdf" 
               download="Decatoria_Angelito_CV.pdf"
+              onClick={playClick}
               className="group flex w-fit items-center gap-2 px-5 py-2.5 mt-1 rounded-full border border-white/30 bg-white/10 backdrop-blur-md text-white transition-all duration-300 pointer-events-auto active:bg-white active:text-black"
             >
               <span className="text-xs font-medium tracking-widest uppercase">Resume</span>
