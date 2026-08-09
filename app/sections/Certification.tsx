@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { motion, Variants, useSpring, useMotionValue } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useSound } from '../components/SoundProvider';
 
 const slideUpFade: Variants = {
   hidden: { opacity: 0, y: 80 },
@@ -24,6 +25,7 @@ const staggerContainer = {
 
 export default function Certification() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const { playHover, playClick } = useSound();
 
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -116,7 +118,7 @@ export default function Certification() {
           <motion.div 
             key={idx}
             variants={slideUpFade}
-            onMouseEnter={() => setHoveredIndex(idx)}
+            onMouseEnter={() => { setHoveredIndex(idx); playHover(); }}
             onMouseLeave={() => setHoveredIndex(null)}
             className="group relative flex flex-col md:flex-row justify-between items-start md:items-center py-10 md:py-12 border-b border-black/10 dark:border-white/10 hover:px-6 transition-all duration-500 cursor-default z-10"
           >
@@ -139,7 +141,7 @@ export default function Certification() {
         initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.1 }} variants={slideUpFade}
         className="flex justify-center mt-24"
       >
-         <Link href="/certificate" className="px-8 py-4 rounded-full border border-black/20 dark:border-white/20 text-sm font-medium hover:bg-[#1C1D20] hover:text-white dark:hover:bg-white dark:hover:text-[#1C1D20] transition-colors duration-300">
+         <Link href="/certificate" onMouseEnter={playHover} onClick={playClick} className="px-8 py-4 rounded-full border border-black/20 dark:border-white/20 text-sm font-medium hover:bg-[#1C1D20] hover:text-white dark:hover:bg-white dark:hover:text-[#1C1D20] transition-colors duration-300">
            More certificates
          </Link>
       </motion.div>
