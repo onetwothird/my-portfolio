@@ -63,17 +63,16 @@ function playTone(ctx: AudioContext, opts: ToneOptions) {
 }
 
 export function SoundProvider({ children }: { children: React.ReactNode }) {
-  const [enabled, setEnabled] = useState(() => {
-    if (typeof window === "undefined") return true;
-    const saved = localStorage.getItem(STORAGE_KEY);
-    return saved !== null ? saved === "true" : true;
-  });
+  const [enabled, setEnabled] = useState(true);
   const hydrated = useRef(false);
   const ctxRef = useRef<AudioContext | null>(null);
   const lastHoverRef = useRef(0);
   const windNodeRef = useRef<{ noise: AudioBufferSourceNode, filter: BiquadFilterNode, gain: GainNode } | null>(null);
 
   useEffect(() => {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    if (saved !== null) setEnabled(saved === "true");
     hydrated.current = true;
   }, []);
 
@@ -97,13 +96,33 @@ export function SoundProvider({ children }: { children: React.ReactNode }) {
     return ctxRef.current;
   }, []);
 
+  // Aggressive Unlocker: Triggers on ANY movement so it feels fully automatic
   useEffect(() => {
-    const unlock = () => getCtx();
-    window.addEventListener("pointerdown", unlock, { once: true });
-    window.addEventListener("keydown", unlock, { once: true });
+    const unlock = () => {
+      const ctx = getCtx();
+      if (ctx?.state === "suspended") {
+        ctx.resume();
+      }
+    };
+
+    // Attempt immediately on mount
+    unlock();
+
+    // Listen to mouse movement, scrolling, and touches to bypass the click requirement
+    const unlockEvents = ["mousemove", "scroll", "pointerdown", "keydown", "touchstart"];
+    
+    const handleUnlock = () => {
+      unlock();
+      // Once the browser allows the audio to run, remove the listeners to save performance
+      if (ctxRef.current?.state === "running") {
+        unlockEvents.forEach(e => window.removeEventListener(e, handleUnlock));
+      }
+    };
+
+    unlockEvents.forEach(e => window.addEventListener(e, handleUnlock, { passive: true }));
+
     return () => {
-      window.removeEventListener("pointerdown", unlock);
-      window.removeEventListener("keydown", unlock);
+      unlockEvents.forEach(e => window.removeEventListener(e, handleUnlock));
     };
   }, [getCtx]);
 
