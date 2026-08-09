@@ -4,13 +4,15 @@ import { useState } from 'react';
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
 import { X } from 'lucide-react';
 import Magnetic from './Magnetic'; 
+import { useSound } from './SoundProvider';
 
 export default function Navigation() {
   const { scrollY } = useScroll();
   const [hidden, setHidden] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-
   
+  const { playHover, playClick } = useSound();
+
   useMotionValueEvent(scrollY, "change", (latest) => {
     if (latest > 100) {
       setHidden(true); 
@@ -44,7 +46,14 @@ export default function Navigation() {
         transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
         className="fixed top-0 w-full z-50 text-white px-6 md:px-12 py-8 flex justify-between items-center pointer-events-none"
       >
-        <div className="pointer-events-auto group flex items-center cursor-pointer font-medium tracking-wide text-xl overflow-hidden pr-4" onClick={() => window.scrollTo(0,0)}>
+        <div 
+          className="pointer-events-auto group flex items-center cursor-pointer font-medium tracking-wide text-xl overflow-hidden pr-4" 
+          onClick={() => {
+            playClick();
+            window.scrollTo(0,0);
+          }}
+          onMouseEnter={() => playHover(400, 500)}
+        >
           <span className="transition-transform duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:rotate-360 mr-2">©</span>
           <div className="grid relative overflow-hidden items-center">
             <span className="col-start-1 row-start-1 transition-all duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-x-10 opacity-100 group-hover:opacity-0 whitespace-nowrap">
@@ -58,17 +67,32 @@ export default function Navigation() {
 
         <div className="pointer-events-auto flex items-center gap-8 text-xl font-medium">
           <Magnetic>
-            <a href="#work" className="hidden md:block hover:opacity-70 transition-opacity">
+            <a 
+              href="#work" 
+              className="hidden md:block hover:opacity-70 transition-opacity"
+              onMouseEnter={() => playHover(500, 600)}
+              onClick={playClick}
+            >
               Work
             </a>
           </Magnetic>
           <Magnetic>
-            <a href="#about" className="hidden md:block hover:opacity-70 transition-opacity">
+            <a 
+              href="#about" 
+              className="hidden md:block hover:opacity-70 transition-opacity"
+              onMouseEnter={() => playHover(600, 700)}
+              onClick={playClick}
+            >
               About
             </a>
           </Magnetic>
           <Magnetic>
-            <a href="#certification" className="hidden md:block hover:opacity-70 transition-opacity">
+            <a 
+              href="#certification" 
+              className="hidden md:block hover:opacity-70 transition-opacity"
+              onMouseEnter={() => playHover(700, 800)}
+              onClick={playClick}
+            >
               Certifications
             </a>
           </Magnetic>
@@ -86,7 +110,11 @@ export default function Navigation() {
           >
             <Magnetic>
               <button 
-                onClick={() => setMenuOpen(true)}
+                onClick={() => {
+                  playClick();
+                  setMenuOpen(true);
+                }}
+                onMouseEnter={playHover}
                 className="w-16 h-16 md:w-20 md:h-20 bg-[#1C1D20] text-white rounded-full flex flex-col justify-center items-center gap-1.5 hover:bg-[#8B5CF6] transition-colors duration-300 shadow-xl pointer-events-auto group"
               >
                 <div className="w-6 h-0.5 bg-white group-hover:w-8 transition-all duration-300 ease-in-out" />
@@ -105,7 +133,10 @@ export default function Navigation() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.5 }}
-              onClick={() => setMenuOpen(false)}
+              onClick={() => {
+                playClick();
+                setMenuOpen(false);
+              }}
               className="fixed inset-0 w-full h-screen bg-black/40 z-190 cursor-pointer"
             />
 
@@ -117,7 +148,11 @@ export default function Navigation() {
               className="fixed top-0 right-0 h-screen w-full sm:w-screen md:w-[120vw] max-w-125 bg-[#1C1D20] text-white z-200 flex flex-col shadow-2xl"
             >
               <button 
-                onClick={() => setMenuOpen(false)}
+                onClick={() => {
+                  playClick();
+                  setMenuOpen(false);
+                }}
+                onMouseEnter={playHover}
                 className="absolute top-8 right-6 md:right-12 w-14 h-14 bg-[#8B5CF6] rounded-full flex justify-center items-center hover:scale-105 transition-transform duration-300 z-10"
               >
                 <X size={24} />
@@ -134,7 +169,11 @@ export default function Navigation() {
                     <motion.a 
                       key={i}
                       href={item.href}
-                      onClick={() => setMenuOpen(false)}
+                      onClick={() => {
+                        playClick();
+                        setMenuOpen(false);
+                      }}
+                      onMouseEnter={() => playHover(300 + (i * 75), 400 + (i * 75))} // Pitch steps up for each item
                       initial={{ opacity: 0, x: 50 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.2 + (i * 0.1), duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
@@ -161,6 +200,8 @@ export default function Navigation() {
                         href={social.href} 
                         target="_blank"
                         rel="noopener noreferrer"
+                        onMouseEnter={() => playHover(800, 950)}
+                        onClick={playClick}
                         className="text-sm font-medium hover:text-[#8B5CF6] transition-colors"
                       >
                         {social.name}
