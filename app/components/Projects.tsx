@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowLeft } from 'lucide-react';
 import { motion, Variants } from 'framer-motion';
+import { useSound } from './SoundProvider';
 
 const slideUpFade: Variants = {
   hidden: { opacity: 0, y: 80 },
@@ -19,6 +20,8 @@ const stagger = {
 };
 
 export default function Projects() {
+  const { playHover, playClick } = useSound();
+  
   const projects = [
     {
       title: "Seelai AI Assistant",
@@ -77,6 +80,8 @@ export default function Projects() {
         <motion.div initial="hidden" animate="visible" variants={stagger}>
           <Link 
             href="/" 
+            onMouseEnter={() => playHover()}
+            onClick={playClick}
             className="inline-flex items-center gap-2 text-xs font-bold font-mono uppercase tracking-widest text-[#999D9E] hover:text-black dark:hover:text-white transition-colors mb-12 group"
           >
             <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" /> Back to Home
@@ -111,6 +116,8 @@ export default function Projects() {
               whileInView="visible" 
               viewport={{ once: true, amount: 0.1 }}
               variants={{ hidden: { opacity: 0, y: 100 }, visible: { opacity: 1, y: 0, transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } } }}
+              onMouseEnter={() => playHover()}
+              onClick={playClick}
               className={`group w-full aspect-4/3 relative cursor-pointer overflow-hidden rounded-sm block ${i % 2 !== 0 ? 'md:mt-24' : ''}`}
             >
               <Image 
