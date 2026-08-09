@@ -5,6 +5,7 @@ import { ArrowUpRight } from 'lucide-react';
 import Image from "next/image";
 import { motion, Variants } from 'framer-motion';
 import Magnetic from './Magnetic';
+import { useSound } from './SoundProvider';
 
 const footerStagger = {
   hidden: {},
@@ -39,6 +40,7 @@ const socials = [
 
 export default function Footer() {
   const [time, setTime] = useState("");
+  const { playHover, playClick } = useSound();
 
   useEffect(() => {
     const updateTime = () => {
@@ -89,7 +91,7 @@ export default function Footer() {
           
           <div className="absolute right-4 md:right-12 top-1/2 -translate-y-1/2 z-20">
             <Magnetic>
-              <a href="mailto:angelitodecatoriaa@gmail.com" className="w-32 h-32 md:w-44 md:h-44 bg-[#8B5CF6] hover:bg-[#7C3AED] text-white rounded-full flex items-center justify-center font-medium shadow-2xl transition-colors duration-300">
+              <a href="mailto:angelitodecatoriaa@gmail.com" onMouseEnter={playHover} onClick={playClick} className="w-32 h-32 md:w-44 md:h-44 bg-[#8B5CF6] hover:bg-[#7C3AED] text-white rounded-full flex items-center justify-center font-medium shadow-2xl transition-colors duration-300">
                  Get in touch
               </a>
             </Magnetic>
@@ -98,12 +100,12 @@ export default function Footer() {
 
         <motion.div variants={fadeUp} className="w-full max-w-300 flex flex-col md:flex-row gap-4 mt-12 mb-24 relative z-10">
            <Magnetic>
-             <a href="mailto:angelitodecatoriaa@gmail.com" className="px-8 py-4 rounded-full border border-white/20 text-sm font-medium hover:bg-white hover:text-[#1C1D20] transition-colors inline-block">
+             <a href="mailto:angelitodecatoriaa@gmail.com" onMouseEnter={playHover} onClick={playClick} className="px-8 py-4 rounded-full border border-white/20 text-sm font-medium hover:bg-white hover:text-[#1C1D20] transition-colors inline-block">
                angelitodecatoriaa@gmail.com
              </a>
            </Magnetic>
            <Magnetic>
-             <a href="https://www.linkedin.com/in/angelito-decatoria/" target="_blank" rel="noreferrer" className="px-8 py-4 rounded-full border border-white/20 text-sm font-medium hover:bg-white hover:text-[#1C1D20] transition-colors inline-block">
+             <a href="https://www.linkedin.com/in/angelito-decatoria/" target="_blank" rel="noreferrer" onMouseEnter={playHover} onClick={playClick} className="px-8 py-4 rounded-full border border-white/20 text-sm font-medium hover:bg-white hover:text-[#1C1D20] transition-colors inline-block">
                Connect on LinkedIn
              </a>
            </Magnetic>
@@ -130,6 +132,8 @@ export default function Footer() {
                     href={social.href} 
                     target="_blank"
                     rel="noopener noreferrer"
+                    onMouseEnter={playHover}
+                    onClick={playClick}
                     className="hover:text-[#8B5CF6] transition-colors"
                   >
                     {social.name}
