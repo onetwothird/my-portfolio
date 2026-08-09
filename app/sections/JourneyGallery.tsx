@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import Magnetic from '../components/Magnetic';
+import { useSound } from '../components/SoundProvider'; 
 
 const revealUp: Variants = {
   hidden: { opacity: 0, y: 50 },
@@ -104,6 +105,8 @@ const GithubContributions = () => {
 export default function JourneyGallery() {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [hoveredJourney, setHoveredJourney] = useState<number | null>(null);
+  
+  const { playHover } = useSound();
 
   const journey = [
     {
@@ -182,7 +185,10 @@ export default function JourneyGallery() {
                 whileInView="visible"
                 viewport={{ once: false, amount: 0.1 }}
                 variants={revealUp}
-                onMouseEnter={() => setHoveredJourney(i)}
+                onMouseEnter={() => {
+                  setHoveredJourney(i);
+                  playHover(400, 500); 
+                }}
                 onMouseLeave={() => setHoveredJourney(null)}
                 onClick={() => setHoveredJourney(hoveredJourney === i ? null : i)}
                 className="relative pl-10 pb-16 last:pb-0 group cursor-default"
@@ -272,6 +278,7 @@ export default function JourneyGallery() {
                 key={i} 
                 initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.1 }}
                 variants={{ hidden: { opacity: 0, y: 100 }, visible: { opacity: 1, y: 0, transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } } }}
+                onMouseEnter={() => playHover(900, 1100)} 
                 onClick={() => setSelectedIndex(i)} 
                 className={`group w-full aspect-4/3 relative cursor-pointer overflow-hidden rounded-sm ${i % 2 !== 0 ? 'md:mt-24' : ''}`}
               >
