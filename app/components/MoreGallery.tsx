@@ -5,6 +5,7 @@ import { motion, AnimatePresence, Variants } from 'framer-motion';
 import Image from "next/image";
 import Link from "next/link";
 import { X, ArrowLeft, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useSound } from './SoundProvider';
 
 const slideUpFade: Variants = {
   hidden: { opacity: 0, y: 80 },
@@ -26,28 +27,29 @@ const galleryImages = [
 
 export default function MoreGallery() {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  const { playHover, playClick } = useSound();
 
   const closeLightbox = useCallback(() => setSelectedIndex(null), []);
   
-  const showNext = useCallback(() => 
-    setSelectedIndex((prev) => (prev === null ? null : (prev + 1) % galleryImages.length)), 
-  []);
+  const showNext = useCallback(() => {
+    setSelectedIndex((prev) => (prev === null ? null : (prev + 1) % galleryImages.length));
+  }, []);
   
-  const showPrev = useCallback(() => 
-    setSelectedIndex((prev) => (prev === null ? null : (prev - 1 + galleryImages.length) % galleryImages.length)), 
-  []);
+  const showPrev = useCallback(() => {
+    setSelectedIndex((prev) => (prev === null ? null : (prev - 1 + galleryImages.length) % galleryImages.length));
+  }, []);
 
   useEffect(() => {
     if (selectedIndex === null) return;
     const handleKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") closeLightbox();
-      if (e.key === "ArrowRight") showNext();
-      if (e.key === "ArrowLeft") showPrev();
+      if (e.key === "Escape") { closeLightbox(); playClick(); }
+      if (e.key === "ArrowRight") { showNext(); playClick(); }
+      if (e.key === "ArrowLeft") { showPrev(); playClick(); }
     };
     
     window.addEventListener("keydown", handleKey);
     return () => window.removeEventListener("keydown", handleKey);
-  }, [selectedIndex, closeLightbox, showNext, showPrev]); // Added missing dependencies
+  }, [selectedIndex, closeLightbox, showNext, showPrev, playClick]);
 
   return (
     <div className="min-h-screen bg-[#F4F4F4] dark:bg-[#111111] text-[#1C1D20] dark:text-[#ededed] font-sans selection:bg-[#8B5CF6] selection:text-white pb-24">
@@ -56,6 +58,8 @@ export default function MoreGallery() {
         <motion.div initial="hidden" animate="visible" variants={stagger}>
           <Link 
             href="/#gallery" 
+            onMouseEnter={() => playHover()}
+            onClick={playClick}
             className="inline-flex items-center gap-2 text-xs font-bold font-mono uppercase tracking-widest text-[#999D9E] hover:text-black dark:hover:text-white transition-colors mb-12 group"
           >
             <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" /> Back to Home
@@ -87,7 +91,8 @@ export default function MoreGallery() {
               whileInView="visible" 
               viewport={{ once: true, amount: 0.1 }}
               variants={{ hidden: { opacity: 0, y: 100 }, visible: { opacity: 1, y: 0, transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } } }}
-              onClick={() => setSelectedIndex(i)} 
+              onMouseEnter={() => playHover()}
+              onClick={() => { setSelectedIndex(i); playClick(); }} 
               className={`group w-full aspect-4/3 relative cursor-pointer overflow-hidden rounded-sm ${i % 2 !== 0 ? 'md:mt-24' : ''}`}
             >
               <Image src={src} alt={`Gallery Image ${i + 1}`} fill className="object-cover group-hover:scale-105 transition-transform duration-1000 ease-out" />
@@ -111,19 +116,26 @@ export default function MoreGallery() {
           <motion.div 
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }}
             className="fixed inset-0 z-200000 flex items-center justify-center bg-black/95 backdrop-blur-sm p-6"
-            onClick={closeLightbox}
+            onClick={() => { closeLightbox(); playClick(); }}
           >
-            <button className="absolute top-8 right-8 text-white hover:text-gray-400 transition-colors z-10"><X size={36} /></button>
+            <button 
+              onMouseEnter={() => playHover()}
+              className="absolute top-8 right-8 text-white hover:text-gray-400 transition-colors z-10"
+            >
+              <X size={36} />
+            </button>
 
             <button
-              onClick={(e) => { e.stopPropagation(); showPrev(); }}
+              onMouseEnter={() => playHover()}
+              onClick={(e) => { e.stopPropagation(); showPrev(); playClick(); }}
               className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 text-white/70 hover:text-white transition-colors z-10 p-2"
               aria-label="Previous image"
             >
               <ChevronLeft size={32} />
             </button>
             <button
-              onClick={(e) => { e.stopPropagation(); showNext(); }}
+              onMouseEnter={() => playHover()}
+              onClick={(e) => { e.stopPropagation(); showNext(); playClick(); }}
               className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 text-white/70 hover:text-white transition-colors z-10 p-2"
               aria-label="Next image"
             >
