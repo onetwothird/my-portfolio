@@ -119,6 +119,18 @@ export default function JourneyGallery() {
       detail: "My undergraduate thesis — an AI-powered mobile assistant built with Flutter, TensorFlow Lite, and YOLO that helps visually impaired individuals interpret their surroundings in real time."
     },
     {
+      year: "2026",
+      title: "Resumi",
+      desc: "Resume Builder & Portfolio",
+      detail: "A dedicated project focused on empowering users to create robust resumes and professional portfolios."
+    },
+    {
+      year: "2026",
+      title: "Jayann's Store",
+      desc: "E-Commerce & POS",
+      detail: "An integrated e-commerce and point-of-sale system designed to streamline online storefront operations and inventory."
+    },
+    {
       year: "2025",
       title: "ODCI Document Tracker",
       desc: "Full Stack Developer (OJT)",
