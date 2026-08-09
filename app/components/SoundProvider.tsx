@@ -19,7 +19,7 @@ type SoundContextValue = {
 
 const SoundContext = createContext<SoundContextValue | null>(null);
 
-const STORAGE_KEY = "portfolio-sound-enabled";
+const STORAGE_KEY = "portfolio-sound-v2";
 
 type ToneOptions = {
   frequency: number;
@@ -63,7 +63,6 @@ function playTone(ctx: AudioContext, opts: ToneOptions) {
 }
 
 export function SoundProvider({ children }: { children: React.ReactNode }) {
-  // Changed initial state to false so sound is OFF by default
   const [enabled, setEnabled] = useState(false); 
   const hydrated = useRef(false);
   const ctxRef = useRef<AudioContext | null>(null);
@@ -72,8 +71,11 @@ export function SoundProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     const saved = localStorage.getItem(STORAGE_KEY);
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    if (saved !== null) setEnabled(saved === "true");
+    if (saved !== null) {
+      // Moved the eslint disable comment directly above the setState call
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setEnabled(saved === "true");
+    }
     hydrated.current = true;
   }, []);
 
@@ -97,7 +99,6 @@ export function SoundProvider({ children }: { children: React.ReactNode }) {
     return ctxRef.current;
   }, []);
 
-  // Aggressive Unlocker: Triggers on ANY movement so the context is ready if they turn it on
   useEffect(() => {
     const unlock = () => {
       const ctx = getCtx();
