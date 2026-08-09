@@ -2,6 +2,7 @@
 
 import { motion, Variants } from 'framer-motion';
 import { ThemeToggle } from '../components/ThemeToggle';
+import { SoundToggle } from '../components/SoundToggle';
 
 const slideUpFade: Variants = {
   hidden: { opacity: 0, y: 80 },
@@ -49,8 +50,11 @@ export default function About() {
   return (
     <section id="about" className="py-32 px-6 md:px-12 max-w-7xl mx-auto flex flex-col md:flex-row gap-16 md:gap-32 relative">
       
-      <div className="absolute top-32 right-6 md:right-12 z-10">
-        <div className="bg-black/5 dark:bg-white/10 p-2 rounded-full hover:scale-110 transition-transform duration-300">
+      <div className="absolute top-32 right-6 md:right-12 z-10 flex items-center gap-2">
+        <div className="bg-black/5 dark:bg-white/10 w-10 h-10 flex items-center justify-center rounded-full hover:scale-110 transition-transform duration-300">
+          <SoundToggle />
+        </div>
+        <div className="bg-black/5 dark:bg-white/10 w-10 h-10 flex items-center justify-center rounded-full hover:scale-110 transition-transform duration-300">
           <ThemeToggle />
         </div>
       </div>
