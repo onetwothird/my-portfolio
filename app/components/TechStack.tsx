@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import { motion, Variants } from 'framer-motion';
+import { useSound } from './SoundProvider';
 
 const slideUpFade: Variants = {
   hidden: { opacity: 0, y: 80 },
@@ -18,6 +19,8 @@ const stagger = {
 };
 
 export default function TechStack() {
+  const { playHover, playClick } = useSound();
+
   const categories = [
     {
       title: "Frontend & Mobile",
@@ -45,6 +48,8 @@ export default function TechStack() {
         <motion.div initial="hidden" animate="visible" variants={stagger}>
           <Link 
             href="/" 
+            onMouseEnter={() => playHover()}
+            onClick={playClick}
             className="inline-flex items-center gap-2 text-xs font-bold font-mono uppercase tracking-widest text-[#999D9E] hover:text-black dark:hover:text-white transition-colors mb-12 group"
           >
             <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" /> Back to Home
@@ -90,6 +95,7 @@ export default function TechStack() {
                 {category.items.map((tech, techIndex) => (
                   <span 
                     key={techIndex} 
+                    onMouseEnter={() => playHover(800)}
                     className="px-5 py-2.5 border border-black/20 dark:border-white/20 rounded-full text-xs font-bold font-mono uppercase bg-transparent hover:bg-[#1C1D20] hover:text-white dark:hover:bg-white dark:hover:text-[#1C1D20] transition-colors cursor-default"
                   >
                     {tech}
