@@ -9,6 +9,7 @@ import { MessageSquare, X, Send, ArrowRight, Loader2 } from "lucide-react";
 import Image from "next/image";
 import Magnetic from "./Magnetic";
 import ReactMarkdown from "react-markdown";
+import { useSound } from "./SoundProvider";
 
 function getMessageText(m: UIMessage) {
   return m.parts
@@ -157,6 +158,7 @@ export default function Chatbot() {
 
   const { messages, sendMessage, status } = useChat();
   const isLoading = status === "submitted" || status === "streaming";
+  const { playHover, playClick } = useSound();
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const { scrollY } = useScroll();
@@ -205,12 +207,14 @@ export default function Chatbot() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!input.trim() || isLoading) return;
+    playClick();
     sendMessage({ text: input });
     setInput("");
   };
 
   const handleSuggestionClick = (text: string) => {
     if (isLoading) return;
+    playClick();
     sendMessage({ text });
   };
 
@@ -248,7 +252,7 @@ export default function Chatbot() {
                     </h3>
                   </div>
                   <button
-                    onClick={() => setIsOpen(false)}
+                    onClick={() => { playClick(); setIsOpen(false); }}
                     className="text-[#999D9E] hover:text-black dark:hover:text-white transition-colors"
                     aria-label="Close chat"
                   >
@@ -302,6 +306,7 @@ export default function Chatbot() {
                               animate={{ opacity: 1, x: 0 }}
                               transition={{ delay: 0.2 + index * 0.1 }}
                               onClick={() => handleSuggestionClick(prompt)}
+                              onMouseEnter={playHover}
                               className="group relative flex items-center justify-between w-full p-3.5 text-xs text-left rounded-xl border border-black/10 dark:border-white/10 bg-white dark:bg-[#111111] hover:border-black/30 dark:hover:border-white/30 hover:bg-black/2 dark:hover:bg-white/5 transition-all duration-300 text-[#1C1D20] dark:text-[#ededed] shadow-sm hover:shadow-md"
                             >
                               <span className="font-medium">{prompt}</span>
@@ -339,6 +344,7 @@ export default function Chatbot() {
                     />
                     <button
                       type="submit"
+                      onMouseEnter={playHover}
                       disabled={isLoading || !input.trim()}
                       className="absolute right-2 p-2 bg-[#1C1D20] dark:bg-white text-white dark:text-[#1C1D20] rounded-full hover:scale-105 transition-transform disabled:opacity-50 disabled:hover:scale-100"
                       aria-label="Send message"
@@ -359,7 +365,8 @@ export default function Chatbot() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => setIsOpen(!isOpen)}
+              onMouseEnter={playHover}
+              onClick={() => { playClick(); setIsOpen(!isOpen); }}
               className={`w-14 h-14 rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 ${
                 isOverFooter
                   ? "bg-white text-[#1C1D20]" 
