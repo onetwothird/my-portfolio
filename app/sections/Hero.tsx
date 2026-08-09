@@ -106,7 +106,7 @@ export default function Hero() {
 
         <Magnetic>
           <a 
-            href="/resume/Decatoria_Angelito_CV.pdf" 
+            href="/resume/Decatoria-Angelito_Resume.pdf" 
             download="Decatoria-Angelito_Resume.pdf"
             onMouseEnter={playHover}
             onClick={playClick}
@@ -128,8 +128,8 @@ export default function Hero() {
           
           <Magnetic>
             <a 
-              href="/resume/Decatoria_Angelito_CV.pdf" 
-              download="Decatoria_Angelito_CV.pdf"
+              href="/resume/Decatoria-Angelito_Resume.pdf" 
+              download="Decatoria-Angelito_Resume.pdf"
               onClick={playClick}
               className="group flex w-fit items-center gap-2 px-5 py-2.5 mt-1 rounded-full border border-white/30 bg-white/10 backdrop-blur-md text-white transition-all duration-300 pointer-events-auto active:bg-white active:text-black"
             >
