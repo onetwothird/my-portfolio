@@ -1,10 +1,12 @@
 "use client";
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { motion, useMotionValue, useSpring } from 'framer-motion';
+import { useSound } from './SoundProvider';
 
 export default function Cursor() {
   const [isHovering, setIsHovering] = useState(false);
+  const { setWindIntensity } = useSound();
   
   const cursorSize = isHovering ? 60 : 16;
   const mouseX = useMotionValue(-100);
@@ -14,11 +16,36 @@ export default function Cursor() {
   const cursorX = useSpring(mouseX, springConfig);
   const cursorY = useSpring(mouseY, springConfig);
 
+  const lastPos = useRef({ x: 0, y: 0, time: 0 });
+
   useEffect(() => {
+    let rafId: number;
+    lastPos.current.time = Date.now();
+
     const moveCursor = (e: MouseEvent) => {
       mouseX.set(e.clientX - cursorSize / 2);
       mouseY.set(e.clientY - cursorSize / 2);
+
+      const now = Date.now();
+      const dt = now - lastPos.current.time;
+      if (dt > 0) {
+        const dx = e.clientX - lastPos.current.x;
+        const dy = e.clientY - lastPos.current.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        const speed = distance / dt;
+
+        setWindIntensity(speed);
+        lastPos.current = { x: e.clientX, y: e.clientY, time: now };
+      }
     };
+
+    const checkStop = () => {
+      if (Date.now() - lastPos.current.time > 50) {
+        setWindIntensity(0); 
+      }
+      rafId = requestAnimationFrame(checkStop);
+    };
+    rafId = requestAnimationFrame(checkStop);
 
     const handleMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
@@ -35,8 +62,9 @@ export default function Cursor() {
     return () => {
       window.removeEventListener('mousemove', moveCursor);
       window.removeEventListener('mouseover', handleMouseOver);
+      cancelAnimationFrame(rafId);
     };
-  }, [cursorSize, mouseX, mouseY]);
+  }, [cursorSize, mouseX, mouseY, setWindIntensity]);
 
   return (
     <motion.div
