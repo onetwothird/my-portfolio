@@ -29,14 +29,25 @@ const textStagger = {
 
 export default function About() {
   const coreValues = [
-    { num: "01.", title: "Full-Stack Ecosystems", desc: "Specializing in architecting high-fidelity web and mobile applications using React, Node.js, and Flutter." },
-    { num: "02.", title: "Practical Execution", desc: "Engineered solutions locally, from OS simulators to corporate document tracking systems." },
-    { num: "03.", title: "Intelligent Integration", desc: "Integrating YOLO and TensorFlow Lite tools natively into mobile ecosystems." }
+    { 
+      num: "01.", 
+      title: "Full-Stack Architecture", 
+      desc: "Developing robust administrative dashboards and seamless web portals using React.js, supported by optimized Firebase backend services." 
+    },
+    { 
+      num: "02.", 
+      title: "Machine Learning Integration", 
+      desc: "Designing and training custom object recognition models utilizing YOLO and TensorFlow Lite for real-time mobile environments." 
+    },
+    { 
+      num: "03.", 
+      title: "Practical Execution", 
+      desc: "Engineered localized solutions, bridging complex algorithmic simulations and centralized corporate document tracking systems." 
+    }
   ];
 
   return (
     <section id="about" className="py-32 px-6 md:px-12 max-w-7xl mx-auto flex flex-col md:flex-row gap-16 md:gap-32 relative">
-      
       
       <div className="absolute top-32 right-6 md:right-12 z-10">
         <div className="bg-black/5 dark:bg-white/10 p-2 rounded-full hover:scale-110 transition-transform duration-300">
@@ -59,22 +70,22 @@ export default function About() {
         >
           <div className="overflow-hidden mb-2">
             <motion.div variants={slideUpFade}>
-              Specializing in building structural,
+              A Computer Science undergraduate
             </motion.div>
           </div>
           <div className="overflow-hidden mb-2">
             <motion.div variants={slideUpFade}>
-              high-fidelity web ecosystems alongside
+              specializing in architecting scalable
             </motion.div>
           </div>
           <div className="overflow-hidden mb-2">
             <motion.div variants={slideUpFade}>
-              intelligent mobile applications using
+              web platforms and intelligent mobile
             </motion.div>
           </div>
           <div className="overflow-hidden">
             <motion.div variants={slideUpFade}>
-              Flutter and YOLOv8.
+              ecosystems with React and Flutter.
             </motion.div>
           </div>
         </motion.div>
