@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Lenis from "lenis";
 
-// Components
 import Cursor from "./components/Cursor";
 import Navigation from "./components/Navigation";
 import Hero from "./sections/Hero";
@@ -56,19 +55,19 @@ export default function Home() {
       if (progress < 100) {
         const timer = setTimeout(() => {
           setProgress((prev) => prev + 1);
-        }, 65);
+        }, 35); 
         return () => clearTimeout(timer);
       } else {
         sessionStorage.setItem("portfolioVisited", "true");
         const exitTimer = setTimeout(() => {
           setLoading(false);
-        }, 1000);
+        }, 400); 
         return () => clearTimeout(exitTimer);
       }
     } else if (visitType === "return") {
       const exitTimer = setTimeout(() => {
         setLoading(false);
-      }, 1500); 
+      }, 800); 
       return () => clearTimeout(exitTimer);
     }
   }, [progress, visitType]);
@@ -109,7 +108,7 @@ export default function Home() {
                     initial={{ opacity: 0, scale: 0.95, filter: "blur(10px)" }}
                     animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
                     exit={{ opacity: 0, y: -20, filter: "blur(10px)" }}
-                    transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                    transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }} 
                     className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight leading-tight"
                   >
                     So, you&apos;re curious about<br className="hidden sm:block" />
@@ -125,7 +124,7 @@ export default function Home() {
                     initial={{ opacity: 0, scale: 0.95, filter: "blur(10px)" }}
                     animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
                     exit={{ opacity: 0, y: -20, filter: "blur(10px)" }}
-                    transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                    transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }} 
                     className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight leading-tight"
                   >
                     Want to see the{" "}
@@ -141,7 +140,7 @@ export default function Home() {
                     initial={{ opacity: 0, scale: 0.95, filter: "blur(10px)" }}
                     animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
                     exit={{ opacity: 0, y: -20, filter: "blur(10px)" }}
-                    transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                    transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }} 
                     className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight leading-tight"
                   >
                     Curious about his <br className="hidden sm:block" /> <span className="text-[#8B5CF6]">contributions?</span>{" "}
@@ -154,7 +153,7 @@ export default function Home() {
                     initial={{ opacity: 0, scale: 0.95, filter: "blur(10px)" }}
                     animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
                     exit={{ opacity: 0, scale: 1.05, filter: "blur(10px)" }}
-                    transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                    transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }} 
                     className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight leading-tight text-white"
                   >
                     Let&apos;s begin.
@@ -202,7 +201,7 @@ export default function Home() {
                 <motion.div
                   initial={{ width: "0%" }}
                   animate={{ width: "100%" }}
-                  transition={{ duration: 1.2, ease: "easeInOut" }}
+                  transition={{ duration: 0.8, ease: "easeInOut" }} 
                   className="h-full bg-[#8B5CF6]"
                 />
               </div>
