@@ -1,11 +1,10 @@
 "use client";
 
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence, Variants } from 'framer-motion';
 import Image from "next/image";
 import Link from "next/link";
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
-import Magnetic from '../components/Magnetic';
 import { useSound } from '../components/SoundProvider'; 
 
 const revealUp: Variants = {
@@ -13,93 +12,9 @@ const revealUp: Variants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] } }
 };
 
-type ContributionDay = { date: string; count: number; level: number };
-type ContributionData = {
-  total: number;
-  weeks: (ContributionDay | null)[][];
-  source: "live" | "fallback";
-};
-
-const EMPTY_WEEKS: null[][] = Array.from({ length: 53 }, () => Array(7).fill(null));
-
-const formatDay = (iso: string) => {
-  const d = new Date(iso + "T00:00:00Z");
-  return d.toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" });
-};
-
-const GithubContributions = () => {
-  const [data, setData] = useState<ContributionData | null>(null);
-  const scrollRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    let cancelled = false;
-    fetch('/api/github-contributions')
-      .then((res) => res.json())
-      .then((json: ContributionData) => {
-        if (!cancelled) setData(json);
-      })
-      .catch(() => {
-      });
-    return () => {
-      cancelled = true;
-    };
-  }, []);
-
-  useEffect(() => {
-    if (data && scrollRef.current) {
-      scrollRef.current.scrollLeft = scrollRef.current.scrollWidth;
-    }
-  }, [data]);
-
-  const getStyle = (level: number) => {
-    switch (level) {
-      case 0: return "bg-black/5 dark:bg-white/5 w-1.5 h-1.5";
-      case 1: return "bg-black/30 dark:bg-white/30 w-1.5 h-1.5";
-      case 2: return "bg-black/55 dark:bg-white/55 w-2 h-2";
-      case 3: return "bg-black/80 dark:bg-white/80 w-2.25 h-2.25";
-      default: return "bg-black dark:bg-white w-2.5 h-2.5";
-    }
-  };
-
-  const weeks = data?.weeks ?? EMPTY_WEEKS;
-
-  return (
-    <>
-      <span className="text-5xl md:text-6xl font-medium tracking-tighter mb-1 tabular-nums">
-        {data ? `${data.total.toLocaleString()}+` : "—"}
-      </span>
-      <span className="text-sm font-medium text-[#999D9E]">Contributions in the last year</span>
-
-      <div
-        ref={scrollRef}
-        className="mt-12 flex gap-1.25 items-center justify-start overflow-x-auto pb-4 max-w-full scroll-smooth
-                   [-ms-overflow-style:none] scrollbar-none [&::-webkit-scrollbar]:hidden
-                   mask-[linear-gradient(to_right,transparent,black_12px,black_calc(100%-12px),transparent)]"
-      >
-        {weeks.map((week, colIndex) => (
-          <div key={colIndex} className="flex flex-col gap-1.25 items-center w-2.5 shrink-0">
-            {week.map((day, rowIndex) => (
-              <motion.div
-                key={rowIndex}
-                initial={{ scale: 0, opacity: 0 }}
-                whileInView={{ scale: 1, opacity: 1 }}
-                viewport={{ once: false, amount: 0.1 }}
-                transition={{
-                  delay: (colIndex * 0.008) + (rowIndex * 0.01),
-                  duration: 0.3,
-                  ease: "backOut"
-                }}
-                title={day ? `${day.count} contribution${day.count === 1 ? "" : "s"} on ${formatDay(day.date)}` : undefined}
-                className={`rounded-full shrink-0 ${
-                  day ? getStyle(day.level) : "bg-transparent w-1.5 h-1.5"
-                } ${!data ? "animate-pulse bg-black/5! dark:bg-white/5!" : ""}`}
-              />
-            ))}
-          </div>
-        ))}
-      </div>
-    </>
-  );
+const staggerGrid = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.15 } }
 };
 
 export default function JourneyGallery() {
@@ -170,9 +85,9 @@ export default function JourneyGallery() {
 
   return (
     <>
-      <section className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] border-y border-black/10 dark:border-white/10 max-w-7xl mx-auto">
+      <section className="grid grid-cols-1 border-y border-black/10 dark:border-white/10 max-w-7xl mx-auto">
 
-        <div className="p-8 md:p-16 border-b lg:border-b-0 lg:border-r border-black/10 dark:border-white/10">
+        <div className="p-8 md:p-16 border-b lg:border-b-0 border-black/10 dark:border-white/10">
           <div className="mb-20">
             <h2 className="text-4xl md:text-5xl font-medium tracking-tighter">Journey.</h2>
             <p className="font-mono text-xs text-[#999D9E] mt-4">私の歩み</p>
@@ -183,7 +98,7 @@ export default function JourneyGallery() {
                 key={i}
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: false, amount: 0.1 }}
+                viewport={{ once: true, amount: 0.1 }}
                 variants={revealUp}
                 onMouseEnter={() => {
                   setHoveredJourney(i);
@@ -219,42 +134,6 @@ export default function JourneyGallery() {
           </div>
         </div>
 
-        <div className="p-8 md:p-16 flex flex-col justify-start overflow-hidden">
-          <div className="text-xs font-medium text-[#999D9E] mb-12 uppercase tracking-widest hidden lg:block">
-            Open Source
-          </div>
-
-          <motion.div 
-            initial="hidden" 
-            whileInView="visible" 
-            viewport={{ once: false, amount: 0.1 }} 
-            variants={revealUp} 
-            className="group relative flex flex-col p-8 md:p-10 border border-black/10 dark:border-white/10 rounded-2xl hover:bg-black/2 dark:hover:bg-white/2 transition-colors duration-500 overflow-hidden"
-          >
-             <div className="flex justify-between items-start mb-16">
-               <div>
-                 <h3 className="text-xl md:text-2xl font-medium tracking-tight mb-2">@onetwothird</h3>
-                 <div className="flex items-center gap-3">
-                   <span className="relative flex h-2 w-2">
-                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#5a9e2f] opacity-75"></span>
-                     <span className="relative inline-flex rounded-full h-2 w-2 bg-[#5a9e2f]"></span>
-                   </span>
-                   <span className="text-xs font-mono text-[#999D9E] uppercase tracking-wider">Active Contributor</span>
-                 </div>
-               </div>
-
-               <Magnetic>
-                 <a href="https://github.com/onetwothird" target="_blank" rel="noreferrer" className="flex items-center justify-center w-12 h-12 rounded-full bg-[#1C1D20] text-white dark:bg-white dark:text-[#1C1D20] hover:scale-110 transition-transform duration-300 shadow-md shrink-0">
-                   <span className="text-xl font-light leading-none -mt-0.5">↗</span>
-                 </a>
-               </Magnetic>
-             </div>
-
-             <div className="flex flex-col border-t border-black/10 dark:border-white/10 pt-6">
-                <GithubContributions />
-             </div>
-          </motion.div>
-        </div>
       </section>
 
       <section id="gallery" className="py-24 px-6 md:px-12 bg-[#F4F4F4] dark:bg-[#111111]">
@@ -272,15 +151,20 @@ export default function JourneyGallery() {
              </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start">
+          <motion.div 
+            initial="hidden" 
+            whileInView="visible" 
+            viewport={{ once: true, amount: 0.1 }} 
+            variants={staggerGrid}
+            className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start"
+          >
             {previewImages.map((src, i) => (
               <motion.div 
                 key={i} 
-                initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.1 }}
                 variants={{ hidden: { opacity: 0, y: 100 }, visible: { opacity: 1, y: 0, transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } } }}
                 onMouseEnter={() => playHover(900, 1100)} 
                 onClick={() => setSelectedIndex(i)} 
-                className={`group w-full aspect-4/3 relative cursor-pointer overflow-hidden rounded-sm ${i % 2 !== 0 ? 'md:mt-24' : ''}`}
+                className={`group w-full aspect-4/3 relative cursor-pointer overflow-hidden rounded-sm`}
               >
                 <Image src={src} alt={`Gallery Image ${i + 1}`} fill className="object-cover group-hover:scale-105 transition-transform duration-1000 ease-out" />
                 <div className="absolute inset-0 bg-linear-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -289,7 +173,7 @@ export default function JourneyGallery() {
                 </span>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
