@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import MoreGallery from "../components/MoreGallery";
+import MoreGallery from "../sections/MoreGallery";
 
 export const metadata: Metadata = {
   title: "Gallery | Angelito P. Decatoria III",
