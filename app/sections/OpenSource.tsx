@@ -32,21 +32,18 @@ export default function OpenSource() {
     return () => clearTimeout(timer);
   }, []);
 
-  // Sleek Black and Gray monochrome theme
   const customTheme = {
-    // Light mode: Very light gray to solid black (#1C1D20)
     light: ["#f3f4f6", "#d1d5db", "#9ca3af", "#4b5563", "#1C1D20"],
-    // Dark mode: Very dark gray to solid white (#ededed)
-    dark: ["#27272a", "#3f3f46", "#71717a", "#a1a1aa", "#ededed"],
+      dark: ["#27272a", "#3f3f46", "#71717a", "#a1a1aa", "#ededed"],
   };
 
   return (
     <section
       id="opensource"
-      className="py-24 max-w-7xl mx-auto px-6 md:px-12 border-t border-black/10 dark:border-white/10"
+      className="pt-20 pb-10 max-w-7xl mx-auto px-6 md:px-12 border-t border-black/10 dark:border-white/10"
     >
       <div className="text-xs font-medium text-[#999D9E] mb-12 uppercase tracking-widest">
-        Open Source
+        Github Contribution
       </div>
 
       <motion.div
@@ -63,8 +60,7 @@ export default function OpenSource() {
             </h3>
             <div className="flex items-center gap-3 mt-4">
               <span className="relative flex h-2 w-2">
-                {/* Slowed down the pulse to 3 seconds for a gentle blink effect */}
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-black dark:bg-white animate-[pulse_3s_cubic-bezier(0.4,0,0.6,1)_infinite]"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-black dark:bg-white"></span>
               </span>
               <span className="text-xs font-mono text-[#999D9E] uppercase tracking-wider">
                 Active Contributor
@@ -88,9 +84,7 @@ export default function OpenSource() {
           </Magnetic>
         </div>
 
-        {/* CALENDAR & YEARS SECTION */}
         <div className="flex flex-col border-t border-black/10 dark:border-white/10 pt-8 md:pt-12">
-          {/* Year Selector Pills */}
           <div className="flex flex-wrap gap-3 mb-10">
             {years.map((year) => (
               <button
@@ -113,7 +107,6 @@ export default function OpenSource() {
             ))}
           </div>
 
-          {/* Calendar Container */}
           <div
             className="w-full overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-black/10 dark:scrollbar-thumb-white/10 scrollbar-track-transparent
                            [&_span.react-activity-calendar__count]:text-4xl! md:[&_span.react-activity-calendar__count]:text-6xl! 
