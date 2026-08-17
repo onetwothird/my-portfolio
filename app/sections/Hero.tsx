@@ -25,7 +25,7 @@ export default function Hero() {
         className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[200vw] h-[95vh] pointer-events-none z-0"
       >
         <Image 
-          src="/img/cover1.png" 
+          src="/img/cover-photos.png" 
           alt="Angelito Portrait" 
           fill 
           className="object-contain object-bottom" 
