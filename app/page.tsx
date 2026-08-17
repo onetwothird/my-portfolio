@@ -56,7 +56,7 @@ export default function Home() {
       if (progress < 100) {
         const timer = setTimeout(() => {
           setProgress((prev) => prev + 1);
-        }, 35); 
+        }, 50); 
         return () => clearTimeout(timer);
       } else {
         sessionStorage.setItem("portfolioVisited", "true");
