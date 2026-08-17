@@ -4,8 +4,8 @@ import { useState, useEffect } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import Image from "next/image";
 import { motion, Variants } from 'framer-motion';
-import Magnetic from './Magnetic';
-import { useSound } from './SoundProvider';
+import Magnetic from '../components/Magnetic';
+import { useSound } from '../components/SoundProvider';
 
 const footerStagger = {
   hidden: {},
@@ -67,10 +67,8 @@ export default function Footer() {
         variants={footerStagger}
         className="w-full flex flex-col items-center"
       >
-        {/* HEADLINE SECTION */}
         <motion.div variants={slideUpScale} className="w-full max-w-300 flex flex-col md:flex-row items-center md:items-start justify-between relative z-10">
           <div className="flex flex-col mb-12 md:mb-0">
-            {/* First Line: Avatar + Let's work */}
             <div className="flex items-center gap-4 md:gap-6">
               <div className="w-16 h-16 md:w-24 md:h-24 relative rounded-full overflow-hidden shrink-0">
                  <Image src="/img/image.jpg" alt="Angelito" fill className="object-cover" />
