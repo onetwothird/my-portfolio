@@ -11,8 +11,9 @@ import About from "./sections/About";
 import Works from "./sections/Works";
 import TechStack from "./sections/TechStack";
 import JourneyGallery from "./sections/JourneyGallery";
-import Footer from "./components/Footer";
+import Footer from "./sections/Footer";
 import Certification from "./sections/Certification";
+import OpenSource from "./sections/OpenSource";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
@@ -219,6 +220,7 @@ export default function Home() {
         <Certification />
         <TechStack />
         <JourneyGallery />
+        <OpenSource />
       </main>
 
       <Footer />
