@@ -5,7 +5,7 @@ import { motion, AnimatePresence, Variants } from 'framer-motion';
 import Image from "next/image";
 import Link from "next/link";
 import { X, ArrowLeft, ChevronLeft, ChevronRight } from 'lucide-react';
-import { useSound } from './SoundProvider';
+import { useSound } from '../components/SoundProvider';
 
 const slideUpFade: Variants = {
   hidden: { opacity: 0, y: 80 },
@@ -18,6 +18,11 @@ const slideUpFade: Variants = {
 
 const stagger = {
   visible: { transition: { staggerChildren: 0.1 } }
+};
+
+const staggerGrid = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.15 } }
 };
 
 const galleryImages = [
@@ -83,17 +88,20 @@ export default function MoreGallery() {
       </section>
 
       <section className="px-6 md:px-12 max-w-7xl mx-auto mt-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start">
+        <motion.div 
+          initial="hidden" 
+          whileInView="visible" 
+          viewport={{ once: true, amount: 0.05 }} 
+          variants={staggerGrid}
+          className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start"
+        >
           {galleryImages.map((src, i) => (
             <motion.div 
               key={i} 
-              initial="hidden" 
-              whileInView="visible" 
-              viewport={{ once: true, amount: 0.1 }}
               variants={{ hidden: { opacity: 0, y: 100 }, visible: { opacity: 1, y: 0, transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } } }}
               onMouseEnter={() => playHover()}
               onClick={() => { setSelectedIndex(i); playClick(); }} 
-              className={`group w-full aspect-4/3 relative cursor-pointer overflow-hidden rounded-sm ${i % 2 !== 0 ? 'md:mt-24' : ''}`}
+              className="group w-full aspect-4/3 relative cursor-pointer overflow-hidden rounded-sm"
             >
               <Image src={src} alt={`Gallery Image ${i + 1}`} fill className="object-cover group-hover:scale-105 transition-transform duration-1000 ease-out" />
 
@@ -108,7 +116,7 @@ export default function MoreGallery() {
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </section>
 
       <AnimatePresence>
