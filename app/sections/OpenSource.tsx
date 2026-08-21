@@ -6,6 +6,7 @@ import { GitHubCalendar } from "react-github-calendar";
 import Magnetic from "../components/Magnetic";
 import { useTheme } from "next-themes";
 import { useSound } from "../components/SoundProvider"; 
+import { Tape } from "../components/Scrapbook";
 
 const revealUp: Variants = {
   hidden: { opacity: 0, y: 50 },
@@ -42,8 +43,11 @@ export default function OpenSource() {
       id="opensource"
       className="pt-20 pb-10 max-w-7xl mx-auto px-6 md:px-12 border-t border-black/10 dark:border-white/10"
     >
-      <div className="text-xs font-medium text-[#999D9E] mb-12 uppercase tracking-widest">
-        Github Contribution
+      <div className="relative inline-block mb-12">
+        <Tape className="w-10 h-4 sm:w-12 sm:h-5 -top-2 -left-3" rotate={-7} />
+        <div className="relative text-xs font-medium text-[#999D9E] uppercase tracking-widest">
+          Github Contribution
+        </div>
       </div>
 
       <motion.div
