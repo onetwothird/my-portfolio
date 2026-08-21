@@ -6,6 +6,7 @@ import Image from 'next/image';
 import Magnetic from '../components/Magnetic';
 import LiveVisitorCount from '../components/LiveVisitorCount';
 import { useSound } from '../components/SoundProvider';
+import { Tape, caveat } from '../components/Scrapbook';
 
 const revealUp: Variants = {
   hidden: { opacity: 0, y: 50 },
@@ -104,18 +105,25 @@ export default function Hero() {
           </div>
         </div>
 
-        <Magnetic>
-          <a 
-            href="/resume/Decatoria-Angelito_Resume.pdf" 
-            download="Decatoria-Angelito_Resume.pdf"
-            onMouseEnter={playHover}
-            onClick={playClick}
-            className="group flex items-center gap-3 px-6 py-3 rounded-full border border-white/30 bg-white/5 backdrop-blur-sm text-white transition-all duration-500 hover:bg-white hover:text-black pointer-events-auto hover:shadow-[0_0_20px_rgba(255,255,255,0.3)]"
-          >
-            <span className="text-sm font-medium tracking-widest uppercase">Resume</span>
-            <Download size={16} strokeWidth={2} className="transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-          </a>
-        </Magnetic>
+        {/* Resume button — with a small taped, handwritten note echoing the About section */}
+        <div className="relative">
+          <span className={`${caveat.className} hidden xl:block absolute top-1/2 -translate-y-1/2 -left-32 text-white/70 text-lg rotate-[-4deg] whitespace-nowrap pointer-events-none`}>
+            grab a copy →
+          </span>
+          <Tape inverted className="w-12 h-5 -top-2.5 -right-3" rotate={-12} />
+          <Magnetic>
+            <a 
+              href="/resume/Decatoria-Angelito_Resume.pdf" 
+              download="Decatoria-Angelito_Resume.pdf"
+              onMouseEnter={playHover}
+              onClick={playClick}
+              className="group flex items-center gap-3 px-6 py-3 rounded-full border border-white/30 bg-white/5 backdrop-blur-sm text-white transition-all duration-500 hover:bg-white hover:text-black pointer-events-auto hover:shadow-[0_0_20px_rgba(255,255,255,0.3)]"
+            >
+              <span className="text-sm font-medium tracking-widest uppercase">Resume</span>
+              <Download size={16} strokeWidth={2} className="transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+            </a>
+          </Magnetic>
+        </div>
       </motion.div>
 
       <div className="order-3 lg:hidden relative px-6 pb-8 pt-6 flex justify-between items-end gap-4 z-30 text-white drop-shadow-md pointer-events-none">
