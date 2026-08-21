@@ -19,7 +19,7 @@ const revealUp: Variants = {
 export default function OpenSource() {
   const currentYear = new Date().getFullYear();
   const [selectedYear, setSelectedYear] = useState<number>(currentYear);
-  const years = [currentYear, currentYear - 1, currentYear - 2];
+  const years = [currentYear, currentYear - 1, currentYear - 2, currentYear - 3, currentYear - 4];
 
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
@@ -34,7 +34,7 @@ export default function OpenSource() {
 
   const customTheme = {
     light: ["#f3f4f6", "#d1d5db", "#9ca3af", "#4b5563", "#1C1D20"],
-      dark: ["#27272a", "#3f3f46", "#71717a", "#a1a1aa", "#ededed"],
+    dark: ["#27272a", "#3f3f46", "#71717a", "#a1a1aa", "#ededed"],
   };
 
   return (
