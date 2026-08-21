@@ -3,6 +3,7 @@
 import { motion, Variants } from 'framer-motion';
 import Link from 'next/link';
 import { useSound } from '../components/SoundProvider';
+import { Tape } from '../components/Scrapbook';
 
 const revealUp: Variants = {
   hidden: { opacity: 0, y: 50 },
@@ -31,7 +32,10 @@ export default function TechStack() {
       
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-16">
         <motion.div initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.1 }} variants={revealUp}>
-          <h2 className="text-4xl md:text-6xl font-medium tracking-tighter">Techstack.</h2>
+          <div className="relative inline-block">
+            <Tape className="w-10 h-4 sm:w-12 sm:h-5 -top-2 -left-3" rotate={-7} />
+            <h2 className="relative text-4xl md:text-6xl font-medium tracking-tighter">Techstack.</h2>
+          </div>
           <p className="font-mono text-xs text-[#999D9E] mt-4">私の技術スタック</p>
         </motion.div>
         
