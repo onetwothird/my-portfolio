@@ -5,6 +5,7 @@ import { motion, Variants, useSpring, useMotionValue } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useSound } from '../components/SoundProvider';
+import { Tape } from '../components/Scrapbook';
 
 const slideUpFade: Variants = {
   hidden: { opacity: 0, y: 80 },
@@ -81,7 +82,10 @@ export default function Works() {
 
   return (
     <section id="work" className="py-24 max-w-7xl mx-auto px-6 md:px-12 border-t border-black/10 dark:border-white/10 relative">
-      <div className="text-xs font-medium text-[#999D9E] mb-12 uppercase tracking-widest">Recent Work</div>
+      <div className="relative inline-block mb-12">
+        <Tape className="w-10 h-4 sm:w-12 sm:h-5 -top-2 -left-3" rotate={-7} />
+        <div className="relative text-xs font-medium text-[#999D9E] uppercase tracking-widest">Recent Work</div>
+      </div>
       
       <motion.div
         className="pointer-events-none fixed top-0 left-0 z-50 hidden md:block w-100 h-65 overflow-hidden rounded-xl shadow-2xl bg-black/5 dark:bg-white/5 backdrop-blur-sm"
