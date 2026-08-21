@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useSound } from '../components/SoundProvider'; 
+import { Tape } from '../components/Scrapbook';
 
 const revealUp: Variants = {
   hidden: { opacity: 0, y: 50 },
@@ -89,7 +90,10 @@ export default function JourneyGallery() {
 
         <div className="p-8 md:p-16 border-b lg:border-b-0 border-black/10 dark:border-white/10">
           <div className="mb-20">
-            <h2 className="text-4xl md:text-5xl font-medium tracking-tighter">Journey.</h2>
+            <div className="relative inline-block">
+              <Tape className="w-10 h-4 sm:w-12 sm:h-5 -top-2 -left-3" rotate={-7} />
+              <h2 className="relative text-4xl md:text-5xl font-medium tracking-tighter">Journey.</h2>
+            </div>
             <p className="font-mono text-xs text-[#999D9E] mt-4">私の歩み</p>
           </div>
           <div className="space-y-0 border-l border-black/10 dark:border-white/10 ml-2">
@@ -140,7 +144,10 @@ export default function JourneyGallery() {
         <div className="max-w-7xl mx-auto">
           <div className="flex justify-between items-center mb-16">
              <div>
-               <h2 className="text-3xl md:text-5xl font-medium tracking-tight">Archive Gallery</h2>
+               <div className="relative inline-block">
+                 <Tape className="w-10 h-4 sm:w-12 sm:h-5 -top-2 -left-3" rotate={-7} />
+                 <h2 className="relative text-3xl md:text-5xl font-medium tracking-tight">Archive Gallery</h2>
+               </div>
                <p className="font-mono text-xs text-[#999D9E] mt-4">アーカイブギャラリー</p>
              </div>
              <Link 
