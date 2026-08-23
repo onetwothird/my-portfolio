@@ -6,6 +6,7 @@ import Lenis from "lenis";
 
 import Cursor from "./components/Cursor";
 import Navigation from "./components/Navigation";
+import ScrollIndicator from "./components/ScrollIndicator"; // <-- Added import
 import Hero from "./sections/Hero";
 import About from "./sections/About";
 import Works from "./sections/Works";
@@ -211,6 +212,7 @@ export default function Home() {
         )}
       </AnimatePresence>
 
+      <ScrollIndicator /> 
       <Navigation />
 
       <main>
