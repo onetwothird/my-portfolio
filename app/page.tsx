@@ -6,7 +6,7 @@ import Lenis from "lenis";
 
 import Cursor from "./components/Cursor";
 import Navigation from "./components/Navigation";
-import ScrollIndicator from "./components/ScrollIndicator"; // <-- Added import
+import ScrollIndicator from "./components/ScrollIndicator";
 import Hero from "./sections/Hero";
 import About from "./sections/About";
 import Works from "./sections/Works";
@@ -113,7 +113,7 @@ export default function Home() {
                     transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }} 
                     className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight leading-tight"
                   >
-                    So, you&apos;re curious about<br className="hidden sm:block" />
+                    So, you&apos;re curious about <br className="hidden sm:block" />
                     <span className="text-[#8B5CF6]">
                       Angelito P. Decatoria III?
                     </span>
@@ -212,7 +212,7 @@ export default function Home() {
         )}
       </AnimatePresence>
 
-      <ScrollIndicator /> 
+      <ScrollIndicator />
       <Navigation />
 
       <main>
