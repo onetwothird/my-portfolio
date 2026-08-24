@@ -35,7 +35,7 @@ export default function ScrollIndicator() {
         }}
       >
         <Image 
-          src="/img/penguin.png" 
+          src="/img/my-penguin.png" 
           alt="Waddling Penguin" 
           width={40} 
           height={40} 
