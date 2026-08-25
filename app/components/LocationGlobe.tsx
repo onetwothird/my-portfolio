@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Globe from 'react-globe.gl';
+import { useSound } from './SoundProvider';
 
 type MarkerData = {
   lat: number;
@@ -13,6 +14,9 @@ export default function LocationGlobe() {
   const globeEl = useRef<any>(undefined);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
   const containerRef = useRef<HTMLDivElement>(null);
+  const { playHover, playClick } = useSound();
+  const dragStateRef = useRef<{ x: number; y: number; t: number } | null>(null);
+  const lastDragSoundRef = useRef(0);
 
   const markerData: MarkerData[] = [
     {
@@ -51,8 +55,46 @@ export default function LocationGlobe() {
     }
   }, [dimensions.width]);
 
+  const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    playClick();
+    dragStateRef.current = { x: e.clientX, y: e.clientY, t: performance.now() };
+    (e.target as HTMLElement).setPointerCapture?.(e.pointerId);
+  };
+
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    const drag = dragStateRef.current;
+    if (!drag) return;
+
+    const now = performance.now();
+    const dt = Math.max(now - drag.t, 1);
+    const dx = e.clientX - drag.x;
+    const dy = e.clientY - drag.y;
+    const distance = Math.sqrt(dx * dx + dy * dy);
+    const speed = (distance / dt) * 30;
+
+    if (speed > 2 && now - lastDragSoundRef.current > 65) {
+      const frequency = Math.min(320 + speed * 6, 650);
+      playHover(frequency, frequency + 40);
+      lastDragSoundRef.current = now;
+    }
+
+    dragStateRef.current = { x: e.clientX, y: e.clientY, t: now };
+  };
+
+  const handlePointerUp = () => {
+    dragStateRef.current = null;
+  };
+
   return (
-    <div ref={containerRef} className="w-full h-full absolute inset-0 flex items-center justify-center cursor-grab active:cursor-grabbing">
+    <div
+      ref={containerRef}
+      onMouseEnter={() => playHover(520, 760)}
+      onPointerDown={handlePointerDown}
+      onPointerMove={handlePointerMove}
+      onPointerUp={handlePointerUp}
+      onPointerLeave={handlePointerUp}
+      className="w-full h-full absolute inset-0 flex items-center justify-center cursor-grab active:cursor-grabbing"
+    >
       {dimensions.width > 0 && (
         <Globe
           ref={globeEl}
@@ -95,6 +137,11 @@ export default function LocationGlobe() {
 
               </div>
             `;
+
+            const marker = rootEl.querySelector('div');
+            marker?.addEventListener('mouseenter', () => playHover(880, 1180));
+            marker?.addEventListener('click', () => playClick());
+
             return rootEl;
           }}
         />
