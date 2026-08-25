@@ -78,21 +78,17 @@ export default function LocationGlobe() {
             rootEl.innerHTML = `
               <div class="absolute bottom-0 left-1/2 -translate-x-1/2 flex flex-col items-center group cursor-pointer w-max pointer-events-auto">
                 
-                <!-- Hover Tooltip Updated to Naic, Cavite -->
                 <div class="absolute bottom-full mb-2 px-3 py-1.5 bg-[#1C1D20]/90 backdrop-blur-md border border-white/10 rounded-lg shadow-xl flex flex-col items-center opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none transform translate-y-2 group-hover:translate-y-0 z-20">
                   <span class="text-white text-[11px] md:text-xs font-medium whitespace-nowrap">Naic, Cavite</span>
-                  <span class="text-[#8B5CF6] text-[9px] md:text-[10px] font-mono tracking-wide uppercase mt-0.5">Philippines</span>
+                  <span class="text-[#999D9E] text-[9px] md:text-[10px] font-mono tracking-wide uppercase mt-0.5">Philippines</span>
                 </div>
 
-                <!-- Avatar Image -->
                 <div class="relative w-10 h-10 md:w-12 md:h-12 rounded-full border-[3px] border-white overflow-hidden bg-[#1C1D20] z-10 shadow-[0_0_20px_rgba(0,0,0,0.5)] transition-transform duration-300 group-hover:scale-110">
                   <img src="/img/cover-photos.png" alt="Angelito" class="w-full h-full object-cover" />
                 </div>
 
-                <!-- Connecting Line -->
                 <div class="w-0.5 h-8 md:h-12 bg-linear-to-b from-white to-transparent opacity-90 z-0 -mt-1"></div>
 
-                <!-- Exact Coordinate Base Dot -->
                 <div class="absolute bottom-0 w-2.5 h-2.5 bg-white rounded-full translate-y-1/2 shadow-[0_0_15px_rgba(255,255,255,1)]">
                   <div class="absolute inset-0 bg-white rounded-full animate-ping opacity-60"></div>
                 </div>
