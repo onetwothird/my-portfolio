@@ -82,7 +82,7 @@ export default function Home() {
   }, [progress, visitType]);
 
   return (
-    <div className="min-h-screen bg-[#1C1D20] dark:bg-white text-[#1C1D20] dark:text-[#ededed] font-sans selection:bg-[#8B5CF6] selection:text-white cursor-auto md:cursor-none overflow-x-hidden">
+    <div className="min-h-screen bg-white dark:bg-[#111111] text-[#1C1D20] dark:text-[#ededed] font-sans selection:bg-[#8B5CF6] selection:text-white cursor-auto md:cursor-none overflow-x-hidden">
       <style
         dangerouslySetInnerHTML={{
           __html: `
