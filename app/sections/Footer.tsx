@@ -32,10 +32,8 @@ export default function Footer() {
       
       <div className="w-full max-w-400 mx-auto flex flex-col justify-between min-h-[75vh]">
         
-        {/* Main Content Area */}
         <div className="flex flex-col lg:flex-row justify-between items-start gap-12 lg:gap-8 flex-1">
           
-          {/* Left: Typography & CTA */}
           <motion.div 
             initial="hidden"
             whileInView="visible"
@@ -44,13 +42,13 @@ export default function Footer() {
             className="flex flex-col z-10 max-w-2xl mt-8"
           >
             <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-white/10 bg-white/5 mb-10 w-fit">
-              <div className="w-2 h-2 rounded-full bg-[#8B5CF6] animate-pulse"></div>
+              <div className="w-2 h-2 rounded-full bg-white animate-pulse"></div>
               <span className="text-xs font-mono tracking-widest text-[#999D9E] uppercase">Available for work</span>
             </div>
 
             <h2 className="text-[4rem] sm:text-[6rem] lg:text-[7vw] font-medium tracking-tighter leading-[0.9] mb-8">
               Got an <br />
-              <span className="text-[#8B5CF6]">idea?</span>
+              <span className="text-[#999D9E]">idea?</span>
             </h2>
 
             <p className="text-[#999D9E] text-lg sm:text-xl max-w-md mb-12">
@@ -62,22 +60,14 @@ export default function Footer() {
                 href="mailto:angelitodecatoriaa@gmail.com" 
                 onMouseEnter={playHover} 
                 onClick={playClick} 
-                className="group relative inline-flex items-center gap-4 bg-white text-[#1C1D20] px-10 py-5 rounded-full font-medium text-lg overflow-hidden transition-all hover:scale-105"
+                className="group relative inline-flex items-center gap-4 bg-white text-[#1C1D20] px-10 py-5 rounded-full font-medium text-lg transition-colors hover:bg-gray-200"
               >
-                <span className="relative z-10 flex items-center gap-2">
-                  <Mail size={20} />
-                  Email Me
-                </span>
-                <div className="absolute inset-0 bg-[#8B5CF6] transform scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-500 ease-[0.16,1,0.3,1] z-0"></div>
-                <span className="absolute inset-0 z-10 flex items-center justify-center gap-2 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
-                  <Mail size={20} />
-                  Email Me
-                </span>
+                <Mail size={20} />
+                Email Me
               </a>
             </Magnetic>
           </motion.div>
 
-          {/* Right: The Interactive Globe Container */}
           <motion.div 
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -93,7 +83,6 @@ export default function Footer() {
           </motion.div>
         </div>
 
-        {/* Bottom Bar */}
         <motion.div 
           initial="hidden"
           whileInView="visible"
@@ -123,10 +112,10 @@ export default function Footer() {
                     rel="noopener noreferrer"
                     onMouseEnter={playHover}
                     onClick={playClick}
-                    className="hover:text-[#8B5CF6] transition-colors relative group"
+                    className="hover:text-white transition-colors relative group"
                   >
                     {social.name}
-                    <span className="absolute -bottom-1 left-0 w-0 h-px bg-[#8B5CF6] transition-all duration-300 group-hover:w-full"></span>
+                    <span className="absolute -bottom-1 left-0 w-0 h-px bg-white transition-all duration-300 group-hover:w-full"></span>
                   </a>
                 ))}
              </div>
