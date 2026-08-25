@@ -53,6 +53,13 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
+    document.body.style.overflow = loading ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [loading]);
+
+  useEffect(() => {
     if (visitType === "initial") {
       if (progress < 100) {
         const timer = setTimeout(() => {
@@ -101,6 +108,8 @@ export default function Home() {
               ease: [0.76, 0, 0.24, 1],
             }}
             className="fixed inset-0 z-100000 bg-[#1C1D20] text-white flex flex-col justify-center p-6 md:p-12 overflow-hidden"
+            role="status"
+            aria-live="polite"
           >
             <div className="flex-1 flex items-center justify-center px-4 text-center">
               <AnimatePresence mode="wait">
@@ -114,7 +123,7 @@ export default function Home() {
                     className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight leading-tight"
                   >
                     So, you&apos;re curious about <br className="hidden sm:block" />
-                    <span className="text-[#8B5CF6]">
+                    <span className="text-[#999D9E] font-semibold">
                       Angelito P. Decatoria III?
                     </span>
                   </motion.h2>
@@ -130,7 +139,7 @@ export default function Home() {
                     className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight leading-tight"
                   >
                     Want to see the{" "}
-                    <span className="text-[#8B5CF6]">ecosystems</span>{" "}
+                    <span className="text-[#999D9E] font-semibold">ecosystems</span>{" "}
                     <br className="hidden sm:block" />
                     he has engineered?
                   </motion.h2>
@@ -145,7 +154,7 @@ export default function Home() {
                     transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }} 
                     className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight leading-tight"
                   >
-                    Curious about his <br className="hidden sm:block" /> <span className="text-[#8B5CF6]">contributions?</span>{" "}
+                    Curious about his <br className="hidden sm:block" /> <span className="text-[#999D9E] font-semibold">contributions?</span>{" "}
                   </motion.h2>
                 )}
                 
@@ -179,6 +188,8 @@ export default function Home() {
               ease: [0.76, 0, 0.24, 1],
             }}
             className="fixed inset-0 z-100000 bg-[#1C1D20] text-white flex flex-col justify-center items-center overflow-hidden p-6"
+            role="status"
+            aria-live="polite"
           >
             <div className="text-center flex flex-col items-center gap-6">
               <motion.div
@@ -196,7 +207,7 @@ export default function Home() {
                 transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
                 className="text-4xl md:text-6xl font-medium tracking-tight"
               >
-                Welcome <span className="text-[#8B5CF6]">back.</span>
+                Welcome <span className="text-[#999D9E] font-semibold">back.</span>
               </motion.h2>
 
               <div className="w-48 h-0.5 bg-white/10 mt-6 overflow-hidden rounded-full">
@@ -204,7 +215,7 @@ export default function Home() {
                   initial={{ width: "0%" }}
                   animate={{ width: "100%" }}
                   transition={{ duration: 0.8, ease: "easeInOut" }} 
-                  className="h-full bg-[#8B5CF6]"
+                  className="h-full bg-white"
                 />
               </div>
             </div>
