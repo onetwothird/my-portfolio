@@ -1,220 +1,246 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect, useSyncExternalStore } from 'react';
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
-import { X } from 'lucide-react';
+import { Menu, X, MapPin, ArrowRight } from 'lucide-react';
+import { useTheme } from 'next-themes';
 import Magnetic from './Magnetic'; 
 import { useSound } from './SoundProvider';
 
+const expandedVariants = {
+  hidden: { opacity: 0, height: 0 },
+  visible: { 
+    opacity: 1, 
+    height: "auto",
+    transition: { 
+      duration: 0.5, 
+      ease: [0.16, 1, 0.3, 1] as const,
+      staggerChildren: 0.05,
+      delayChildren: 0.1
+    }
+  },
+  exit: { 
+    opacity: 0, 
+    height: 0,
+    transition: { 
+      duration: 0.4, 
+      ease: [0.16, 1, 0.3, 1] as const,
+      staggerChildren: 0.03,
+      staggerDirection: -1
+    }
+  }
+} as const;
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20, filter: "blur(8px)" },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    filter: "blur(0px)",
+    transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] as const }
+  },
+  exit: { opacity: 0, y: -10, filter: "blur(4px)" }
+} as const;
+
 export default function Navigation() {
   const { scrollY } = useScroll();
-  const [hidden, setHidden] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const mounted = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false
+  );
   
   const { playHover, playClick } = useSound();
+  const { resolvedTheme } = useTheme();
 
   useMotionValueEvent(scrollY, "change", (latest) => {
-    if (latest > 100) {
-      setHidden(true); 
-    } else {
-      setHidden(false); 
-    }
+    setIsScrolled(latest > 60);
   });
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+    return () => { document.body.style.overflow = 'auto'; };
+  }, [isOpen]);
 
   const navItems = [
     { title: "Home", href: "#" },
     { title: "Work", href: "#work" },
     { title: "About", href: "#about" },
     { title: "Tech Stack", href: "#techstack" },
-    { title: "Certification", href: "#certification" },
+    { title: "Certifications", href: "#certification" },
     { title: "Gallery", href: "#gallery" },
     { title: "Contact", href: "#contact" },
   ];
 
-  const socials = [
-    { name: "GitHub", href: "https://github.com/onetwothird" },
-    { name: "LinkedIn", href: "https://linkedin.com/in/angelito-decatoria" },
-    { name: "Instagram", href: "https://instagram.com/cntwxrms" },
-    { name: "Facebook", href: "https://facebook.com/angelo.decatoria.5" },
-  ];
+
+  if (!mounted) return null;
+
+  const isDark = resolvedTheme === 'dark';
 
   return (
     <>
-      <motion.header 
-        variants={{ visible: { y: 0 }, hidden: { y: "-100%" } }}
-        animate={hidden ? "hidden" : "visible"}
-        transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
-        className="fixed top-0 w-full z-50 text-white px-6 md:px-12 py-8 flex justify-between items-center pointer-events-none"
-      >
-        <div 
-          className="pointer-events-auto group flex items-center cursor-pointer font-medium tracking-wide text-xl overflow-hidden pr-4" 
-          onClick={() => {
-            playClick();
-            window.scrollTo(0,0);
-          }}
-          onMouseEnter={() => playHover(400, 500)}
-        >
-          <span className="transition-transform duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:rotate-360 mr-2">©</span>
-          <div className="grid relative overflow-hidden items-center">
-            <span className="col-start-1 row-start-1 transition-all duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-x-10 opacity-100 group-hover:opacity-0 whitespace-nowrap">
-              Code by Thirdy
-            </span>
-            <span className="col-start-1 row-start-1 transition-all duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] translate-x-10 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 whitespace-nowrap">
-              Angelito P. Decatoria III
-            </span>
-          </div>
-        </div>
-
-        <div className="pointer-events-auto flex items-center gap-8 text-xl font-medium">
-          <Magnetic>
-            <a 
-              href="#work" 
-              className="hidden md:block hover:opacity-70 transition-opacity"
-              onMouseEnter={() => playHover(500, 600)}
-              onClick={playClick}
-            >
-              Work
-            </a>
-          </Magnetic>
-          <Magnetic>
-            <a 
-              href="#about" 
-              className="hidden md:block hover:opacity-70 transition-opacity"
-              onMouseEnter={() => playHover(600, 700)}
-              onClick={playClick}
-            >
-              About
-            </a>
-          </Magnetic>
-          <Magnetic>
-            <a 
-              href="#certification" 
-              className="hidden md:block hover:opacity-70 transition-opacity"
-              onMouseEnter={() => playHover(700, 800)}
-              onClick={playClick}
-            >
-              Certifications
-            </a>
-          </Magnetic>
-        </div>
-      </motion.header>
-
       <AnimatePresence>
-        {hidden && !menuOpen && (
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, backdropFilter: "blur(0px)" }}
+            animate={{ opacity: 1, backdropFilter: "blur(4px)" }}
+            exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
+            transition={{ duration: 0.5, ease: "easeInOut" }}
+            onClick={() => {
+              playClick();
+              setIsOpen(false);
+            }}
+            className="fixed inset-0 bg-black/40 z-40 cursor-pointer"
+          />
+        )}
+      </AnimatePresence>
+
+      <div className="fixed top-4 left-4 right-4 sm:left-auto sm:right-8 md:top-8 md:right-12 z-50 flex justify-end pointer-events-none">
+        <motion.nav
+          layout
+          initial={{ borderRadius: 32 }}
+          animate={{ 
+            borderRadius: isOpen ? 24 : 32,
+            backgroundColor: isOpen 
+              ? (isDark ? "rgba(255, 255, 255, 0.98)" : "rgba(28, 29, 32, 0.98)") 
+              : (isDark ? "rgba(255, 255, 255, 0.85)" : "rgba(28, 29, 32, 0.85)"),
+          }}
+          whileHover={!isOpen ? { 
+            scale: 1.02, 
+            backgroundColor: isDark ? "rgba(255, 255, 255, 1)" : "rgba(28, 29, 32, 1)" 
+          } : {}}
+          transition={{ type: "spring", stiffness: 350, damping: 25, mass: 0.8 }}
+          className={`backdrop-blur-xl border border-black/10 dark:border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.1)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)] text-white dark:text-[#1C1D20] overflow-hidden flex flex-col origin-top-right pointer-events-auto will-change-transform ${
+            isOpen ? "w-full sm:w-105" : "w-auto max-w-full"
+          }`}
+        >
+          
           <motion.div 
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0, opacity: 0 }}
-            transition={{ duration: 0.5, ease: [0.76, 0, 0.24, 1] }}
-            className="fixed top-8 right-6 md:right-12 z-100"
+            layout 
+            className="flex items-center justify-between p-2 pl-4 md:pl-5 gap-3 sm:gap-8 w-full"
           >
+            <Magnetic>
+              <div 
+                className="flex items-center gap-2 md:gap-3 cursor-pointer select-none group py-1.5 px-2" 
+                onClick={() => {
+                  playClick();
+                  window.scrollTo(0,0);
+                  setIsOpen(false);
+                }}
+                onMouseEnter={() => playHover(400, 500)}
+              >
+                <div className="relative flex items-center justify-center w-2.5 h-2.5 md:w-3 md:h-3 shrink-0">
+                  <div className="absolute inset-0 bg-white dark:bg-[#1C1D20] rounded-full animate-ping opacity-60 dark:opacity-30"></div>
+                  <div className="relative w-1.5 h-1.5 md:w-2 md:h-2 bg-white dark:bg-[#1C1D20] rounded-full"></div>
+                </div>
+                <span className="font-medium tracking-tight text-sm md:text-base transition-colors group-hover:text-[#aaa] dark:group-hover:text-[#555] whitespace-nowrap">
+                  Angelito.
+                </span>
+              </div>
+            </Magnetic>
+
+            <AnimatePresence mode="wait">
+              {!isScrolled && !isOpen && (
+                <motion.div
+                  initial={{ opacity: 0, width: 0, filter: "blur(4px)" }}
+                  animate={{ opacity: 1, width: "auto", filter: "blur(0px)" }}
+                  exit={{ opacity: 0, width: 0, filter: "blur(4px)" }}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                  className="hidden md:flex items-center gap-6 overflow-hidden whitespace-nowrap"
+                >
+                  {["Work", "About", "Contact"].map((item, i) => (
+                    <a 
+                      key={i}
+                      href={`#${item.toLowerCase()}`} 
+                      className="text-sm font-medium text-white/60 dark:text-[#1C1D20]/60 hover:text-white dark:hover:text-[#1C1D20] transition-colors py-1"
+                      onMouseEnter={() => playHover(500 + (i * 100), 600 + (i * 100))}
+                      onClick={playClick}
+                    >
+                      {item}
+                    </a>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
+
             <Magnetic>
               <button 
                 onClick={() => {
                   playClick();
-                  setMenuOpen(true);
+                  setIsOpen(!isOpen);
                 }}
                 onMouseEnter={playHover}
-                className="w-16 h-16 md:w-20 md:h-20 bg-[#1C1D20] text-white rounded-full flex flex-col justify-center items-center gap-1.5 hover:bg-[#8B5CF6] transition-colors duration-300 shadow-xl pointer-events-auto group"
+                className="flex items-center gap-2 bg-white/10 hover:bg-white/20 dark:bg-black/5 dark:hover:bg-black/10 transition-colors px-3 py-2 md:px-4 md:py-2.5 rounded-full text-xs md:text-sm font-medium shrink-0 group"
               >
-                <div className="w-6 h-0.5 bg-white group-hover:w-8 transition-all duration-300 ease-in-out" />
-                <div className="w-6 h-0.5 bg-white group-hover:w-8 transition-all duration-300 ease-in-out" />
+                <motion.span layout className="hidden sm:block text-white dark:text-[#1C1D20] group-hover:opacity-70 transition-opacity">{isOpen ? "Close" : "Menu"}</motion.span>
+                <motion.div layout className="text-white dark:text-[#1C1D20] group-hover:scale-110 transition-transform duration-300">
+                  {isOpen ? <X size={16} /> : <Menu size={16} />}
+                </motion.div>
               </button>
             </Magnetic>
           </motion.div>
-        )}
-      </AnimatePresence>
 
-      <AnimatePresence>
-        {menuOpen && (
-          <>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.5 }}
-              onClick={() => {
-                playClick();
-                setMenuOpen(false);
-              }}
-              className="fixed inset-0 w-full h-screen bg-black/40 z-190 cursor-pointer"
-            />
-
-            <motion.div 
-              initial={{ x: "100%" }}
-              animate={{ x: "0%" }}
-              exit={{ x: "100%" }}
-              transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
-              className="fixed top-0 right-0 h-screen w-full sm:w-screen md:w-[120vw] max-w-125 bg-[#1C1D20] text-white z-200 flex flex-col shadow-2xl"
-            >
-              <button 
-                onClick={() => {
-                  playClick();
-                  setMenuOpen(false);
-                }}
-                onMouseEnter={playHover}
-                className="absolute top-8 right-6 md:right-12 w-14 h-14 bg-[#8B5CF6] rounded-full flex justify-center items-center hover:scale-105 transition-transform duration-300 z-10"
+          <AnimatePresence>
+            {isOpen && (
+              <motion.div
+                variants={expandedVariants}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+                className="w-full border-t border-white/10 dark:border-black/10 max-h-[75vh] overflow-y-auto no-scrollbar"
               >
-                <X size={24} />
-              </button>
-
-              <div className="w-full h-full flex flex-col justify-center px-8 md:px-16 relative">
-                
-                <span className="text-[10px] font-bold font-mono uppercase tracking-widest text-[#999D9E] mb-12 border-b border-white/20 pb-4 inline-block w-full">
-                  Navigation
-                </span>
-
-                <div className="flex flex-col gap-2 md:gap-4">
-                  {navItems.map((item, i) => (
-                    <motion.a 
-                      key={i}
-                      href={item.href}
-                      onClick={() => {
-                        playClick();
-                        setMenuOpen(false);
-                      }}
-                      onMouseEnter={() => playHover(300 + (i * 75), 400 + (i * 75))} // Pitch steps up for each item
-                      initial={{ opacity: 0, x: 50 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.2 + (i * 0.1), duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
-                      className="text-5xl md:text-6xl font-medium tracking-tight hover:text-[#8B5CF6] hover:translate-x-4 transition-all duration-500 w-max"
-                    >
-                      {item.title}
-                    </motion.a>
-                  ))}
-                </div>
-
-                <motion.div 
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 1, duration: 0.8 }}
-                  className="absolute bottom-12 left-8 md:left-16 flex flex-col gap-4"
-                >
-                  <span className="text-[10px] font-bold font-mono uppercase tracking-widest text-[#999D9E]">
-                    Socials
-                  </span>
-                  <div className="flex gap-4 md:gap-6 flex-wrap">
-                    {socials.map((social, idx) => (
-                      <a 
-                        key={idx} 
-                        href={social.href} 
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onMouseEnter={() => playHover(800, 950)}
-                        onClick={playClick}
-                        className="text-sm font-medium hover:text-[#8B5CF6] transition-colors"
+                <div className="p-4 sm:p-6 md:p-8 flex flex-col gap-6 md:gap-10">
+                  
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-4">
+                    {navItems.map((item, i) => (
+                      <motion.a 
+                        key={i}
+                        variants={itemVariants}
+                        href={item.href}
+                        onClick={() => {
+                          playClick();
+                          setIsOpen(false);
+                        }}
+                        onMouseEnter={() => playHover(300 + (i * 50), 400 + (i * 50))}
+                        className="group flex items-center justify-between p-3 md:p-4 rounded-xl hover:bg-white/10 dark:hover:bg-black/5 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
                       >
-                        {social.name}
-                      </a>
+                        <span className="text-base md:text-lg font-medium text-white/80 dark:text-[#1C1D20]/80 group-hover:text-white dark:group-hover:text-[#1C1D20] transition-colors">
+                          {item.title}
+                        </span>
+                        <div className="w-8 h-8 rounded-full bg-white/5 dark:bg-black/5 flex items-center justify-center opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+                          <ArrowRight size={14} className="text-white dark:text-[#1C1D20]" />
+                        </div>
+                      </motion.a>
                     ))}
                   </div>
-                </motion.div>
 
-              </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
+                  <motion.div 
+                    variants={itemVariants}
+                    className="flex justify-center pt-6 border-t border-white/10 dark:border-black/10"
+                  >
+                    <Magnetic>
+                      <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 dark:bg-black/5 border border-white/10 dark:border-black/10 hover:bg-white/10 dark:hover:bg-black/10 transition-colors cursor-default">
+                        <MapPin size={14} className="text-white dark:text-[#1C1D20]" />
+                        <span className="text-[10px] md:text-xs font-mono uppercase tracking-widest text-[#999D9E] dark:text-[#555]">
+                          Naic, Cavite
+                        </span>
+                      </div>
+                    </Magnetic>
+                  </motion.div>
+
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+        </motion.nav>
+      </div>
     </>
   );
 }
