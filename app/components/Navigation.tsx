@@ -104,7 +104,6 @@ export default function Navigation() {
             borderRadius: isOpen ? 24 : 32,
             backgroundColor: "#1C1D20",
           }}
-          whileHover={!isOpen ? { scale: 1.02 } : {}}
           transition={{ type: "spring", stiffness: 350, damping: 25, mass: 0.8 }}
           className={`border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.2)] text-white overflow-hidden flex flex-col origin-top-right pointer-events-auto will-change-transform ${
             isOpen ? "w-full sm:w-105" : "w-auto max-w-full"
