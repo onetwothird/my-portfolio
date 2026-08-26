@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, CheckCircle2 } from 'lucide-react';
+import { X } from 'lucide-react';
 import { useSound } from './SoundProvider';
 
 interface TriviaChallengeProps {
@@ -49,12 +49,10 @@ export default function TriviaChallenge({ isOpen, onClose, onSolve }: TriviaChal
 
   const [questionIndex, setQuestionIndex] = useState(() => pickQuestionIndex());
   const [guess, setGuess] = useState("");
-  const [isComplete, setIsComplete] = useState(false);
 
   const restart = useCallback(() => {
     setQuestionIndex((prev) => pickQuestionIndex(prev));
     setGuess("");
-    setIsComplete(false);
     inputRef.current?.focus();
   }, []);
 
@@ -89,16 +87,12 @@ export default function TriviaChallenge({ isOpen, onClose, onSolve }: TriviaChal
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const rawValue = e.target.value;
     setGuess(rawValue);
-    if (isComplete) return;
 
     const checkValue = rawValue.toLowerCase().trim();
     if (TRIVIA_POOL[questionIndex].answers.includes(checkValue)) {
-      setIsComplete(true);
       playClick();
-      setTimeout(() => {
-        onSolve();
-        onClose();
-      }, 1800);
+      onSolve();
+      onClose();
     }
   };
 
@@ -123,71 +117,51 @@ export default function TriviaChallenge({ isOpen, onClose, onSolve }: TriviaChal
             <X size={20} />
           </button>
 
-          <AnimatePresence mode="wait">
-            {!isComplete ? (
-              <motion.div
-                key="question"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.3 }}
-                className="flex flex-col items-center gap-8 sm:gap-10 w-full max-w-2xl text-center"
-              >
-                <span className="text-[10px] sm:text-xs font-mono text-[#999D9E] uppercase tracking-widest">
-                  &gt;_ Skill Check
-                </span>
+          <motion.div
+            key="question"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.3 }}
+            className="flex flex-col items-center gap-8 sm:gap-10 w-full max-w-2xl text-center"
+          >
+            <span className="text-[10px] sm:text-xs font-mono text-[#999D9E] uppercase tracking-widest">
+              &gt;_ Skill Check
+            </span>
 
-                <motion.p
-                  key={questionIndex}
-                  animate={{ x: [-1, 2, -2, 1, 0] }}
-                  transition={{ repeat: Infinity, duration: 0.3, repeatDelay: 3 }}
-                  className="text-white text-xl sm:text-3xl md:text-4xl font-medium leading-relaxed"
-                >
-                  {TRIVIA_POOL[questionIndex].text}
-                </motion.p>
+            <motion.p
+              key={questionIndex}
+              animate={{ x: [-1, 2, -2, 1, 0] }}
+              transition={{ repeat: Infinity, duration: 0.3, repeatDelay: 3 }}
+              className="text-white text-xl sm:text-3xl md:text-4xl font-medium leading-relaxed"
+            >
+              {TRIVIA_POOL[questionIndex].text}
+            </motion.p>
 
-                <input
-                  ref={inputRef}
-                  type="text"
-                  value={guess}
-                  onChange={handleChange}
-                  placeholder="Enter answer..."
-                  autoFocus
-                  autoCapitalize="off"
-                  autoCorrect="off"
-                  spellCheck={false}
-                  className="w-full max-w-sm bg-white/5 border border-white/10 rounded-lg px-5 py-3 text-white text-sm sm:text-base text-center focus:outline-none focus:border-white/40 transition-colors font-mono shadow-inner placeholder:text-white/30"
-                />
+            <input
+              ref={inputRef}
+              type="text"
+              value={guess}
+              onChange={handleChange}
+              placeholder="Enter answer..."
+              autoFocus
+              autoCapitalize="off"
+              autoCorrect="off"
+              spellCheck={false}
+              className="w-full max-w-sm bg-white/5 border border-white/10 rounded-lg px-5 py-3 text-white text-sm sm:text-base text-center focus:outline-none focus:border-white/40 transition-colors font-mono shadow-inner placeholder:text-white/30"
+            />
 
-                <div className="flex items-center gap-4 sm:gap-6 text-[#999D9E] text-[9px] sm:text-xs font-mono tracking-widest uppercase">
-                  <span className="flex items-center gap-2">
-                    <kbd className="px-2 py-1 rounded bg-white/5 border border-white/10 text-white/70 normal-case">tab</kbd>
-                    new question
-                  </span>
-                  <span className="flex items-center gap-2">
-                    <kbd className="px-2 py-1 rounded bg-white/5 border border-white/10 text-white/70 normal-case">esc</kbd>
-                    close
-                  </span>
-                </div>
-              </motion.div>
-            ) : (
-              <motion.div
-                key="solved"
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.4 }}
-                className="flex flex-col items-center text-center gap-4"
-              >
-                <CheckCircle2 size={48} strokeWidth={1.5} className="text-white" />
-                <span className="text-white text-lg sm:text-xl font-mono font-bold tracking-widest uppercase">
-                  Access Granted
-                </span>
-                <span className="text-[#999D9E] text-xs sm:text-sm font-mono tracking-widest uppercase">
-                  The change featured is Marquee Overridden
-                </span>
-              </motion.div>
-            )}
-          </AnimatePresence>
+            <div className="flex items-center gap-4 sm:gap-6 text-[#999D9E] text-[9px] sm:text-xs font-mono tracking-widest uppercase">
+              <span className="flex items-center gap-2">
+                <kbd className="px-2 py-1 rounded bg-white/5 border border-white/10 text-white/70 normal-case">tab</kbd>
+                new question
+              </span>
+              <span className="flex items-center gap-2">
+                <kbd className="px-2 py-1 rounded bg-white/5 border border-white/10 text-white/70 normal-case">esc</kbd>
+                close
+              </span>
+            </div>
+          </motion.div>
         </motion.div>
       )}
     </AnimatePresence>
