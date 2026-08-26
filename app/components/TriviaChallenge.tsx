@@ -134,7 +134,7 @@ export default function TriviaChallenge({ isOpen, onClose, onSolve }: TriviaChal
                 className="flex flex-col items-center gap-8 sm:gap-10 w-full max-w-2xl text-center"
               >
                 <span className="text-[10px] sm:text-xs font-mono text-[#999D9E] uppercase tracking-widest">
-                  &gt;_ System Challenge
+                  &gt;_ Skill Check
                 </span>
 
                 <motion.p
