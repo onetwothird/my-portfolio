@@ -74,7 +74,7 @@ export default function Hero() {
             className="group flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full border border-white/10 bg-[#1C1D20] text-white transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,255,255,0.15)] shadow-xl"
           >
             <span className="text-sm font-mono opacity-70 group-hover:opacity-100 transition-opacity">&gt;_</span>
-            <span className="text-xs font-medium tracking-widest uppercase mt-0.5">Override</span>
+            <span className="text-xs font-medium tracking-widest uppercase mt-0.5">Test Skills</span>
           </button>
         </Magnetic>
       </div>
