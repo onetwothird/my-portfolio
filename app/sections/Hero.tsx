@@ -32,7 +32,7 @@ export default function Hero() {
 
   return (
     <section className="min-h-dvh w-full flex flex-col justify-between lg:block relative overflow-hidden bg-[#ababab]">
-      
+
       <AnimatePresence>
         {isTransitioning && (
           <motion.div
@@ -49,16 +49,16 @@ export default function Hero() {
             }}
             className="fixed inset-0 z-100000 bg-[#1C1D20] flex flex-col items-center justify-center text-white overflow-hidden"
           >
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.5 }}
-              className="flex flex-col items-center gap-6"
+              className="flex flex-col items-center gap-4 sm:gap-6 px-6 text-center"
             >
               <span className="text-[#999D9E] text-xs md:text-sm font-mono tracking-widest uppercase">
                 The change featured is
               </span>
-              <span className="text-2xl md:text-4xl font-medium tracking-tight">
+              <span className="text-xl sm:text-2xl md:text-4xl font-medium tracking-tight">
                 Marquee Overridden
               </span>
             </motion.div>
@@ -85,50 +85,50 @@ export default function Hero() {
         onSolve={handleSolve}
       />
 
-      <motion.div 
-        initial={{ opacity: 0, y: 100 }} 
-        animate={{ opacity: 1, y: 0 }} 
+      <motion.div
+        initial={{ opacity: 0, y: 100 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[160vw] sm:w-[130vw] md:w-[110vw] lg:w-screen h-[80vh] sm:h-[85vh] lg:h-[95vh] pointer-events-none z-0"
+        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[150vw] sm:w-[130vw] md:w-[110vw] lg:w-screen h-[78dvh] sm:h-[85dvh] lg:h-[95vh] pointer-events-none z-0"
       >
-        <Image 
-          src="/img/cover-photos.png" 
-          alt="Angelito Portrait" 
-          fill 
-          className="object-contain object-bottom" 
+        <Image
+          src="/img/cover-photos.png"
+          alt="Angelito Portrait"
+          fill
+          className="object-contain object-bottom"
           priority
           quality={100}
           sizes="100vw"
         />
       </motion.div>
 
-      <motion.div 
-        initial="hidden" 
-        whileInView="visible" 
-        viewport={{ once: false, amount: 0.1 }} 
-        variants={revealUp} 
-        className="order-1 self-start relative lg:absolute z-30 w-[clamp(220px,65vw,340px)]
-                   ml-4 sm:ml-8 mt-6 sm:mt-8
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.1 }}
+        variants={revealUp}
+        className="order-1 self-start relative lg:absolute z-30 w-[clamp(200px,60vw,340px)]
+                   ml-4 sm:ml-8 mt-36 sm:mt-40
                    lg:ml-0 lg:mt-0 lg:left-8 xl:left-14 lg:top-[42%] lg:-translate-y-1/2"
       >
-        <div className="flex flex-col items-start gap-4">
+        <div className="flex flex-col items-start gap-3 sm:gap-4">
           <div className="pointer-events-auto">
             <LiveVisitorCount />
           </div>
 
-          <div className="border-l-[3px] border-white/40 pl-4 sm:pl-5 w-full">
-            <h2 className="text-white/90 font-medium text-[clamp(0.85rem,1.8vw,1.05rem)] leading-[1.4] tracking-wide">
+          <div className="border-l-[3px] border-white/40 pl-3 sm:pl-5 w-full">
+            <h2 className="text-white/90 font-medium text-[clamp(0.75rem,1.8vw,1.05rem)] leading-[1.4] tracking-wide">
               DESIGNING STRUCTURED INTERFACES BUILT FOR SCALE AND REAL-WORLD IMPACT.
             </h2>
           </div>
         </div>
       </motion.div>
 
-      <div 
+      <div
         className="order-2 flex-1 min-h-0 relative w-full flex items-center overflow-hidden pointer-events-none z-10 my-auto
                    lg:flex-none lg:block lg:absolute lg:top-[85%] lg:-translate-y-1/2"
       >
-        <motion.div 
+        <motion.div
           className="flex whitespace-nowrap"
           animate={{ x: [0, "-50%"] }}
           transition={{
@@ -137,32 +137,32 @@ export default function Hero() {
             duration: 22
           }}
         >
-          <div className="flex gap-12 sm:gap-16 px-4 sm:px-8 items-center">
-            <h1 className={`text-[clamp(3.5rem,14vw,14rem)] leading-none tracking-tighter pb-4 lg:pb-8 transition-all duration-1000 ${triviaStep === "solved" ? 'font-mono text-[#1C1D20] drop-shadow-[0_4px_24px_rgba(255,255,255,0.2)]' : 'font-medium text-white opacity-90'}`}>
+          <div className="flex gap-8 sm:gap-12 lg:gap-16 px-4 sm:px-8 items-center">
+            <h1 className={`text-[clamp(2.75rem,12vw,4.5rem)] sm:text-[clamp(3.25rem,13vw,6rem)] lg:text-[clamp(4rem,10vw,9rem)] xl:text-[clamp(4.5rem,12vw,14rem)] leading-none tracking-tighter pb-3 sm:pb-4 lg:pb-8 transition-all duration-1000 ${triviaStep === "solved" ? 'font-mono text-[#1C1D20] drop-shadow-[0_4px_24px_rgba(255,255,255,0.2)]' : 'font-medium text-white opacity-90'}`}>
               {triviaStep === "solved" ? "Angelito Decatoria III — [OVERRIDE] —" : "Angelito Decatoria III —"}
             </h1>
           </div>
-          <div className="flex gap-12 sm:gap-16 px-4 sm:px-8 items-center">
-            <h1 className={`text-[clamp(3.5rem,14vw,14rem)] leading-none tracking-tighter pb-4 lg:pb-8 transition-all duration-1000 ${triviaStep === "solved" ? 'font-mono text-[#1C1D20] drop-shadow-[0_4px_24px_rgba(255,255,255,0.2)]' : 'font-medium text-white opacity-90'}`}>
+          <div className="flex gap-8 sm:gap-12 lg:gap-16 px-4 sm:px-8 items-center">
+            <h1 className={`text-[clamp(2.75rem,12vw,4.5rem)] sm:text-[clamp(3.25rem,13vw,6rem)] lg:text-[clamp(4rem,10vw,9rem)] xl:text-[clamp(4.5rem,12vw,14rem)] leading-none tracking-tighter pb-3 sm:pb-4 lg:pb-8 transition-all duration-1000 ${triviaStep === "solved" ? 'font-mono text-[#1C1D20] drop-shadow-[0_4px_24px_rgba(255,255,255,0.2)]' : 'font-medium text-white opacity-90'}`}>
               {triviaStep === "solved" ? "Angelito Decatoria III — [OVERRIDE] —" : "Angelito Decatoria III —"}
             </h1>
           </div>
         </motion.div>
       </div>
 
-      <motion.div 
-        initial="hidden" 
-        whileInView="visible" 
-        viewport={{ once: false, amount: 0.1 }} 
-        variants={revealUp} 
-        className="absolute right-6 xl:right-28 top-[42%] -translate-y-1/2 hidden lg:flex flex-col items-end gap-6 z-30"
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.1 }}
+        variants={revealUp}
+        className="absolute right-4 xl:right-28 top-[42%] -translate-y-1/2 hidden lg:flex flex-col items-end gap-4 xl:gap-6 z-30 max-w-[38vw] xl:max-w-none"
       >
-        <div className="flex items-center gap-4 text-white">
+        <div className="flex items-center gap-3 xl:gap-4 text-white">
           <div className="leading-[1.2] drop-shadow-sm font-light tracking-wide text-right flex flex-col items-end">
             <div className="flex items-center gap-3">
-              <span className="text-2xl md:text-3xl font-medium">Full Stack Developer</span>
+              <span className="text-xl lg:text-2xl xl:text-3xl font-medium">Full Stack Developer</span>
             </div>
-            <span className="text-lg md:text-xl opacity-80">& CS Student</span>
+            <span className="text-base lg:text-lg xl:text-xl opacity-80">& CS Student</span>
           </div>
           <div className="w-fit mb-6" onMouseEnter={playHover}>
             <Magnetic>
@@ -177,12 +177,12 @@ export default function Hero() {
           </span>
           <Tape inverted className="w-12 h-5 -top-2.5 -right-3" rotate={-12} />
           <Magnetic>
-            <a 
-              href="/resume/Decatoria-Angelito_Resume.pdf" 
+            <a
+              href="/resume/Decatoria-Angelito_Resume.pdf"
               download="Decatoria-Angelito_Resume.pdf"
               onMouseEnter={playHover}
               onClick={playClick}
-              className="group flex items-center gap-3 px-6 py-3 rounded-full border border-white/30 bg-white/5 backdrop-blur-sm text-white transition-all duration-500 hover:bg-white hover:text-black pointer-events-auto hover:shadow-[0_0_20px_rgba(255,255,255,0.3)]"
+              className="group flex items-center gap-3 px-5 xl:px-6 py-2.5 xl:py-3 rounded-full border border-white/30 bg-white/5 backdrop-blur-sm text-white transition-all duration-500 hover:bg-white hover:text-black pointer-events-auto hover:shadow-[0_0_20px_rgba(255,255,255,0.3)]"
             >
               <span className="text-sm font-medium tracking-widest uppercase">Resume</span>
               <Download size={16} strokeWidth={2} className="transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
@@ -191,20 +191,21 @@ export default function Hero() {
         </div>
       </motion.div>
 
-      <div className="order-3 lg:hidden relative px-6 sm:px-8 pb-12 pt-4 flex justify-between items-end gap-4 z-30 text-white drop-shadow-md pointer-events-none">
-        <div className="flex flex-col gap-4 min-w-0">
-          <ArrowDownRight size={24} strokeWidth={1.5} className="opacity-90 shrink-0" />
-          <div className="text-lg sm:text-xl font-medium leading-[1.15] tracking-tight">
+      <div className="order-3 lg:hidden relative px-6 sm:px-8 pb-8 sm:pb-12 pt-4 flex justify-between items-end gap-4 z-30 text-white drop-shadow-md pointer-events-none">
+        <div className="flex flex-col gap-3 sm:gap-4 min-w-0">
+          <ArrowDownRight size={22} strokeWidth={1.5} className="opacity-90 shrink-0 sm:hidden" />
+          <ArrowDownRight size={24} strokeWidth={1.5} className="opacity-90 shrink-0 hidden sm:block" />
+          <div className="text-base sm:text-lg md:text-xl font-medium leading-[1.15] tracking-tight">
             <p>Full Stack Developer</p>
             <p>& CS Student</p>
           </div>
-          
+
           <Magnetic>
-            <a 
-              href="/resume/Decatoria-Angelito_Resume.pdf" 
+            <a
+              href="/resume/Decatoria-Angelito_Resume.pdf"
               download="Decatoria-Angelito_Resume.pdf"
               onClick={playClick}
-              className="group flex w-fit items-center gap-2 px-5 py-2.5 rounded-full border border-white/30 bg-white/10 backdrop-blur-md text-white transition-all duration-300 pointer-events-auto active:bg-white active:text-black"
+              className="group flex w-fit items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full border border-white/30 bg-white/10 backdrop-blur-md text-white transition-all duration-300 pointer-events-auto active:bg-white active:text-black"
             >
               <span className="text-xs font-medium tracking-widest uppercase">Resume</span>
               <Download size={14} strokeWidth={2} />
@@ -212,7 +213,8 @@ export default function Hero() {
           </Magnetic>
         </div>
         <div className="pb-1 shrink-0">
-          <Globe size={32} strokeWidth={1.5} className="opacity-90" />
+          <Globe size={28} strokeWidth={1.5} className="opacity-90 sm:hidden" />
+          <Globe size={32} strokeWidth={1.5} className="opacity-90 hidden sm:block" />
         </div>
       </div>
 
