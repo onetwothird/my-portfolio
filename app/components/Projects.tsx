@@ -235,7 +235,7 @@ function ProjectCard({ project, playHover, playClick }: ProjectCardProps) {
       rel="noreferrer"
       onMouseEnter={() => playHover()}
       onClick={playClick}
-      className="group relative w-[80vw] sm:w-87.5 md:w-112.5 lg:w-137.5 xl:w-150 aspect-video shrink-0 flex items-center justify-center overflow-hidden rounded-2xl cursor-pointer border border-black/10 dark:border-white/10"
+      className="group relative w-[80vw] sm:w-87.5 md:w-112.5 lg:w-137.5 xl:w-150 aspect-video shrink-0 flex items-center justify-center overflow-hidden rounded-2xl"
     >
       <Image 
         src={project.imageUrl} 
