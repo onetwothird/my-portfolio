@@ -52,25 +52,29 @@ export default function Certification() {
       title: "Prompt to Persona: Building Your AI Twin for the Digital Age", 
       issuer: "DICT Region 3", 
       date: "2026",
-      imageUrl: "/cert/Building_Your_AI_Twin_for_the_Digital_Age.png"
+      imageUrl: "/cert/Building_Your_AI_Twin_for_the_Digital_Age.png",
+      pdfUrl: "/cert/Building_Your_AI_Twin_for_the_Digital_Age.pdf"
     },
     { 
       title: "Mastering SQL Query Optimization: Boost Performance, Reduce Server Load", 
       issuer: "SREGEN", 
       date: "2024",
-      imageUrl: "/cert/Mastering_SQL_Query_Optimization_Boost_Performance_Reduce_Server_Load.png"
+      imageUrl: "/cert/Mastering_SQL_Query_Optimization_Boost_Performance_Reduce_Server_Load.png",
+      pdfUrl: "/cert/Mastering_SQL_Query_Optimization_Boost_Performance_Reduce_Server_Load.pdf"
     },
     { 
       title: "FWDP Monthly Community Day", 
       issuer: "FWDP Peers", 
       date: "2023",
-      imageUrl: "/cert/FWDP_Monthly_Community_Day.png"
+      imageUrl: "/cert/FWDP_Monthly_Community_Day.png",
+      pdfUrl: "/cert/FWDP_Monthly_Community_Day.pdf"
     },
     { 
       title: "Bicol Startup 101", 
       issuer: "DICT Region 4", 
       date: "2023",
-      imageUrl: "/cert/Bicol_Startup_101.png"
+      imageUrl: "/cert/Bicol_Startup_101.png",
+      pdfUrl: "/cert/Bicol_Startup_101.pdf"
     }
   ];
 
@@ -119,12 +123,16 @@ export default function Certification() {
         className="flex flex-col border-t border-black/10 dark:border-white/10"
       >
         {previewCerts.map((cert, idx) => (
-          <motion.div 
+          <motion.a 
+            href={cert.pdfUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             key={idx}
             variants={slideUpFade}
             onMouseEnter={() => { setHoveredIndex(idx); playHover(); }}
             onMouseLeave={() => setHoveredIndex(null)}
-            className="group relative flex flex-col md:flex-row justify-between items-start md:items-center py-10 md:py-12 border-b border-black/10 dark:border-white/10 hover:px-6 transition-all duration-500 cursor-default z-10"
+            onClick={playClick}
+            className="group relative flex flex-col md:flex-row justify-between items-start md:items-center py-10 md:py-12 border-b border-black/10 dark:border-white/10 hover:px-6 transition-all duration-500 cursor-pointer z-10"
           >
             <h3 className="text-3xl md:text-5xl font-medium tracking-tight group-hover:opacity-40 transition-opacity duration-500 pointer-events-none">
               {cert.title}
@@ -137,7 +145,7 @@ export default function Certification() {
                  {cert.date}
                </span>
             </div>
-          </motion.div>
+          </motion.a>
         ))}
       </motion.div>
 
