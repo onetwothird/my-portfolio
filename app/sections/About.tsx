@@ -10,7 +10,7 @@ export default function About() {
   return (
     <section id="about" className="py-24 max-w-7xl mx-auto px-6 md:px-12 relative flex flex-col">
       
-      <div className="flex justify-between items-start mb-4 md:mb-12 z-50 relative w-full">
+      <div className="flex justify-between items-start mb-4 md:mb-12 z-30 relative w-full">
         <div className="relative inline-block">
           <Tape className="w-10 h-4 sm:w-12 sm:h-5 -top-2 -left-3" rotate={-8} />
           <div className="relative text-xs font-medium text-[#999D9E] uppercase tracking-widest">
