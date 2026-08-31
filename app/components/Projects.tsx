@@ -129,7 +129,7 @@ export default function Projects() {
         </motion.div>
       </section>
 
-      <section className="pt-12 pb-4 px-6 md:px-12 relative w-full max-w-400 mx-auto shrink-0 hidden md:block mt-12 md:mt-16">
+      <section className="pt-4 pb-4 px-6 md:px-12 relative w-full max-w-400 mx-auto shrink-0 hidden md:block mt-12 md:mt-16">
         <div
           className="overflow-hidden px-6 md:px-12"
           style={{
