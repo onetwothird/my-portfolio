@@ -27,43 +27,43 @@ export default function Certification() {
       title: "Prompt to Persona: Building Your AI Twin for the Digital Age", 
       issuer: "DICT Region 3", 
       date: "2026", 
-      pdfUrl: "/cert/e-cert_6.pdf",
-      imageUrl: "/cert/e-cert_6.png"
+      pdfUrl: "/cert/Building_Your_AI_Twin_for_the_Digital_Age.pdf",
+      imageUrl: "/cert/Building_Your_AI_Twin_for_the_Digital_Age.png"
     },
     { 
       title: "Mastering SQL Query Optimization: Boost Performance, Reduce Server Load", 
       issuer: "SREGEN", 
       date: "2024", 
-      pdfUrl: "/cert/e-cert_3.pdf",
-      imageUrl: "/cert/e-cert_3.png"
+      pdfUrl: "/cert/Mastering_SQL_Query_Optimization_Boost_Performance_Reduce_Server_Load.pdf",
+      imageUrl: "/cert/Mastering_SQL_Query_Optimization_Boost_Performance_Reduce_Server_Load.png"
     },
     { 
       title: "FWDP Monthly Community Day", 
       issuer: "FWDP Peers", 
       date: "2023", 
-      pdfUrl: "/cert/e-cert_1.pdf",
-      imageUrl: "/cert/e-cert_1.png"
+      pdfUrl: "/cert/FWDP_Monthly_Community_Day.pdf",
+      imageUrl: "/cert/FWDP_Monthly_Community_Day.png"
     },
     { 
       title: "Bicol Startup 101", 
       issuer: "DICT Region 4", 
       date: "2023", 
-      pdfUrl: "/cert/e-cert_2.pdf",
-      imageUrl: "/cert/e-cert_2.png"
+      pdfUrl: "/cert/Bicol_Startup_101.pdf",
+      imageUrl: "/cert/Bicol_Startup_101.png"
     },
     { 
       title: "Breaking Barriers in Web Development: Empowering Skills from Ground Zero", 
       issuer: "Cognixia", 
       date: "2023", 
-      pdfUrl: "/cert/e-cert_4.pdf",
-      imageUrl: "/cert/e-cert_4.png"
+      pdfUrl: "/cert/Breaking_Barriers_in_Web_Development_Empowering_Skills_from_Ground_Zero.pdf",
+      imageUrl: "/cert/Breaking_Barriers_in_Web_Development_Empowering_Skills_from_Ground_Zero.png"
     },
     { 
       title: "Future of Containerization: How Kubernetes and Docker are Revolutionizing the IT Industry", 
       issuer: "Collabera", 
       date: "2023", 
-      pdfUrl: "/cert/e-cert_5.pdf",
-      imageUrl: "/cert/e-cert_5.png"
+      pdfUrl: "/cert/Future_of-Containerization_How_Kubernetes_and_Docker_are_Revolutionizing_the_IT_Industry.pdf",
+      imageUrl: "/cert/Future_of-Containerization_How_Kubernetes_and_Docker_are_Revolutionizing_the_IT_Industry.png"
     }
   ];
 
