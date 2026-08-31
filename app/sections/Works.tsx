@@ -55,6 +55,12 @@ export default function Works() {
       imageUrl: "/projects/seelai-preview.png"
     },
     { 
+      title: "Resumi", 
+      tag: "Resume Builder & Portfolio", 
+      link: "https://resumi-mu.vercel.app/",
+      imageUrl: "/projects/Resumi.png"
+    },
+    { 
       title: "QueueTopia", 
       tag: "Interactive OS Simulator", 
       link: "https://queuetopia.vercel.app/",
@@ -65,19 +71,7 @@ export default function Works() {
       tag: "Corporate Routing System", 
       link: "https://odci.page.gd/",
       imageUrl: "/projects/odci.png"
-    },
-    { 
-      title: "Resumi", 
-      tag: "Resume Builder & Portfolio", 
-      link: "https://resumi-mu.vercel.app/",
-      imageUrl: "/projects/Resumi.png"
-    },
-    { 
-      title: "Jayann's Store", 
-      tag: "E-Commerce & POS", 
-      link: "https://jayann-store.page.gd/",
-      imageUrl: "/projects/jayann_store.png"
-    },
+    }
   ];
 
   return (
