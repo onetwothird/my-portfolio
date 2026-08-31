@@ -52,25 +52,25 @@ export default function Certification() {
       title: "Prompt to Persona: Building Your AI Twin for the Digital Age", 
       issuer: "DICT Region 3", 
       date: "2026",
-      imageUrl: "/cert/e-cert_6.png"
+      imageUrl: "/cert/Building_Your_AI_Twin_for_the_Digital_Age.png"
     },
     { 
       title: "Mastering SQL Query Optimization: Boost Performance, Reduce Server Load", 
       issuer: "SREGEN", 
       date: "2024",
-      imageUrl: "/cert/e-cert_3.png"
+      imageUrl: "/cert/Mastering_SQL_Query_Optimization_Boost_Performance_Reduce_Server_Load.png"
     },
     { 
       title: "FWDP Monthly Community Day", 
       issuer: "FWDP Peers", 
       date: "2023",
-      imageUrl: "/cert/e-cert_1.png"
+      imageUrl: "/cert/FWDP_Monthly_Community_Day.png"
     },
     { 
       title: "Bicol Startup 101", 
       issuer: "DICT Region 4", 
       date: "2023",
-      imageUrl: "/cert/e-cert_2.png"
+      imageUrl: "/cert/Bicol_Startup_101.png"
     }
   ];
 
