@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { X, ArrowLeft, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useSound } from '../components/SoundProvider';
+import { useLightbox } from '../components/LightboxProvider';
 
 const slideUpFade: Variants = {
   hidden: { opacity: 0, y: 80 },
@@ -26,14 +27,19 @@ const staggerGrid = {
 };
 
 const galleryImages = [
-  "/img/image1.jpg", "/img/image2.jpg", "/img/image3.jpg", "/img/image4.jpg",
-  "/img/image5.jpg", "/img/image6.jpg", "/img/image7.jpg", "/img/image8.jpg",
-  "/img/image9.jpg", "/img/image10.jpg",
+  "/gallery/image1.jpg", "/gallery/image2.jpg", "/gallery/image3.jpg", "/gallery/image4.jpg",
+  "/gallery/image5.jpg", "/gallery/image6.jpg", "/gallery/image7.jpg", "/gallery/image8.jpg",
+  "/gallery/image9.jpg", "/gallery/image10.jpg",
 ];
 
 export default function MoreGallery() {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const { playHover, playClick } = useSound();
+  const { setLightboxOpen } = useLightbox();
+
+  useEffect(() => {
+    setLightboxOpen(selectedIndex !== null);
+  }, [selectedIndex, setLightboxOpen]);
 
   const closeLightbox = useCallback(() => setSelectedIndex(null), []);
   
@@ -59,7 +65,6 @@ export default function MoreGallery() {
 
   return (
     <div className="min-h-screen bg-[#F4F4F4] dark:bg-[#111111] text-[#1C1D20] dark:text-[#ededed] font-sans selection:bg-[#8B5CF6] selection:text-white pb-24">
-      
       <section className="pt-32 pb-8 px-6 md:px-12 relative max-w-7xl mx-auto">
         <motion.div initial="hidden" animate="visible" variants={stagger}>
           <Link 
@@ -70,7 +75,6 @@ export default function MoreGallery() {
           >
             <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" /> Back to Home
           </Link>
-          
           <div className="overflow-hidden mb-4">
             <motion.h1 variants={slideUpFade} className="text-6xl md:text-[8vw] leading-[0.85] font-medium tracking-tighter">
               Archive Gallery.
@@ -105,7 +109,6 @@ export default function MoreGallery() {
               className="group w-full aspect-4/3 relative cursor-pointer overflow-hidden rounded-sm"
             >
               <Image src={src} alt={`Gallery Image ${i + 1}`} fill className="object-cover group-hover:scale-105 transition-transform duration-1000 ease-out" />
-
               <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               <div className="absolute inset-0 flex flex-col justify-end p-5 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-500">
                 <span className="text-white text-xs font-mono font-bold tracking-widest">
@@ -133,7 +136,6 @@ export default function MoreGallery() {
             >
               <X size={36} />
             </button>
-
             <button
               onMouseEnter={() => playHover()}
               onClick={(e) => { e.stopPropagation(); showPrev(); playClick(); }}
@@ -150,7 +152,6 @@ export default function MoreGallery() {
             >
               <ChevronRight size={32} />
             </button>
-
             <motion.div
               key={selectedIndex}
               initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.95, opacity: 0 }} transition={{ duration: 0.4, ease: "easeOut" }}
@@ -159,7 +160,6 @@ export default function MoreGallery() {
             >
               <Image src={galleryImages[selectedIndex]} alt="Fullscreen" fill className="object-contain" quality={100} priority />
             </motion.div>
-
             <span className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/70 text-xs font-mono font-bold tracking-widest">
               {String(selectedIndex + 1).padStart(2, '0')} / {String(galleryImages.length).padStart(2, '0')}
             </span>
