@@ -51,7 +51,7 @@ export default function Cursor() {
 
     const handleMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      const isInLightbox = target.closest('.fixed.inset-0.z-200000'); 
+      const isInLightbox = target.closest('.fixed.inset-0'); 
 
       if (!isLightboxOpen && !isInLightbox && (target.closest('a') || target.closest('button') || target.closest('.group') || target.closest('Magnetic'))) {
         setIsHovering(true);
@@ -72,7 +72,7 @@ export default function Cursor() {
 
   return (
     <motion.div
-      className="fixed top-0 left-0 rounded-full pointer-events-none z-99999 hidden md:flex items-center justify-center mix-blend-difference"
+      className={`fixed top-0 left-0 rounded-full pointer-events-none z-999999 hidden md:flex items-center justify-center ${isLightboxOpen ? '' : 'mix-blend-difference'}`}
       style={{ 
         x: cursorX, 
         y: cursorY,
