@@ -3,12 +3,14 @@
 import { useEffect, useState, useRef } from 'react';
 import { motion, useMotionValue, useSpring } from 'framer-motion';
 import { useSound } from './SoundProvider';
+import { useLightbox } from './LightboxProvider';
 
 export default function Cursor() {
   const [isHovering, setIsHovering] = useState(false);
   const { setWindIntensity } = useSound();
+  const { isLightboxOpen } = useLightbox();
   
-  const cursorSize = isHovering ? 60 : 16;
+  const cursorSize = isHovering && !isLightboxOpen ? 60 : 16; 
   const mouseX = useMotionValue(-100);
   const mouseY = useMotionValue(-100);
 
@@ -49,7 +51,9 @@ export default function Cursor() {
 
     const handleMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      if (target.closest('a') || target.closest('button') || target.closest('.group') || target.closest('Magnetic')) {
+      const isInLightbox = target.closest('.fixed.inset-0.z-200000'); 
+
+      if (!isLightboxOpen && !isInLightbox && (target.closest('a') || target.closest('button') || target.closest('.group') || target.closest('Magnetic'))) {
         setIsHovering(true);
       } else {
         setIsHovering(false);
@@ -64,7 +68,7 @@ export default function Cursor() {
       window.removeEventListener('mouseover', handleMouseOver);
       cancelAnimationFrame(rafId);
     };
-  }, [cursorSize, mouseX, mouseY, setWindIntensity]);
+  }, [cursorSize, mouseX, mouseY, setWindIntensity, isLightboxOpen]);
 
   return (
     <motion.div
@@ -76,8 +80,8 @@ export default function Cursor() {
         height: cursorSize,
       }}
       animate={{
-        backgroundColor: isHovering ? "rgba(255, 255, 255, 0)" : "#ffffff", 
-        border: isHovering ? "1px solid #ffffff" : "0px solid rgba(255, 255, 255, 0)",
+        backgroundColor: isLightboxOpen ? "#ffffff" : (isHovering ? "rgba(255, 255, 255, 0)" : "#ffffff"),
+        border: isLightboxOpen ? "0px solid rgba(255, 255, 255, 0)" : (isHovering ? "1px solid #ffffff" : "0px solid rgba(255, 255, 255, 0)"),
       }}
       transition={{ type: "tween", ease: "backOut", duration: 0.2 }}
     />
