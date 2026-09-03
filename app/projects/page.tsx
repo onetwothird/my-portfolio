@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Projects from "../components/Projects";
+import Cursor from "../components/Cursor";
 
 export const metadata: Metadata = {
   title: "Projects | Angelito P. Decatoria III",
@@ -7,5 +8,10 @@ export const metadata: Metadata = {
 };
 
 export default function ProjectsPage() {
-  return <Projects />;
+  return (
+      <>
+        <Projects />
+        <Cursor />
+      </>
+    );
 }
