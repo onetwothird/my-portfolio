@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import TechStack from "../components/TechStack";
+import Cursor from "../components/Cursor";
 
 export const metadata: Metadata = {
   title: "Tech Stack | Angelito P. Decatoria III",
@@ -7,5 +8,10 @@ export const metadata: Metadata = {
 };
   
 export default function TechStackPage() {
-  return <TechStack />;
+  return (
+      <>
+        <TechStack />
+        <Cursor />
+      </>
+    );
 }
