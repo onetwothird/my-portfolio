@@ -7,6 +7,7 @@ import Link from "next/link";
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useSound } from '../components/SoundProvider'; 
 import { Tape } from '../components/Scrapbook';
+import { useLightbox } from '../components/LightboxProvider';
 
 const revealUp: Variants = {
   hidden: { opacity: 0, y: 50 },
@@ -23,6 +24,7 @@ export default function JourneyGallery() {
   const [hoveredJourney, setHoveredJourney] = useState<number | null>(null);
   
   const { playHover } = useSound();
+  const { setLightboxOpen } = useLightbox();
 
   const journey = [
     {
@@ -64,11 +66,15 @@ export default function JourneyGallery() {
   ];
 
   const galleryImages = [
-     "/img/image1.jpg", "/img/image2.jpg", "/img/image3.jpg", "/img/image4.jpg",
-     "/img/image5.jpg", "/img/image6.jpg", "/img/image7.jpg", "/img/image8.jpg",
-     "/img/image9.jpg", "/img/image10.jpg",
+     "/gallery/image1.jpg", "/gallery/image2.jpg", "/gallery/image3.jpg", "/gallery/image4.jpg",
+     "/gallery/image5.jpg", "/gallery/image6.jpg", "/gallery/image7.jpg", "/gallery/image8.jpg",
+     "/gallery/image9.jpg", "/gallery/image10.jpg",
   ];
   const previewImages = galleryImages.slice(0, 4);
+
+  useEffect(() => {
+    setLightboxOpen(selectedIndex !== null);
+  }, [selectedIndex, setLightboxOpen]);
 
   const closeLightbox = useCallback(() => setSelectedIndex(null), []);
   const showNext = useCallback(() => setSelectedIndex((prev) => (prev === null ? null : (prev + 1) % previewImages.length)), [previewImages.length]);
@@ -88,7 +94,6 @@ export default function JourneyGallery() {
   return (
     <>
       <section className="grid grid-cols-1 border-y border-black/10 dark:border-white/10 max-w-7xl mx-auto">
-
         <div className="p-8 md:p-16 border-b lg:border-b-0 border-black/10 dark:border-white/10">
           <div className="mb-20">
             <div className="relative inline-block">
@@ -122,7 +127,6 @@ export default function JourneyGallery() {
                     </div>
                     <p className="text-xs font-medium text-[#999D9E] mt-4 md:mt-0">{item.desc}</p>
                   </div>
-
                   <div
                     className="grid transition-[grid-template-rows] duration-500 ease-out"
                     style={{ gridTemplateRows: hoveredJourney === i ? "1fr" : "0fr" }}
@@ -138,7 +142,6 @@ export default function JourneyGallery() {
             ))}
           </div>
         </div>
-
       </section>
 
       <section id="gallery" className="py-24 px-6 md:px-12 bg-[#F4F4F4] dark:bg-[#111111]">
@@ -158,7 +161,6 @@ export default function JourneyGallery() {
                More images <span className="opacity-50 text-xs ml-1">{galleryImages.length}</span>
              </Link>
           </div>
-
           <motion.div 
             initial="hidden" 
             whileInView="visible" 
@@ -193,7 +195,6 @@ export default function JourneyGallery() {
             onClick={closeLightbox}
           >
             <button className="absolute top-8 right-8 text-white hover:text-gray-400 transition-colors z-10"><X size={36} /></button>
-
             <button
               onClick={(e) => { e.stopPropagation(); showPrev(); }}
               className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 text-white/70 hover:text-white transition-colors z-10 p-2"
@@ -208,7 +209,6 @@ export default function JourneyGallery() {
             >
               <ChevronRight size={32} />
             </button>
-
             <motion.div
               key={selectedIndex}
               initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.95, opacity: 0 }} transition={{ duration: 0.4, ease: "easeOut" }}
@@ -217,7 +217,6 @@ export default function JourneyGallery() {
             >
               <Image src={previewImages[selectedIndex]} alt="Fullscreen" fill className="object-contain" quality={100} priority />
             </motion.div>
-
             <span className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/70 text-xs font-mono font-bold tracking-widest">
               {String(selectedIndex + 1).padStart(2, '0')} / {String(previewImages.length).padStart(2, '0')}
             </span>
