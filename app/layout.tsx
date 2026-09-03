@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { ThemeProvider } from "./components/ThemeProvider";
 import { SoundProvider } from "./components/SoundProvider";
+import { LightboxProvider } from "./components/LightboxProvider";
 import Chatbot from "./components/Chatbot"; 
 import "./globals.css";
 import { Analytics } from '@vercel/analytics/react';
@@ -45,8 +46,10 @@ export default function RootLayout({
 
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <SoundProvider>
-            {children}
-            <Chatbot /> 
+            <LightboxProvider>
+              {children}
+              <Chatbot /> 
+            </LightboxProvider>
           </SoundProvider>
         </ThemeProvider>
         <Analytics />
