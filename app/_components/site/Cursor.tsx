@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef } from 'react';
 import { motion, useMotionValue, useSpring } from 'framer-motion';
-import { useSound } from './SoundProvider';
+import { useSound } from '../shared/SoundProvider';
 
 export default function Cursor() {
   const [isHovering, setIsHovering] = useState(false);
