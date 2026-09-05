@@ -7,9 +7,9 @@ import { isTextUIPart } from "ai";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 import { MessageSquare, X, Send, ArrowRight, Loader2 } from "lucide-react";
 import Image from "next/image";
-import Magnetic from "./Magnetic";
+import Magnetic from "../shared/Magnetic";
 import ReactMarkdown from "react-markdown";
-import { useSound } from "./SoundProvider";
+import { useSound } from "../shared/SoundProvider";
 
 function getMessageText(m: UIMessage) {
   return m.parts
