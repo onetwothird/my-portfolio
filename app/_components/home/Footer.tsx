@@ -3,10 +3,10 @@
 import { Mail } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import { motion, Variants } from 'framer-motion';
-import Magnetic from '../components/Magnetic';
-import { useSound } from '../components/SoundProvider';
+import Magnetic from '../shared/Magnetic';
+import { useSound } from '../shared/SoundProvider';
 
-const LocationGlobe = dynamic(() => import('../components/LocationGlobe'), { ssr: false });
+const LocationGlobe = dynamic(() => import('../site/LocationGlobe'), { ssr: false });
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 40 },
