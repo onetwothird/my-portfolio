@@ -4,8 +4,8 @@ import { useState, useEffect } from 'react';
 import { motion, Variants, useSpring, useMotionValue } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useSound } from '../components/SoundProvider';
-import { Tape } from '../components/Scrapbook';
+import { useSound } from '../shared/SoundProvider';
+import { Tape } from '../shared/Scrapbook';
 
 const slideUpFade: Variants = {
   hidden: { opacity: 0, y: 80 },
