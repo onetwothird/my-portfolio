@@ -185,8 +185,8 @@ export default function CommunityChat() {
                 <button type="submit" className="w-full rounded-full bg-[#1C1D20] px-4 py-3 text-xs font-bold uppercase tracking-widest text-white transition-transform hover:scale-[1.02] dark:bg-white dark:text-[#1C1D20]">Enter room</button>
               </form>
             ) : (
-              <>
-                <div data-lenis-prevent="true" className="flex-1 overflow-y-auto p-4 scrollbar-thin scrollbar-thumb-black/10 dark:scrollbar-thumb-white/10">
+              <div className="flex min-h-0 flex-1 flex-col">
+                <div data-lenis-prevent="true" className="min-h-0 flex-1 overflow-y-auto p-4 scrollbar-thin scrollbar-thumb-black/10 dark:scrollbar-thumb-white/10">
                   {loading ? (
                     <p className="py-10 text-center text-xs text-[#999D9E]">Opening the room...</p>
                   ) : messages.length === 0 ? (
@@ -215,7 +215,7 @@ export default function CommunityChat() {
                   )}
                 </div>
 
-                <div className="border-t border-black/10 bg-[#F4F4F4]/90 p-3 dark:border-white/10 dark:bg-[#1C1D20]/90">
+                <div className="shrink-0 border-t border-black/10 bg-[#F4F4F4]/90 p-3 dark:border-white/10 dark:bg-[#1C1D20]/90">
                   {error && <p className="mb-2 px-2 text-[10px] text-red-500">{error}</p>}
                   <form onSubmit={sendMessage} className="relative flex items-center">
                     <input
@@ -230,7 +230,7 @@ export default function CommunityChat() {
                     </button>
                   </form>
                 </div>
-              </>
+              </div>
             )}
           </motion.section>
         )}
