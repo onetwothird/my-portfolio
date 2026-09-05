@@ -15,20 +15,61 @@ const revealUp: Variants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] } }
 };
 
+const MARQUEE_MODES = [
+  {
+    label: "Marquee Overridden",
+    text: "Angelito Decatoria III - [OVERRIDE] -",
+    className: "font-mono text-[#1C1D20] drop-shadow-[0_4px_24px_rgba(255,255,255,0.2)]",
+    rumble: 1.5,
+  },
+  {
+    label: "Signal Detected",
+    text: "Angelito Decatoria III - [SIGNAL] -",
+    className: "font-semibold text-[#123B63] drop-shadow-[0_4px_18px_rgba(255,255,255,0.35)]",
+    rumble: 2.5,
+  },
+  {
+    label: "Build Unlocked",
+    text: "Angelito Decatoria III - [BUILD COMPLETE] -",
+    className: "font-black text-[#5C2515] drop-shadow-[0_4px_18px_rgba(255,220,180,0.35)]",
+    rumble: 1,
+  },
+  {
+    label: "Runtime Shifted",
+    text: "Angelito Decatoria III - [RUNTIME SHIFT] -",
+    className: "font-mono italic text-[#294C3A] drop-shadow-[0_4px_18px_rgba(220,255,230,0.3)]",
+    rumble: 3,
+  },
+  {
+    label: "Access Granted",
+    text: "Angelito Decatoria III - [ACCESS GRANTED] -",
+    className: "font-bold text-white drop-shadow-[0_4px_18px_rgba(0,0,0,0.35)]",
+    rumble: 2,
+  },
+] as const;
+
 export default function Hero() {
   const { playHover, playClick } = useSound();
 
   const [isChallengeOpen, setIsChallengeOpen] = useState(false);
-  const [triviaStep, setTriviaStep] = useState<"intro" | "solved">("intro");
+  const [marqueeMode, setMarqueeMode] = useState<number | null>(null);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
   const handleSolve = () => {
+    setMarqueeMode((previousMode) => {
+      let nextMode = Math.floor(Math.random() * MARQUEE_MODES.length);
+      while (nextMode === previousMode) {
+        nextMode = Math.floor(Math.random() * MARQUEE_MODES.length);
+      }
+      return nextMode;
+    });
     setIsTransitioning(true);
     setTimeout(() => {
       setIsTransitioning(false);
-      setTriviaStep("solved");
     }, 2500);
   };
+
+  const activeMarqueeMode = marqueeMode === null ? null : MARQUEE_MODES[marqueeMode];
 
   return (
     <section className="min-h-dvh w-full flex flex-col justify-between lg:block relative overflow-hidden bg-[#ababab]">
@@ -59,7 +100,7 @@ export default function Hero() {
                 The change featured is
               </span>
               <span className="text-xl sm:text-2xl md:text-4xl font-medium tracking-tight">
-                Marquee Overridden
+                {activeMarqueeMode?.label}
               </span>
             </motion.div>
           </motion.div>
@@ -130,21 +171,27 @@ export default function Hero() {
       >
         <motion.div
           className="flex whitespace-nowrap"
-          animate={{ x: [0, "-50%"] }}
+          animate={{
+            x: [0, "-50%"],
+            y: activeMarqueeMode ? [0, -activeMarqueeMode.rumble, activeMarqueeMode.rumble, 0] : 0,
+            rotate: activeMarqueeMode ? [0, -0.35, 0.35, 0] : 0,
+          }}
           transition={{
             repeat: Infinity,
             ease: "linear",
-            duration: 22
+            duration: activeMarqueeMode ? 20 + activeMarqueeMode.rumble : 22,
+            y: { duration: 0.45, repeat: Infinity, repeatType: "mirror", ease: "easeInOut" },
+            rotate: { duration: 0.55, repeat: Infinity, repeatType: "mirror", ease: "easeInOut" },
           }}
         >
           <div className="flex gap-8 sm:gap-12 lg:gap-16 px-4 sm:px-8 items-center">
-            <h1 className={`text-[clamp(2.75rem,12vw,4.5rem)] sm:text-[clamp(3.25rem,13vw,6rem)] lg:text-[clamp(4rem,10vw,9rem)] xl:text-[clamp(4.5rem,12vw,14rem)] leading-none tracking-tighter pb-3 sm:pb-4 lg:pb-8 transition-all duration-1000 ${triviaStep === "solved" ? 'font-mono text-[#1C1D20] drop-shadow-[0_4px_24px_rgba(255,255,255,0.2)]' : 'font-medium text-white opacity-90'}`}>
-              {triviaStep === "solved" ? "Angelito Decatoria III — [OVERRIDE] —" : "Angelito Decatoria III —"}
+            <h1 className={`text-[clamp(2.75rem,12vw,4.5rem)] sm:text-[clamp(3.25rem,13vw,6rem)] lg:text-[clamp(4rem,10vw,9rem)] xl:text-[clamp(4.5rem,12vw,14rem)] leading-none tracking-tighter pb-3 sm:pb-4 lg:pb-8 transition-all duration-1000 ${activeMarqueeMode?.className ?? 'font-medium text-white opacity-90'}`}>
+              {activeMarqueeMode?.text ?? "Angelito Decatoria III -"}
             </h1>
           </div>
           <div className="flex gap-8 sm:gap-12 lg:gap-16 px-4 sm:px-8 items-center">
-            <h1 className={`text-[clamp(2.75rem,12vw,4.5rem)] sm:text-[clamp(3.25rem,13vw,6rem)] lg:text-[clamp(4rem,10vw,9rem)] xl:text-[clamp(4.5rem,12vw,14rem)] leading-none tracking-tighter pb-3 sm:pb-4 lg:pb-8 transition-all duration-1000 ${triviaStep === "solved" ? 'font-mono text-[#1C1D20] drop-shadow-[0_4px_24px_rgba(255,255,255,0.2)]' : 'font-medium text-white opacity-90'}`}>
-              {triviaStep === "solved" ? "Angelito Decatoria III — [OVERRIDE] —" : "Angelito Decatoria III —"}
+            <h1 className={`text-[clamp(2.75rem,12vw,4.5rem)] sm:text-[clamp(3.25rem,13vw,6rem)] lg:text-[clamp(4rem,10vw,9rem)] xl:text-[clamp(4.5rem,12vw,14rem)] leading-none tracking-tighter pb-3 sm:pb-4 lg:pb-8 transition-all duration-1000 ${activeMarqueeMode?.className ?? 'font-medium text-white opacity-90'}`}>
+              {activeMarqueeMode?.text ?? "Angelito Decatoria III -"}
             </h1>
           </div>
         </motion.div>
