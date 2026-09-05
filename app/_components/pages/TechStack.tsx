@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import { motion, Variants } from 'framer-motion';
-import { useSound } from './SoundProvider';
+import { useSound } from '../shared/SoundProvider';
 
 const slideUpFade: Variants = {
   hidden: { opacity: 0, y: 80 },
