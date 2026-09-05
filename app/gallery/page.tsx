@@ -1,6 +1,6 @@
 import { Metadata } from "next";
-import MoreGallery from "../components/MoreGallery";
-import Cursor from "../components/Cursor";
+import MoreGallery from "../_components/pages/MoreGallery";
+import Cursor from "../_components/site/Cursor";
 
 export const metadata: Metadata = {
   title: "Gallery | Angelito P. Decatoria III",
