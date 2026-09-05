@@ -2,9 +2,9 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { ThemeToggle } from '../components/ThemeToggle';
-import { SoundToggle } from '../components/SoundToggle';
-import { Tape, DoodleArrow, DoodleCircle, Sticker, GridPaper, caveat } from '../components/Scrapbook';
+import { ThemeToggle } from '../shared/ThemeToggle';
+import { SoundToggle } from '../shared/SoundToggle';
+import { Tape, DoodleArrow, DoodleCircle, Sticker, GridPaper, caveat } from '../shared/Scrapbook';
 
 export default function About() {
   return (
