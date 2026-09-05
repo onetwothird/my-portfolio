@@ -5,8 +5,8 @@ import { motion, AnimatePresence, Variants } from 'framer-motion';
 import Image from "next/image";
 import Link from "next/link";
 import { X, ArrowLeft, ChevronLeft, ChevronRight } from 'lucide-react';
-import { useSound } from './SoundProvider';
-import { useLightbox } from './LightboxProvider';
+import { useSound } from '../shared/SoundProvider';
+import { useLightbox } from '../shared/LightboxProvider';
 
 const slideUpFade: Variants = {
   hidden: { opacity: 0, y: 80 },
