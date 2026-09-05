@@ -31,6 +31,34 @@ const TRIVIA_POOL = [
   {
     text: <>What CSS framework uses utility classes like <span className="text-[#999D9E] font-semibold">&quot;flex&quot;</span> and <span className="text-[#999D9E] font-semibold">&quot;p-4&quot;</span>?</>,
     answers: ["tailwind", "tailwindcss"]
+  },
+  {
+    text: <>Which JavaScript runtime is commonly used to build <span className="text-[#999D9E] font-semibold">server-side</span> applications?</>,
+    answers: ["node", "nodejs", "node.js"]
+  },
+  {
+    text: <>Which database is commonly paired with <span className="text-[#999D9E] font-semibold">PHP</span> for relational web applications?</>,
+    answers: ["mysql"]
+  },
+  {
+    text: <>What markup language structures the content of a <span className="text-[#999D9E] font-semibold">web page</span>?</>,
+    answers: ["html", "html5"]
+  },
+  {
+    text: <>What tool is used to track changes in source code and collaborate with other developers?</>,
+    answers: ["git"]
+  },
+  {
+    text: <>What operating-system component decides which process gets CPU time next?</>,
+    answers: ["scheduler", "cpu scheduler", "process scheduler"]
+  },
+  {
+    text: <>Which computer-vision library is widely used for image processing in Python?</>,
+    answers: ["opencv", "open cv"]
+  },
+  {
+    text: <>What does <span className="text-[#999D9E] font-semibold">API</span> stand for?</>,
+    answers: ["application programming interface"]
   }
 ];
 

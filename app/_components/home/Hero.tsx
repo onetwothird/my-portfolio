@@ -48,21 +48,40 @@ const MARQUEE_MODES = [
   },
 ] as const;
 
+const SKILL_REWARDS = [
+  { label: "Marquee Overridden", marqueeMode: true },
+  { label: "Signal Detected", marqueeMode: true },
+  { label: "Build Unlocked", marqueeMode: true },
+  { label: "Runtime Shifted", marqueeMode: true },
+  { label: "Access Granted", marqueeMode: true },
+  { label: "System Pulse Confirmed", marqueeMode: false },
+  { label: "Quiet Verification Complete", marqueeMode: false },
+] as const;
+
 export default function Hero() {
   const { playHover, playClick } = useSound();
 
   const [isChallengeOpen, setIsChallengeOpen] = useState(false);
   const [marqueeMode, setMarqueeMode] = useState<number | null>(null);
+  const [skillReward, setSkillReward] = useState<(typeof SKILL_REWARDS)[number] | null>(null);
+  const [pulseKey, setPulseKey] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
   const handleSolve = () => {
-    setMarqueeMode((previousMode) => {
-      let nextMode = Math.floor(Math.random() * MARQUEE_MODES.length);
-      while (nextMode === previousMode) {
-        nextMode = Math.floor(Math.random() * MARQUEE_MODES.length);
-      }
-      return nextMode;
-    });
+    const reward = SKILL_REWARDS[Math.floor(Math.random() * SKILL_REWARDS.length)];
+    setSkillReward(reward);
+    setPulseKey((previousKey) => previousKey + 1);
+
+    if (reward.marqueeMode) {
+      setMarqueeMode((previousMode) => {
+        let nextMode = Math.floor(Math.random() * MARQUEE_MODES.length);
+        while (nextMode === previousMode) {
+          nextMode = Math.floor(Math.random() * MARQUEE_MODES.length);
+        }
+        return nextMode;
+      });
+    }
+
     setIsTransitioning(true);
     setTimeout(() => {
       setIsTransitioning(false);
@@ -70,6 +89,24 @@ export default function Hero() {
   };
 
   const activeMarqueeMode = marqueeMode === null ? null : MARQUEE_MODES[marqueeMode];
+
+  const marqueeAnimation = activeMarqueeMode
+    ? {
+        x: [0, "-50%"],
+        y: [0, -activeMarqueeMode.rumble, activeMarqueeMode.rumble, 0],
+        rotate: [0, -0.35, 0.35, 0],
+      }
+    : { x: [0, "-50%"] };
+
+  const marqueeTransition = activeMarqueeMode
+    ? {
+        repeat: Infinity,
+        ease: "linear" as const,
+        duration: 20 + activeMarqueeMode.rumble,
+        y: { duration: 0.45, repeat: Infinity, repeatType: "mirror" as const, ease: "easeInOut" as const },
+        rotate: { duration: 0.55, repeat: Infinity, repeatType: "mirror" as const, ease: "easeInOut" as const },
+      }
+    : { repeat: Infinity, ease: "linear" as const, duration: 22 };
 
   return (
     <section className="min-h-dvh w-full flex flex-col justify-between lg:block relative overflow-hidden bg-[#ababab]">
@@ -100,7 +137,7 @@ export default function Hero() {
                 The change featured is
               </span>
               <span className="text-xl sm:text-2xl md:text-4xl font-medium tracking-tight">
-                {activeMarqueeMode?.label}
+                {skillReward?.label}
               </span>
             </motion.div>
           </motion.div>
@@ -170,19 +207,10 @@ export default function Hero() {
                    lg:flex-none lg:block lg:absolute lg:top-[85%] lg:-translate-y-1/2"
       >
         <motion.div
+          key={pulseKey}
           className="flex whitespace-nowrap"
-          animate={{
-            x: [0, "-50%"],
-            y: activeMarqueeMode ? [0, -activeMarqueeMode.rumble, activeMarqueeMode.rumble, 0] : 0,
-            rotate: activeMarqueeMode ? [0, -0.35, 0.35, 0] : 0,
-          }}
-          transition={{
-            repeat: Infinity,
-            ease: "linear",
-            duration: activeMarqueeMode ? 20 + activeMarqueeMode.rumble : 22,
-            y: { duration: 0.45, repeat: Infinity, repeatType: "mirror", ease: "easeInOut" },
-            rotate: { duration: 0.55, repeat: Infinity, repeatType: "mirror", ease: "easeInOut" },
-          }}
+          animate={marqueeAnimation}
+          transition={marqueeTransition}
         >
           <div className="flex gap-8 sm:gap-12 lg:gap-16 px-4 sm:px-8 items-center">
             <h1 className={`text-[clamp(2.75rem,12vw,4.5rem)] sm:text-[clamp(3.25rem,13vw,6rem)] lg:text-[clamp(4rem,10vw,9rem)] xl:text-[clamp(4.5rem,12vw,14rem)] leading-none tracking-tighter pb-3 sm:pb-4 lg:pb-8 transition-all duration-1000 ${activeMarqueeMode?.className ?? 'font-medium text-white opacity-90'}`}>
