@@ -4,17 +4,17 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Lenis from "lenis";
 
-import Cursor from "./components/Cursor";
-import Navigation from "./components/Navigation";
-import ScrollIndicator from "./components/ScrollIndicator";
-import Hero from "./sections/Hero";
-import About from "./sections/About";
-import Works from "./sections/Works";
-import TechStack from "./sections/TechStack";
-import JourneyGallery from "./sections/JourneyGallery";
-import Footer from "./sections/Footer";
-import Certification from "./sections/Certification";
-import OpenSource from "./sections/OpenSource";
+import Cursor from "./_components/site/Cursor";
+import Navigation from "./_components/site/Navigation";
+import ScrollIndicator from "./_components/site/ScrollIndicator";
+import Hero from "./_components/home/Hero";
+import About from "./_components/home/About";
+import Works from "./_components/home/Works";
+import TechStack from "./_components/home/TechStack";
+import JourneyGallery from "./_components/home/JourneyGallery";
+import Footer from "./_components/home/Footer";
+import Certification from "./_components/home/Certification";
+import OpenSource from "./_components/home/OpenSource";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
