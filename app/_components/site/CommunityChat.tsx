@@ -126,7 +126,7 @@ export default function CommunityChat() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 18, scale: 0.96 }}
             transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-            className="absolute bottom-20 left-0 w-[calc(100vw-3rem)] max-w-sm h-120 max-h-[78vh] overflow-hidden rounded-2xl border border-black/10 bg-white/95 shadow-2xl backdrop-blur-xl dark:border-white/10 dark:bg-[#111111]/95"
+            className="absolute bottom-20 left-0 flex w-[calc(100vw-3rem)] max-w-sm h-120 max-h-[78vh] flex-col overflow-hidden rounded-2xl border border-black/10 bg-white/95 shadow-2xl backdrop-blur-xl dark:border-white/10 dark:bg-[#111111]/95"
           >
             <header className="flex items-center justify-between border-b border-black/10 bg-[#F4F4F4]/90 p-4 dark:border-white/10 dark:bg-[#1C1D20]/90">
               <div className="flex items-center gap-3">
@@ -151,7 +151,7 @@ export default function CommunityChat() {
             </header>
 
             {!nickname ? (
-              <form onSubmit={saveNickname} className="flex h-full flex-col justify-center gap-5 p-6 text-center">
+              <form onSubmit={saveNickname} className="flex min-h-0 flex-1 flex-col justify-center gap-5 overflow-y-auto p-6 pb-8 text-center">
                 <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#1C1D20] text-white shadow-lg dark:bg-white dark:text-[#1C1D20]">
                   <UsersRound size={24} strokeWidth={1.5} />
                 </div>
