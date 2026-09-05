@@ -31,9 +31,14 @@ The portfolio is structured as a single-page experience with multiple sections a
 
 - app/page.tsx — main landing page and portfolio experience
 - app/layout.tsx — global layout, metadata, and theme provider setup
-- app/components/ — reusable UI pieces such as navigation, footer, chatbot, theme toggle, cursor, and magnetic effects
-- app/sections/ — major section components for the homepage
+- app/_components/shared/ — cross-cutting providers, UI primitives, and interaction helpers
+- app/_components/site/ — site-wide chrome and client features such as navigation, chatbot, and visitor tracking
+- app/_components/home/ — homepage sections and their local composition
+- app/_components/pages/ — components used by the dedicated projects, gallery, certificate, and tech-stack routes
 - app/api/chat/route.ts — API endpoint for the portfolio chatbot
+- app/api/ — route handlers for chat, telemetry, and visitor statistics
+- lib/ — infrastructure helpers such as the MongoDB connection
+- models/ — Mongoose models
 - app/projects, app/gallery, app/certificate, app/tech-stack — route-based informational pages
 
 ## Features
