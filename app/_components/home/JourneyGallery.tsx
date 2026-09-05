@@ -5,9 +5,9 @@ import { motion, AnimatePresence, Variants } from 'framer-motion';
 import Image from "next/image";
 import Link from "next/link";
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
-import { useSound } from '../components/SoundProvider'; 
-import { Tape } from '../components/Scrapbook';
-import { useLightbox } from '../components/LightboxProvider';
+import { useSound } from '../shared/SoundProvider';
+import { Tape } from '../shared/Scrapbook';
+import { useLightbox } from '../shared/LightboxProvider';
 
 const revealUp: Variants = {
   hidden: { opacity: 0, y: 50 },
