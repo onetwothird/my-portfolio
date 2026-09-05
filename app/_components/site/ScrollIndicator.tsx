@@ -2,11 +2,9 @@
 
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import Image from "next/image";
-import { useEffect, useState } from "react";
 
 export default function ScrollIndicator() {
   const { scrollYProgress } = useScroll();
-  const [viewportWidth, setViewportWidth] = useState(0);
   
   const springProgress = useSpring(scrollYProgress, { 
     stiffness: 100, 
@@ -14,20 +12,7 @@ export default function ScrollIndicator() {
     restDelta: 0.001 
   });
 
-  useEffect(() => {
-    const updateViewportWidth = () => setViewportWidth(window.innerWidth);
-
-    // Keep the penguin clear of the fixed chatbot trigger on narrow screens.
-    updateViewportWidth();
-    window.addEventListener("resize", updateViewportWidth);
-    return () => window.removeEventListener("resize", updateViewportWidth);
-  }, []);
-
-  const xPosition = useTransform(
-    springProgress,
-    [0, 1],
-    [0, Math.max(0, viewportWidth - 140)]
-  );
+  const xPosition = useTransform(springProgress, [0, 1], ["0vw", "95vw"]);
 
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 pointer-events-none">
