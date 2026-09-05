@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Globe from 'react-globe.gl';
-import { useSound } from './SoundProvider';
+import { useSound } from '../shared/SoundProvider';
 
 type MarkerData = {
   lat: number;
