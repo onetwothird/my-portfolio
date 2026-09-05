@@ -4,11 +4,11 @@ import { useState } from 'react';
 import { motion, Variants, AnimatePresence } from 'framer-motion';
 import { Globe, ArrowDownLeft, ArrowDownRight, Download } from 'lucide-react';
 import Image from 'next/image';
-import Magnetic from '../components/Magnetic';
-import LiveVisitorCount from '../components/LiveVisitorCount';
-import TriviaChallenge from '../components/TriviaChallenge';
-import { useSound } from '../components/SoundProvider';
-import { Tape, caveat } from '../components/Scrapbook';
+import Magnetic from '../shared/Magnetic';
+import LiveVisitorCount from '../site/LiveVisitorCount';
+import TriviaChallenge from '../site/TriviaChallenge';
+import { useSound } from '../shared/SoundProvider';
+import { Tape, caveat } from '../shared/Scrapbook';
 
 const revealUp: Variants = {
   hidden: { opacity: 0, y: 50 },
