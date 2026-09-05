@@ -2,8 +2,8 @@
 
 import { motion, Variants } from 'framer-motion';
 import Link from 'next/link';
-import { useSound } from '../components/SoundProvider';
-import { Tape } from '../components/Scrapbook';
+import { useSound } from '../shared/SoundProvider';
+import { Tape } from '../shared/Scrapbook';
 
 const revealUp: Variants = {
   hidden: { opacity: 0, y: 50 },
