@@ -2,9 +2,10 @@
 
 import { FormEvent, useEffect, useState } from 'react';
 import { MessageCircle, Send, UsersRound, X } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
 import Image from 'next/image';
 import { useSound } from '../shared/SoundProvider';
+import Magnetic from '../shared/Magnetic';
 
 type CommunityMessage = {
   id: string;
@@ -43,7 +44,20 @@ export default function CommunityChat() {
   const [loading, setLoading] = useState(true);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState('');
+  const [isAtFooter, setIsAtFooter] = useState(false);
+  
   const { playHover, playClick } = useSound();
+  const { scrollY } = useScroll();
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    if (typeof document !== "undefined") {
+      const isBottom = document.documentElement.scrollHeight - window.innerHeight - latest < 150;
+      setIsAtFooter(isBottom);
+      if (isBottom && isOpen) {
+        setIsOpen(false);
+      }
+    }
+  });
 
   const loadMessages = async () => {
     try {
@@ -62,13 +76,14 @@ export default function CommunityChat() {
   useEffect(() => {
     const savedNickname = window.localStorage.getItem('communityNickname');
     if (savedNickname) {
-      // Hydrate the client-only nickname after the browser storage is available.
       // eslint-disable-next-line react-hooks/set-state-in-effect
       setNickname(savedNickname);
+       
       setNicknameInput(savedNickname);
     }
     const savedAvatarStyle = window.localStorage.getItem('communityAvatarStyle');
     if (savedAvatarStyle && AVATAR_STYLES.some((avatar) => avatar.id === savedAvatarStyle)) {
+       
       setAvatarStyle(savedAvatarStyle);
     }
     void loadMessages();
@@ -118,7 +133,16 @@ export default function CommunityChat() {
   const visibleAvatars = messages.slice(-3);
 
   return (
-    <div className="fixed bottom-16 left-6 md:bottom-20 md:left-12 z-100">
+    <motion.div 
+      className="fixed bottom-16 left-6 md:bottom-20 md:left-12 z-100"
+      initial={{ opacity: 1, y: 0 }}
+      animate={{ 
+        opacity: isAtFooter ? 0 : 1, 
+        y: isAtFooter ? 20 : 0, 
+        pointerEvents: isAtFooter ? "none" : "auto" 
+      }}
+      transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+    >
       <AnimatePresence>
         {isOpen && (
           <motion.section
@@ -236,28 +260,30 @@ export default function CommunityChat() {
         )}
       </AnimatePresence>
 
-      <button
-        type="button"
-        onClick={() => { playClick(); setIsOpen((open) => !open); }}
-        onMouseEnter={playHover}
-        className="group flex items-center gap-2 rounded-full border border-white/40 bg-[#ababab]/90 px-3 py-2 text-white shadow-xl backdrop-blur-md transition-transform hover:scale-[1.03] dark:border-white/20 dark:bg-[#1C1D20]/90"
-        aria-label="Open community chat"
-      >
-        <div className="flex -space-x-2">
-          {visibleAvatars.length > 0 ? visibleAvatars.map((message, index) => (
-            <span key={message.id} className="h-7 w-7 overflow-hidden rounded-full border-2 border-white/70 bg-white dark:border-[#1C1D20]" style={{ zIndex: 3 - index }}>
-              <Image src={getAvatarUrl(message.nickname, message.avatarStyle)} alt="" width={28} height={28} className="h-full w-full" />
-            </span>
-          )) : (
-            <span className="flex h-7 w-7 items-center justify-center rounded-full border-2 border-white/70 bg-[#1C1D20] text-white dark:border-[#1C1D20]"><UsersRound size={13} /></span>
-          )}
-        </div>
-        <div className="flex flex-col items-start leading-none">
-          <span className="text-xs font-bold">{messages.length} {messages.length === 1 ? 'message' : 'messages'}</span>
-          <span className="mt-1 text-[10px] text-white/70">community chat</span>
-        </div>
-        <MessageCircle size={16} className="ml-1 opacity-70 transition-opacity group-hover:opacity-100" />
-      </button>
-    </div>
+      <Magnetic>
+        <button
+          type="button"
+          onClick={() => { playClick(); setIsOpen((open) => !open); }}
+          onMouseEnter={playHover}
+          className="group flex items-center gap-2 rounded-full border border-white/40 bg-[#ababab]/90 px-3 py-2 text-white shadow-xl backdrop-blur-md transition-transform hover:scale-[1.03] dark:border-white/20 dark:bg-[#1C1D20]/90"
+          aria-label="Open community chat"
+        >
+          <div className="flex -space-x-2">
+            {visibleAvatars.length > 0 ? visibleAvatars.map((message, index) => (
+              <span key={message.id} className="h-7 w-7 overflow-hidden rounded-full border-2 border-white/70 bg-white dark:border-[#1C1D20]" style={{ zIndex: 3 - index }}>
+                <Image src={getAvatarUrl(message.nickname, message.avatarStyle)} alt="" width={28} height={28} className="h-full w-full" />
+              </span>
+            )) : (
+              <span className="flex h-7 w-7 items-center justify-center rounded-full border-2 border-white/70 bg-[#1C1D20] text-white dark:border-[#1C1D20]"><UsersRound size={13} /></span>
+            )}
+          </div>
+          <div className="flex flex-col items-start leading-none">
+            <span className="text-xs font-bold">{messages.length} {messages.length === 1 ? 'message' : 'messages'}</span>
+            <span className="mt-1 text-[10px] text-white/70">community chat</span>
+          </div>
+          <MessageCircle size={16} className="ml-1 opacity-70 transition-opacity group-hover:opacity-100" />
+        </button>
+      </Magnetic>
+    </motion.div>
   );
 }
