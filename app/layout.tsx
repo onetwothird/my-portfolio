@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { ThemeProvider } from "./components/ThemeProvider";
-import { SoundProvider } from "./components/SoundProvider";
-import { LightboxProvider } from "./components/LightboxProvider";
-import Chatbot from "./components/Chatbot"; 
+import { ThemeProvider } from "./_components/shared/ThemeProvider";
+import { SoundProvider } from "./_components/shared/SoundProvider";
+import { LightboxProvider } from "./_components/shared/LightboxProvider";
+import Chatbot from "./_components/site/Chatbot"; 
 import "./globals.css";
 import { Analytics } from '@vercel/analytics/react';
 import { Suspense } from "react";
-import VisitorTracker from "./components/VisitorTracker";
+import VisitorTracker from "./_components/site/VisitorTracker";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
