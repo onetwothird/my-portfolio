@@ -229,7 +229,7 @@ export default function Chatbot() {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.8, y: 20 }}
           transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-          className="fixed bottom-6 right-6 md:bottom-12 md:right-12 z-100"
+          className="fixed bottom-10 right-6 md:bottom-16 md:right-12 z-100"
         >
           <AnimatePresence>
             {isOpen && (
