@@ -3,8 +3,8 @@
 import { useState, useEffect, useSyncExternalStore } from 'react';
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
 import { Menu, X, MapPin, ArrowRight } from 'lucide-react';
-import Magnetic from './Magnetic'; 
-import { useSound } from './SoundProvider';
+import Magnetic from '../shared/Magnetic';
+import { useSound } from '../shared/SoundProvider';
 
 const expandedVariants = {
   hidden: { opacity: 0, height: 0 },
