@@ -41,7 +41,7 @@ const itemVariants = {
   exit: { opacity: 0, y: -10, filter: "blur(4px)" }
 } as const;
 
-export default function Navigation() {
+export default function Navigation({ isReady = false }: { isReady?: boolean }) {
   const { scrollY } = useScroll();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -96,7 +96,12 @@ export default function Navigation() {
         )}
       </AnimatePresence>
 
-      <div className="fixed top-4 left-4 right-4 sm:left-auto sm:right-8 md:top-8 md:right-12 z-50 flex justify-end pointer-events-none">
+      <motion.div
+        initial={{ opacity: 0, y: -14 }}
+        animate={{ opacity: isReady ? 1 : 0, y: isReady ? 0 : -14 }}
+        transition={{ duration: 0.6, delay: isReady ? 0.92 : 0, ease: [0.16, 1, 0.3, 1] }}
+        className="fixed top-4 left-4 right-4 sm:left-auto sm:right-8 md:top-8 md:right-12 z-50 flex justify-end pointer-events-none"
+      >
         <motion.nav
           layout
           initial={{ borderRadius: 32 }}
@@ -229,7 +234,7 @@ export default function Navigation() {
           </AnimatePresence>
 
         </motion.nav>
-      </div>
+      </motion.div>
     </>
   );
 }

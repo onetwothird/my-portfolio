@@ -58,7 +58,7 @@ const SKILL_REWARDS = [
   { label: "Quiet Verification Complete", marqueeMode: false },
 ] as const;
 
-export default function Hero() {
+export default function Hero({ isReady = false }: { isReady?: boolean }) {
   const { playHover, playClick } = useSound();
 
   const [isChallengeOpen, setIsChallengeOpen] = useState(false);
@@ -144,7 +144,12 @@ export default function Hero() {
         )}
       </AnimatePresence>
 
-      <div className="absolute top-20 sm:top-24 left-4 md:left-8 z-50 pointer-events-auto">
+      <motion.div
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: isReady ? 1 : 0, y: isReady ? 0 : -10 }}
+        transition={{ duration: 0.55, delay: isReady ? 1.15 : 0, ease: [0.16, 1, 0.3, 1] }}
+        className="absolute top-20 sm:top-24 left-4 md:left-8 z-50 pointer-events-auto"
+      >
         <Magnetic>
           <button
             onClick={() => { setIsChallengeOpen(true); playClick(); }}
@@ -155,7 +160,7 @@ export default function Hero() {
             <span className="text-xs font-medium tracking-widest uppercase mt-0.5">Test Skills</span>
           </button>
         </Magnetic>
-      </div>
+      </motion.div>
 
       <TriviaChallenge
         isOpen={isChallengeOpen}
@@ -182,9 +187,9 @@ export default function Hero() {
 
       <motion.div
         initial="hidden"
-        whileInView="visible"
-        viewport={{ once: false, amount: 0.1 }}
+        animate={isReady ? "visible" : "hidden"}
         variants={revealUp}
+        transition={{ delay: isReady ? 1.35 : 0 }}
         className="order-1 self-start relative lg:absolute z-30 w-[clamp(200px,60vw,340px)]
                    ml-4 sm:ml-8 mt-36 sm:mt-40
                    lg:ml-0 lg:mt-0 lg:left-8 xl:left-14 lg:top-[42%] lg:-translate-y-1/2"
@@ -202,7 +207,10 @@ export default function Hero() {
         </div>
       </motion.div>
 
-      <div
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: isReady ? 1 : 0 }}
+        transition={{ duration: 0.7, delay: isReady ? 1.65 : 0, ease: [0.16, 1, 0.3, 1] }}
         className="order-2 flex-1 min-h-0 relative w-full flex items-center overflow-hidden pointer-events-none z-10 my-auto
                    lg:flex-none lg:block lg:absolute lg:top-[85%] lg:-translate-y-1/2"
       >
@@ -223,13 +231,13 @@ export default function Hero() {
             </h1>
           </div>
         </motion.div>
-      </div>
+      </motion.div>
 
       <motion.div
         initial="hidden"
-        whileInView="visible"
-        viewport={{ once: false, amount: 0.1 }}
+        animate={isReady ? "visible" : "hidden"}
         variants={revealUp}
+        transition={{ delay: isReady ? 1.5 : 0 }}
         className="absolute right-4 xl:right-28 top-[42%] -translate-y-1/2 hidden lg:flex flex-col items-end gap-4 xl:gap-6 z-30 max-w-[38vw] xl:max-w-none"
       >
         <div className="flex items-center gap-3 xl:gap-4 text-white">

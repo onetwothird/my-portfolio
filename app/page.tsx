@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Lenis from "lenis";
+import Image from "next/image";
 
 import Cursor from "./_components/site/Cursor";
 import Navigation from "./_components/site/Navigation";
@@ -16,9 +17,16 @@ import Footer from "./_components/home/Footer";
 import Certification from "./_components/home/Certification";
 import OpenSource from "./_components/home/OpenSource";
 
+const preloaderImages = [
+  { src: "/gallery/image1.jpg", label: "01 / portrait" },
+  { src: "/gallery/image3.jpg", label: "02 / place" },
+  { src: "/gallery/image4.jpg", label: "03 / people" },
+] as const;
+
 export default function Home() {
   const [loading, setLoading] = useState(true);
   const [progress, setProgress] = useState(0);
+  const [returnProgress, setReturnProgress] = useState(0);
   const [visitType, setVisitType] = useState<"initial" | "return" | null>(null);
 
   useEffect(() => {
@@ -63,26 +71,32 @@ export default function Home() {
     if (visitType === "initial") {
       if (progress < 100) {
         const timer = setTimeout(() => {
-          setProgress((prev) => prev + 1);
-        }, 50); 
+          setProgress((prev) => Math.min(prev + 8, 100));
+        }, 50);
         return () => clearTimeout(timer);
       } else {
         sessionStorage.setItem("portfolioVisited", "true");
         const exitTimer = setTimeout(() => {
           setLoading(false);
-        }, 400); 
+        }, 180);
         return () => clearTimeout(exitTimer);
       }
     } else if (visitType === "return") {
+      const progressTimer = setInterval(() => {
+        setReturnProgress((previousProgress) => Math.min(previousProgress + 10, 100));
+      }, 50);
       const exitTimer = setTimeout(() => {
         setLoading(false);
-      }, 800); 
-      return () => clearTimeout(exitTimer);
+      }, 900);
+      return () => {
+        clearInterval(progressTimer);
+        clearTimeout(exitTimer);
+      };
     }
   }, [progress, visitType]);
 
   return (
-    <div className="min-h-screen bg-[#F4F4F4] dark:bg-[#111111] text-[#1C1D20] dark:text-[#ededed] font-sans selection:bg-[#8B5CF6] selection:text-white cursor-auto md:cursor-none overflow-x-hidden">
+    <div className="min-h-screen bg-[#F4F4F4] dark:bg-[#111111] text-[#1C1D20] dark:text-[#fffff] font-sans selection:bg-[#8B5CF6] selection:text-white cursor-auto md:cursor-none overflow-x-hidden">
       <style
         dangerouslySetInnerHTML={{
           __html: `
@@ -98,143 +112,113 @@ export default function Home() {
         {loading && visitType === "initial" && (
           <motion.div
             key="initial-preloader"
-            exit={{
-              y: "-100%",
-              borderBottomLeftRadius: "30%",
-              borderBottomRightRadius: "30%",
-            }}
+            exit={{ opacity: 0 }}
             transition={{
-              duration: 0.9,
+              duration: 0.85,
               ease: [0.76, 0, 0.24, 1],
             }}
-            className="fixed inset-0 z-100000 bg-[#1C1D20] text-white flex flex-col justify-center p-6 md:p-12 overflow-hidden"
+            className="fixed inset-0 z-100000 flex items-center justify-center overflow-hidden bg-[#ededed] p-6 text-[#1C1D20]"
             role="status"
             aria-live="polite"
           >
-            <div className="flex-1 flex items-center justify-center px-4 text-center">
-              <AnimatePresence mode="wait">
-                {progress < 30 && (
-                  <motion.h2
-                    key="q1"
-                    initial={{ opacity: 0, scale: 0.95, filter: "blur(10px)" }}
-                    animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-                    exit={{ opacity: 0, y: -20, filter: "blur(10px)" }}
-                    transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }} 
-                    className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight leading-tight"
-                  >
-                    So, you&apos;re curious about <br className="hidden sm:block" />
-                    <span className="text-[#999D9E] font-semibold">
-                      Angelito P. Decatoria III?
-                    </span>
-                  </motion.h2>
-                )}
-
-                {progress >= 30 && progress < 60 && (
-                  <motion.h2
-                    key="q2"
-                    initial={{ opacity: 0, scale: 0.95, filter: "blur(10px)" }}
-                    animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-                    exit={{ opacity: 0, y: -20, filter: "blur(10px)" }}
-                    transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }} 
-                    className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight leading-tight"
-                  >
-                    Want to see the{" "}
-                    <span className="text-[#999D9E] font-semibold">ecosystems</span>{" "}
-                    <br className="hidden sm:block" />
-                    he has engineered?
-                  </motion.h2>
-                )}
-
-                {progress >= 60 && progress < 90 && (
-                  <motion.h2
-                    key="q3"
-                    initial={{ opacity: 0, scale: 0.95, filter: "blur(10px)" }}
-                    animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-                    exit={{ opacity: 0, y: -20, filter: "blur(10px)" }}
-                    transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }} 
-                    className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight leading-tight"
-                  >
-                    Curious about his <br className="hidden sm:block" /> <span className="text-[#999D9E] font-semibold">contributions?</span>{" "}
-                  </motion.h2>
-                )}
-                
-                {progress >= 90 && (
-                  <motion.h2
-                    key="q4"
-                    initial={{ opacity: 0, scale: 0.95, filter: "blur(10px)" }}
-                    animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-                    exit={{ opacity: 0, scale: 1.05, filter: "blur(10px)" }}
-                    transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }} 
-                    className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight leading-tight text-white"
-                  >
-                    Let&apos;s begin.
-                  </motion.h2>
-                )}
-              </AnimatePresence>
-            </div>
+            <motion.div
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.35, ease: "easeOut" }}
+              className="w-[min(46vw,172px)]"
+            >
+              <div className="mb-1 flex items-center justify-between text-[10px] font-medium uppercase tracking-[-0.03em]">
+                <span>Angelito Decatoria</span>
+                <span>{String(progress).padStart(2, "0")}</span>
+              </div>
+              <motion.div
+                initial={{ clipPath: "inset(100% 0 0 0)" }}
+                animate={{ clipPath: "inset(0% 0 0 0)" }}
+                exit={{ clipPath: "inset(0 0 100% 0)" }}
+                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                className="relative aspect-4/5 overflow-hidden bg-[#D8D3CA]"
+              >
+                <Image
+                  src={preloaderImages[0].src}
+                  alt=""
+                  fill
+                  priority
+                  sizes="172px"
+                  className="object-cover grayscale-[0.15]"
+                />
+              </motion.div>
+              <div className="mt-1 flex items-center justify-between text-[9px] uppercase tracking-[0.12em] text-black/45">
+                <span>Selected image</span>
+                <span>01 / 03</span>
+              </div>
+            </motion.div>
           </motion.div>
         )}
 
         {loading && visitType === "return" && (
           <motion.div
             key="return-preloader"
-            exit={{
-              y: "-100%",
-              borderBottomLeftRadius: "30%",
-              borderBottomRightRadius: "30%",
-            }}
+            exit={{ opacity: 0 }}
             transition={{
-              duration: 0.9,
+              duration: 0.85,
               ease: [0.76, 0, 0.24, 1],
             }}
-            className="fixed inset-0 z-100000 bg-[#1C1D20] text-white flex flex-col justify-center items-center overflow-hidden p-6"
+            className="fixed inset-0 z-100000 flex items-center justify-center overflow-hidden bg-[#ededed] p-6 text-[#1C1D20]"
             role="status"
             aria-live="polite"
           >
-            <div className="text-center flex flex-col items-center gap-6">
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, ease: "easeOut" }}
-                className="text-[#999D9E] font-mono text-xs md:text-sm tracking-widest uppercase animate-pulse"
-              >
-                Re-establishing Connection...
-              </motion.div>
-              
-              <motion.h2 
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-                className="text-4xl md:text-6xl font-medium tracking-tight"
-              >
-                Welcome <span className="text-[#999D9E] font-semibold">back.</span>
-              </motion.h2>
-
-              <div className="w-48 h-0.5 bg-white/10 mt-6 overflow-hidden rounded-full">
-                <motion.div
-                  initial={{ width: "0%" }}
-                  animate={{ width: "100%" }}
-                  transition={{ duration: 0.8, ease: "easeInOut" }} 
-                  className="h-full bg-white"
-                />
+            <motion.div
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.35, ease: "easeOut" }}
+              className="w-[min(46vw,172px)]"
+            >
+              <div className="mb-1 flex items-center justify-between text-[10px] font-medium uppercase tracking-[-0.03em]">
+                <span>Angelito Decatoria</span>
+                <span>{String(returnProgress).padStart(2, "0")}</span>
               </div>
-            </div>
+              <motion.div
+                initial={{ clipPath: "inset(100% 0 0 0)" }}
+                animate={{ clipPath: "inset(0% 0 0 0)" }}
+                exit={{ clipPath: "inset(0 0 100% 0)" }}
+                transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
+                className="relative aspect-4/5 overflow-hidden bg-[#D8D3CA]"
+              >
+                <Image
+                  src="/gallery/image4.jpg"
+                  alt=""
+                  fill
+                  sizes="172px"
+                  className="object-cover grayscale-[0.15]"
+                />
+                <div className="absolute inset-0 bg-[#ededed]/20" />
+              </motion.div>
+              <div className="mt-1 flex items-center justify-between text-[9px] uppercase tracking-[0.12em] text-black/45">
+                <span>Welcome back</span>
+                <span>02 / 03</span>
+              </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
 
       <ScrollIndicator />
-      <Navigation />
+      <Navigation isReady={!loading} />
 
-      <main>
-        <Hero />
+      <motion.main
+        initial={{ opacity: 0, y: 20 }}
+        animate={{
+          opacity: loading ? 0 : 1,
+          y: loading ? 20 : 0,
+        }}
+        transition={{ duration: 0.6, delay: loading ? 0 : 0.86, ease: [0.16, 1, 0.3, 1] }}
+      >
+        <Hero isReady={!loading} />
         <About />
         <Works />
         <Certification />
         <TechStack />
         <JourneyGallery />
         <OpenSource />
-      </main>
+      </motion.main>
 
       <Footer />
     </div>
