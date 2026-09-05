@@ -1,6 +1,6 @@
 import { Metadata } from "next";
-import Certification from "../components/Certification";
-import Cursor from "../components/Cursor";
+import Certification from "../_components/pages/Certification";
+import Cursor from "../_components/site/Cursor";
 
 export const metadata: Metadata = {
   title: "Certificates | Angelito P. Decatoria III",
