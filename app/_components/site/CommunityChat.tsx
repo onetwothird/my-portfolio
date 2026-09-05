@@ -43,6 +43,7 @@ export default function CommunityChat() {
   const [loading, setLoading] = useState(true);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState('');
+  const [isInBusySection, setIsInBusySection] = useState(false);
   const { playHover, playClick } = useSound();
 
   const loadMessages = async () => {
@@ -74,6 +75,22 @@ export default function CommunityChat() {
     void loadMessages();
     const interval = window.setInterval(() => void loadMessages(), 12000);
     return () => window.clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    const busySections = ['#opensource', '#contact']
+      .map((selector) => document.querySelector(selector))
+      .filter((section): section is Element => section !== null);
+
+    if (busySections.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => setIsInBusySection(entries.some((entry) => entry.isIntersecting)),
+      { threshold: 0.08 }
+    );
+
+    busySections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
   }, []);
 
   const saveNickname = (event: FormEvent) => {
@@ -116,6 +133,8 @@ export default function CommunityChat() {
   };
 
   const visibleAvatars = messages.slice(-3);
+
+  if (isInBusySection) return null;
 
   return (
     <div className="fixed bottom-24 left-6 md:left-12 z-100">
