@@ -11,8 +11,8 @@ import { useSound } from '../shared/SoundProvider';
 import { Tape, caveat } from '../shared/Scrapbook';
 
 const revealUp: Variants = {
-  hidden: { opacity: 0, y: 50 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] } }
+  hidden: { opacity: 0, y: 36, filter: "blur(8px)" },
+  visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] } }
 };
 
 const MARQUEE_MODES = [
@@ -169,9 +169,13 @@ export default function Hero({ isReady = false }: { isReady?: boolean }) {
       />
 
       <motion.div
-        initial={{ opacity: 0, y: 100 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+        initial={{ opacity: 0, y: 100, filter: "blur(10px)" }}
+        animate={{
+          opacity: isReady ? 1 : 0,
+          y: isReady ? 0 : 100,
+          filter: isReady ? "blur(0px)" : "blur(10px)",
+        }}
+        transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: isReady ? 1.05 : 0 }}
         className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[150vw] sm:w-[130vw] md:w-[110vw] lg:w-screen h-[78dvh] sm:h-[85dvh] lg:h-[95vh] pointer-events-none z-0"
       >
         <Image
@@ -208,9 +212,18 @@ export default function Hero({ isReady = false }: { isReady?: boolean }) {
       </motion.div>
 
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: isReady ? 1 : 0 }}
-        transition={{ duration: 0.7, delay: isReady ? 1.65 : 0, ease: [0.16, 1, 0.3, 1] }}
+        initial={{ opacity: 0, scale: 1.08, filter: "blur(14px)", clipPath: "inset(0 100% 0 0)" }}
+        animate={{
+          opacity: isReady ? 1 : 0,
+          scale: isReady ? 1 : 1.08,
+          filter: isReady ? "blur(0px)" : "blur(14px)",
+          clipPath: isReady ? "inset(0 0% 0 0)" : "inset(0 100% 0 0)",
+        }}
+        transition={{
+          duration: 1.15,
+          delay: isReady ? 1.65 : 0,
+          ease: [0.16, 1, 0.3, 1],
+        }}
         className="order-2 flex-1 min-h-0 relative w-full flex items-center overflow-hidden pointer-events-none z-10 my-auto
                    lg:flex-none lg:block lg:absolute lg:top-[85%] lg:-translate-y-1/2"
       >
