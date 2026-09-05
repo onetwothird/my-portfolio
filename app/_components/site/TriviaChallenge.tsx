@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
-import { useSound } from './SoundProvider';
+import { useSound } from '../shared/SoundProvider';
 
 interface TriviaChallengeProps {
   isOpen: boolean;
