@@ -137,7 +137,7 @@ export default function CommunityChat() {
   if (isInBusySection) return null;
 
   return (
-    <div className="fixed bottom-24 left-6 md:left-12 z-100">
+    <div className="fixed bottom-16 left-6 md:bottom-20 md:left-12 z-100">
       <AnimatePresence>
         {isOpen && (
           <motion.section
