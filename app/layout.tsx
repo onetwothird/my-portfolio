@@ -4,6 +4,7 @@ import { ThemeProvider } from "./_components/shared/ThemeProvider";
 import { SoundProvider } from "./_components/shared/SoundProvider";
 import { LightboxProvider } from "./_components/shared/LightboxProvider";
 import Chatbot from "./_components/site/Chatbot"; 
+import CommunityChat from "./_components/site/CommunityChat";
 import "./globals.css";
 import { Analytics } from '@vercel/analytics/react';
 import { Suspense } from "react";
@@ -49,6 +50,7 @@ export default function RootLayout({
             <LightboxProvider>
               {children}
               <Chatbot /> 
+              <CommunityChat />
             </LightboxProvider>
           </SoundProvider>
         </ThemeProvider>
