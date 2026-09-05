@@ -3,24 +3,27 @@
 import { FormEvent, useEffect, useState } from 'react';
 import { MessageCircle, Send, UsersRound, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 import { useSound } from '../shared/SoundProvider';
 
 type CommunityMessage = {
   id: string;
   nickname: string;
+  avatarStyle?: string;
   content: string;
   createdAt: string;
 };
 
-const AVATAR_COLORS = ['#1C1D20', '#516B7A', '#8B5E3C', '#5C7664'];
+const AVATAR_STYLES = [
+  { id: 'notionists', label: 'Ink' },
+  { id: 'adventurer', label: 'Sketch' },
+  { id: 'lorelei', label: 'Line' },
+  { id: 'bottts', label: 'Pixel' },
+  { id: 'avataaars', label: 'Friendly' },
+] as const;
 
-function getInitials(nickname: string) {
-  return nickname
-    .split(' ')
-    .map((part) => part[0])
-    .join('')
-    .slice(0, 2)
-    .toUpperCase();
+function getAvatarUrl(nickname: string, avatarStyle = 'notionists') {
+  return `https://api.dicebear.com/9.x/${avatarStyle}/svg?seed=${encodeURIComponent(nickname)}&backgroundColor=f4f4f4`;
 }
 
 function formatTime(timestamp: string) {
@@ -34,6 +37,7 @@ export default function CommunityChat() {
   const [isOpen, setIsOpen] = useState(false);
   const [nickname, setNickname] = useState('');
   const [nicknameInput, setNicknameInput] = useState('');
+  const [avatarStyle, setAvatarStyle] = useState('notionists');
   const [messageInput, setMessageInput] = useState('');
   const [messages, setMessages] = useState<CommunityMessage[]>([]);
   const [loading, setLoading] = useState(true);
@@ -63,6 +67,10 @@ export default function CommunityChat() {
       setNickname(savedNickname);
       setNicknameInput(savedNickname);
     }
+    const savedAvatarStyle = window.localStorage.getItem('communityAvatarStyle');
+    if (savedAvatarStyle && AVATAR_STYLES.some((avatar) => avatar.id === savedAvatarStyle)) {
+      setAvatarStyle(savedAvatarStyle);
+    }
     void loadMessages();
     const interval = window.setInterval(() => void loadMessages(), 12000);
     return () => window.clearInterval(interval);
@@ -74,6 +82,7 @@ export default function CommunityChat() {
     if (!cleanNickname) return;
 
     window.localStorage.setItem('communityNickname', cleanNickname);
+    window.localStorage.setItem('communityAvatarStyle', avatarStyle);
     setNickname(cleanNickname);
     setNicknameInput(cleanNickname);
     setError('');
@@ -91,7 +100,7 @@ export default function CommunityChat() {
       const response = await fetch('/api/community-chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ nickname, content }),
+        body: JSON.stringify({ nickname, avatarStyle, content }),
       });
       const data = (await response.json()) as { message?: CommunityMessage; error?: string };
       if (!response.ok || !data.message) throw new Error(data.error || 'Unable to send message');
@@ -150,6 +159,21 @@ export default function CommunityChat() {
                   <h3 className="text-lg font-semibold text-[#1C1D20] dark:text-white">Choose a nickname</h3>
                   <p className="mx-auto mt-2 max-w-65 text-xs leading-relaxed text-[#999D9E]">Pick how you want to appear in the room. You can change it anytime on this device.</p>
                 </div>
+                <div className="flex justify-center gap-2">
+                  {AVATAR_STYLES.map((avatar) => (
+                    <button
+                      key={avatar.id}
+                      type="button"
+                      onClick={() => { setAvatarStyle(avatar.id); playClick(); }}
+                      onMouseEnter={playHover}
+                      className={`h-11 w-11 overflow-hidden rounded-full border-2 bg-white transition-transform hover:scale-105 dark:bg-[#1C1D20] ${avatarStyle === avatar.id ? 'border-[#1C1D20] ring-2 ring-black/10 dark:border-white dark:ring-white/10' : 'border-black/10 dark:border-white/10'}`}
+                      aria-label={`Choose ${avatar.label} avatar`}
+                      aria-pressed={avatarStyle === avatar.id}
+                    >
+                      <Image src={getAvatarUrl(nicknameInput || 'visitor', avatar.id)} alt="" width={44} height={44} className="h-full w-full" />
+                    </button>
+                  ))}
+                </div>
                 <input
                   value={nicknameInput}
                   onChange={(event) => setNicknameInput(event.target.value)}
@@ -175,8 +199,8 @@ export default function CommunityChat() {
                     <div className="space-y-4">
                       {messages.map((message) => (
                         <article key={message.id} className="flex gap-3">
-                          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-[10px] font-bold text-white" style={{ backgroundColor: AVATAR_COLORS[message.nickname.length % AVATAR_COLORS.length] }}>
-                            {getInitials(message.nickname)}
+                          <div className="h-8 w-8 shrink-0 overflow-hidden rounded-full border border-black/10 bg-white dark:border-white/10 dark:bg-[#1C1D20]">
+                            <Image src={getAvatarUrl(message.nickname, message.avatarStyle)} alt={`${message.nickname} avatar`} width={32} height={32} className="h-full w-full" />
                           </div>
                           <div className="min-w-0 flex-1">
                             <div className="flex items-baseline justify-between gap-2">
@@ -221,8 +245,8 @@ export default function CommunityChat() {
       >
         <div className="flex -space-x-2">
           {visibleAvatars.length > 0 ? visibleAvatars.map((message, index) => (
-            <span key={message.id} className="flex h-7 w-7 items-center justify-center rounded-full border-2 border-white/70 text-[9px] font-bold text-white dark:border-[#1C1D20]" style={{ backgroundColor: AVATAR_COLORS[index % AVATAR_COLORS.length], zIndex: 3 - index }}>
-              {getInitials(message.nickname)}
+            <span key={message.id} className="h-7 w-7 overflow-hidden rounded-full border-2 border-white/70 bg-white dark:border-[#1C1D20]" style={{ zIndex: 3 - index }}>
+              <Image src={getAvatarUrl(message.nickname, message.avatarStyle)} alt="" width={28} height={28} className="h-full w-full" />
             </span>
           )) : (
             <span className="flex h-7 w-7 items-center justify-center rounded-full border-2 border-white/70 bg-[#1C1D20] text-white dark:border-[#1C1D20]"><UsersRound size={13} /></span>

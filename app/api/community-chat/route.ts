@@ -4,6 +4,7 @@ import CommunityMessage from '../../../models/CommunityMessage';
 
 const MAX_NICKNAME_LENGTH = 24;
 const MAX_MESSAGE_LENGTH = 280;
+const AVATAR_STYLES = ['notionists', 'adventurer', 'lorelei', 'bottts', 'avataaars'];
 
 function cleanText(value: unknown, maxLength: number) {
   if (typeof value !== 'string') return '';
@@ -30,19 +31,21 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const nickname = cleanText(body.nickname, MAX_NICKNAME_LENGTH);
     const content = cleanText(body.content, MAX_MESSAGE_LENGTH);
+    const avatarStyle = AVATAR_STYLES.includes(body.avatarStyle) ? body.avatarStyle : 'notionists';
 
     if (!nickname || !content) {
       return NextResponse.json({ error: 'Nickname and message are required.' }, { status: 400 });
     }
 
     await dbConnect();
-    const message = await CommunityMessage.create({ nickname, content });
+    const message = await CommunityMessage.create({ nickname, avatarStyle, content });
 
     return NextResponse.json(
       {
         message: {
           id: message._id.toString(),
           nickname: message.nickname,
+          avatarStyle: message.avatarStyle,
           content: message.content,
           createdAt: message.createdAt,
         },
