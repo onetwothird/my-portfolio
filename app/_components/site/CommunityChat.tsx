@@ -118,7 +118,7 @@ export default function CommunityChat() {
   const visibleAvatars = messages.slice(-3);
 
   return (
-    <div className="fixed bottom-16 left-6 md:bottom-20 md:left-12 z-100">
+    <div className="fixed bottom-28 left-6 md:bottom-20 md:left-12 z-100">
       <AnimatePresence>
         {isOpen && (
           <motion.section
