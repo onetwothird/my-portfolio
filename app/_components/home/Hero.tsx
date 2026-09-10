@@ -274,8 +274,8 @@ export default function Hero({ isReady = false }: { isReady?: boolean }) {
           <Tape inverted className="w-12 h-5 -top-2.5 -right-3" rotate={-12} />
           <Magnetic>
             <a
-              href="/resume/Decatoria-Angelito_Resume.pdf"
-              download="Decatoria-Angelito_Resume.pdf"
+              href="/resume/Decatoria_Angelito_Resume.pdf"
+              download="Decatoria_Angelito_Resume.pdf"
               onMouseEnter={playHover}
               onClick={playClick}
               className="group flex items-center gap-3 px-5 xl:px-6 py-2.5 xl:py-3 rounded-full border border-white/30 bg-white/5 backdrop-blur-sm text-white transition-all duration-500 hover:bg-white hover:text-black pointer-events-auto hover:shadow-[0_0_20px_rgba(255,255,255,0.3)]"
