@@ -16,6 +16,7 @@ import JourneyGallery from "./_components/home/JourneyGallery";
 import Footer from "./_components/home/Footer";
 import Certification from "./_components/home/Certification";
 import OpenSource from "./_components/home/OpenSource";
+import CommunityChat from "./_components/site/CommunityChat";
 
 const preloaderImages = [
   { src: "/gallery/image1.jpg", label: "01 / portrait" },
@@ -221,6 +222,8 @@ export default function Home() {
       </motion.main>
 
       <Footer />
+      
+      {!loading && <CommunityChat />}
     </div>
   );
 }
