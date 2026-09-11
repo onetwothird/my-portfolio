@@ -135,13 +135,13 @@ export default function CommunityChat() {
   return (
     <motion.div 
       className="fixed bottom-16 left-6 md:bottom-20 md:left-12 z-100"
-      initial={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, y: 20 }}
       animate={{ 
         opacity: isAtFooter ? 0 : 1, 
         y: isAtFooter ? 20 : 0, 
         pointerEvents: isAtFooter ? "none" : "auto" 
       }}
-      transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ duration: 0.6, delay: 0.86, ease: [0.16, 1, 0.3, 1] }}
     >
       <AnimatePresence>
         {isOpen && (
