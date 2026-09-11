@@ -33,9 +33,6 @@ export default function About() {
         <GridPaper />
 
         <div className="absolute inset-0 flex items-center justify-center opacity-[0.08] dark:opacity-10 pointer-events-none z-0 overflow-hidden">
-          <h2 className="text-[7rem] sm:text-[10rem] md:text-[15rem] lg:text-[20rem] font-bold tracking-tighter whitespace-nowrap">
-            THIRDY
-          </h2>
         </div>
 
         <motion.div
@@ -63,7 +60,7 @@ export default function About() {
 
           <div className="h-full flex items-end justify-center p-2 sm:p-3 bg-white/60 dark:bg-white/4 backdrop-blur-[1px] border border-black/10 dark:border-white/15 shadow-2xl">
             <Image
-              src="/img/cover1.png"
+              src="/img/about-photos.png"
               alt="Angelito P. Decatoria III"
               width={800}
               height={1200}
