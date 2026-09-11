@@ -40,9 +40,9 @@ export default function LiveVisitorCount() {
   const remainingCount = stats.totalUnique > 3 ? stats.totalUnique - 3 : 0;
   
   const displayAvatars = [
-    { seed: 'Visitor1', style: 'avataaars' },
-    { seed: 'Felix', style: 'lorelei' },
-    { seed: 'Visitor3', style: 'adventurer' }
+    { seed: 'Visitor10', style: 'avataaars' },
+    { seed: 'Visitor14', style: 'adventurer' },
+    { seed: 'Visitor3', style: 'notionists' }
   ];
 
   return (
