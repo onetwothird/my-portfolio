@@ -41,7 +41,7 @@ export default function LiveVisitorCount() {
   
   const displayAvatars = [
     { seed: 'Visitor1', style: 'avataaars' },
-    { seed: 'Visitor2', style: 'bottts' },
+    { seed: 'Felix', style: 'lorelei' },
     { seed: 'Visitor3', style: 'adventurer' }
   ];
 
