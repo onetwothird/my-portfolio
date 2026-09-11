@@ -38,20 +38,25 @@ export default function LiveVisitorCount() {
   }
 
   const remainingCount = stats.totalUnique > 3 ? stats.totalUnique - 3 : 0;
-  const avatarSeeds = ['Angelito', 'Dev', 'Code'];
+  
+  const displayAvatars = [
+    { seed: 'Visitor1', style: 'avataaars' },
+    { seed: 'Visitor2', style: 'bottts' },
+    { seed: 'Visitor3', style: 'adventurer' }
+  ];
 
   return (
     <div className="flex flex-col items-start gap-2 md:gap-3 mb-2 md:mb-4">
       
       <div className="flex items-center -space-x-2 md:-space-x-3">
-        {avatarSeeds.map((seed, index) => (
+        {displayAvatars.map((avatar, index) => (
           <div 
-            key={seed} 
+            key={avatar.seed} 
             className="w-8 h-8 md:w-10 md:h-10 rounded-full border-2 border-white/40 bg-white overflow-hidden relative shadow-sm"
             style={{ zIndex: 10 - index }}
           >
             <Image
-              src={`https://api.dicebear.com/7.x/notionists/svg?seed=${seed}&backgroundColor=ffffff`}
+              src={`https://api.dicebear.com/9.x/${avatar.style}/svg?seed=${avatar.seed}&backgroundColor=f4f4f4`}
               alt="Visitor Avatar"
               fill
               sizes="(max-width: 768px) 32px, 40px"
