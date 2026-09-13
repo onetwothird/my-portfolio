@@ -6,40 +6,41 @@ import { Menu, X, MapPin, ArrowRight } from 'lucide-react';
 import Magnetic from '../shared/Magnetic';
 import { useSound } from '../shared/SoundProvider';
 
+const smoothEase: [number, number, number, number] = [0.76, 0, 0.24, 1];
 const expandedVariants = {
   hidden: { opacity: 0, height: 0 },
   visible: { 
     opacity: 1, 
     height: "auto",
     transition: { 
-      duration: 0.25, // Reduced from 0.5
-      ease: [0.16, 1, 0.3, 1] as const,
-      staggerChildren: 0.02, // Reduced from 0.05
-      delayChildren: 0.05 // Reduced from 0.1
+      height: { duration: 0.5, ease: smoothEase },
+      opacity: { duration: 0.4, delay: 0.1, ease: smoothEase },
+      staggerChildren: 0.04, 
+      delayChildren: 0.1 
     }
   },
   exit: { 
     opacity: 0, 
     height: 0,
     transition: { 
-      duration: 0.2, // Reduced from 0.4
-      ease: [0.16, 1, 0.3, 1] as const,
-      staggerChildren: 0.015, // Reduced from 0.03
+      height: { duration: 0.4, ease: smoothEase, delay: 0.1 },
+      opacity: { duration: 0.2, ease: smoothEase },
+      staggerChildren: 0.02, 
       staggerDirection: -1
     }
   }
-} as const;
+};
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 20, filter: "blur(8px)" },
+  hidden: { opacity: 0, y: 15, filter: "blur(4px)" },
   visible: { 
     opacity: 1, 
     y: 0, 
     filter: "blur(0px)",
-    transition: { duration: 0.25, ease: [0.16, 1, 0.3, 1] as const } // Reduced from 0.5
+    transition: { duration: 0.4, ease: smoothEase } 
   },
-  exit: { opacity: 0, y: -10, filter: "blur(4px)" }
-} as const;
+  exit: { opacity: 0, y: -10, filter: "blur(4px)", transition: { duration: 0.2 } }
+};
 
 export default function Navigation({ isReady = false }: { isReady?: boolean }) {
   const { scrollY } = useScroll();
@@ -86,7 +87,7 @@ export default function Navigation({ isReady = false }: { isReady?: boolean }) {
             initial={{ opacity: 0, backdropFilter: "blur(0px)" }}
             animate={{ opacity: 1, backdropFilter: "blur(4px)" }}
             exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
-            transition={{ duration: 0.2, ease: "easeInOut" }} // Reduced from 0.5
+            transition={{ duration: 0.4, ease: smoothEase }} 
             onClick={() => {
               playClick();
               setIsOpen(false);
@@ -99,7 +100,7 @@ export default function Navigation({ isReady = false }: { isReady?: boolean }) {
       <motion.div
         initial={{ opacity: 0, y: -14 }}
         animate={{ opacity: isReady ? 1 : 0, y: isReady ? 0 : -14 }}
-        transition={{ duration: 0.4, delay: isReady ? 0.92 : 0, ease: [0.16, 1, 0.3, 1] }} // Sped up initial load drop slightly
+        transition={{ duration: 0.6, delay: isReady ? 0.8 : 0, ease: smoothEase }}
         className="fixed top-4 left-4 right-4 sm:left-auto sm:right-8 md:top-8 md:right-12 z-50 flex justify-end pointer-events-none"
       >
         <motion.nav
@@ -109,8 +110,7 @@ export default function Navigation({ isReady = false }: { isReady?: boolean }) {
             borderRadius: isOpen ? 24 : 32,
             backgroundColor: "#1C1D20",
           }}
-          // Increased stiffness, decreased mass for a faster, snappier spring
-          transition={{ type: "spring", stiffness: 500, damping: 30, mass: 0.5 }} 
+          transition={{ duration: 0.1, ease: smoothEase }}
           className={`border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.2)] text-white overflow-hidden flex flex-col origin-top-right pointer-events-auto will-change-transform ${
             isOpen ? "w-full sm:w-105" : "w-auto max-w-full"
           }`}
@@ -146,7 +146,7 @@ export default function Navigation({ isReady = false }: { isReady?: boolean }) {
                   initial={{ opacity: 0, width: 0, filter: "blur(4px)" }}
                   animate={{ opacity: 1, width: "auto", filter: "blur(0px)" }}
                   exit={{ opacity: 0, width: 0, filter: "blur(4px)" }}
-                  transition={{ duration: 0.2, ease: "easeInOut" }} // Reduced from 0.3
+                  transition={{ duration: 0.3, ease: smoothEase }} 
                   className="hidden md:flex items-center gap-6 overflow-hidden whitespace-nowrap"
                 >
                   {["Work", "About", "Contact"].map((item, i) => (
@@ -173,7 +173,9 @@ export default function Navigation({ isReady = false }: { isReady?: boolean }) {
                 onMouseEnter={playHover}
                 className="flex items-center gap-2 bg-white/10 hover:bg-white/20 transition-colors px-3 py-2 md:px-4 md:py-2.5 rounded-full text-xs md:text-sm font-medium shrink-0 group"
               >
-                <motion.span layout className="hidden sm:block text-white group-hover:opacity-70 transition-opacity">{isOpen ? "Close" : "Menu"}</motion.span>
+                <motion.span layout className="hidden sm:block text-white group-hover:opacity-70 transition-opacity">
+                  {isOpen ? "Close" : "Menu"}
+                </motion.span>
                 <motion.div layout className="text-white group-hover:scale-110 transition-transform duration-200">
                   {isOpen ? <X size={16} /> : <Menu size={16} />}
                 </motion.div>
@@ -188,7 +190,7 @@ export default function Navigation({ isReady = false }: { isReady?: boolean }) {
                 initial="hidden"
                 animate="visible"
                 exit="exit"
-                className="w-full border-t border-white/10 max-h-[75vh] overflow-y-auto no-scrollbar"
+                className="w-full border-t border-white/10 max-h-[75vh] overflow-y-auto no-scrollbar overflow-hidden"
               >
                 <div className="p-4 sm:p-6 md:p-8 flex flex-col gap-6 md:gap-10">
                   
