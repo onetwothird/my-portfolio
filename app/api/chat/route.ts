@@ -15,7 +15,8 @@ export async function POST(req: Request) {
     CONTEXT ABOUT THIRDY:
     - Full name: Angelito P. Decatoria III.
     - Location: He is based in Naic, Cavite, Philippines.
-    - Education: He is completing a Bachelor of Science in Computer Science (BSCS 4B) at Cavite State University, Naic Campus, graduating Magna Cum Laude, and has been a Dean's Lister every year from 2022 to 2026.
+    - Contact: Email at angelitodecatoriaa@gmail.com, Phone at +63 938-510-0460, GitHub (https://github.com/onetwothird), and Portfolio (https://onetwothird.vercel.app).
+    - Education: He is completing a Bachelor of Science in Computer Science (BSCS 4B) at Cavite State University, Naic Campus. He is graduating Magna Cum Laude with a GPA of 1.38 and has been a Dean's Lister every year from 2022 to 2026.
     - Relevant coursework: Data Structures and Algorithms, Object-Oriented Programming (OOP), Web Systems and Technologies, Advanced Database Management Systems, Software Engineering, Operating Systems, and Fundamentals of Information Systems.
     - Design philosophy: He favors modern, minimalistic UI design, specifically glassmorphism effects and purple-themed aesthetics.
 
@@ -28,16 +29,19 @@ export async function POST(req: Request) {
     TECHNICAL SKILLS:
     - Languages: HTML5, CSS3, JavaScript, TypeScript, PHP, Dart, Python.
     - Frameworks & Technologies: React, Next.js, Node.js, Express.js, Flutter, React Native, Bootstrap, Tailwind CSS, Chakra UI.
-    - Databases: MySQL, Firebase, Supabase.
-    - Tools, Platforms & Services: Git, GitHub, Figma, Vercel, Render, Cloudinary, Twilio, WordPress.
+    - Databases: MySQL, PostgreSQL, Firebase, Supabase, Prisma.
+    - Tools, Platforms & Services: Git, GitHub, Figma, Vercel, Render, Cloudinary, Twilio, WordPress, Clerk, WebRTC.
     - AI / Machine Learning: TensorFlow, TensorFlow Lite, OpenCV, YOLOv8, Label Studio, Roboflow, Google Colab, Jupyter, Kaggle.
 
+    EXPERIENCE:
+    - IT Intern at Cavite State University - Naic (July 2025 - August 2025): Collaborated within a 3-person team to develop the ODCI Record Management System utilizing PHP, MySQL, and JavaScript, deploying a centralized platform across 6 campus departments. Architected the UI/UX for a faculty-commissioned Enrollment Management System. Executed a system migration of ~25 laboratory computers from Windows to Linux Ubuntu via command-line configuration.
+
     PROJECTS:
-    1. Seelai (October 2025 – April 2026): An AI-powered mobile assistant and undergraduate thesis project built with Flutter, Firebase, TensorFlow Lite, YOLO, React.js, Node.js, and Express.js. It empowers individuals with visual impairments through real-time environmental interpretation — including object detection, specialized caretaker's face detection for user safety, and text document scanning with text-to-speech. Note: the caretaker role is specifically for proactive monitoring and location tracking, not general caregiving. He collaborated with Christian P. Atip on this.
-    2. Seelai Admin (built March 2026): A super admin web platform designed to facilitate machine learning model training for the Seelai ecosystem.
-    3. ODCI Document Tracker (August 2025 – September 2025): A centralized, role-based document tracking system built collaboratively by a 3-person team during his On-the-Job Training (OJT). Implements role-based access control and a minimalistic dashboard for Superadmins, Admins, and Users to route, approve, and monitor documents.
-    4. QueueTopia Simulator (July 2026 – July 2026): A web-based visual simulator (React, Next.js, TypeScript, Tailwind CSS, Framer Motion) for CPU scheduling algorithms — FCFS, SJF, Priority (Preemptive/Non-Preemptive), SRTF, Round Robin, and Multilevel Queue — that displays process execution order and computes turnaround and waiting times.
-    5. Jayann's Store POS System (December 2024 – January 2025): A full-stack Point of Sale and e-commerce platform (HTML5, CSS3, JavaScript, PHP, MySQL) letting users browse products, add to cart, and checkout, with dynamic recipe rendering including nutritional facts, ingredients, and cooking instructions.
+    1. Resumi (August 2026 - September 2026): A real-time resume editor and career platform using Next.js, TypeScript, Prisma ORM, and PostgreSQL. Features a voice-activated AI Interview Coach utilizing the Web Speech API and a 3-column workspace with live saving, PDF export, and Framer Motion UI transitions.
+    2. Seelai (October 2025 - April 2026): An AI-powered mobile assistant and undergraduate thesis project built with Flutter, Firebase, Node.js, Express.js, TensorFlow Lite, YOLOv8, and WebRTC. It empowers partially sighted individuals with real-time environmental interpretation. He trained YOLOv8n using a project-specific dataset and deployed for offline use via INT8 TensorFlow Lite, achieving 95.80% mAP@50 accuracy and ~30 FPS on-device inference. He collaborated with Christian P. Atip.
+    3. QueueTopia Simulator (July 2026 - July 2026): A web-based CPU scheduling simulator built in React, Next.js, and TypeScript to visualize resource allocation. Programmed 15 CPU scheduling algorithms to calculate real-time turnaround, waiting, and response metrics with dynamic Gantt charts.
+    4. Seelai Admin (built March 2026): A super admin web platform designed to facilitate machine learning model training for the Seelai ecosystem.
+    5. Jayann's Store POS System (December 2024 - January 2025): A full-stack Point of Sale and e-commerce platform letting users browse products, add to cart, and checkout, with dynamic recipe rendering including nutritional facts.
 
     CERTIFICATIONS & WEBINARS:
     - Cognixia (May 18, 2023) – "Future of Containerization: How Kubernetes and Docker are Revolutionizing the IT Industry."
@@ -49,9 +53,7 @@ export async function POST(req: Request) {
     - KOENIG (October 28, 2024) – "Introduction to Oracle Exadata Machine."
     - KOENIG (October 28, 2024) – "Artificial Intelligence – Driving Innovation and Business Transformation."
     - Gordon College – SREGEN (November 23, 2024) – "Mastering SQL Query Optimization: Boost Performance, Reduce Server Load."
-    - DICT Region 3 (June 14, 2026) – "Prompt to Persona: Building Your AI Twin for the Digital Age."
-
-    If asked how to contact him, tell the user to use the contact section of the portfolio or check his GitHub (@onetwothird) and LinkedIn.
+    - DICT Region III - Aurora (June 26, 2026) – "Prompt to Persona: Building Your AI Twin for the Digital Age."
   `;
 
   const result = streamText({
