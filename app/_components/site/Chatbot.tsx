@@ -18,7 +18,7 @@ function getMessageText(m: UIMessage) {
     .join("");
 }
 
-function useTypewriter(fullText: string, active: boolean, speed = 18) {
+function useTypewriter(fullText: string, active: boolean, speed = 25) {
   const [revealedLength, setRevealedLength] = useState(0);
   const fullTextRef = useRef(fullText);
 
@@ -33,11 +33,8 @@ function useTypewriter(fullText: string, active: boolean, speed = 18) {
       setRevealedLength((prev) => {
         const target = fullTextRef.current;
         if (prev >= target.length) return prev;
-
-        const backlog = target.length - prev;
-        const step = backlog > 60 ? 4 : backlog > 20 ? 2 : 1;
-
-        return Math.min(target.length, prev + step);
+        
+        return prev + 1;
       });
     }, speed);
 
@@ -95,7 +92,6 @@ function ChatBubble({
             <div className="text-sm space-y-2 wrap-break-word">
               <ReactMarkdown
                 components={{
-                  // Custom styling for the Markdown elements
                   ul: ({ children }) => <ul className="list-disc ml-5 space-y-1 my-2">{children}</ul>,
                   ol: ({ children }) => <ol className="list-decimal ml-5 space-y-1 my-2">{children}</ol>,
                   li: ({ children }) => <li className="leading-relaxed">{children}</li>,
@@ -240,7 +236,6 @@ export default function Chatbot() {
                 transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
                 className="absolute bottom-20 right-0 w-[90vw] md:w-96 h-124 max-h-[80vh] bg-white dark:bg-[#111111] border border-black/10 dark:border-white/10 shadow-2xl rounded-2xl flex flex-col overflow-hidden"
               >
-                {/* Header */}
                 <div className="p-4 border-b border-black/10 dark:border-white/10 flex justify-between items-center bg-[#F4F4F4] dark:bg-[#1C1D20] rounded-t-2xl shrink-0">
                   <div className="flex items-center gap-3">
                     <span className="relative flex h-2.5 w-2.5">
@@ -328,7 +323,6 @@ export default function Chatbot() {
                     return <ChatBubble key={m.id} message={m} isStreaming={isStreaming} />;
                   })}
 
-                  {/* Thinking Animation State */}
                   <AnimatePresence>{isThinking && <ThinkingIndicator />}</AnimatePresence>
 
                   <div ref={messagesEndRef} className="h-1" />
