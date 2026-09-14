@@ -148,7 +148,7 @@ export default function Hero({ isReady = false }: { isReady?: boolean }) {
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: isReady ? 1 : 0, y: isReady ? 0 : -10 }}
         transition={{ duration: 0.55, delay: isReady ? 1.15 : 0, ease: [0.16, 1, 0.3, 1] }}
-        className="absolute top-20 sm:top-24 left-4 md:left-8 z-50 pointer-events-auto"
+        className="absolute top-20 sm:top-24 left-4 md:left-8 z-30 pointer-events-auto"
       >
         <Magnetic>
           <button
