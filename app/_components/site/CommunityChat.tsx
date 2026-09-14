@@ -15,12 +15,18 @@ type CommunityMessage = {
   createdAt: string;
 };
 
+// Expanded the AVATAR_STYLES array to provide a lot more choices for the user
 const AVATAR_STYLES = [
   { id: 'notionists', label: 'Ink' },
   { id: 'adventurer', label: 'Sketch' },
   { id: 'lorelei', label: 'Line' },
   { id: 'bottts', label: 'Pixel' },
   { id: 'avataaars', label: 'Friendly' },
+  { id: 'micah', label: 'Micah' },
+  { id: 'miniavs', label: 'Mini' },
+  { id: 'big-smile', label: 'Smile' },
+  { id: 'croodles', label: 'Doodle' },
+  { id: 'fun-emoji', label: 'Emoji' },
 ] as const;
 
 function getAvatarUrl(nickname: string, avatarStyle = 'notionists') {
@@ -78,14 +84,23 @@ export default function CommunityChat() {
     if (savedNickname) {
       // eslint-disable-next-line react-hooks/set-state-in-effect
       setNickname(savedNickname);
-       
       setNicknameInput(savedNickname);
+    } else {
+      // Generates a preset random nickname if the user hasn't saved one yet
+      // This allows them to use the preset or overwrite it with their own
+      const randomPreset = `guest-${Math.floor(Math.random() * 10000)}`;
+      setNicknameInput(randomPreset);
     }
+
     const savedAvatarStyle = window.localStorage.getItem('communityAvatarStyle');
     if (savedAvatarStyle && AVATAR_STYLES.some((avatar) => avatar.id === savedAvatarStyle)) {
-       
       setAvatarStyle(savedAvatarStyle);
+    } else {
+      // Selects a random preset avatar style on first load
+      const randomStyle = AVATAR_STYLES[Math.floor(Math.random() * AVATAR_STYLES.length)].id;
+      setAvatarStyle(randomStyle);
     }
+
     void loadMessages();
     const interval = window.setInterval(() => void loadMessages(), 12000);
     return () => window.clearInterval(interval);
@@ -181,9 +196,11 @@ export default function CommunityChat() {
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold text-[#1C1D20] dark:text-white">Choose a nickname</h3>
-                  <p className="mx-auto mt-2 max-w-65 text-xs leading-relaxed text-[#999D9E]">Pick how you want to appear in the room. You can change it anytime on this device.</p>
+                  <p className="mx-auto mt-2 max-w-65 text-xs leading-relaxed text-[#999D9E]">Keep the preset or create your own. You can change it anytime on this device.</p>
                 </div>
-                <div className="flex justify-center gap-2">
+                
+                {/* Changed to flex-wrap to accommodate the larger amount of avatar choices */}
+                <div className="flex flex-wrap justify-center gap-2">
                   {AVATAR_STYLES.map((avatar) => (
                     <button
                       key={avatar.id}
@@ -198,6 +215,8 @@ export default function CommunityChat() {
                     </button>
                   ))}
                 </div>
+                
+                {/* The input field is now pre-filled with the preset state, but remains fully editable */}
                 <input
                   value={nicknameInput}
                   onChange={(event) => setNicknameInput(event.target.value)}
