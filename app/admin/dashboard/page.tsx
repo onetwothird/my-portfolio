@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { 
   Users, Eye, Calendar, Globe, Monitor, 
-  Smartphone, ShieldAlert, RefreshCw, MapPin // Added MapPin here
+  Smartphone, ShieldAlert, RefreshCw, MapPin, Search
 } from 'lucide-react';
 
 interface MetricStats {
@@ -26,6 +26,9 @@ interface LogEntry {
   os: string;
   browser: string;
   referrer: string;
+  ipAddress?: string;
+  lat?: number;
+  lon?: number;
 }
 
 interface DashboardData {
@@ -43,6 +46,7 @@ export default function AdminDashboard() {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>('');
   const [data, setData] = useState<DashboardData | null>(null);
+  const [locationFilter, setLocationFilter] = useState<string>('');
 
   const fetchStats = async (tokenString: string) => {
     setLoading(true);
@@ -68,7 +72,6 @@ export default function AdminDashboard() {
     const storedToken = localStorage.getItem('_admin_token');
     if (storedToken) {
       // eslint-disable-next-line react-hooks/set-state-in-effect
-      setPassphrase(storedToken);
       fetchStats(storedToken);
     }
   }, []);
@@ -119,7 +122,7 @@ export default function AdminDashboard() {
   const groupedLogs = Object.values(
     data.recentLogs.reduce((acc, log) => {
       const cleanCity = log.city ? decodeURIComponent(log.city) : 'Unknown';
-      const deviceKey = `${cleanCity}-${log.country}-${log.os}-${log.browser}`;
+      const deviceKey = `${log.ipAddress || cleanCity}-${log.os}-${log.browser}`;
       
       if (!acc[deviceKey]) {
         acc[deviceKey] = { ...log, city: cleanCity, visits: 1 };
@@ -134,6 +137,11 @@ export default function AdminDashboard() {
     }, {} as Record<string, LogEntry & { visits: number }>)
   ).sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
 
+  const filteredLogs = groupedLogs.filter(log => {
+    const searchString = `${log.city} ${log.country} ${log.ipAddress || ''}`.toLowerCase();
+    return searchString.includes(locationFilter.toLowerCase());
+  });
+
   return (
     <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 p-4 md:p-8 font-sans">
       <div className="max-w-7xl mx-auto">
@@ -144,7 +152,7 @@ export default function AdminDashboard() {
             <p className="text-sm text-zinc-500 dark:text-zinc-400">Live operational usage maps and performance telemetry data.</p>
           </div>
           <button
-            onClick={() => fetchStats(passphrase)}
+            onClick={() => fetchStats(passphrase || localStorage.getItem('_admin_token') || '')}
             disabled={loading}
             className="px-4 py-2 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-xs font-semibold rounded-lg flex items-center gap-2 shadow-sm hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-all"
           >
@@ -254,57 +262,80 @@ export default function AdminDashboard() {
         </div>
 
         <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl overflow-hidden shadow-sm">
-          <div className="p-6 border-b border-zinc-200 dark:border-zinc-800">
+          <div className="p-6 border-b border-zinc-200 dark:border-zinc-800 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
             <h3 className="text-sm font-bold font-mono tracking-wide text-zinc-400 uppercase">Realtime Connection Log</h3>
+            <div className="relative">
+              <Search size={14} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-zinc-400" />
+              <input
+                type="text"
+                placeholder="Filter by city, country, or IP..."
+                value={locationFilter}
+                onChange={(e) => setLocationFilter(e.target.value)}
+                className="pl-9 pr-4 py-1.5 border border-zinc-300 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-950 rounded-lg text-xs focus:outline-none focus:ring-2 focus:ring-purple-600 w-full sm:w-64 transition-all"
+              />
+            </div>
           </div>
+          
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse text-xs">
               <thead>
                 <tr className="bg-zinc-50 dark:bg-zinc-800/50 border-b border-zinc-200 dark:border-zinc-800 font-mono text-zinc-400">
                   <th className="p-4">Last Visit</th>
-                  <th className="p-4">Location</th>
+                  <th className="p-4">Exact Location & IP</th>
                   <th className="p-4">Target Node Path</th>
                   <th className="p-4">OS / Browser</th>
                   <th className="p-4">Visits</th>
-                  <th className="p-4">Referrer Source</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800">
-                {groupedLogs.map((log) => (
-                  <tr key={`${log.city}-${log.os}-${log.browser}`} className="hover:bg-zinc-50/50 dark:hover:bg-zinc-800/30 transition-colors">
-                    <td className="p-4 whitespace-nowrap text-zinc-500">
-                      {new Date(log.timestamp).toLocaleString('en-US', {
-                        month: 'short',
-                        day: 'numeric',
-                        hour: '2-digit',
-                        minute: '2-digit',
-                        second: '2-digit'
-                      })}
-                    </td>
-                    <td className="p-4 font-medium">
-                      <a 
-                        href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(log.city + ', ' + log.country)}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-1 text-purple-600 dark:text-purple-400 hover:underline hover:text-purple-800 dark:hover:text-purple-300 transition-colors"
-                        title={`View ${log.city} on Google Maps`}
-                      >
-                        <MapPin size={12} />
-                        {log.city}, {log.country}
-                      </a>
-                    </td>
-                    <td className="p-4 max-w-50 truncate text-purple-600 dark:text-purple-400">
-                      {log.url.replace(window.location.origin, '') || '/'}
-                    </td>
-                    <td className="p-4 text-zinc-600 dark:text-zinc-400">{log.os} / {log.browser}</td>
-                    <td className="p-4 font-mono font-bold text-zinc-700 dark:text-zinc-300">
-                      {log.visits}
-                    </td>
-                    <td className="p-4 max-w-37.5 truncate text-zinc-500">{log.referrer}</td>
-                  </tr>
-                ))}
+                {filteredLogs.map((log) => {
+                  const mapQuery = (log.lat && log.lon) 
+                    ? `${log.lat},${log.lon}` 
+                    : encodeURIComponent(`${log.city}, ${log.country}`);
+
+                  return (
+                    <tr key={`${log.ipAddress}-${log.os}-${log.browser}`} className="hover:bg-zinc-50/50 dark:hover:bg-zinc-800/30 transition-colors">
+                      <td className="p-4 whitespace-nowrap text-zinc-500">
+                        {new Date(log.timestamp).toLocaleString('en-US', {
+                          month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit'
+                        })}
+                      </td>
+                      <td className="p-4">
+                        <div className="flex flex-col gap-1">
+                          <a 
+                            href={`https://www.google.com/maps/search/?api=1&query=${mapQuery}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-1 font-medium text-purple-600 dark:text-purple-400 hover:underline transition-colors"
+                            title={`View coordinates on Google Maps`}
+                          >
+                            <MapPin size={12} />
+                            {log.city}, {log.country}
+                          </a>
+                          {log.ipAddress && (
+                            <span className="text-[10px] font-mono text-zinc-400 bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded w-fit">
+                              IP: {log.ipAddress}
+                            </span>
+                          )}
+                        </div>
+                      </td>
+                      <td className="p-4 max-w-50 truncate text-zinc-600 dark:text-zinc-400">
+                        {log.url.replace(typeof window !== 'undefined' ? window.location.origin : '', '') || '/'}
+                      </td>
+                      <td className="p-4 text-zinc-600 dark:text-zinc-400">{log.os} / {log.browser}</td>
+                      <td className="p-4 font-mono font-bold text-zinc-700 dark:text-zinc-300">
+                        {log.visits}
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
+            {filteredLogs.length === 0 && (
+              <div className="p-8 text-center text-zinc-500 text-sm">
+                No telemetry data matches your location filter.
+              </div>
+            )}
           </div>
         </div>
 
