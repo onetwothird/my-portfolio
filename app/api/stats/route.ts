@@ -27,7 +27,9 @@ export async function GET(req: NextRequest) {
       Visitor.countDocuments(),
       Visitor.distinct('ipAddress').then((res: string[]) => res.length),
       Visitor.countDocuments({ timestamp: { $gte: startOfToday } }),
-      Visitor.find().sort({ timestamp: -1 }).limit(10).lean(),
+      
+      // Increased limit from 10 to 50 to provide enough data for the search filter to be useful
+      Visitor.find().sort({ timestamp: -1 }).limit(50).lean(),
       
       Visitor.aggregate([
         { $group: { _id: '$country', count: { $sum: 1 } } },
